@@ -23,8 +23,14 @@
 
 <style lang="scss">
 	@import "./assets/scss/center.scss";
+	@import "./assets/scss/shadow.scss";
 	@import "./assets/css/variables.css";
 	@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;800&display=swap");
+
+	* {
+		scroll-behavior: smooth;
+		font-family: "Montserrat";
+	}
 
 	body {
 		&.locked {
@@ -32,9 +38,42 @@
 		}
 	}
 
-	* {
-		scroll-behavior: smooth;
-		font-family: "Montserrat";
+	#app,
+	.theme-container {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		min-height: 100vh;
+	}
+
+	h1 {
+		font-size: 5rem;
+		font-weight: 500;
+	}
+	h2 {
+		font-size: 4.5rem;
+		font-weight: 500;
+	}
+	h3 {
+		font-size: 3rem;
+		font-weight: 500;
+	}
+	h4 {
+		font-size: 2.5rem;
+		font-weight: 400;
+	}
+	h5 {
+		font-size: 2rem;
+		font-weight: 300;
+	}
+	p {
+		font-size: 1.6rem;
+	}
+
+	img,
+	svg {
+		user-select: none;
+		pointer-events: none;
 	}
 
 	.main {
@@ -48,12 +87,6 @@
 		flex: 0 0 auto;
 	}
 
-	img,
-	svg {
-		user-select: none;
-		pointer-events: none;
-	}
-
 	.v-enter-active,
 	.v-leave-active {
 		transition: opacity 0.3s ease;
@@ -64,13 +97,6 @@
 		opacity: 0;
 	}
 
-	#app,
-	.theme-container {
-		display: flex;
-		flex-direction: column;
-		height: 100%;
-		min-height: 100vh;
-	}
 	.fade-enter-active,
 	.fade-leave-active {
 		transition: all 0.5s ease;
