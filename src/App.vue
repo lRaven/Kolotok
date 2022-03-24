@@ -46,6 +46,29 @@
 		min-height: 100vh;
 	}
 
+	input {
+		&[type="text"] {
+			::-ms-clear {
+				display: none;
+				width: 0;
+				height: 0;
+			}
+			::-ms-reveal {
+				display: none;
+				width: 0;
+				height: 0;
+			}
+		}
+		&[type="search"] {
+			&::-webkit-search-decoration,
+			&::-webkit-search-cancel-button,
+			&::-webkit-search-results-button,
+			&::-webkit-search-results-decoration {
+				display: none;
+			}
+		}
+	}
+
 	h1 {
 		font-size: 5rem;
 		font-weight: 500;
@@ -80,7 +103,14 @@
 		display: flex;
 		flex-direction: column;
 		flex: 1 0 auto;
-		padding-top: 6rem;
+		padding-top: 21rem;
+	}
+
+	.header,
+	section,
+	.footer {
+		padding-left: 1.5rem;
+		padding-right: 1.5rem;
 	}
 
 	.footer {

@@ -10,7 +10,7 @@ const routes = [
 		component: Home,
 
 		meta: {
-			title: 'hto',
+			title: 'Колоток',
 		}
 	},
 
