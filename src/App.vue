@@ -107,10 +107,11 @@
 	}
 
 	.header,
-	section,
 	.footer {
-		padding-left: 1.5rem;
-		padding-right: 1.5rem;
+	}
+	section {
+		padding: 2rem 1.5rem;
+		// border: 1px solid #000;
 	}
 
 	.footer {

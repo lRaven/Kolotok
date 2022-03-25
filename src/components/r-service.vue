@@ -1,23 +1,32 @@
 <template>
 	<div
 		class="r-service"
-		style="
-			backgroung: url(img/services/services-img.png) center / cover
-				no-repeat;
-		"
+		:style="`background: url(${img}) center / cover no-repeat`"
 	>
 		<div class="r-service__content">
-			<h3 class="r-service__title">Услуги</h3>
+			<h3 class="r-service__title">{{ title }}</h3>
 			<p class="r-service__description">
-				Проектирование, ремонт и обустройство квартиры
+				{{ description }}
 			</p>
+			<r-button :text="button_text"></r-button>
 		</div>
 	</div>
 </template>
 
 <script>
+	import rButton from "./r-button.vue";
+
 	export default {
 		name: "rService",
+		props: {
+			img: String,
+			title: String,
+			description: String,
+			button_text: String,
+		},
+		components: {
+			rButton,
+		},
 	};
 </script>
 
@@ -25,11 +34,20 @@
 	.r-service {
 		display: flex;
 		align-items: flex-end;
+		padding: 16rem 10rem 0 10rem;
 		&__content {
+			background: rgba(255, 255, 255, 0.8);
+			backdrop-filter: blur(5rem);
+			padding: 6.5rem 14rem 7.5rem 6rem;
+			border-radius: 3rem 3rem 0 0;
+			color: var(--dark-blue);
+			max-width: 45rem;
 		}
 		&__title {
+			margin-bottom: 1.5rem;
 		}
 		&__description {
+			margin-bottom: 3.5rem;
 		}
 	}
 </style>

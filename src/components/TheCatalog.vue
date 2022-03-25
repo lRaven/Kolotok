@@ -9,19 +9,19 @@
 				:text="category.text"
 			></catalog-category>
 		</div>
-		<r-link-btn route="/" text="Смотреть всё"></r-link-btn>
+		<r-button type="button" text="Смотреть всё" :arrow="true"></r-button>
 	</section>
 </template>
 
 <script>
-	import catalogCategory from "./catalogCategory.vue";
-	import rLinkBtn from "./r-link-btn.vue";
+	import CatalogCategory from "./CatalogCategory";
+	import rButton from "./r-button.vue";
 
 	export default {
 		name: "TheCatalog",
 		components: {
-			catalogCategory,
-			rLinkBtn,
+			CatalogCategory,
+			rButton,
 		},
 		data() {
 			return {
@@ -122,7 +122,7 @@
 			grid-gap: 2.4rem;
 			margin-bottom: 4rem;
 		}
-		.r-link-btn {
+		.r-button {
 			margin: auto;
 		}
 	}

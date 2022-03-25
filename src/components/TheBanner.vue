@@ -1,23 +1,14 @@
 <template>
-	<section class="the-banner center">
-		<r-swiper class="the-banner__swiper">
-			<swiper-slide class="r-swiper-slide">
-				<div class="r-swiper-slide-content">
-					<component
-						:is="child_component"
-						img="img/banner-img.png"
-						title="Всё для ремонта"
-						subtitle="Удобный интернет-магазин от застройщика"
-						:tags="[
-							{ id: 1, text: 'Дизайн интерьера' },
-							{ id: 2, text: 'Черновые работы' },
-							{ id: 3, text: 'Материалы для ремонта' },
-							{ id: 4, text: 'Ремонт под ключ' },
-						]"
-					></component>
-				</div>
-			</swiper-slide>
-		</r-swiper>
+	<section class="the-banner center-swiper">
+		<r-swiper
+			class="the-banner__swiper"
+			:navigation="true"
+			:pagination="true"
+			:slides_per_view="1"
+			:space_between="40"
+			:slides="slides"
+			type="banner"
+		></r-swiper>
 		<div class="the-banner__card the-banner__deal shadow">
 			<div class="the-banner__deal-content">
 				<h3 class="the-banner__deal-title">ВЫГОДНАЯ ПОКУПКА</h3>
@@ -56,26 +47,63 @@
 </template>
 
 <script>
-	import rSwiper from "../components/r-swiper.vue";
+	import rSwiper from "./r-swiper.vue";
 	import rLink from "./r-link.vue";
-	import rBannerCardWide from "./r-banner-card-wide.vue";
 
 	export default {
 		name: "TheBanner",
 		data() {
-			return { child_component: "r-banner-card-wide" };
+			return {
+				slides: [
+					{
+						id: 1,
+						img: "img/banner-img.png",
+						title: "Всё для ремонта",
+						subtitle: "Удобный интернет-магазин от застройщика",
+						tags: [
+							{ id: 1, text: "Дизайн интерьера" },
+							{ id: 2, text: "Черновые работы" },
+							{ id: 3, text: "Материалы для ремонта" },
+							{ id: 4, text: "Ремонт под ключ" },
+						],
+					},
+					{
+						id: 2,
+						img: "img/banner-img.png",
+						title: "Всё для ремонта",
+						subtitle: "Удобный интернет-магазин от застройщика",
+						tags: [
+							{ id: 1, text: "Дизайн интерьера" },
+							{ id: 2, text: "Черновые работы" },
+							{ id: 3, text: "Материалы для ремонта" },
+							{ id: 4, text: "Ремонт под ключ" },
+						],
+					},
+					{
+						id: 3,
+						img: "img/banner-img.png",
+						title: "Всё для ремонта",
+						subtitle: "Удобный интернет-магазин от застройщика",
+						tags: [
+							{ id: 1, text: "Дизайн интерьера" },
+							{ id: 2, text: "Черновые работы" },
+							{ id: 3, text: "Материалы для ремонта" },
+							{ id: 4, text: "Ремонт под ключ" },
+						],
+					},
+				],
+			};
 		},
 		components: {
 			rSwiper,
 			rLink,
-			rBannerCardWide,
 		},
 	};
 </script>
 
 <style lang="scss" scoped>
 	.the-banner {
-		padding: 4rem 1.5rem;
+		padding: 4rem 0;
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		grid-gap: 3rem 2.4rem;
@@ -87,6 +115,12 @@
 			color: var(--dark-blue);
 			overflow: hidden;
 			border-radius: 3rem;
+			&:nth-child(2) {
+				margin-left: 2.5rem;
+			}
+			&:last-child {
+				margin-right: 2.5rem;
+			}
 		}
 		&__deal {
 			position: relative;

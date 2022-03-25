@@ -1,0 +1,78 @@
+<template>
+	<section class="the-novelties center-swiper">
+		<h2 class="the-novelties__title">Новинки</h2>
+		<r-swiper
+			:navigation="true"
+			:pagination="false"
+			:slides_per_view="6"
+			:slides="slides"
+			:space_between="80"
+			type="card"
+			multi="multi"
+		></r-swiper>
+	</section>
+</template>
+
+<script>
+	import rSwiper from "../components/r-swiper.vue";
+
+	export default {
+		name: "TheNovelties",
+		components: {
+			rSwiper,
+		},
+		data() {
+			return {
+				slides: [
+					{
+						id: 1,
+						img: "img/catalog/catalog-item1.png",
+						price: "22 000",
+						name: "Садовые конструкции",
+					},
+					{
+						id: 2,
+						img: "img/catalog/catalog-item2.png",
+						price: "22 000",
+						name: "Садовые конструкции",
+					},
+					{
+						id: 3,
+						img: "img/catalog/catalog-item3.png",
+						price: "22 000",
+						name: "Садовые конструкции",
+					},
+					{
+						id: 4,
+						img: "img/catalog/catalog-item4.png",
+						price: "22 000",
+						name: "Садовые конструкции",
+					},
+					{
+						id: 5,
+						img: "img/catalog/catalog-item5.png",
+						price: "22 000",
+						name: "Садовые конструкции",
+					},
+					{
+						id: 6,
+						img: "img/catalog/catalog-item6.png",
+						price: "22 000",
+						name: "Садовые конструкции",
+					},
+				],
+			};
+		},
+	};
+</script>
+
+<style lang="scss" scoped>
+	.the-novelties {
+		padding: 2rem 0;
+		&__title {
+			color: var(--dark-blue);
+			margin-bottom: 3.5rem;
+			padding: 0 2.5rem;
+		}
+	}
+</style>

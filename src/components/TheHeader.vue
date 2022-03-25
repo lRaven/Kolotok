@@ -160,6 +160,7 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
+			padding: 0 1.5rem;
 			+ .the-header__row {
 				margin-top: 1.2rem;
 			}
