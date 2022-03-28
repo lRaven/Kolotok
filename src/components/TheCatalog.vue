@@ -110,8 +110,6 @@
 
 <style lang="scss" scoped>
 	.the-catalog {
-		padding: 4rem 1.5rem;
-
 		&__title {
 			margin-bottom: 5rem;
 			color: var(--dark-blue);

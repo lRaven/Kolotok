@@ -1,5 +1,5 @@
 <template>
-	<div class="news-card">
+	<div class="news-card shadow">
 		<div
 			class="news-card__top"
 			:style="`background: url(${img}) center / cover no-repeat`"
@@ -41,7 +41,44 @@
 <style lang="scss" scoped>
 	.news-card {
 		display: grid;
-		grid-template-rows: repeat(2, 1fr);
-		min-width: 100%;
+		grid-template-rows: 1.35fr 1fr;
+		color: var(--dark-blue);
+		border-radius: 3rem;
+		overflow: hidden;
+
+		&__top {
+			display: flex;
+			justify-content: flex-end;
+		}
+		&__date {
+			background: rgba(255, 255, 255, 0.4);
+			box-shadow: 0 0.4rem 0.4rem rgba(0, 0, 0, 0.1);
+			backdrop-filter: blur(5rem);
+			width: fit-content;
+			height: fit-content;
+			font-size: 1.4rem;
+			font-weight: 500;
+			padding: 1rem 4rem;
+			border-radius: 0 0 0 3rem;
+			@-moz-document url-prefix() {
+				background: rgba(255, 255, 255, 0.85);
+			}
+		}
+
+		&__bottom {
+			padding: 3.7rem 2.8rem 4.5rem 3.6rem;
+			display: flex;
+			flex-direction: column;
+		}
+		&__title {
+			margin-bottom: 1.5rem;
+		}
+		&__text {
+			line-height: 1.3;
+			margin-bottom: 10rem;
+		}
+		.r-link {
+			margin-left: auto;
+		}
 	}
 </style>

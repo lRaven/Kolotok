@@ -1,14 +1,13 @@
 <template>
 	<section class="the-banner center-swiper">
-		<r-swiper
-			class="the-banner__swiper"
-			:navigation="true"
-			:pagination="true"
-			:slides_per_view="1"
-			:space_between="40"
+		<r-carousel
+			:pagination="false"
 			:slides="slides"
 			type="banner"
-		></r-swiper>
+			:itemsToShow="1"
+			class="the-banner__carousel"
+		>
+		</r-carousel>
 		<div class="the-banner__card the-banner__deal shadow">
 			<div class="the-banner__deal-content">
 				<h3 class="the-banner__deal-title">ВЫГОДНАЯ ПОКУПКА</h3>
@@ -47,7 +46,7 @@
 </template>
 
 <script>
-	import rSwiper from "./r-swiper.vue";
+	import rCarousel from "./r-carousel";
 	import rLink from "./r-link.vue";
 
 	export default {
@@ -95,7 +94,7 @@
 			};
 		},
 		components: {
-			rSwiper,
+			rCarousel,
 			rLink,
 		},
 	};
@@ -103,11 +102,11 @@
 
 <style lang="scss" scoped>
 	.the-banner {
-		padding: 4rem 0;
+		padding: 4rem 1.5rem;
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		grid-gap: 3rem 2.4rem;
-		&__swiper {
+		&__carousel {
 			grid-column: 1/3;
 		}
 		&__card {
@@ -116,10 +115,10 @@
 			overflow: hidden;
 			border-radius: 3rem;
 			&:nth-child(2) {
-				margin-left: 2.5rem;
+				margin-left: 1rem;
 			}
 			&:last-child {
-				margin-right: 2.5rem;
+				margin-right: 1rem;
 			}
 		}
 		&__deal {

@@ -1,23 +1,22 @@
 <template>
 	<section class="the-services center-swiper">
-		<r-swiper
-			:navigation="true"
+		<r-carousel
 			:pagination="false"
-			:slides_per_view="1"
-			:space_between="40"
 			:slides="slides"
 			type="service"
-		></r-swiper>
+			:itemsToShow="1"
+		>
+		</r-carousel>
 	</section>
 </template>
 
 <script>
-	import rSwiper from "../components/r-swiper.vue";
+	import rCarousel from "./r-carousel.vue";
 
 	export default {
 		name: "TheServices",
 		components: {
-			rSwiper,
+			rCarousel,
 		},
 		data() {
 			return {
@@ -38,6 +37,6 @@
 
 <style lang="scss" scoped>
 	.the-services {
-		padding: 2rem 0;
+		padding: 2rem 1.5rem;
 	}
 </style>

@@ -15,44 +15,11 @@
 					v-if="isFavorite === false"
 					@click="addFavorite"
 				>
-					<g filter="url(#filter0_b_3754_29247)">
-						<path
-							d="M14.5 27L12.3975 25.0578C4.93 18.1864 0 13.6545 0 8.09267C0 3.56076 3.50901 0 7.975 0C10.498 0 12.9195 1.19183 14.5 3.07521C16.0805 1.19183 18.502 0 21.0249 0C25.4911 0 29 3.56076 29 8.09267C29 13.6545 24.0699 18.1864 16.6025 25.0725L14.5 27Z"
-							fill="#B8B8B8"
-							fill-opacity="0.3"
-						/>
-					</g>
-					<defs>
-						<filter
-							id="filter0_b_3754_29247"
-							x="-50"
-							y="-50"
-							width="129"
-							height="127"
-							filterUnits="userSpaceOnUse"
-							color-interpolation-filters="sRGB"
-						>
-							<feFlood
-								flood-opacity="0"
-								result="BackgroundImageFix"
-							/>
-							<feGaussianBlur
-								in="BackgroundImage"
-								stdDeviation="25"
-							/>
-							<feComposite
-								in2="SourceAlpha"
-								operator="in"
-								result="effect1_backgroundBlur_3754_29247"
-							/>
-							<feBlend
-								mode="normal"
-								in="SourceGraphic"
-								in2="effect1_backgroundBlur_3754_29247"
-								result="shape"
-							/>
-						</filter>
-					</defs>
+					<path
+						d="M14.5 27L12.3975 25.0578C4.93 18.1864 0 13.6545 0 8.09267C0 3.56076 3.50901 0 7.975 0C10.498 0 12.9195 1.19183 14.5 3.07521C16.0805 1.19183 18.502 0 21.0249 0C25.4911 0 29 3.56076 29 8.09267C29 13.6545 24.0699 18.1864 16.6025 25.0725L14.5 27Z"
+						fill="#B8B8B8"
+						fill-opacity="0.3"
+					/>
 				</svg>
 
 				<svg
@@ -65,44 +32,10 @@
 					v-if="isFavorite === true"
 					@click="removeFavorite"
 				>
-					<g filter="url(#filter0_b_3754_29247)">
-						<path
-							d="M14.5 27L12.3975 25.0578C4.93 18.1864 0 13.6545 0 8.09267C0 3.56076 3.50901 0 7.975 0C10.498 0 12.9195 1.19183 14.5 3.07521C16.0805 1.19183 18.502 0 21.0249 0C25.4911 0 29 3.56076 29 8.09267C29 13.6545 24.0699 18.1864 16.6025 25.0725L14.5 27Z"
-							fill="var(--red)"
-							fill-opacity="1"
-						/>
-					</g>
-					<defs>
-						<filter
-							id="filter0_b_3754_29247"
-							x="-50"
-							y="-50"
-							width="129"
-							height="127"
-							filterUnits="userSpaceOnUse"
-							color-interpolation-filters="sRGB"
-						>
-							<feFlood
-								flood-opacity="0"
-								result="BackgroundImageFix"
-							/>
-							<feGaussianBlur
-								in="BackgroundImage"
-								stdDeviation="25"
-							/>
-							<feComposite
-								in2="SourceAlpha"
-								operator="in"
-								result="effect1_backgroundBlur_3754_29247"
-							/>
-							<feBlend
-								mode="normal"
-								in="SourceGraphic"
-								in2="effect1_backgroundBlur_3754_29247"
-								result="shape"
-							/>
-						</filter>
-					</defs>
+					<path
+						d="M14.5 27L12.3975 25.0578C4.93 18.1864 0 13.6545 0 8.09267C0 3.56076 3.50901 0 7.975 0C10.498 0 12.9195 1.19183 14.5 3.07521C16.0805 1.19183 18.502 0 21.0249 0C25.4911 0 29 3.56076 29 8.09267C29 13.6545 24.0699 18.1864 16.6025 25.0725L14.5 27Z"
+						fill="var(--red)"
+					/>
 				</svg>
 			</div>
 			<img :src="img" alt="" class="r-card__img" />

@@ -110,8 +110,7 @@
 	.footer {
 	}
 	section {
-		padding: 2rem 1.5rem;
-		// border: 1px solid #000;
+		padding: 4rem 2rem;
 	}
 
 	.footer {

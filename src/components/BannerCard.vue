@@ -1,19 +1,19 @@
 <template>
-	<div class="r-banner-card-wide">
-		<img :src="img" alt="" class="r-banner-card-wide__bg" />
-		<h1 class="r-banner-card-wide__title">
+	<div class="banner-card">
+		<img :src="img" alt="" class="banner-card__bg" />
+		<h1 class="banner-card__title">
 			{{ title }}
 		</h1>
-		<h4 class="r-banner-card-wide__subtitle">
+		<h4 class="banner-card__subtitle">
 			{{ subtitle }}
 		</h4>
-		<div class="r-banner-card-wide__tags">
+		<div class="banner-card__tags">
 			<r-tag v-for="tag in tags" :key="tag.id" :text="tag.text"></r-tag>
 		</div>
 		<r-link
 			route="/"
 			text="Перейти в каталог"
-			class="r-banner-card-wide__link"
+			class="banner-card__link"
 		></r-link>
 	</div>
 </template>
@@ -23,7 +23,7 @@
 	import rLink from "./r-link.vue";
 
 	export default {
-		name: "rBannerCardWide",
+		name: "BannerCard",
 		props: {
 			title: String,
 			subtitle: String,
@@ -38,25 +38,31 @@
 </script>
 
 <style lang="scss" scoped>
-	.r-banner-card-wide {
+	.banner-card {
 		position: relative;
 		padding: 6rem 5rem 16rem 5rem;
 		border-radius: 3rem;
 		overflow: hidden;
+		width: 100%;
+		height: 100%;
 		&__bg {
 			position: absolute;
 			left: 0;
 			top: 0;
 			width: 100%;
-			object-fit: contain;
+			height: 100%;
+			object-fit: cover;
 			z-index: -1;
 		}
 
 		&__title {
+			text-align: left;
 			color: var(--dark-blue);
 			margin-bottom: 1.7rem;
 		}
 		&__subtitle {
+			text-align: left;
+			color: var(--dark-blue);
 			max-width: 39rem;
 			line-height: 1.5;
 			margin-bottom: 7rem;

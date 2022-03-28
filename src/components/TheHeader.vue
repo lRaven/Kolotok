@@ -101,16 +101,6 @@
 				</div>
 			</div>
 		</div>
-		<img
-			src="img/icon/header-decoration.svg"
-			class="the-header__decoration the-header__decoration-left"
-			alt=""
-		/>
-		<img
-			src="img/icon/header-decoration.svg"
-			class="the-header__decoration the-header__decoration-right"
-			alt=""
-		/>
 	</div>
 </template>
 
@@ -154,6 +144,27 @@
 		background-color: var(--dark-blue);
 		padding: 3rem 1.5rem;
 		z-index: 2;
+		&::before {
+			content: "";
+			position: absolute;
+			left: 0;
+			bottom: -2.7rem;
+			width: 2.8rem;
+			height: 2.8rem;
+			background: url("/public/img/icon/decoration.svg") center / contain
+				no-repeat;
+		}
+		&::after {
+			content: "";
+			position: absolute;
+			right: -0.1rem;
+			bottom: -2.7rem;
+			width: 2.8rem;
+			height: 2.8rem;
+			background: url("/public/img/icon/decoration.svg") center / contain
+				no-repeat;
+			transform: rotate(90deg);
+		}
 		&__container {
 		}
 		&__row {
@@ -201,18 +212,6 @@
 			}
 		}
 		&__avatar {
-		}
-		&__decoration {
-			position: absolute;
-			bottom: -2.6rem;
-			height: 2.6rem;
-			&-left {
-				left: 0;
-			}
-			&-right {
-				right: 0;
-				transform: scale(-1, 1);
-			}
 		}
 
 		&__catalog {

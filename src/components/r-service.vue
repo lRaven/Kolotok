@@ -35,6 +35,9 @@
 		display: flex;
 		align-items: flex-end;
 		padding: 16rem 10rem 0 10rem;
+		width: 100%;
+		border-radius: 3rem;
+		overflow: hidden;
 		&__content {
 			background: rgba(255, 255, 255, 0.8);
 			backdrop-filter: blur(5rem);

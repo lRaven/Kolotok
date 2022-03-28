@@ -1,25 +1,23 @@
 <template>
 	<section class="the-novelties center-swiper">
 		<h2 class="the-novelties__title">Новинки</h2>
-		<r-swiper
-			:navigation="true"
+		<r-carousel
 			:pagination="false"
-			:slides_per_view="6"
 			:slides="slides"
-			:space_between="80"
 			type="card"
-			multi="multi"
-		></r-swiper>
+			:itemsToShow="6"
+		>
+		</r-carousel>
 	</section>
 </template>
 
 <script>
-	import rSwiper from "../components/r-swiper.vue";
+	import rCarousel from "./r-carousel.vue";
 
 	export default {
 		name: "TheNovelties",
 		components: {
-			rSwiper,
+			rCarousel,
 		},
 		data() {
 			return {
@@ -68,7 +66,7 @@
 
 <style lang="scss" scoped>
 	.the-novelties {
-		padding: 2rem 0;
+		padding: 2rem 1.5rem;
 		&__title {
 			color: var(--dark-blue);
 			margin-bottom: 3.5rem;

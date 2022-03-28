@@ -11,6 +11,7 @@
 			<the-projects />
 			<the-news />
 		</main>
+		<the-footer />
 	</div>
 </template>
 
@@ -26,10 +27,13 @@
 	import TheProjects from "../components/TheProjects.vue";
 	import TheNews from "../components/TheNews.vue";
 
+	import TheFooter from "../components/TheFooter.vue";
+
 	export default {
 		name: "Home",
 		components: {
 			TheHeader,
+
 			TheBanner,
 			TheCatalog,
 			TheServices,
@@ -38,6 +42,8 @@
 			TheBenefits,
 			TheProjects,
 			TheNews,
+
+			TheFooter,
 		},
 	};
 </script>
