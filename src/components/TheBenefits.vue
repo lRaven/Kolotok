@@ -1,8 +1,14 @@
 <template>
 	<section class="the-benefits center">
-		<h2 class="the-benefits__title">Преимущества нашего магазина</h2>
+		<h2
+			class="animate__animated animate__fadeInRight wow the-benefits__title"
+		>
+			Преимущества нашего магазина
+		</h2>
 		<div class="the-benefits__list">
-			<div class="the-benefits__benefit shadow">
+			<div
+				class="animate__animated animate__fadeInUp wow the-benefits__benefit shadow"
+			>
 				<img
 					src="img/icon/shipping.svg"
 					class="the-benefits__benefit-icon"
@@ -13,7 +19,9 @@
 					Вы можете оплатить заказ оналайн банковской картой
 				</p>
 			</div>
-			<div class="the-benefits__benefit shadow">
+			<div
+				class="animate__animated animate__fadeInUp wow the-benefits__benefit shadow"
+			>
 				<img
 					src="img/icon/pay.svg"
 					class="the-benefits__benefit-icon"
@@ -24,7 +32,9 @@
 					Вы можете оплатить заказ оналайн банковской картой
 				</p>
 			</div>
-			<div class="the-benefits__benefit shadow">
+			<div
+				class="animate__animated animate__fadeInUp wow the-benefits__benefit shadow"
+			>
 				<img
 					src="img/icon/shipping.svg"
 					class="the-benefits__benefit-icon"

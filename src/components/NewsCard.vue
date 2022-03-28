@@ -1,18 +1,22 @@
 <template>
-	<div class="news-card shadow">
+	<div class="animate__animated animate__fadeInUp wow news-card shadow">
 		<div
 			class="news-card__top"
 			:style="`background: url(${img}) center / cover no-repeat`"
 		>
-			<div class="news-card__date">
+			<div
+				class="animate__animated animate__fadeInDown wow news-card__date"
+			>
 				{{ date }}
 			</div>
 		</div>
 		<div class="news-card__bottom">
-			<h3 class="news-card__title">
+			<h3
+				class="animate__animated animate__fadeInUp wow news-card__title"
+			>
 				{{ title }}
 			</h3>
-			<p class="news-card__text">
+			<p class="news-card__text animate__animated animate__fadeInUp wow">
 				{{ text }}
 			</p>
 			<r-link :route="route" text="Читать далее"></r-link>
@@ -60,6 +64,7 @@
 			font-weight: 500;
 			padding: 1rem 4rem;
 			border-radius: 0 0 0 3rem;
+			animation-delay: 0.2s;
 			@-moz-document url-prefix() {
 				background: rgba(255, 255, 255, 0.85);
 			}
@@ -72,13 +77,16 @@
 		}
 		&__title {
 			margin-bottom: 1.5rem;
+			animation-delay: 0.2s;
 		}
 		&__text {
 			line-height: 1.3;
 			margin-bottom: 10rem;
+			animation-delay: 0.4s;
 		}
 		.r-link {
 			margin-left: auto;
+			animation-delay: 0.5s;
 		}
 	}
 </style>

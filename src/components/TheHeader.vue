@@ -1,16 +1,19 @@
 <template>
-	<div class="the-header">
+	<div class="the-header animate__animated animate__fadeInDown">
 		<div class="the-header__container center">
 			<div class="the-header__row">
 				<div class="the-header__col the-header__col-left">
 					<img
 						src="img/icon/logo.svg"
 						alt="logo"
-						class="the-header__logo"
+						class="animate__animated animate__fadeInDown the-header__logo"
 					/>
 				</div>
 				<div class="the-header__col the-header__col-right">
-					<router-link to="/" class="the-header__basket-container">
+					<router-link
+						to="/"
+						class="animate__animated animate__fadeInDown the-header__basket-container"
+					>
 						<img
 							src="img/icon/basket.svg"
 							alt=""
@@ -23,7 +26,10 @@
 							{{ basket }}
 						</span>
 					</router-link>
-					<router-link to="/">
+					<router-link
+						to="/"
+						class="animate__animated animate__fadeInDown"
+					>
 						<img
 							src="img/icon/avatar.svg"
 							class="the-header__avatar"
@@ -37,7 +43,9 @@
 				<div
 					class="the-header__col the-header__col-left the-header__catalog"
 				>
-					<div class="the-header__catalog-button">
+					<div
+						class="animate__animated animate__fadeInDown the-header__catalog-button"
+					>
 						<div
 							class="the-header__catalog-burger"
 							@click="toggleCatalog"

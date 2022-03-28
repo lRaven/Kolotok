@@ -1,30 +1,34 @@
 <template>
 	<section class="the-projects center">
-		<h2 class="the-projects__title">Проекты клиентов</h2>
+		<h2
+			class="animate__animated animate__fadeInLeft wow the-projects__title"
+		>
+			Проекты клиентов
+		</h2>
 		<div class="the-projects__list">
 			<img
 				src="img/projects/project1.png"
-				class="the-projects__list-item the-projects__list-item1"
+				class="animate__animated animate__fadeInUp wow the-projects__list-item the-projects__list-item1"
 				alt=""
 			/>
 			<img
 				src="img/projects/project2.png"
-				class="the-projects__list-item the-projects__list-item2"
+				class="animate__animated animate__fadeInUp wow the-projects__list-item the-projects__list-item2"
 				alt=""
 			/>
 			<img
 				src="img/projects/project3.png"
-				class="the-projects__list-item the-projects__list-item3"
+				class="animate__animated animate__fadeInUp wow the-projects__list-item the-projects__list-item3"
 				alt=""
 			/>
 			<img
 				src="img/projects/project4.png"
-				class="the-projects__list-item the-projects__list-item4"
+				class="animate__animated animate__fadeInUp wow the-projects__list-item the-projects__list-item4"
 				alt=""
 			/>
 			<img
 				src="img/projects/project5.png"
-				class="the-projects__list-item the-projects__list-item5"
+				class="animate__animated animate__fadeInUp wow the-projects__list-item the-projects__list-item5"
 				alt=""
 			/>
 		</div>

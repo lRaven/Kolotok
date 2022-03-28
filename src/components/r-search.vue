@@ -1,5 +1,5 @@
 <template>
-	<div class="r-search">
+	<div class="animate__animated animate__fadeInUp r-search">
 		<input
 			type="search"
 			class="r-search__input"

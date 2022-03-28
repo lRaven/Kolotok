@@ -1,10 +1,15 @@
 <template>
-	<div class="r-card">
+	<div class="r-card animate__animated animate__fadeInUp wow">
 		<div class="r-card__main shadow">
-			<div class="r-card__discount" v-if="discount_percent">
+			<div
+				class="r-card__discount animate__animated animate__fadeInDown wow"
+				v-if="discount_percent"
+			>
 				-{{ discount_percent }}%
 			</div>
-			<div class="r-card__favorite">
+			<div
+				class="r-card__favorite animate__animated animate__bounceInDown wow"
+			>
 				<svg
 					width="29"
 					height="27"
@@ -108,6 +113,7 @@
 			background-color: var(--yellow);
 			font-size: 1.6rem;
 			font-weight: 600;
+			animation-delay: 0.2s;
 		}
 		&__favorite {
 			cursor: pointer;
@@ -116,6 +122,7 @@
 			position: absolute;
 			right: 1.5rem;
 			top: 1.5rem;
+			animation-delay: 0.2s;
 
 			&-icon {
 				pointer-events: all;

@@ -1,6 +1,10 @@
 <template>
 	<section class="the-novelties center-swiper">
-		<h2 class="the-novelties__title">Новинки</h2>
+		<h2
+			class="animate__animated animate__fadeInRight wow the-novelties__title"
+		>
+			Новинки
+		</h2>
 		<r-carousel
 			:pagination="false"
 			:slides="slides"

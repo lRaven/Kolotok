@@ -1,12 +1,17 @@
 <template>
 	<section class="the-catalog center">
-		<h2 class="the-catalog__title">Категории товаров</h2>
+		<h2
+			class="the-catalog__title animate__animated animate__fadeInLeft wow"
+		>
+			Категории товаров
+		</h2>
 		<div class="the-catalog__categories">
 			<catalog-category
 				v-for="category in categories"
 				:key="category.id"
 				:img="category.img"
 				:text="category.text"
+				class="animate__animated animate__fadeInUp wow"
 			></catalog-category>
 		</div>
 		<r-button type="button" text="Смотреть всё" :arrow="true"></r-button>

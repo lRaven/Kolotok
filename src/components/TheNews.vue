@@ -1,6 +1,8 @@
 <template>
 	<div class="the-news center-swiper">
-		<h2 class="the-news__title">Новости</h2>
+		<h2 class="animate__animated animate__fadeInRight wow the-news__title">
+			Новости
+		</h2>
 		<r-carousel :slides="slides" type="news" :itemsToShow="3"></r-carousel>
 	</div>
 </template>

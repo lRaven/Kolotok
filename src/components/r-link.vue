@@ -1,5 +1,8 @@
 <template>
-	<router-link :to="route" class="r-link">
+	<router-link
+		:to="route"
+		class="animate__animated animate__fadeInLeft wow r-link"
+	>
 		<svg
 			width="38"
 			height="13"

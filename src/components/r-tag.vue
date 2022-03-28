@@ -1,5 +1,7 @@
 <template>
-	<div class="r-tag shadow">{{ text }}</div>
+	<div class="animate__animated animate__fadeInUp r-tag shadow">
+		{{ text }}
+	</div>
 </template>
 
 <script>

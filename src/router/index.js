@@ -29,9 +29,16 @@ const routes = [
 
 ]
 
+
 const router = createRouter({
 	history: createWebHashHistory(),
 	routes
+})
+
+
+//* переход к странице с координатами x: 0, y: 0
+router.beforeEach(() => {
+	window.scrollTo(0, 0);
 })
 
 export default router

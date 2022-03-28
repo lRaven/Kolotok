@@ -1,6 +1,10 @@
 <template>
 	<section class="the-specials center-swiper">
-		<h2 class="the-specials__title">Специальные предложения</h2>
+		<h2
+			class="the-specials__title animate__animated animate__fadeInLeft wow"
+		>
+			Специальные предложения
+		</h2>
 		<r-carousel
 			:pagination="false"
 			:slides="slides"

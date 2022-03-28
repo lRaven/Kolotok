@@ -8,7 +8,9 @@
 			class="the-banner__carousel"
 		>
 		</r-carousel>
-		<div class="the-banner__card the-banner__deal shadow">
+		<div
+			class="animate__animated animate__fadeInUp wow the-banner__card the-banner__deal shadow"
+		>
 			<div class="the-banner__deal-content">
 				<h3 class="the-banner__deal-title">ВЫГОДНАЯ ПОКУПКА</h3>
 				<p class="the-banner__deal-text">
@@ -24,7 +26,7 @@
 			<div class="the-banner__deal-discount">-50%</div>
 		</div>
 		<div
-			class="the-banner__card the-banner__tariffs shadow"
+			class="animate__animated animate__fadeInUp wow the-banner__card the-banner__tariffs shadow"
 			style="
 				background: url(img/banner-tariffs.png) center/ cover no-repeat;
 			"

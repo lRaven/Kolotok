@@ -1,10 +1,12 @@
 <template>
 	<div class="banner-card">
 		<img :src="img" alt="" class="banner-card__bg" />
-		<h1 class="banner-card__title">
+		<h1 class="banner-card__title animate__animated animate__fadeInUp wow">
 			{{ title }}
 		</h1>
-		<h4 class="banner-card__subtitle">
+		<h4
+			class="banner-card__subtitle animate__animated animate__fadeInUp wow"
+		>
 			{{ subtitle }}
 		</h4>
 		<div class="banner-card__tags">
@@ -13,7 +15,7 @@
 		<r-link
 			route="/"
 			text="Перейти в каталог"
-			class="banner-card__link"
+			class="animate__animated animate__fadeInLeft wow banner-card__link"
 		></r-link>
 	</div>
 </template>
@@ -73,6 +75,23 @@
 			gap: 1rem;
 			max-width: 43rem;
 			margin-bottom: 7rem;
+			.r-tag {
+				&:first-child {
+					animation-delay: 0.2s;
+				}
+				&:nth-child(2) {
+					animation-delay: 0.4s;
+				}
+				&:nth-child(3) {
+					animation-delay: 0.6s;
+				}
+				&:last-child {
+					animation-delay: 0.8s;
+				}
+			}
+		}
+		.r-link {
+			animation-delay: 0.8s;
 		}
 	}
 </style>

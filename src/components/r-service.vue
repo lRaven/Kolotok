@@ -4,8 +4,14 @@
 		:style="`background: url(${img}) center / cover no-repeat`"
 	>
 		<div class="r-service__content">
-			<h3 class="r-service__title">{{ title }}</h3>
-			<p class="r-service__description">
+			<h3
+				class="r-service__title animate__animated animate__fadeInUp wow"
+			>
+				{{ title }}
+			</h3>
+			<p
+				class="r-service__description animate__animated animate__fadeInUp wow"
+			>
 				{{ description }}
 			</p>
 			<r-button :text="button_text"></r-button>
