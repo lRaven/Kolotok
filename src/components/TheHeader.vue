@@ -41,7 +41,7 @@
 
 			<div class="the-header__row">
 				<div
-					class="the-header__col the-header__col-left the-header__catalog"
+					class="the-header__col the-header__col-left the-header__catalog-wrapper"
 				>
 					<div
 						class="animate__animated animate__fadeInDown the-header__catalog-button"
@@ -101,6 +101,70 @@
 						</div>
 						<h5 class="the-header__catalog-title">Каталог</h5>
 					</div>
+					<transition>
+						<div class="the-header__catalog" v-show="isCatalogOpen">
+							<ul class="the-header__categories">
+								<li
+									class="the-header__categories-item the-header__category"
+									v-for="category in categories"
+									:key="category.id"
+									@click="this.category = category.id"
+								>
+									<p class="the-header__category-description">
+										{{ category.name }}
+									</p>
+									<svg
+										width="8"
+										height="14"
+										viewBox="0 0 8 14"
+										fill="none"
+										xmlns="http://www.w3.org/2000/svg"
+										class="the-header__categories-arrow"
+									>
+										<path
+											d="M1.53125 13L6.92621 7L1.53125 1"
+											stroke="#AEB3BF"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+										/>
+									</svg>
+								</li>
+							</ul>
+							<ul
+								class="the-header__sub-categories"
+								v-if="category !== null"
+							>
+								<li
+									class="the-header__categories-item the-header__sub-category"
+									v-for="sub_category in sub_categories"
+									:key="sub_category.id"
+								>
+									<p
+										class="the-header__sub-category-description"
+									>
+										{{ sub_category.name }}
+									</p>
+									<svg
+										width="8"
+										height="14"
+										viewBox="0 0 8 14"
+										fill="none"
+										xmlns="http://www.w3.org/2000/svg"
+										class="the-header__categories-arrow"
+									>
+										<path
+											d="M1.53125 13L6.92621 7L1.53125 1"
+											stroke="#AEB3BF"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+										/>
+									</svg>
+								</li>
+							</ul>
+						</div>
+					</transition>
 				</div>
 				<div class="the-header__col the-header__col-right">
 					<form class="the-header__search">
@@ -113,29 +177,88 @@
 </template>
 
 <script>
+	import store from "../store";
+
 	import rSearch from "./r-search.vue";
 
 	export default {
 		name: "TheHeader",
+		store,
 		components: {
 			rSearch,
 		},
 		data() {
 			return {
 				basket: 0,
+				isCatalogOpen: false,
+				category: null,
 			};
 		},
+		computed: {
+			categories() {
+				return store.getters.CATEGORIES;
+			},
+			sub_categories() {
+				let sub_categories = [];
+				store.getters.SUB_CATEGORIES.forEach((sub_category) => {
+					if (sub_category.category === this.category) {
+						sub_categories.push(sub_category);
+					}
+				});
+				return sub_categories;
+			},
+		},
 		methods: {
+			//*открытие и закрытие каталога
 			toggleCatalog() {
+				this.category = null;
+				const body = document.querySelector("body");
+
 				const header = document.querySelector(".the-header");
+				const rSearch = header.querySelector(".r-search");
 				const burger = header.querySelector(
 					".the-header__catalog-burger"
 				);
 
-				if (burger.classList.contains("open"))
+				const blur = document.querySelector(".r-blur");
+
+				if (burger.classList.contains("open")) {
 					burger.classList.remove("open");
-				else burger.classList.add("open");
+					this.isCatalogOpen = false;
+					body.classList.remove("locked");
+					blur.classList.remove("open");
+					rSearch.classList.remove("open");
+				} else {
+					burger.classList.add("open");
+					this.isCatalogOpen = true;
+					body.classList.add("locked");
+					blur.classList.add("open");
+					rSearch.classList.add("open");
+				}
 			},
+
+			adaptiveCatalogHeight() {
+				const body = document.querySelector("body");
+
+				const header = document.querySelector(".the-header");
+				const catalog = header.querySelector(".the-header__catalog");
+
+				const footer = document.querySelector(".the-footer");
+
+				document.addEventListener("scroll", () => {
+					if (
+						body.scrollHeight -
+							window.scrollY -
+							footer.scrollHeight <=
+						body.clientHeight
+					) {
+						catalog.classList.add("short");
+					} else catalog.classList.remove("short");
+				});
+			},
+		},
+		mounted() {
+			this.adaptiveCatalogHeight();
 		},
 	};
 </script>
@@ -151,7 +274,7 @@
 		justify-content: center;
 		background-color: var(--dark-blue);
 		padding: 3rem 1.5rem;
-		z-index: 2;
+		z-index: 3;
 		&::before {
 			content: "";
 			position: absolute;
@@ -223,6 +346,18 @@
 		}
 
 		&__catalog {
+			display: flex;
+			position: absolute;
+			top: 100%;
+			max-height: calc(100vh - 21rem);
+			width: max-content;
+			max-width: 140rem;
+			background-color: #fff;
+			overflow: hidden;
+			&.short {
+				max-height: calc(100vh - 34.5rem);
+			}
+
 			&-button {
 				display: flex;
 				align-items: center;
@@ -268,6 +403,57 @@
 				user-select: none;
 				color: var(--white);
 				font-weight: 500;
+			}
+		}
+
+		&__categories {
+			padding: 0.5rem 1rem;
+			overflow-y: auto;
+			max-width: 35rem;
+			&-arrow {
+				path {
+					transition: all 0.2s ease;
+				}
+			}
+			&-item {
+				user-select: none;
+				cursor: pointer;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 5rem;
+				padding: 2.3rem 3rem;
+				transition: all 0.2s ease;
+				height: 6.6rem;
+				&:nth-child(n + 2) {
+					border-top: 0.1rem solid var(--middle-gray);
+				}
+				&:last-child {
+					border-bottom: 0.1rem solid var(--middle-gray);
+				}
+				&:hover {
+					color: var(--blue);
+					.the-header__categories-arrow {
+						path {
+							stroke: var(--blue);
+						}
+					}
+				}
+			}
+		}
+		&__category {
+			&-description {
+				line-height: 1.3;
+			}
+		}
+		&__sub-categories {
+			max-width: 35rem;
+			padding: 0.5rem 1rem;
+			overflow-y: auto;
+		}
+		&__sub-category {
+			&-description {
+				line-height: 1.3;
 			}
 		}
 

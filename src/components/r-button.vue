@@ -5,7 +5,7 @@
 	>
 		{{ text }}
 		<img
-			src="img/icon/arrow.svg"
+			src="img/icon/arrow-long.svg"
 			alt=""
 			class="r-button__arrow"
 			v-if="arrow === true"

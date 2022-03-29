@@ -1,5 +1,5 @@
 <template>
-	<div class="home theme-container">
+	<div class="page-home theme-container">
 		<the-header />
 		<main class="main">
 			<the-banner />
@@ -30,7 +30,7 @@
 	import TheFooter from "../components/TheFooter.vue";
 
 	export default {
-		name: "Home",
+		name: "PageHome",
 		components: {
 			TheHeader,
 

@@ -5,14 +5,14 @@
 			class="r-search__input"
 			:placeholder="placeholder"
 		/>
-		<button type="submit" class="r-search__search-button">
+		<button type="submit" class="r-search__button">
 			<svg
 				width="20"
 				height="20"
 				viewBox="0 0 20 20"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
-				class="r-search__search"
+				class="r-search__icon"
 			>
 				<path
 					fill-rule="evenodd"
@@ -47,6 +47,25 @@
 		width: 100%;
 		max-width: 68rem;
 		overflow: hidden;
+		transition: all 0.2s ease;
+		&.open {
+			background-color: #fff;
+			border-radius: 0.3rem;
+			.r-search {
+				&__input {
+					color: var(--dark-blue);
+					caret-color: var(--dark-blue);
+					&::placeholder {
+						color: var(--dark-blue);
+					}
+				}
+				&__icon {
+					path {
+						fill: var(--dark-blue);
+					}
+				}
+			}
+		}
 
 		&__input {
 			background-color: transparent;
@@ -61,19 +80,16 @@
 				font-weight: 500;
 			}
 		}
-		&__clear {
+
+		&__button {
+			position: absolute;
+			top: 0;
+			right: 0;
+			background-color: transparent;
+			width: 6rem;
+			height: 100%;
 		}
-		&__search {
-			height: 2rem;
-			width: 2rem;
-			&-button {
-				position: absolute;
-				top: 0;
-				right: 0;
-				background-color: transparent;
-				width: 6rem;
-				height: 100%;
-			}
+		&-icon {
 		}
 	}
 </style>

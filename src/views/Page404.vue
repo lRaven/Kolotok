@@ -22,7 +22,7 @@
 
 <script>
 	export default {
-		name: "404 Page",
+		name: "404_Page",
 	};
 </script>
 

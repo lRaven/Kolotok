@@ -1,16 +1,16 @@
 <template>
-	<footer class="footer" id="footer">
-		<div class="footer-inner center">
-			<div class="footer__top">
+	<footer class="the-footer" id="footer">
+		<div class="the-footer-inner center">
+			<div class="the-footer__top">
 				<div
-					class="footer__socials animate__animated animate__fadeInUp wow"
+					class="the-footer__socials animate__animated animate__fadeInUp wow"
 				>
 					<p>Соцсети</p>
-					<div class="footer__socials-group">
+					<div class="the-footer__socials-group">
 						<a
 							href="https://wa.me/79616670163"
 							target="_blank"
-							class="footer__social"
+							class="the-footer__social"
 						>
 							<svg
 								width="30"
@@ -30,7 +30,7 @@
 						<a
 							href="https://instagram.com/3dom_vlg?utm_medium=copy_link"
 							target="_blank"
-							class="footer__social"
+							class="the-footer__social"
 						>
 							<svg
 								width="31"
@@ -55,7 +55,7 @@
 						</a>
 						<a
 							href="https://t.me/tridom_vlg"
-							class="footer__social footer__tg"
+							class="the-footer__social footer__tg"
 							target="_blank"
 						>
 							<svg
@@ -74,35 +74,35 @@
 					</div>
 				</div>
 				<ul
-					class="footer__links animate__animated animate__fadeInUp wow"
+					class="the-footer__links animate__animated animate__fadeInUp wow"
 				>
-					<li class="footer__link">
+					<li class="the-footer__link">
 						<a href="#" target="_blank">О компании</a>
 					</li>
-					<li class="footer__link">
+					<li class="the-footer__link">
 						<a href="#" target="_blank">Новости</a>
 					</li>
-					<li class="footer__link">
+					<li class="the-footer__link">
 						<a href="#" target="_blank">Финансы</a>
 					</li>
-					<li class="footer__link">
+					<li class="the-footer__link">
 						<router-link to="/trade-in">Trade-in</router-link>
 					</li>
-					<li class="footer__link">
+					<li class="the-footer__link">
 						<a href="#" target="_blank">Реквизиты</a>
 					</li>
-					<li class="footer__link">
+					<li class="the-footer__link">
 						<a href="#" target="_blank">Вакансии</a>
 					</li>
 
-					<li class="footer__link">
+					<li class="the-footer__link">
 						<router-link :to="{ name: 'home' }">
 							Офисы продаж
 						</router-link>
 					</li>
 				</ul>
 			</div>
-			<div class="footer__disclaimer">
+			<div class="the-footer__disclaimer">
 				<p class="animate__animated animate__fadeInUp wow">
 					Любая информация, представленная на данном сайте, носит
 					исключительно информационный характер и ни при каких
@@ -120,19 +120,20 @@
 
 <script>
 	export default {
-		name: "Footer",
+		name: "TheFooter",
 		data: () => ({}),
 	};
 </script>
 
 <style lang="scss" scoped>
-	.footer {
+	.the-footer {
 		display: flex;
 		align-items: center;
 		position: relative;
 		background-color: var(--dark-blue);
 		padding: 4rem 1.5rem 1.5rem 1.5rem;
 		color: #fff;
+		z-index: 3;
 		&::before {
 			content: "";
 			position: absolute;
@@ -219,10 +220,11 @@
 	}
 
 	@media (max-width: 1110px) {
-		.footer {
+		.the-footer {
 			height: fit-content;
 			display: flex;
 			align-items: center;
+			z-index: 3;
 			&__disclaimer {
 				display: none;
 			}
@@ -240,7 +242,7 @@
 	}
 
 	@media (max-width: 720px) {
-		.footer {
+		.the-footer {
 			background-color: var(--blue);
 			color: var(--white);
 			height: 11rem;
@@ -294,7 +296,7 @@
 	}
 
 	@media (max-width: 540px) {
-		.footer {
+		.the-footer {
 			&__socials-group {
 				height: 4rem;
 				a {

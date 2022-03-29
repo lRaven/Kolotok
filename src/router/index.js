@@ -1,13 +1,15 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Home from '../views/Home.vue'
+import PageHome from '../views/PageHome'
 
-import NotFound from '../views/NotFound.vue'
+import Page404 from '../views/Page404'
+
+import store from '../store';
 
 const routes = [
 	{
 		path: '/',
 		name: 'home',
-		component: Home,
+		component: PageHome,
 
 		meta: {
 			title: 'Колоток',
@@ -17,7 +19,7 @@ const routes = [
 	{
 		path: '/404',
 		name: '404',
-		component: NotFound,
+		component: Page404,
 		meta: {
 			title: '404',
 		}
@@ -39,6 +41,7 @@ const router = createRouter({
 //* переход к странице с координатами x: 0, y: 0
 router.beforeEach(() => {
 	window.scrollTo(0, 0);
+	store.dispatch('setCategories');
 })
 
 export default router

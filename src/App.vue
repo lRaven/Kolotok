@@ -4,9 +4,12 @@
 			<component :is="Component" />
 		</transition>
 	</router-view>
+	<r-blur />
 </template>
 
 <script>
+	import rBlur from "./components/r-blur";
+
 	export default {
 		watch: {
 			$route(to) {
@@ -17,6 +20,9 @@
 				//* срабатывает при переходе по router-link
 				document.querySelector("body").classList.remove("locked");
 			},
+		},
+		components: {
+			rBlur,
 		},
 	};
 </script>
@@ -36,6 +42,7 @@
 		&.locked {
 			overflow: hidden;
 		}
+		overflow-x: hidden;
 	}
 
 	#app,
