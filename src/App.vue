@@ -19,6 +19,7 @@
 			"$route.path"() {
 				//* срабатывает при переходе по router-link
 				document.querySelector("body").classList.remove("locked");
+				document.querySelector(".r-blur").classList.remove("open");
 			},
 		},
 		components: {
@@ -27,10 +28,12 @@
 	};
 </script>
 
+//* default styles
 <style lang="scss">
+	@import "./assets/css/variables.css";
 	@import "./assets/scss/center.scss";
 	@import "./assets/scss/shadow.scss";
-	@import "./assets/css/variables.css";
+
 	@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;800&display=swap");
 
 	* {
@@ -54,6 +57,12 @@
 	}
 
 	input {
+		&::-webkit-outer-spin-button,
+		&::-webkit-inner-spin-button {
+			/* display: none; <- Crashes Chrome on hover */
+			-webkit-appearance: none;
+			margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+		}
 		&[type="text"] {
 			::-ms-clear {
 				display: none;
@@ -145,5 +154,40 @@
 		opacity: 0;
 		transform: translateY(3rem);
 		transition: all 1s ease;
+	}
+</style>
+
+//*carousel styles
+<style lang="scss">
+	.carousel {
+		padding: 0;
+		text-align: left !important;
+		&__item {
+			min-height: 20rem;
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		&__slide {
+			padding: 1rem;
+		}
+		&__track {
+		}
+		&__prev,
+		&__next {
+			width: 5rem !important;
+			height: 5rem !important;
+			background-color: var(--light-gray) !important;
+			box-shadow: 0 0 0.5rem 0rem var(--gray) !important;
+			font-size: 3.5rem !important;
+			color: #7a7a7a !important;
+		}
+		&__prev {
+			transform: translate(-1.5rem, -50%) !important;
+		}
+		&__next {
+			transform: translate(1.5rem, -50%) !important;
+		}
 	}
 </style>

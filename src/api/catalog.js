@@ -8,8 +8,10 @@ async function getCategories() {
 				headers: { Authorization: `token ${store.getters.TOKEN}` },
 			}
 		);
-		store.commit('SET_CATEGORIES', request.data);
-		getSubCategories();
+		if (request.status === 200) {
+			store.commit('SET_CATEGORIES', request.data);
+			getSubCategories();
+		}
 	}
 	catch { console.error('Error'); }
 }
@@ -21,9 +23,21 @@ async function getSubCategories() {
 				headers: { Authorization: `token ${store.getters.TOKEN}` },
 			}
 		);
-		store.commit('SET_SUB_CATEGORIES', request.data);
+		if (request.status === 200) store.commit('SET_SUB_CATEGORIES', request.data);
 	}
 	catch { console.error('Error'); }
 }
 
-export { getCategories, getSubCategories } 
+async function getProducts() {
+	try {
+		const request = await axios.get(`${store.getters.BASEURL}/kolotok/products`, {
+			headers: { Authorization: `token ${store.getters.TOKEN}` }
+		})
+		if (request.status === 200) store.commit('SET_PRODUCTS', request.data);
+	}
+	catch {
+		console.error('Error');
+	}
+}
+
+export { getCategories, getSubCategories, getProducts } 

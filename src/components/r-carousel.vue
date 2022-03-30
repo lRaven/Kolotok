@@ -5,6 +5,7 @@
 				<!-- //*banner slide -->
 				<banner-card
 					v-if="type === 'banner'"
+					:id="slide.id"
 					:img="slide.img"
 					:title="slide.title"
 					:subtitle="slide.subtitle"
@@ -14,6 +15,7 @@
 				<!-- //*service slide -->
 				<r-service
 					v-if="type === 'service'"
+					:id="slide.id"
 					:img="slide.img"
 					:title="slide.title"
 					:description="slide.description"
@@ -23,6 +25,7 @@
 				<!-- //*card slide -->
 				<r-card
 					v-if="type === 'card'"
+					:id="slide.id"
 					:img="slide.img"
 					:price="slide.price"
 					:price_old="slide.price_old"
@@ -32,6 +35,7 @@
 
 				<!-- //*news slide -->
 				<news-card
+					:id="slide.id"
 					:date="slide.date"
 					:img="slide.img"
 					:route="slide.route"
@@ -54,13 +58,13 @@
 	import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
 
 	//*banner slide
-	import BannerCard from "./BannerCard.vue";
+	import BannerCard from "./BannerCard";
 	//*service slide
-	import rService from "./r-service.vue";
+	import rService from "./r-service";
 	//*card slide
-	import rCard from "./r-card.vue";
+	import rCard from "./Catalog/r-card";
 	//*news slide
-	import NewsCard from "./NewsCard.vue";
+	import NewsCard from "./NewsCard";
 
 	export default {
 		name: "rCarousel",
@@ -86,39 +90,3 @@
 		},
 	};
 </script>
-
-<style lang="scss">
-	.carousel {
-		padding: 0;
-		text-align: left;
-		&__item {
-			min-height: 20rem;
-			width: 100%;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
-		&__slide {
-			padding: 1rem;
-		}
-		&__track {
-		}
-		&__prev,
-		&__next {
-			box-sizing: content-box;
-			width: 5rem;
-			height: 5rem;
-			border-radius: 50%;
-			background-color: var(--light-gray);
-			box-shadow: 0 0 0.5rem 0rem var(--gray);
-			font-size: 3.5rem;
-			color: #7a7a7a;
-		}
-		&__prev {
-			transform: translate(-1.5rem, -50%);
-		}
-		&__next {
-			transform: translate(1.5rem, -50%);
-		}
-	}
-</style>

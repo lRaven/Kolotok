@@ -3,11 +3,13 @@
 		<div class="the-header__container center">
 			<div class="the-header__row">
 				<div class="the-header__col the-header__col-left">
-					<img
-						src="img/icon/logo.svg"
-						alt="logo"
-						class="animate__animated animate__fadeInDown the-header__logo"
-					/>
+					<router-link to="/">
+						<img
+							src="img/icon/logo.svg"
+							alt="logo"
+							class="animate__animated animate__fadeInDown the-header__logo"
+						/>
+					</router-link>
 				</div>
 				<div class="the-header__col the-header__col-right">
 					<router-link
@@ -137,7 +139,7 @@
 							>
 								<li
 									class="the-header__categories-item the-header__sub-category"
-									v-for="sub_category in sub_categories"
+									v-for="sub_category in current_sub_categories"
 									:key="sub_category.id"
 								>
 									<p
@@ -177,15 +179,20 @@
 </template>
 
 <script>
-	import store from "../store";
+	import { mapGetters } from "vuex";
 
 	import rSearch from "./r-search.vue";
 
 	export default {
 		name: "TheHeader",
-		store,
 		components: {
 			rSearch,
+		},
+		watch: {
+			"$route.path"() {
+				//* срабатывает при переходе по router-link
+				this.isCatalogOpen = false;
+			},
 		},
 		data() {
 			return {
@@ -195,12 +202,14 @@
 			};
 		},
 		computed: {
-			categories() {
-				return store.getters.CATEGORIES;
-			},
-			sub_categories() {
+			...mapGetters({
+				categories: "CATEGORIES",
+				sub_categories: "SUB_CATEGORIES",
+			}),
+
+			current_sub_categories() {
 				let sub_categories = [];
-				store.getters.SUB_CATEGORIES.forEach((sub_category) => {
+				this.sub_categories.forEach((sub_category) => {
 					if (sub_category.category === this.category) {
 						sub_categories.push(sub_category);
 					}

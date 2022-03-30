@@ -1,55 +1,29 @@
 <template>
-	<div class="r-card animate__animated animate__fadeInUp wow">
+	<div
+		class="r-card animate__animated animate__fadeInUp wow"
+		@click="moveToProductPage"
+	>
 		<div class="r-card__main shadow">
-			<div
-				class="r-card__discount animate__animated animate__fadeInDown wow"
+			<r-discount
+				class="r-card__discount"
 				v-if="discount_percent"
-			>
-				-{{ discount_percent }}%
-			</div>
-			<div
+				:discount="discount_percent"
+			></r-discount>
+			<r-favorite
 				class="r-card__favorite animate__animated animate__bounceInDown wow"
-			>
-				<svg
-					width="29"
-					height="27"
-					viewBox="0 0 29 27"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-					class="r-card__favorite-icon"
-					v-if="isFavorite === false"
-					@click="addFavorite"
-				>
-					<path
-						d="M14.5 27L12.3975 25.0578C4.93 18.1864 0 13.6545 0 8.09267C0 3.56076 3.50901 0 7.975 0C10.498 0 12.9195 1.19183 14.5 3.07521C16.0805 1.19183 18.502 0 21.0249 0C25.4911 0 29 3.56076 29 8.09267C29 13.6545 24.0699 18.1864 16.6025 25.0725L14.5 27Z"
-						fill="#B8B8B8"
-						fill-opacity="0.3"
-					/>
-				</svg>
-
-				<svg
-					width="29"
-					height="27"
-					viewBox="0 0 29 27"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-					class="r-card__favorite-icon"
-					v-if="isFavorite === true"
-					@click="removeFavorite"
-				>
-					<path
-						d="M14.5 27L12.3975 25.0578C4.93 18.1864 0 13.6545 0 8.09267C0 3.56076 3.50901 0 7.975 0C10.498 0 12.9195 1.19183 14.5 3.07521C16.0805 1.19183 18.502 0 21.0249 0C25.4911 0 29 3.56076 29 8.09267C29 13.6545 24.0699 18.1864 16.6025 25.0725L14.5 27Z"
-						fill="var(--red)"
-					/>
-				</svg>
-			</div>
-			<img :src="img" alt="" class="r-card__img" />
+			></r-favorite>
+			<img :src="img" alt="photo" class="r-card__img" v-if="img" />
+			<img
+				src="img/catalog/catalog-item-default.svg"
+				alt="no photo"
+				v-else
+			/>
 		</div>
 		<div class="r-card__footer">
 			<div class="r-card__row">
-				<p class="r-card__price">{{ price }}р.</p>
+				<p class="r-card__price">{{ price }}₽.</p>
 				<p class="r-card__price-old" v-if="price_old">
-					{{ price_old }}р.
+					{{ price_old }}₽.
 				</p>
 			</div>
 			<div class="r-card__row">
@@ -60,19 +34,32 @@
 </template>
 
 <script>
+	import { mapGetters } from "vuex";
+
+	import rDiscount from "./r-discount";
+	import rFavorite from "./r-favorite";
+
 	export default {
 		name: "rCard",
 		props: {
+			id: Number,
 			discount_percent: Number,
 			img: String,
 			price: String,
 			price_old: String,
 			name: String,
 		},
+		components: {
+			rDiscount,
+			rFavorite,
+		},
 		data() {
 			return {
 				isFavorite: false,
 			};
+		},
+		computed: {
+			...mapGetters({ categories: "CATEGORIES" }),
 		},
 		methods: {
 			addFavorite() {
@@ -81,13 +68,24 @@
 			removeFavorite() {
 				this.isFavorite = false;
 			},
+
+			moveToProductPage(e) {
+				if (!e.target.classList.contains("r-favorite__path")) {
+					this.$router.push({
+						name: "product",
+						query: { product: this.id },
+					});
+				}
+			},
 		},
 	};
 </script>
 
 <style lang="scss" scoped>
 	.r-card {
+		cursor: pointer;
 		color: var(--dark-blue);
+		max-width: 21rem;
 		&__main {
 			position: relative;
 			display: flex;
@@ -154,6 +152,7 @@
 		}
 		&__name {
 			font-weight: 300;
+			line-height: 1.3;
 		}
 	}
 </style>
