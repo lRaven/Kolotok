@@ -1,5 +1,5 @@
 <template>
-	<section class="the-novelties center-swiper">
+	<section class="the-novelties center-carousel">
 		<h2
 			class="animate__animated animate__fadeInRight wow the-novelties__title"
 		>
@@ -74,7 +74,7 @@
 		&__title {
 			color: var(--dark-blue);
 			margin-bottom: 3.5rem;
-			padding: 0 2.5rem;
+			padding: 0 1.5rem;
 		}
 	}
 </style>

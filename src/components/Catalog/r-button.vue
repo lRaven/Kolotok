@@ -1,11 +1,12 @@
 <template>
-	<button class="r-button">{{ text }}</button>
+	<button class="r-button" :type="type">{{ text }}</button>
 </template>
 
 <script>
 	export default {
 		name: "rButton",
 		props: {
+			type: String,
 			text: String,
 		},
 	};
@@ -13,7 +14,6 @@
 
 <style lang="scss" scoped>
 	.r-button {
-		// cursor: pointer;
 		background: linear-gradient(
 			270.95deg,
 			#000888 0%,
@@ -22,8 +22,10 @@
 			#4fa5ff 100%
 		);
 		border-radius: 3rem;
-		padding: 1.3rem 2.5rem;
+		padding: 1.3rem 3.5rem;
 		transition: all 0.2s ease;
+		font-size: 1.6rem;
+		font-weight: 700;
 		color: #fff;
 		&:hover {
 			transform: translateY(-0.3rem);

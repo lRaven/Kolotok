@@ -1,5 +1,5 @@
 <template>
-	<section class="the-services center-swiper">
+	<section class="the-services center-carousel">
 		<r-carousel
 			:pagination="false"
 			:slides="slides"

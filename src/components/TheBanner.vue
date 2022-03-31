@@ -1,5 +1,5 @@
 <template>
-	<section class="the-banner center-swiper">
+	<section class="the-banner center-carousel">
 		<r-carousel
 			:pagination="false"
 			:slides="slides"

@@ -1,4 +1,5 @@
 :root {
+	/* //*colors */
 	--dark-blue: #000888;
 	--blue: #007bfc;
 	--middle-blue: #64b6fa;
@@ -12,4 +13,11 @@
 	--middle-gray: #aeb3bf;
 	--light-gray: #bdbdbd;
 	--white: #fefefe;
+
+	/* //*scrollbar */
+	--scrollbarBg: #fff;
+	--scrollbarThumb: var(--blue);
+	--scrollbarWidth: 1rem;
+	--scrollbarBorder: 0.2rem solid var(--scrollbarBg);
+	--scrollbarBorderRadius: calc(var(--scrollbarWidth) / 2);
 }

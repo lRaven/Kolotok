@@ -1,5 +1,5 @@
 <template>
-	<section class="the-specials center-swiper">
+	<section class="the-specials center-carousel">
 		<h2
 			class="the-specials__title animate__animated animate__fadeInLeft wow"
 		>
@@ -84,7 +84,7 @@
 		&__title {
 			color: var(--dark-blue);
 			margin-bottom: 3.5rem;
-			padding: 0 2.5rem;
+			padding: 0 1.5rem;
 		}
 	}
 </style>

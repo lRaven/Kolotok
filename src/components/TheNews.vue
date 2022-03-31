@@ -1,5 +1,5 @@
 <template>
-	<div class="the-news center-swiper">
+	<div class="the-news center-carousel">
 		<h2 class="animate__animated animate__fadeInRight wow the-news__title">
 			Новости
 		</h2>
@@ -77,7 +77,7 @@
 		padding: 2rem 1.5rem;
 		&__title {
 			color: var(--dark-blue);
-			padding: 0 2.5rem;
+			padding: 0 1.5rem;
 		}
 		&__swiper {
 		}

@@ -39,13 +39,32 @@
 	* {
 		scroll-behavior: smooth;
 		font-family: "Montserrat";
+
+		//*chrome/safari
+		&::-webkit-scrollbar {
+			width: var(--scrollbarWidth); /* ширина scrollbar */
+		}
+		&::-webkit-scrollbar-track {
+			background: var(--scrollbarBg); /* цвет дорожки */
+		}
+		&::-webkit-scrollbar-thumb {
+			background-color: var(--scrollbarThumb); /* цвет плашки */
+			border-radius: var(
+				--scrollbarBorderRadius
+			); /* закругления плашки */
+			border: var(--scrollbarBorder); /* padding вокруг плашки */
+		}
+		//*firefox
+		scrollbar-width: thin; /* "auto" или "thin"  */
+		scrollbar-color: var(--scrollbarThumb) var(--scrollbarBg);
 	}
 
 	body {
 		&.locked {
-			overflow: hidden;
+			position: fixed;
 		}
 		overflow-x: hidden;
+		overflow-y: scroll;
 	}
 
 	#app,
@@ -62,6 +81,10 @@
 			/* display: none; <- Crashes Chrome on hover */
 			-webkit-appearance: none;
 			margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+		}
+		-moz-appearance: textfield;
+		&:hover {
+			-moz-appearance: number-input;
 		}
 		&[type="text"] {
 			::-ms-clear {
@@ -104,6 +127,10 @@
 	h5 {
 		font-size: 2rem;
 		font-weight: 300;
+	}
+	h6 {
+		font-size: 1.8rem;
+		font-weight: 600;
 	}
 	p {
 		font-size: 1.6rem;

@@ -58,6 +58,11 @@
 
 <style lang="scss" scoped>
 	.r-favorite {
+		cursor: pointer;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: fit-content;
 		&__icon {
 		}
 		&__path {

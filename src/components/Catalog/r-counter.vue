@@ -45,13 +45,16 @@
 			type="number"
 			name=""
 			id=""
-			:value="1"
-			:min="1"
-			:max="100"
+			value="1"
+			min="1"
+			max="100"
 			class="r-counter__input"
 			@input="
 				$emit('update:modelValue', $event.target.value);
 				checkValue($event.target);
+			"
+			@keypress="
+				$event.target.value = $event.target.value.substring(0, 2)
 			"
 			pattern="[0-9]+"
 		/>
@@ -140,13 +143,19 @@
 			height: 5rem;
 			border-radius: 1.5rem;
 			border: 0.1rem solid var(--cool-gray);
+			font-size: 2rem;
 			transition: all 0.2s ease;
+			&:hover {
+				border-color: var(--dark);
+			}
+			&:focus {
+				border-color: var(--blue);
+			}
 			&:invalid {
 				border-color: var(--red);
 			}
 		}
 		&__btn {
-			cursor: pointer;
 			display: flex;
 			justify-content: center;
 			align-items: center;
@@ -162,6 +171,7 @@
 				}
 			}
 			&.active {
+				cursor: pointer;
 				border-color: var(--blue);
 			}
 		}
