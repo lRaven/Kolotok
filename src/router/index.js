@@ -50,13 +50,13 @@ const routes = [
 
 const router = createRouter({
 	history: createWebHashHistory(),
-	routes
+	routes,
+	scrollBehavior(to, from, savedPosition) {
+		return { top: 0 }
+	}
 })
 
-
-//* переход к странице с координатами x: 0, y: 0
 router.beforeEach(() => {
-	window.scrollTo(0, 0);
 	store.dispatch('setCategories');
 	store.dispatch('setProducts');
 })

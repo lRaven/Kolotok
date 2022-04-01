@@ -14,7 +14,7 @@
 			></r-favorite>
 			<img :src="img" alt="photo" class="r-card__img" v-if="img" />
 			<img
-				src="img/catalog/catalog-item-default.svg"
+				src="img/catalog/catalog__photo-default.svg"
 				alt="no photo"
 				v-else
 			/>

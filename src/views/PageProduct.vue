@@ -15,21 +15,22 @@
 							:src="image"
 							alt=""
 							class="product__image product__image-main"
+							@click="openModal"
 						/>
 						<img
-							src="img/catalog/catalog__photo.png"
+							:src="images[0].img"
 							alt=""
 							class="product__image"
 							@click="selectPhoto"
 						/>
 						<img
-							src="img/catalog/catalog__photo-default.svg"
+							:src="images[1].img"
 							alt=""
 							class="product__image"
 							@click="selectPhoto"
 						/>
 						<img
-							src="img/catalog/catalog__photo-default.svg"
+							:src="images[2].img"
 							alt=""
 							class="product__image"
 							@click="selectPhoto"
@@ -142,14 +143,22 @@
 						</div>
 					</div>
 				</div>
+
+				<transition>
+					<r-gallery
+						:slides="images"
+						@closeModal="closeModal"
+						v-if="isModalOpened"
+					></r-gallery>
+				</transition>
 			</section>
 
-			<section class="compatible center-carousel">
-				<h2 class="compatible-title">
+			<section class="recommendations center-carousel">
+				<h2 class="recommendations-title">
 					С этим товаром также сочетаются
 				</h2>
 				<compatible-list
-					:slides="slides"
+					:slides="recomendationList"
 					:pagination="false"
 					:itemsToShow="6"
 				></compatible-list>
@@ -170,6 +179,7 @@
 	import rCounter from "../components/Catalog/r-counter";
 	import rButton from "../components/Catalog/r-button";
 	import CompatibleList from "../components/CompatibleList";
+	import rGallery from "../components/Catalog/r-gallery";
 
 	import TheFooter from "../components/TheFooter";
 
@@ -183,6 +193,7 @@
 			rCounter,
 			rButton,
 			CompatibleList,
+			rGallery,
 
 			TheFooter,
 		},
@@ -270,7 +281,7 @@
 		},
 		data() {
 			return {
-				slides: [
+				recomendationList: [
 					{
 						id: 1,
 						price: "1 653",
@@ -317,15 +328,24 @@
 				quantity: null,
 				image: "img/catalog/catalog__photo.png",
 				images: [
-					{ id: 1, img: "img/catalog/" },
-					{ id: 2, img: "img/catalog/" },
-					{ id: 3, img: "img/catalog/" },
+					{ id: 1, img: "img/catalog/catalog__photo.png" },
+					{ id: 2, img: "img/catalog/catalog__photo-default.svg" },
+					{ id: 3, img: "img/catalog/catalog__photo-default.svg" },
 				],
+				isModalOpened: false,
 			};
 		},
 		methods: {
 			selectPhoto(e) {
 				this.image = e.target.getAttribute("src");
+			},
+			closeModal() {
+				document.querySelector("body").classList.remove("locked");
+				this.isModalOpened = false;
+			},
+			openModal() {
+				document.querySelector("body").classList.add("locked");
+				this.isModalOpened = true;
 			},
 		},
 		mounted() {
@@ -481,7 +501,7 @@
 			margin-bottom: 3rem;
 		}
 	}
-	.compatible {
+	.recommendations {
 		&-title {
 			color: var(--dark-blue);
 			margin-bottom: 3.5rem;

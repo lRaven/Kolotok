@@ -1,6 +1,6 @@
 <template>
 	<router-view v-slot="{ Component }">
-		<transition name="fade" mode="out-in">
+		<transition name="scale" mode="out-in">
 			<component :is="Component" />
 		</transition>
 	</router-view>
@@ -12,8 +12,13 @@
 
 	export default {
 		watch: {
-			$route(to) {
+			$route(to, from) {
 				document.title = to.meta.title || "Default Title";
+
+				const toDepth = to.path.split("/").length;
+				const fromDepth = from.path.split("/").length;
+				this.transitionName =
+					toDepth < fromDepth ? "slide-right" : "slide-left";
 			},
 
 			"$route.path"() {
@@ -37,7 +42,6 @@
 	@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;800&display=swap");
 
 	* {
-		scroll-behavior: smooth;
 		font-family: "Montserrat";
 
 		//*chrome/safari
@@ -170,17 +174,15 @@
 		opacity: 0;
 	}
 
-	.fade-enter-active,
-	.fade-leave-active {
+	.scale-enter-active,
+	.scale-leave-active {
 		transition: all 0.5s ease;
-		transform: translateY(0rem);
 	}
 
-	.fade-enter-from,
-	.fade-leave-to {
+	.scale-enter-from,
+	.scale-leave-to {
 		opacity: 0;
-		transform: translateY(3rem);
-		transition: all 1s ease;
+		transform: scale(0.9);
 	}
 </style>
 
