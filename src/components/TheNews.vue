@@ -3,12 +3,12 @@
 		<h2 class="animate__animated animate__fadeInRight wow the-news__title">
 			Новости
 		</h2>
-		<r-carousel :slides="slides" type="news" :itemsToShow="3"></r-carousel>
+		<news-slider :slides="slides"></news-slider>
 	</div>
 </template>
 
 <script>
-	import rCarousel from "./r-carousel.vue";
+	import NewsSlider from "./NewsSlider";
 
 	export default {
 		name: "TheNews",
@@ -67,7 +67,7 @@
 			};
 		},
 		components: {
-			rCarousel,
+			NewsSlider,
 		},
 	};
 </script>
@@ -77,9 +77,7 @@
 		padding: 2rem 1.5rem;
 		&__title {
 			color: var(--dark-blue);
-			padding: 0 1.5rem;
-		}
-		&__swiper {
+			padding: 0 1rem;
 		}
 	}
 </style>

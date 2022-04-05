@@ -1,13 +1,9 @@
 <template>
 	<section class="the-banner center-carousel">
-		<r-carousel
-			:pagination="false"
-			:slides="slides"
-			type="banner"
-			:itemsToShow="1"
+		<banner-slider
 			class="the-banner__carousel"
-		>
-		</r-carousel>
+			:slides="slides"
+		></banner-slider>
 		<div
 			class="animate__animated animate__fadeInUp wow the-banner__card the-banner__deal shadow"
 		>
@@ -48,8 +44,8 @@
 </template>
 
 <script>
-	import rCarousel from "./r-carousel";
-	import rLink from "./r-link.vue";
+	import BannerSlider from "./BannerSlider";
+	import rLink from "./r-link";
 
 	export default {
 		name: "TheBanner",
@@ -96,7 +92,7 @@
 			};
 		},
 		components: {
-			rCarousel,
+			BannerSlider,
 			rLink,
 		},
 	};
@@ -104,7 +100,6 @@
 
 <style lang="scss" scoped>
 	.the-banner {
-		padding: 4rem 1.5rem;
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		grid-gap: 3rem 2.4rem;
@@ -117,10 +112,10 @@
 			overflow: hidden;
 			border-radius: 3rem;
 			&:nth-child(2) {
-				margin-left: 1rem;
+				margin-left: 0.9rem;
 			}
 			&:last-child {
-				margin-right: 1rem;
+				margin-right: 0.9rem;
 			}
 		}
 		&__deal {

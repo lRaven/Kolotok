@@ -5,23 +5,17 @@
 		>
 			Новинки
 		</h2>
-		<r-carousel
-			:pagination="false"
-			:slides="slides"
-			type="card"
-			:itemsToShow="6"
-		>
-		</r-carousel>
+		<products-slider :slides="slides"></products-slider>
 	</section>
 </template>
 
 <script>
-	import rCarousel from "./r-carousel.vue";
+	import ProductsSlider from "./ProductsSlider";
 
 	export default {
 		name: "TheNovelties",
 		components: {
-			rCarousel,
+			ProductsSlider,
 		},
 		data() {
 			return {
@@ -70,11 +64,10 @@
 
 <style lang="scss" scoped>
 	.the-novelties {
-		padding: 2rem 1.5rem;
 		&__title {
 			color: var(--dark-blue);
 			margin-bottom: 3.5rem;
-			padding: 0 1.5rem;
+			padding: 0 1rem;
 		}
 	}
 </style>

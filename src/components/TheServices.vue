@@ -1,22 +1,16 @@
 <template>
 	<section class="the-services center-carousel">
-		<r-carousel
-			:pagination="false"
-			:slides="slides"
-			type="service"
-			:itemsToShow="1"
-		>
-		</r-carousel>
+		<services-slider :slides="slides"></services-slider>
 	</section>
 </template>
 
 <script>
-	import rCarousel from "./r-carousel.vue";
+	import ServicesSlider from "./ServicesSlider";
 
 	export default {
 		name: "TheServices",
 		components: {
-			rCarousel,
+			ServicesSlider,
 		},
 		data() {
 			return {
@@ -29,14 +23,16 @@
 							"Проектирование, ремонт и обустройство квартиры",
 						button_text: "Заказать",
 					},
+					{
+						id: 2,
+						img: "img/services/services-img.png",
+						title: "Услуги",
+						description:
+							"Проектирование, ремонт и обустройство квартиры",
+						button_text: "Заказать",
+					},
 				],
 			};
 		},
 	};
 </script>
-
-<style lang="scss" scoped>
-	.the-services {
-		padding: 2rem 1.5rem;
-	}
-</style>

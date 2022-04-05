@@ -1,5 +1,5 @@
 <template>
-	<ul class="r-bread-crumb">
+	<ul class="r-bread-crumb animate__animated animate__fadeInDownBig wow">
 		<li class="r-bread-crumb__item" v-for="link in links" :key="link.id">
 			<div class="r-bread-crumb__col" v-if="link.current === false">
 				<router-link :to="link.route" class="r-bread-crumb__link">{{

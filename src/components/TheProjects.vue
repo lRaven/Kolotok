@@ -32,7 +32,7 @@
 				alt=""
 			/>
 		</div>
-		<r-button text="Смотреть всё" :arrow="true"></r-button>
+		<r-button text="Смотреть всё" :arrow="true" color="yellow"></r-button>
 	</section>
 </template>
 

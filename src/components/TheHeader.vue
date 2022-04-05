@@ -179,7 +179,7 @@
 </template>
 
 <script>
-	import { mapGetters } from "vuex";
+	import { mapState, mapGetters } from "vuex";
 
 	import rSearch from "./r-search.vue";
 
@@ -202,8 +202,10 @@
 			};
 		},
 		computed: {
+			...mapState({
+				categories: (state) => state.Catalog.categories,
+			}),
 			...mapGetters({
-				categories: "CATEGORIES",
 				sub_categories: "SUB_CATEGORIES",
 			}),
 
@@ -282,7 +284,7 @@
 		align-items: center;
 		justify-content: center;
 		background-color: var(--dark-blue);
-		padding: 3rem 1.5rem;
+		padding: 3rem 0;
 		z-index: 3;
 		&::before {
 			content: "";
@@ -311,7 +313,7 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			padding: 0 1.5rem;
+			padding: 0 2.5rem;
 			+ .the-header__row {
 				margin-top: 1.2rem;
 			}

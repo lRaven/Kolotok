@@ -13,6 +13,7 @@
 
 <style lang="scss" scoped>
 	.r-discount {
+		user-select: none;
 		display: flex;
 		justify-content: center;
 		align-items: center;

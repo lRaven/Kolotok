@@ -14,7 +14,12 @@
 				class="animate__animated animate__fadeInUp wow"
 			></catalog-category>
 		</div>
-		<r-button type="button" text="Смотреть всё" :arrow="true"></r-button>
+		<r-button
+			type="button"
+			text="Смотреть всё"
+			color="yellow"
+			:arrow="true"
+		></r-button>
 	</section>
 </template>
 

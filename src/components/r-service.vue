@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="r-service"
+		class="r-service shadow"
 		:style="`background: url(${img}) center / cover no-repeat`"
 	>
 		<div class="r-service__content">
@@ -14,7 +14,7 @@
 			>
 				{{ description }}
 			</p>
-			<r-button :text="button_text"></r-button>
+			<r-button :text="button_text" color="yellow"></r-button>
 		</div>
 	</div>
 </template>

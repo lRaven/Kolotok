@@ -1,10 +1,11 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import PageHome from '../views/PageHome'
 import PageProduct from '../views/PageProduct'
+import PageBasket from '../views/PageBasket'
 
 import Page404 from '../views/Page404'
 
-import store from '../store';
+import store from '../store'
 
 const routes = [
 	//*homepage
@@ -15,7 +16,7 @@ const routes = [
 
 		meta: {
 			title: 'Колоток',
-		}
+		},
 	},
 
 	//*dynamic product page
@@ -24,12 +25,20 @@ const routes = [
 		name: 'product',
 		component: PageProduct,
 
-		beforeEnter(from, to, next) {
-			next();
-		},
 		meta: {
-			title: 'Product'
-		}
+			title: 'Product',
+		},
+	},
+
+	//*shopping cart page
+	{
+		path: '/basket',
+		name: 'ShoppingBasket',
+		component: PageBasket,
+
+		meta: {
+			title: 'Корзина',
+		},
 	},
 
 	//*404

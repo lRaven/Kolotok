@@ -1,5 +1,5 @@
 <template>
-	<div class="banner-card">
+	<div class="banner-card shadow">
 		<img :src="img" alt="" class="banner-card__bg" />
 		<h1 class="banner-card__title animate__animated animate__fadeInUp wow">
 			{{ title }}

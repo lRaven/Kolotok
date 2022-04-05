@@ -5,7 +5,7 @@
 -   Vue (VueX, Vue Router)
 -   SCSS
 -   WoW.js + animate.css
--   vue3-carousel
+-   swiper
 
 ## Project setup
 

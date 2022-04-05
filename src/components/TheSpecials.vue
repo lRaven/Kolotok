@@ -5,23 +5,17 @@
 		>
 			Специальные предложения
 		</h2>
-		<r-carousel
-			:pagination="false"
-			:slides="slides"
-			type="card"
-			:itemsToShow="6"
-		>
-		</r-carousel>
+		<products-slider :slides="slides"></products-slider>
 	</section>
 </template>
 
 <script>
-	import rCarousel from "./r-carousel.vue";
+	import ProductsSlider from "./ProductsSlider";
 
 	export default {
 		name: "TheSpecials",
 		components: {
-			rCarousel,
+			ProductsSlider,
 		},
 		data: () => ({
 			slides: [
@@ -73,6 +67,14 @@
 					name: "Садовые конструкции",
 					discount_percent: 50,
 				},
+				{
+					id: 7,
+					img: "img/catalog/catalog-item1.png",
+					price: "22 000",
+					price_old: "22 000",
+					name: "Садовые конструкции",
+					discount_percent: 50,
+				},
 			],
 		}),
 	};
@@ -80,11 +82,10 @@
 
 <style lang="scss" scoped>
 	.the-specials {
-		padding: 2rem 1.5rem;
 		&__title {
 			color: var(--dark-blue);
 			margin-bottom: 3.5rem;
-			padding: 0 1.5rem;
+			padding: 0 1rem;
 		}
 	}
 </style>

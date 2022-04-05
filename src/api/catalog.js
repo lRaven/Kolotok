@@ -3,9 +3,9 @@ import store from '../store';
 
 async function getCategories() {
 	try {
-		const request = await axios.get(`${store.getters.BASEURL}/kolotok/categories`,
+		const request = await axios.get(`${store.state.baseURL}/kolotok/categories`,
 			{
-				headers: { Authorization: `token ${store.getters.TOKEN}` },
+				headers: { Authorization: `token ${store.state.Cabinet.token}` },
 			}
 		);
 		if (request.status === 200) {
@@ -18,9 +18,9 @@ async function getCategories() {
 
 async function getSubCategories() {
 	try {
-		const request = await axios.get(`${store.getters.BASEURL}/kolotok/sub_categories`,
+		const request = await axios.get(`${store.state.baseURL}/kolotok/sub_categories`,
 			{
-				headers: { Authorization: `token ${store.getters.TOKEN}` },
+				headers: { Authorization: `token ${store.state.Cabinet.token}` },
 			}
 		);
 		if (request.status === 200) store.commit('SET_SUB_CATEGORIES', request.data);
@@ -30,8 +30,8 @@ async function getSubCategories() {
 
 async function getProducts() {
 	try {
-		const request = await axios.get(`${store.getters.BASEURL}/kolotok/products`, {
-			headers: { Authorization: `token ${store.getters.TOKEN}` }
+		const request = await axios.get(`${store.state.baseURL}/kolotok/products`, {
+			headers: { Authorization: `token ${store.state.Cabinet.token}` }
 		})
 		if (request.status === 200) store.commit('SET_PRODUCTS', request.data);
 	}

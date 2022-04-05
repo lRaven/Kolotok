@@ -9,9 +9,7 @@
 				v-if="discount_percent"
 				:discount="discount_percent"
 			></r-discount>
-			<r-favorite
-				class="r-card__favorite animate__animated animate__bounceInDown wow"
-			></r-favorite>
+			<r-favorite class="r-card__favorite"></r-favorite>
 			<img :src="img" alt="photo" class="r-card__img" v-if="img" />
 			<img
 				src="img/catalog/catalog__photo-default.svg"
@@ -34,7 +32,7 @@
 </template>
 
 <script>
-	import { mapGetters } from "vuex";
+	import { mapState } from "vuex";
 
 	import rDiscount from "./r-discount";
 	import rFavorite from "./r-favorite";
@@ -58,9 +56,7 @@
 				isFavorite: false,
 			};
 		},
-		computed: {
-			...mapGetters({ categories: "CATEGORIES" }),
-		},
+		computed: {},
 		methods: {
 			addFavorite() {
 				this.isFavorite = true;

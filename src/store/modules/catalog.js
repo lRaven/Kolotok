@@ -1,5 +1,6 @@
 import { getCategories, getProducts } from "../../api/catalog";
 
+
 const state = () => ({
 	categories: null,
 	category: null,

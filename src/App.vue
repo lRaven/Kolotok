@@ -65,8 +65,14 @@
 
 	body {
 		&.locked {
-			position: fixed;
+			overflow: hidden;
+			width: calc(100vw + 1rem);
+			left: -1rem;
+			.the-header {
+				width: calc(100vw - 1rem);
+			}
 		}
+		position: relative;
 		overflow-x: hidden;
 		overflow-y: scroll;
 	}
@@ -157,7 +163,7 @@
 	.footer {
 	}
 	section {
-		padding: 4rem 2rem;
+		padding: 4rem 2.5rem;
 	}
 
 	.footer {
@@ -188,35 +194,31 @@
 
 //*carousel styles
 <style lang="scss">
-	.carousel {
-		padding: 0;
-		text-align: left !important;
-		&__item {
-			min-height: 20rem;
-			width: 100%;
+	.swiper {
+		width: 100%;
+		padding: 1rem !important;
+		&-button {
+			&-prev,
+			&-next {
+				background-color: #d8d8d7;
+				border-radius: 50%;
+				width: 5rem !important;
+				height: 5rem !important;
+				&::after {
+					font-size: 2.4rem !important;
+				}
+			}
+			&-prev {
+				left: 1.5rem !important;
+			}
+			&-next {
+				right: 1.5rem !important;
+			}
+		}
+		&-slide {
 			display: flex;
 			justify-content: center;
 			align-items: center;
-		}
-		&__slide {
-			padding: 1rem;
-		}
-		&__track {
-		}
-		&__prev,
-		&__next {
-			width: 5rem !important;
-			height: 5rem !important;
-			background-color: var(--light-gray) !important;
-			box-shadow: 0 0 0.5rem 0rem var(--gray) !important;
-			font-size: 3.5rem !important;
-			color: #7a7a7a !important;
-		}
-		&__prev {
-			transform: translate(-1.5rem, -50%) !important;
-		}
-		&__next {
-			transform: translate(1.5rem, -50%) !important;
 		}
 	}
 </style>
