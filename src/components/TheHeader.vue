@@ -46,7 +46,7 @@
 					class="the-header__col the-header__col-left the-header__catalog-wrapper"
 				>
 					<div
-						class="animate__animated animate__fadeInDown the-header__catalog-button"
+						class="the-header__catalog-button animate__animated animate__fadeInDown"
 					>
 						<div
 							class="the-header__catalog-burger"
@@ -105,14 +105,20 @@
 					</div>
 					<transition>
 						<div class="the-header__catalog" v-show="isCatalogOpen">
-							<ul class="the-header__categories">
+							<ul class="the-header__catalog-list">
 								<li
-									class="the-header__categories-item the-header__category"
+									class="the-header__catalog-item"
 									v-for="category in categories"
 									:key="category.id"
-									@click="this.category = category.id"
+									@click="
+										this.category = category.id;
+										this.sub_category = null;
+										openCatalogList();
+									"
 								>
-									<p class="the-header__category-description">
+									<p
+										class="the-header__catalog-item-description"
+									>
 										{{ category.name }}
 									</p>
 									<svg
@@ -121,7 +127,7 @@
 										viewBox="0 0 8 14"
 										fill="none"
 										xmlns="http://www.w3.org/2000/svg"
-										class="the-header__categories-arrow"
+										class="the-header__catalog-item-arrow"
 									>
 										<path
 											d="M1.53125 13L6.92621 7L1.53125 1"
@@ -134,16 +140,20 @@
 								</li>
 							</ul>
 							<ul
-								class="the-header__sub-categories"
+								class="the-header__catalog-list"
 								v-if="category !== null"
 							>
 								<li
-									class="the-header__categories-item the-header__sub-category"
+									class="the-header__catalog-item"
 									v-for="sub_category in current_sub_categories"
 									:key="sub_category.id"
+									@click="
+										this.sub_category = sub_category.id;
+										openCatalogList();
+									"
 								>
 									<p
-										class="the-header__sub-category-description"
+										class="the-header__catalog-item-description"
 									>
 										{{ sub_category.name }}
 									</p>
@@ -153,7 +163,47 @@
 										viewBox="0 0 8 14"
 										fill="none"
 										xmlns="http://www.w3.org/2000/svg"
-										class="the-header__categories-arrow"
+										class="the-header__catalog-item-arrow"
+									>
+										<path
+											d="M1.53125 13L6.92621 7L1.53125 1"
+											stroke="#AEB3BF"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+										/>
+									</svg>
+								</li>
+							</ul>
+							<ul
+								class="the-header__catalog-list"
+								v-if="sub_category !== null"
+							>
+								<!-- <router-link :to="{name: "product", query: { product: 1 }}">hui </router-link> -->
+								<li
+									class="the-header__catalog-item"
+									v-for="product in current_products"
+									:key="product.id"
+									@click="
+										this.$router.push({
+											name: 'product',
+											query: { product: product.id },
+										});
+										toggleCatalog();
+									"
+								>
+									<p
+										class="the-header__catalog-item-description"
+									>
+										{{ product.name }}
+									</p>
+									<svg
+										width="8"
+										height="14"
+										viewBox="0 0 8 14"
+										fill="none"
+										xmlns="http://www.w3.org/2000/svg"
+										class="the-header__catalog-item-arrow"
 									>
 										<path
 											d="M1.53125 13L6.92621 7L1.53125 1"
@@ -199,6 +249,8 @@
 				basket: 0,
 				isCatalogOpen: false,
 				category: null,
+				sub_category: null,
+				catalog_columns: 1,
 			};
 		},
 		computed: {
@@ -207,6 +259,7 @@
 			}),
 			...mapGetters({
 				sub_categories: "SUB_CATEGORIES",
+				products: "PRODUCTS",
 			}),
 
 			current_sub_categories() {
@@ -218,6 +271,16 @@
 				});
 				return sub_categories;
 			},
+
+			current_products() {
+				let products = [];
+				this.products.forEach((product) => {
+					if (product.sub_category[0] === this.sub_category) {
+						products.push(product);
+					}
+				});
+				return products;
+			},
 		},
 		methods: {
 			//*открытие и закрытие каталога
@@ -227,6 +290,7 @@
 
 				const header = document.querySelector(".the-header");
 				const rSearch = header.querySelector(".r-search");
+				const catalog = header.querySelector(".the-header__catalog");
 				const burger = header.querySelector(
 					".the-header__catalog-burger"
 				);
@@ -239,6 +303,7 @@
 					body.classList.remove("locked");
 					blur.classList.remove("open");
 					rSearch.classList.remove("open");
+					catalog.removeAttribute("style");
 				} else {
 					burger.classList.add("open");
 					this.isCatalogOpen = true;
@@ -266,6 +331,23 @@
 						catalog.classList.add("short");
 					} else catalog.classList.remove("short");
 				});
+			},
+
+			openCatalogList() {
+				const header = document.querySelector(".the-header");
+				const catalog = header.querySelector(".the-header__catalog");
+				if (this.category !== null) {
+					catalog.setAttribute(
+						"style",
+						"grid-template-columns: repeat(2, 1fr)"
+					);
+					if (this.sub_category !== null) {
+						catalog.setAttribute(
+							"style",
+							"grid-template-columns: repeat(3, 1fr)"
+						);
+					}
+				}
 			},
 		},
 		mounted() {
@@ -357,16 +439,60 @@
 		}
 
 		&__catalog {
-			display: flex;
+			display: grid;
 			position: absolute;
 			top: 100%;
+			height: fit-content;
 			max-height: calc(100vh - 21rem);
-			width: max-content;
-			max-width: 140rem;
+			width: fit-content;
 			background-color: #fff;
 			overflow: hidden;
 			&.short {
 				max-height: calc(100vh - 34.5rem);
+			}
+
+			&-list {
+				display: block;
+				padding: 0.5rem 1rem;
+				overflow-y: auto;
+				max-width: 35rem;
+				max-height: calc(100vh - 21rem);
+				width: 100%;
+			}
+			&-item {
+				margin-top: auto;
+				user-select: none;
+				cursor: pointer;
+				display: grid;
+				grid-template-columns: 1fr 2rem;
+				align-items: center;
+				gap: 1.5rem;
+				padding: 0 3rem;
+				transition: all 0.2s ease;
+				height: 6.6rem;
+				&:nth-child(n + 2) {
+					border-top: 0.1rem solid var(--middle-gray);
+				}
+				&:last-child {
+					border-bottom: 0.1rem solid var(--middle-gray);
+				}
+
+				&-arrow {
+					display: block;
+					height: 1.5rem;
+					width: 1.5rem;
+					path {
+						transition: all 0.2s ease;
+					}
+				}
+				&:hover {
+					color: var(--blue);
+					.the-header__catalog-item-arrow {
+						path {
+							stroke: var(--blue);
+						}
+					}
+				}
 			}
 
 			&-button {
@@ -414,57 +540,6 @@
 				user-select: none;
 				color: var(--white);
 				font-weight: 500;
-			}
-		}
-
-		&__categories {
-			padding: 0.5rem 1rem;
-			overflow-y: auto;
-			max-width: 35rem;
-			&-arrow {
-				path {
-					transition: all 0.2s ease;
-				}
-			}
-			&-item {
-				user-select: none;
-				cursor: pointer;
-				display: flex;
-				align-items: center;
-				justify-content: space-between;
-				gap: 5rem;
-				padding: 2.3rem 3rem;
-				transition: all 0.2s ease;
-				height: 6.6rem;
-				&:nth-child(n + 2) {
-					border-top: 0.1rem solid var(--middle-gray);
-				}
-				&:last-child {
-					border-bottom: 0.1rem solid var(--middle-gray);
-				}
-				&:hover {
-					color: var(--blue);
-					.the-header__categories-arrow {
-						path {
-							stroke: var(--blue);
-						}
-					}
-				}
-			}
-		}
-		&__category {
-			&-description {
-				line-height: 1.3;
-			}
-		}
-		&__sub-categories {
-			max-width: 35rem;
-			padding: 0.5rem 1rem;
-			overflow-y: auto;
-		}
-		&__sub-category {
-			&-description {
-				line-height: 1.3;
 			}
 		}
 

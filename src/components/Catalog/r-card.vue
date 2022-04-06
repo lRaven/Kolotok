@@ -32,8 +32,6 @@
 </template>
 
 <script>
-	import { mapState } from "vuex";
-
 	import rDiscount from "./r-discount";
 	import rFavorite from "./r-favorite";
 

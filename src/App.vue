@@ -65,14 +65,8 @@
 
 	body {
 		&.locked {
-			overflow: hidden;
-			width: calc(100vw + 1rem);
-			left: -1rem;
-			.the-header {
-				width: calc(100vw - 1rem);
-			}
+			position: fixed;
 		}
-		position: relative;
 		overflow-x: hidden;
 		overflow-y: scroll;
 	}

@@ -474,6 +474,173 @@
 								class="page-product__features-col"
 								v-if="productCategory.id === 4"
 							></div>
+
+							<!-- //*Характеристики категории "Освещение" -->
+							<div
+								class="page-product__features-col"
+								v-if="productCategory.id === 5"
+							>
+								<div class="page-product__feature">
+									<p class="page-product__feature-title">
+										Коллекция
+									</p>
+									<p
+										class="page-product__feature-value"
+										v-if="
+											product.collection !== 'None' &&
+											product.collection !== 0
+										"
+									>
+										{{ product.collection }}
+									</p>
+									<p
+										class="page-product__feature-value"
+										v-else
+									>
+										-
+									</p>
+								</div>
+
+								<div class="page-product__feature">
+									<p class="page-product__feature-title">
+										Цвет
+									</p>
+									<p
+										class="page-product__feature-value"
+										v-if="
+											product.color !== 'None' &&
+											product.color !== 0
+										"
+									>
+										{{ product.color }}
+									</p>
+									<p
+										class="page-product__feature-value"
+										v-else
+									>
+										-
+									</p>
+								</div>
+							</div>
+							<div
+								class="page-product__features-col"
+								v-if="productCategory.id === 5"
+							></div>
+
+							<!-- //*Характеристики категории "Декор стен" -->
+							<div
+								class="page-product__features-col"
+								v-if="productCategory.id === 6"
+							>
+								<div class="page-product__feature">
+									<p class="page-product__feature-title">
+										Артикул
+									</p>
+									<p
+										class="page-product__feature-value"
+										v-if="
+											product.article !== 'None' &&
+											product.article !== 0
+										"
+									>
+										{{ product.article }}
+									</p>
+									<p
+										class="page-product__feature-value"
+										v-else
+									>
+										-
+									</p>
+								</div>
+
+								<div class="page-product__feature">
+									<p class="page-product__feature-title">
+										Материал
+									</p>
+									<p
+										class="page-product__feature-value"
+										v-if="
+											product.material !== 'None' &&
+											product.material !== 0
+										"
+									>
+										{{ product.material }}
+									</p>
+									<p
+										class="page-product__feature-value"
+										v-else
+									>
+										-
+									</p>
+								</div>
+
+								<div class="page-product__feature">
+									<p class="page-product__feature-title">
+										Размер (ширина, высота, см)
+									</p>
+									<p
+										class="page-product__feature-value"
+										v-if="
+											product.size !== 'None' &&
+											product.size !== 0
+										"
+									>
+										{{ product.size }}
+									</p>
+									<p
+										class="page-product__feature-value"
+										v-else
+									>
+										-
+									</p>
+								</div>
+							</div>
+							<div
+								class="page-product__features-col"
+								v-if="productCategory.id === 6"
+							>
+								<div class="page-product__feature">
+									<p class="page-product__feature-title">
+										Цвет
+									</p>
+									<p
+										class="page-product__feature-value"
+										v-if="
+											product.color !== 'None' &&
+											product.color !== 0
+										"
+									>
+										{{ product.color }}
+									</p>
+									<p
+										class="page-product__feature-value"
+										v-else
+									>
+										-
+									</p>
+								</div>
+
+								<div class="page-product__feature">
+									<p class="page-product__feature-title">
+										Цвет
+									</p>
+									<p
+										class="page-product__feature-value"
+										v-if="
+											product.color !== 'None' &&
+											product.color !== 0
+										"
+									>
+										{{ product.color }}
+									</p>
+									<p
+										class="page-product__feature-value"
+										v-else
+									>
+										-
+									</p>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
