@@ -68,7 +68,7 @@
 			position: fixed;
 		}
 		overflow-x: hidden;
-		overflow-y: scroll;
+		overflow-y: auto;
 	}
 
 	#app,
@@ -176,7 +176,7 @@
 
 	.scale-enter-active,
 	.scale-leave-active {
-		transition: all 0.5s ease;
+		transition: all 0.35s ease;
 	}
 
 	.scale-enter-from,

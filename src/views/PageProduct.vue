@@ -14,31 +14,33 @@
 						<img
 							:src="image"
 							alt=""
-							class="page-product__image page-product__image-main"
+							class="page-product__image page-product__image-main animate__animated animate__fadeInUp"
 							@click="openModal"
 						/>
 						<img
 							:src="images[0].img"
 							alt=""
-							class="page-product__image"
+							class="page-product__image animate__animated animate__fadeIn"
 							@click="selectPhoto"
 						/>
 						<img
 							:src="images[1].img"
 							alt=""
-							class="page-product__image"
+							class="page-product__image animate__animated animate__fadeIn"
 							@click="selectPhoto"
 						/>
 						<img
 							:src="images[2].img"
 							alt=""
-							class="page-product__image"
+							class="page-product__image animate__animated animate__fadeIn"
 							@click="selectPhoto"
 						/>
 					</div>
 
 					<div class="page-product__info">
-						<div class="page-product__top">
+						<div
+							class="page-product__top animate__animated animate__fadeInUp"
+						>
 							<r-favorite
 								class="page-product__favorite"
 							></r-favorite>
@@ -49,7 +51,10 @@
 								Артикул:
 								<span
 									class="page-product__article-number"
-									v-if="product.article"
+									v-if="
+										product.article !== 'None' &&
+										product.article !== null
+									"
 								>
 									{{ product.article }}
 								</span>
@@ -62,7 +67,9 @@
 							</p>
 						</div>
 
-						<form class="page-product__middle">
+						<form
+							class="page-product__middle animate__animated animate__fadeInUp"
+						>
 							<h4 class="page-product__price">
 								{{ product.price }} руб.
 							</h4>
@@ -74,572 +81,25 @@
 							></r-button>
 						</form>
 
-						<div class="page-product__features">
+						<div
+							class="page-product__features animate__animated animate__fadeInUp"
+						>
 							<h6 class="page-product__features-title">
 								Характеристики товара
 							</h6>
 
-							<!-- //*Характеристики категории "Напольные покрытия" -->
 							<div
-								class="page-product__features-col"
-								v-if="productCategory.id === 1"
+								class="page-product__feature"
+								v-for="(value, key) in productTags"
+								:key="key"
 							>
-								<div class="page-product__feature">
-									<p class="page-product__feature-title">
-										Поставщик
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-if="
-											product.supplier !== 'None' &&
-											product.supplier !== 0
-										"
-									>
-										{{ product.supplier }}
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-else
-									>
-										-
-									</p>
-								</div>
+								<p class="page-product__feature-title">
+									{{ key }}
+								</p>
 
-								<div class="page-product__feature">
-									<p class="page-product__feature-title">
-										Бренд
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-if="
-											product.brand !== 'None' &&
-											product.brand !== 0
-										"
-									>
-										{{ product.brand }}
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-else
-									>
-										-
-									</p>
-								</div>
-
-								<div class="page-product__feature">
-									<p class="page-product__feature-title">
-										Размер, мм
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-if="
-											product.size !== 'None' &&
-											product.size !== 0
-										"
-									>
-										{{ product.size }}
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-else
-									>
-										-
-									</p>
-								</div>
-							</div>
-							<div
-								class="page-product__features-col"
-								v-if="productCategory.id === 1"
-							>
-								<div class="page-product__feature">
-									<p class="page-product__feature-title">
-										Класс
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-if="
-											product.product_class !== 'None' &&
-											product.product_class !== 0
-										"
-									>
-										{{ product.product_class }}
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-else
-									>
-										-
-									</p>
-								</div>
-								<div class="page-product__feature">
-									<p class="page-product__feature-title">
-										Пожарный класс
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-if="
-											product.fire_class !== 'None' &&
-											product.fire_class !== 0
-										"
-									>
-										{{ product.fire_class }}
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-else
-									>
-										-
-									</p>
-								</div>
-							</div>
-
-							<!-- //*Характеристики категории "Двери и арки" -->
-							<div
-								class="page-product__features-col"
-								v-if="productCategory.id === 2"
-							>
-								<div class="page-product__feature">
-									<p class="page-product__feature-title">
-										Наименование
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-if="
-											product.name !== 'None' &&
-											product.name !== 0
-										"
-									>
-										{{ product.name }}
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-else
-									>
-										-
-									</p>
-								</div>
-
-								<div class="page-product__feature">
-									<p class="page-product__feature-title">
-										Серия
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-if="
-											product.series !== 'None' &&
-											product.series !== 0
-										"
-									>
-										{{ product.series }}
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-else
-									>
-										-
-									</p>
-								</div>
-
-								<div class="page-product__feature">
-									<p class="page-product__feature-title">
-										Петли
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-if="
-											product.loops !== 'None' &&
-											product.loops !== 0
-										"
-									>
-										{{ product.loops }}
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-else
-									>
-										-
-									</p>
-								</div>
-
-								<div class="page-product__feature">
-									<p class="page-product__feature-title">
-										Замки
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-if="
-											product.locks !== 'None' &&
-											product.locks !== 0
-										"
-									>
-										{{ product.locks }}
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-else
-									>
-										-
-									</p>
-								</div>
-
-								<div class="page-product__feature">
-									<p class="page-product__feature-title">
-										Материал
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-if="
-											product.material !== 'None' &&
-											product.material !== 0
-										"
-									>
-										{{ product.material }}
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-else
-									>
-										-
-									</p>
-								</div>
-							</div>
-							<div
-								class="page-product__features-col"
-								v-if="productCategory.id === 2"
-							>
-								<div class="page-product__feature">
-									<p class="page-product__feature-title">
-										Цвет
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-if="
-											product.color !== 'None' &&
-											product.color !== 0
-										"
-									>
-										{{ product.color }}
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-else
-									>
-										-
-									</p>
-								</div>
-							</div>
-
-							<!-- //*Характеристики категории "Окна" -->
-							<div
-								class="page-product__features-col"
-								v-if="productCategory.id === 3"
-							>
-								<div class="page-product__feature">
-									<p class="page-product__feature-title">
-										Материал
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-if="
-											product.material !== 'None' &&
-											product.material !== 0
-										"
-									>
-										{{ product.material }}
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-else
-									>
-										-
-									</p>
-								</div>
-
-								<div class="page-product__feature">
-									<p class="page-product__feature-title">
-										Цвет
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-if="
-											product.color !== 'None' &&
-											product.color !== 0
-										"
-									>
-										{{ product.color }}
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-else
-									>
-										-
-									</p>
-								</div>
-
-								<div class="page-product__feature">
-									<p class="page-product__feature-title">
-										Размер
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-if="
-											product.size !== 'None' &&
-											product.size !== 0
-										"
-									>
-										{{ product.size }}
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-else
-									>
-										-
-									</p>
-								</div>
-							</div>
-							<div
-								class="page-product__features-col"
-								v-if="productCategory.id === 3"
-							></div>
-
-							<!-- //*Характеристики категории "Плитка" -->
-							<div
-								class="page-product__features-col"
-								v-if="productCategory.id === 4"
-							>
-								<div class="page-product__feature">
-									<p class="page-product__feature-title">
-										Основная коллекция
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-if="
-											product.collection !== 'None' &&
-											product.collection !== 0
-										"
-									>
-										{{ product.collection }}
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-else
-									>
-										-
-									</p>
-								</div>
-
-								<div class="page-product__feature">
-									<p class="page-product__feature-title">
-										Артикул
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-if="
-											product.article !== 'None' &&
-											product.article !== 0
-										"
-									>
-										{{ product.article }}
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-else
-									>
-										-
-									</p>
-								</div>
-
-								<div class="page-product__feature">
-									<p class="page-product__feature-title">
-										Формат
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-if="
-											product.size !== 'None' &&
-											product.size !== 0
-										"
-									>
-										{{ product.size }}
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-else
-									>
-										-
-									</p>
-								</div>
-							</div>
-							<div
-								class="page-product__features-col"
-								v-if="productCategory.id === 4"
-							></div>
-
-							<!-- //*Характеристики категории "Освещение" -->
-							<div
-								class="page-product__features-col"
-								v-if="productCategory.id === 5"
-							>
-								<div class="page-product__feature">
-									<p class="page-product__feature-title">
-										Коллекция
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-if="
-											product.collection !== 'None' &&
-											product.collection !== 0
-										"
-									>
-										{{ product.collection }}
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-else
-									>
-										-
-									</p>
-								</div>
-
-								<div class="page-product__feature">
-									<p class="page-product__feature-title">
-										Цвет
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-if="
-											product.color !== 'None' &&
-											product.color !== 0
-										"
-									>
-										{{ product.color }}
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-else
-									>
-										-
-									</p>
-								</div>
-							</div>
-							<div
-								class="page-product__features-col"
-								v-if="productCategory.id === 5"
-							></div>
-
-							<!-- //*Характеристики категории "Декор стен" -->
-							<div
-								class="page-product__features-col"
-								v-if="productCategory.id === 6"
-							>
-								<div class="page-product__feature">
-									<p class="page-product__feature-title">
-										Артикул
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-if="
-											product.article !== 'None' &&
-											product.article !== 0
-										"
-									>
-										{{ product.article }}
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-else
-									>
-										-
-									</p>
-								</div>
-
-								<div class="page-product__feature">
-									<p class="page-product__feature-title">
-										Материал
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-if="
-											product.material !== 'None' &&
-											product.material !== 0
-										"
-									>
-										{{ product.material }}
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-else
-									>
-										-
-									</p>
-								</div>
-
-								<div class="page-product__feature">
-									<p class="page-product__feature-title">
-										Размер (ширина, высота, см)
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-if="
-											product.size !== 'None' &&
-											product.size !== 0
-										"
-									>
-										{{ product.size }}
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-else
-									>
-										-
-									</p>
-								</div>
-							</div>
-							<div
-								class="page-product__features-col"
-								v-if="productCategory.id === 6"
-							>
-								<div class="page-product__feature">
-									<p class="page-product__feature-title">
-										Цвет
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-if="
-											product.color !== 'None' &&
-											product.color !== 0
-										"
-									>
-										{{ product.color }}
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-else
-									>
-										-
-									</p>
-								</div>
-
-								<div class="page-product__feature">
-									<p class="page-product__feature-title">
-										Цвет
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-if="
-											product.color !== 'None' &&
-											product.color !== 0
-										"
-									>
-										{{ product.color }}
-									</p>
-									<p
-										class="page-product__feature-value"
-										v-else
-									>
-										-
-									</p>
-								</div>
+								<p class="page-product__feature-value">
+									{{ value }}
+								</p>
 							</div>
 						</div>
 					</div>
@@ -649,10 +109,14 @@
 					<div class="page-product__details-title shadow">
 						Описание
 					</div>
-					<h6 class="page-product__details-name">
+					<h6
+						class="page-product__details-name animate__animated animate__fadeInUp wow"
+					>
 						{{ product.name }}
 					</h6>
-					<p class="page-product__description">
+					<p
+						class="page-product__description animate__animated animate__fadeInUp wow"
+					>
 						{{ product.descriptions }}
 					</p>
 					<div class="page-product__details-footer">
@@ -689,7 +153,9 @@
 			</section>
 
 			<section class="recommendations center-carousel">
-				<h2 class="recommendations-title">
+				<h2
+					class="recommendations-title animate__animated animate__fadeInUp"
+				>
 					С этим товаром также сочетаются
 				</h2>
 				<products-slider :slides="recommendations"></products-slider>
@@ -729,88 +195,6 @@
 			ProductsSlider,
 
 			TheFooter,
-		},
-		computed: {
-			...mapGetters({
-				categories: "CATEGORIES",
-				sub_categories: "SUB_CATEGORIES",
-				products: "PRODUCTS",
-			}),
-
-			//*получение товара
-			product() {
-				let result = {};
-				this.products.forEach((product) => {
-					if (product.id == this.$route.query.product) {
-						result = product;
-					}
-				});
-				return result;
-			},
-			//*проверка что товар существует
-			hasProduct() {
-				let result = false;
-				if (Object.keys(this.product).length === 0) {
-					result = false;
-					this.goTo404Page();
-				} else result = true;
-				return result;
-			},
-			//*получение названия товара
-			productName() {
-				return this.product.name;
-			},
-
-			productSubCategory() {
-				let result = "";
-
-				this.sub_categories.forEach((sub_category) => {
-					if (sub_category.id === this.product.sub_category[0])
-						result = sub_category;
-				});
-				return result;
-			},
-
-			productCategory() {
-				let result = "";
-				this.categories.forEach((category) => {
-					if (category.id === this.productSubCategory.category)
-						result = category;
-				});
-				return result;
-			},
-
-			//*links list for breadcrumb component
-			links() {
-				let links = [
-					{
-						id: 1,
-						description: "Главная",
-						route: "/",
-						current: false,
-					},
-					{
-						id: 2,
-						description: "Каталог",
-						route: "/",
-						current: false,
-					},
-					{
-						id: 3,
-						description: this.productCategory.name,
-						route: "/",
-						current: false,
-					},
-					{
-						id: 4,
-						description: this.productSubCategory.name,
-						route: "/",
-						current: false,
-					},
-					{ id: 5, description: this.productName, current: true },
-				];
-				return links;
-			},
 		},
 		data() {
 			return {
@@ -867,6 +251,115 @@
 				],
 				isModalOpened: false,
 			};
+		},
+		computed: {
+			...mapGetters({
+				categories: "CATEGORIES",
+				sub_categories: "SUB_CATEGORIES",
+				products: "PRODUCTS",
+			}),
+
+			//*получение товара
+			product() {
+				let result = {};
+				this.products.forEach((product) => {
+					if (product.id == this.$route.query.product) {
+						result = product;
+					}
+				});
+				return result;
+			},
+
+			//*проверка что товар существует
+			hasProduct() {
+				let result = false;
+				if (Object.keys(this.product).length === 0) {
+					result = false;
+					this.goTo404Page();
+				} else result = true;
+				return result;
+			},
+
+			//*получение названия товара
+			productName() {
+				return this.product.name;
+			},
+
+			//*получение подкатегории товара
+			productSubCategory() {
+				let result = "";
+
+				this.sub_categories.forEach((sub_category) => {
+					if (sub_category.id === this.product.sub_category[0])
+						result = sub_category;
+				});
+				return result;
+			},
+
+			//*получение категории товара
+			productCategory() {
+				let result = "";
+				this.categories.forEach((category) => {
+					if (category.id === this.productSubCategory.category)
+						result = category;
+				});
+				return result;
+			},
+
+			productTags() {
+				let tags = {};
+				for (const key in this.product) {
+					if (Object.hasOwnProperty.call(this.product, key)) {
+						if (
+							key !== "id" &&
+							key !== "name" &&
+							key !== "price" &&
+							key !== "sub_category" &&
+							key !== "descriptions"
+						) {
+							if (
+								(this.product[key] !== 0) &
+								(this.product[key] !== "None")
+							) {
+								tags[key] = this.product[key];
+							}
+						}
+					}
+				}
+				return tags;
+			},
+
+			//*links list for breadcrumb component
+			links() {
+				let links = [
+					{
+						id: 1,
+						description: "Главная",
+						route: "/",
+						current: false,
+					},
+					{
+						id: 2,
+						description: "Каталог",
+						route: "/",
+						current: false,
+					},
+					{
+						id: 3,
+						description: this.productCategory.name,
+						route: "/",
+						current: false,
+					},
+					{
+						id: 4,
+						description: this.productSubCategory.name,
+						route: "/",
+						current: false,
+					},
+					{ id: 5, description: this.productName, current: true },
+				];
+				return links;
+			},
 		},
 		methods: {
 			selectPhoto(e) {
@@ -964,6 +457,7 @@
 			border-bottom: 0.1rem solid var(--middle-gray);
 			padding: 3.5rem 0;
 			margin-bottom: 4rem;
+			animation-delay: 0.4s;
 		}
 		&__price {
 			font-size: 2.4rem;
@@ -975,6 +469,7 @@
 			display: grid;
 			grid-template-columns: repeat(2, 1fr);
 			grid-column-gap: 10rem;
+			animation-delay: 0.6s;
 			&-title {
 				grid-column: 1/3;
 				margin-bottom: 2.3rem;
