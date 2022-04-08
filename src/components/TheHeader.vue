@@ -231,7 +231,7 @@
 <script>
 	import { mapState, mapGetters } from "vuex";
 
-	import rSearch from "./r-search.vue";
+	import rSearch from "@/components/r-search";
 
 	export default {
 		name: "TheHeader",

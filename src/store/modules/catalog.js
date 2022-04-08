@@ -1,5 +1,4 @@
-import { getCategories, getProducts } from "../../api/catalog";
-
+import { getCategories, getProducts } from "@/api/catalog";
 
 const state = () => ({
 	categories: null,

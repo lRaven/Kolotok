@@ -44,8 +44,8 @@
 </template>
 
 <script>
-	import BannerSlider from "./BannerSlider";
-	import rLink from "./r-link";
+	import BannerSlider from "@/components/BannerSlider";
+	import rLink from "@/components/r-link";
 
 	export default {
 		name: "TheBanner",

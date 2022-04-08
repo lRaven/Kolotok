@@ -29,7 +29,7 @@
 	import "swiper/css";
 	import "swiper/css/navigation";
 
-	import BannerCard from "./BannerCard";
+	import BannerCard from "@/components/BannerCard";
 
 	export default {
 		props: {

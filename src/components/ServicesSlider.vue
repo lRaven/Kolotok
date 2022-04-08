@@ -29,7 +29,7 @@
 	import "swiper/css";
 	import "swiper/css/navigation";
 
-	import rService from "./r-service";
+	import rService from "@/components/r-service";
 
 	export default {
 		props: {

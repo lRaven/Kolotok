@@ -3,7 +3,7 @@
 		<the-header />
 		<main class="main">
 			<section class="page-product center" v-if="hasProduct === true">
-				<r-breadcrumb :links="links"></r-breadcrumb>
+				<r-breadcrumbs :links="links"></r-breadcrumbs>
 
 				<div class="page-product__main shadow">
 					<div class="page-product__images">
@@ -168,17 +168,17 @@
 <script>
 	import { mapGetters } from "vuex";
 
-	import TheHeader from "../components/TheHeader";
+	import TheHeader from "@/components/TheHeader";
 
-	import rBreadcrumb from "../components/r-breadcrumb";
-	import rDiscount from "../components/Catalog/r-discount";
-	import rFavorite from "../components/Catalog/r-favorite";
-	import rCounter from "../components/Catalog/r-counter";
-	import rButton from "../components/r-button";
-	import ProductSlider from "../components/Catalog/ProductSlider";
-	import ProductsSlider from "../components/ProductsSlider";
+	import rBreadcrumbs from "@/components/r-breadcrumbs";
+	import rDiscount from "@/components/Catalog/r-discount";
+	import rFavorite from "@/components/Catalog/r-favorite";
+	import rCounter from "@/components/Catalog/r-counter";
+	import rButton from "@/components/r-button";
+	import ProductSlider from "@/components/Catalog/ProductSlider";
+	import ProductsSlider from "@/components/ProductsSlider";
 
-	import TheFooter from "../components/TheFooter";
+	import TheFooter from "@/components/TheFooter";
 
 	export default {
 		name: "PageProduct",
@@ -186,7 +186,7 @@
 		components: {
 			TheHeader,
 
-			rBreadcrumb,
+			rBreadcrumbs,
 			rDiscount,
 			rFavorite,
 			rCounter,

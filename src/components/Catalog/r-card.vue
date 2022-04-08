@@ -32,8 +32,8 @@
 </template>
 
 <script>
-	import rDiscount from "./r-discount";
-	import rFavorite from "./r-favorite";
+	import rDiscount from "@/components/Catalog/r-discount";
+	import rFavorite from "@/components/Catalog/r-favorite";
 
 	export default {
 		name: "rCard",

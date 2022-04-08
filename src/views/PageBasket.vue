@@ -3,9 +3,17 @@
 		<the-header />
 		<main class="main">
 			<section class="basket center">
-				<r-breadcrumb :links="links"></r-breadcrumb>
-				<div class="basket__col basket__list"></div>
-				<div class="basket__col basket__buy"></div>
+				<r-breadcrumbs :links="links"></r-breadcrumbs>
+				<div class="basket__col basket__list">
+					<basket-card
+						v-for="product in products"
+						:key="product.id"
+						:product="product"
+					></basket-card>
+				</div>
+				<div class="basket__col basket__buy">
+					<basket-calculation></basket-calculation>
+				</div>
 			</section>
 		</main>
 		<the-footer />
@@ -13,11 +21,13 @@
 </template>
 
 <script>
-	import TheHeader from "../components/TheHeader";
+	import TheHeader from "@/components/TheHeader";
 
-	import rBreadcrumb from "../components/r-breadcrumb";
+	import rBreadcrumbs from "@/components/r-breadcrumbs";
+	import BasketCard from "@/components/Basket/BasketCard";
+	import BasketCalculation from "@/components/Basket/BasketCalculation";
 
-	import TheFooter from "../components/TheFooter";
+	import TheFooter from "@/components/TheFooter";
 
 	import { mapGetters } from "vuex";
 
@@ -26,7 +36,9 @@
 		components: {
 			TheHeader,
 
-			rBreadcrumb,
+			rBreadcrumbs,
+			BasketCard,
+			BasketCalculation,
 
 			TheFooter,
 		},
@@ -78,5 +90,12 @@
 
 <style lang="scss" scoped>
 	.page-basket {
+	}
+	.basket {
+		display: grid;
+		grid-template-columns: 1fr 34rem;
+		.r-breadcrumbs {
+			grid-column: 1/3;
+		}
 	}
 </style>

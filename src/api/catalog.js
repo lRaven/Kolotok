@@ -1,5 +1,5 @@
 import axios from "axios";
-import store from '../store';
+import store from '@/store';
 
 async function getCategories() {
 	try {
@@ -11,6 +11,8 @@ async function getCategories() {
 		if (request.status === 200) {
 			store.commit('SET_CATEGORIES', request.data);
 			getSubCategories();
+		} else if (request.status >= 400) {
+			console.error(request.status);
 		}
 	}
 	catch { console.error('Error'); }

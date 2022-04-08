@@ -8,7 +8,7 @@
 </template>
 
 <script>
-	import NewsSlider from "./NewsSlider";
+	import NewsSlider from "@/components/NewsSlider";
 
 	export default {
 		name: "TheNews",

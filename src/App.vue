@@ -8,7 +8,7 @@
 </template>
 
 <script>
-	import rBlur from "./components/r-blur";
+	import rBlur from "@/components/r-blur";
 
 	export default {
 		watch: {
@@ -35,9 +35,9 @@
 
 //* default styles
 <style lang="scss">
-	@import "./assets/css/variables.css";
-	@import "./assets/scss/center.scss";
-	@import "./assets/scss/shadow.scss";
+	@import "@/assets/css/variables.css";
+	@import "@/assets/scss/center.scss";
+	@import "@/assets/scss/shadow.scss";
 
 	@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;800&display=swap");
 

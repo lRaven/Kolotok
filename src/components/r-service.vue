@@ -20,7 +20,7 @@
 </template>
 
 <script>
-	import rButton from "./r-button.vue";
+	import rButton from "@/components/r-button";
 
 	export default {
 		name: "rService",

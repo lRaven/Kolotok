@@ -1,18 +1,18 @@
 <template>
-	<ul class="r-bread-crumb animate__animated animate__fadeInDownBig wow">
-		<li class="r-bread-crumb__item" v-for="link in links" :key="link.id">
-			<div class="r-bread-crumb__col" v-if="link.current === false">
-				<router-link :to="link.route" class="r-bread-crumb__link">
+	<ul class="r-breadcrumbs animate__animated animate__fadeInDownBig wow">
+		<li class="r-breadcrumbs__item" v-for="link in links" :key="link.id">
+			<div class="r-breadcrumbs__col" v-if="link.current === false">
+				<router-link :to="link.route" class="r-breadcrumbs__link">
 					{{ link.description }}
 				</router-link>
 				<img
 					src="img/icon/arrow.svg"
-					class="r-bread-crumb__arrow"
+					class="r-breadcrumb__arrow"
 					alt=""
 				/>
 			</div>
-			<div class="r-bread-crumb__col r-bread-crumb__current" v-else>
-				<p class="r-bread-crumb__current-description">
+			<div class="r-breadcrumbs__col r-breadcrumbs__current" v-else>
+				<p class="r-breadcrumbs__current-description">
 					{{ link.description }}
 				</p>
 			</div>
@@ -22,7 +22,7 @@
 
 <script>
 	export default {
-		name: "rBreadCrumb",
+		name: "rBreadcrumbs",
 		props: {
 			links: Array,
 		},
@@ -30,7 +30,7 @@
 </script>
 
 <style lang="scss" scoped>
-	.r-bread-crumb {
+	.r-breadcrumbs {
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;

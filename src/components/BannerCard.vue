@@ -21,8 +21,8 @@
 </template>
 
 <script>
-	import rTag from "./r-tag.vue";
-	import rLink from "./r-link.vue";
+	import rTag from "@/components/r-tag";
+	import rLink from "@/components/r-link";
 
 	export default {
 		name: "BannerCard",

@@ -31,7 +31,7 @@
 	import "swiper/css";
 	import "swiper/css/navigation";
 
-	import rCard from "./Catalog/r-card";
+	import rCard from "@/components/Catalog/r-card";
 
 	export default {
 		name: "ProductsSlider",

@@ -10,7 +10,7 @@
 </template>
 
 <script>
-	import ProductsSlider from "./ProductsSlider";
+	import ProductsSlider from "@/components/ProductsSlider";
 
 	export default {
 		name: "TheSpecials",

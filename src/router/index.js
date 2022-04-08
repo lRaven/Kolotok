@@ -1,11 +1,11 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import PageHome from '../views/PageHome'
-import PageProduct from '../views/PageProduct'
-import PageBasket from '../views/PageBasket'
+import PageHome from '@/views/PageHome'
+import PageProduct from '@/views/PageProduct'
+import PageBasket from '@/views/PageBasket'
 
-import Page404 from '../views/Page404'
+import Page404 from '@/views/Page404'
 
-import store from '../store'
+import store from '@/store'
 
 const routes = [
 	//*homepage

@@ -24,8 +24,8 @@
 </template>
 
 <script>
-	import CatalogCategory from "./CatalogCategory";
-	import rButton from "./r-button.vue";
+	import CatalogCategory from "@/components/CatalogCategory";
+	import rButton from "@/components/r-button";
 
 	export default {
 		name: "TheCatalog",

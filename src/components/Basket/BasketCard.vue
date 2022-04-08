@@ -1,7 +1,11 @@
 <template>
 	<div class="basket-card">
-		<img src="" alt="" v-if="img" />
+		<img :src="product.img" alt="" v-if="product" />
 		<img src="img/catalog/catalog__photo-default.svg" alt="" v-else />
+		<div class="basket-card__info">
+			<p class="basket-card__name">{{ product.name }}</p>
+			<p class="basket-card__article">{{ product.article }}</p>
+		</div>
 	</div>
 </template>
 
@@ -9,9 +13,14 @@
 	export default {
 		name: "BasketCard",
 		props: {
-			img: String,
+			product: Object,
 		},
 	};
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+	.basket-card {
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+	}
+</style>

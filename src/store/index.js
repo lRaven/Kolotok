@@ -1,7 +1,7 @@
 import { createStore } from 'vuex'
-import cabinet from './modules/cabinet'
-import catalog from './modules/catalog'
-import shopping_basket from './modules/shopping_basket'
+import cabinet from '@/store/modules/cabinet'
+import catalog from '@/store/modules/catalog'
+import shopping_basket from '@/store/modules/shopping_basket'
 
 export default createStore({
 	state: {

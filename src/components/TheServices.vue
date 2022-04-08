@@ -5,7 +5,7 @@
 </template>
 
 <script>
-	import ServicesSlider from "./ServicesSlider";
+	import ServicesSlider from "@/components/ServicesSlider";
 
 	export default {
 		name: "TheServices",

@@ -10,7 +10,7 @@
 </template>
 
 <script>
-	import rLink from "./r-link.vue";
+	import rLink from "@/components/r-link";
 
 	export default {
 		name: "catalogCategory",

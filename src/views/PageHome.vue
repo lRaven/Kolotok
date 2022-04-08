@@ -16,18 +16,18 @@
 </template>
 
 <script>
-	import TheHeader from "../components/TheHeader.vue";
+	import TheHeader from "@/components/TheHeader";
 
-	import TheBanner from "../components/TheBanner.vue";
-	import TheCatalog from "../components/TheCatalog.vue";
-	import TheServices from "../components/TheServices.vue";
-	import TheNovelties from "../components/TheNovelties.vue";
-	import TheSpecials from "../components/TheSpecials.vue";
-	import TheBenefits from "../components/TheBenefits.vue";
-	import TheProjects from "../components/TheProjects.vue";
-	import TheNews from "../components/TheNews.vue";
+	import TheBanner from "@/components/TheBanner";
+	import TheCatalog from "@/components/TheCatalog";
+	import TheServices from "@/components/TheServices";
+	import TheNovelties from "@/components/TheNovelties";
+	import TheSpecials from "@/components/TheSpecials";
+	import TheBenefits from "@/components/TheBenefits";
+	import TheProjects from "@/components/TheProjects";
+	import TheNews from "@/components/TheNews";
 
-	import TheFooter from "../components/TheFooter.vue";
+	import TheFooter from "@/components/TheFooter";
 
 	export default {
 		name: "PageHome",

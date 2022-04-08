@@ -31,7 +31,7 @@
 	import "swiper/css";
 	import "swiper/css/navigation";
 
-	import NewsCard from "./NewsCard";
+	import NewsCard from "@/components/NewsCard";
 
 	export default {
 		name: "NewsSlider",
