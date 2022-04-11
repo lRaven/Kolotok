@@ -1,6 +1,6 @@
 <template>
 	<div class="r-counter">
-		<div class="r-counter__btn r-counter__minus" v-if="value == 1">
+		<div class="r-counter__btn r-counter__minus" v-if="value == getMin">
 			<svg
 				width="18"
 				height="4"
@@ -45,9 +45,9 @@
 			type="number"
 			name=""
 			id=""
-			value="1"
-			min="1"
-			max="100"
+			:value="value"
+			:min="getMin"
+			:max="getMax"
 			class="r-counter__input"
 			@input="
 				$emit('update:modelValue', $event.target.value);
@@ -59,7 +59,7 @@
 			pattern="[0-9]+"
 		/>
 
-		<div class="r-counter__btn r-counter__plus" v-if="value == 100">
+		<div class="r-counter__btn r-counter__plus" v-if="value == getMax">
 			<svg
 				width="18"
 				height="18"
@@ -101,15 +101,20 @@
 <script>
 	export default {
 		name: "rCounter",
+		props: {
+			getMin: Number,
+			getMax: Number,
+			getValue: Number,
+		},
 		data() {
 			return {
-				value: 1,
+				value: this.getValue,
 			};
 		},
 		methods: {
 			addOne(e) {
 				const input = e.target.previousSibling;
-				if (input.value < 100) {
+				if (input.value < this.getMax) {
 					input.value = ++input.value;
 				}
 				this.value = input.value;
@@ -117,7 +122,7 @@
 			},
 			removeOne(e) {
 				const input = e.target.nextSibling;
-				if (input.value > 1) {
+				if (input.value > this.getMin) {
 					input.value = --input.value;
 				}
 				this.value = input.value;

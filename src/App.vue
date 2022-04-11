@@ -65,7 +65,7 @@
 
 	body {
 		&.locked {
-			position: fixed;
+			overflow: hidden;
 		}
 		overflow-x: hidden;
 		overflow-y: auto;
