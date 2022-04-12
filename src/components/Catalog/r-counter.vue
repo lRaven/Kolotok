@@ -144,12 +144,13 @@
 		width: fit-content;
 		&__input {
 			text-align: center;
-			width: 5rem;
-			height: 5rem;
-			border-radius: 1.5rem;
-			border: 0.1rem solid var(--cool-gray);
-			font-size: 2rem;
+			width: 3.4rem;
+			height: 3.4rem;
+			border-radius: 1rem;
+			background-color: #dfe1e6;
+			font-size: 1.4rem;
 			transition: all 0.2s ease;
+			color: var(--cool-gray);
 			&:hover {
 				border-color: var(--dark);
 			}
@@ -164,8 +165,8 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			width: 5rem;
-			height: 5rem;
+			width: 3.4rem;
+			height: 3.4rem;
 			border-radius: 50%;
 			border: 0.1rem solid var(--middle-gray);
 			transition: all 0.2s ease;
@@ -174,6 +175,10 @@
 				&.active {
 					fill: var(--blue);
 				}
+			}
+			&-icon {
+				width: 40%;
+				height: 40%;
 			}
 			&.active {
 				cursor: pointer;

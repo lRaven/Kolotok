@@ -1,63 +1,66 @@
 <template>
-	<div class="basket-card shadow">
-		<div class="basket-card__row">
-			<div class="basket-card__remove">
-				<img
-					src="img/icon/Basket/close.svg"
-					alt=""
-					class="basket-card__remove-icon"
-				/>
-			</div>
-		</div>
-		<div class="basket-card__row">
-			<img
-				:src="product.img"
-				alt=""
-				v-if="product"
-				class="basket-card__image"
-			/>
-			<img
-				src="img/catalog/catalog__photo-default.svg"
-				alt=""
-				class="basket-card__image"
-				v-else
-			/>
-			<div class="basket-card__col">
-				<p class="basket-card__name">{{ product.name }}</p>
-			</div>
-			<div class="basket-card__col">
-				<p class="basket-card__price">{{ product.price }} руб.</p>
-			</div>
-			<div class="basket-card__col">
-				<r-counter
-					:getValue="1"
-					:getMin="1"
-					:getMax="5"
-					v-model="counter"
-				></r-counter>
-			</div>
-			<div class="basket-card__col basket-card__full-price">
-				{{ full_price }} руб.
-			</div>
-		</div>
-		<div class="basket-card__row">
+	<div class="basket-card">
+		<r-checkbox v-model="checked"></r-checkbox>
+
+		<img
+			:src="product.img"
+			alt=""
+			v-if="product"
+			class="basket-card__image"
+		/>
+		<img
+			src="img/catalog/catalog__photo-default.svg"
+			alt=""
+			class="basket-card__image"
+			v-else
+		/>
+
+		<div class="basket-card__info basket-card__col">
+			<p class="basket-card__name">{{ product.name }}</p>
 			<div class="basket-card__article">
 				<p class="basket-card__article-name">Артикул:</p>
 				<p class="basket-card__article-value">{{ product.article }}</p>
 			</div>
 		</div>
+
+		<div class="basket-card__prices basket-card__col">
+			<p class="basket-card__price-old">{{ product.price_old }} руб.</p>
+			<p class="basket-card__price">{{ product.price }} руб.</p>
+		</div>
+
+		<r-counter
+			:getValue="1"
+			:getMin="1"
+			:getMax="5"
+			v-model="counter"
+			class="basket-card__col"
+		></r-counter>
+
+		<div class="basket-card__full-price basket-card__col">
+			{{ full_price }} руб.
+		</div>
+
+		<div class="basket-card__remove">
+			<img
+				src="img/icon/Basket/close.svg"
+				alt=""
+				class="basket-card__remove-icon"
+			/>
+		</div>
 	</div>
 </template>
 
 <script>
+	import rCheckbox from "@/components/r-checkbox";
 	import rCounter from "@/components/Catalog/r-counter";
+
 	import { mapActions } from "vuex";
 
 	export default {
 		name: "BasketCard",
-		props: {
-			product: Object,
-		},
+		props: { product: Object },
+		components: { rCounter, rCheckbox },
+		data: () => ({ counter: 1, checked: false }),
 		watch: {
 			counter() {
 				this.setShoppingList({
@@ -71,15 +74,7 @@
 				return this.product.price * this.counter;
 			},
 		},
-		data: () => ({
-			counter: 1,
-		}),
-		components: {
-			rCounter,
-		},
-		methods: {
-			...mapActions(["setShoppingList"]),
-		},
+		methods: { ...mapActions(["setShoppingList"]) },
 		mounted() {
 			this.setShoppingList({
 				id: this.product.id,
@@ -91,43 +86,37 @@
 
 <style lang="scss" scoped>
 	.basket-card {
-		border-radius: 3rem;
-		padding: 2rem 2rem 1rem 1rem;
+		display: grid;
+		grid-template-columns: 2rem 10rem 1fr repeat(3, 14rem) 2rem;
+		align-items: center;
+		grid-gap: 2.5rem;
+		border: 0.1rem solid #e5e5e5;
+		border-radius: 0.4rem;
+		padding: 2rem;
 		color: var(--dark);
 
 		+ .basket-card {
 			margin-top: 3rem;
 		}
-		&__row {
-			display: grid;
-			grid-template-columns: 25rem repeat(4, 1fr) 2rem;
-			align-items: center;
-			gap: 2rem;
-			&:nth-child(2) {
-				grid-template-rows: 25rem;
-			}
-			&:last-child {
-			}
-		}
 
 		&__col {
-			display: flex;
-			justify-content: center;
-			&:nth-child(-n + 3) {
-				justify-content: flex-start;
+			margin: auto;
+			&:nth-child(3) {
+				margin: 0;
 			}
-		}
-
-		&__remove {
-			cursor: pointer;
-			grid-column: 6/7;
 		}
 
 		&__image {
-			object-fit: contain;
-			display: block;
-			height: 100%;
 			width: 100%;
+			height: 100%;
+			object-fit: contain;
+		}
+
+		&__info {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			gap: 1rem;
 		}
 
 		&__name {
@@ -136,9 +125,21 @@
 			line-height: 1.3;
 		}
 
+		&__prices {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 0.5rem;
+		}
+
 		&__price {
 			font-size: 1.8rem;
 			font-weight: 600;
+			&-old {
+				text-decoration: line-through;
+				font-size: 1.4rem;
+				color: #8f8f8f;
+			}
 		}
 
 		&__full-price {
@@ -148,7 +149,6 @@
 
 		&__article {
 			display: flex;
-			grid-column: 2/3;
 			gap: 1rem;
 
 			&-name {

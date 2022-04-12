@@ -5,7 +5,7 @@
 -   Vue (VueX, Vue Router)
 -   SCSS
 -   WoW.js + animate.css
--   swiper
+-   swiper.js
 
 ## Project setup
 

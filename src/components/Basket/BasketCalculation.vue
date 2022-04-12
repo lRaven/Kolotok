@@ -7,7 +7,7 @@
 		</div>
 		<div class="basket-calculation__row">
 			<h6 class="basket-calculation__row-title">Скидка:</h6>
-			<p class="basket-calculation__row-value">{{ discount }} руб.</p>
+			<p class="basket-calculation__row-value">{{ discount_sum }} руб.</p>
 		</div>
 		<div class="basket-calculation__row">
 			<h6 class="basket-calculation__row-title">Сумма к оплате:</h6>
@@ -40,6 +40,12 @@
 
 				return sum;
 			},
+			discount_sum() {
+				return this.full_price * `${0}.${this.discount}`;
+			},
+			final_price() {
+				return this.full_price - this.discount_sum;
+			},
 		},
 	};
 </script>
@@ -60,6 +66,21 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
+			&:nth-child(4) {
+				.basket-calculation__row {
+					&-title,
+					&-value {
+						font-weight: 700;
+					}
+				}
+			}
+			&-title {
+				font-weight: 500;
+			}
+			&-value {
+				font-size: 1.8rem;
+				font-weight: 500;
+			}
 
 			+ .basket-calculation__row {
 				margin-top: 1.5rem;

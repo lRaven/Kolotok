@@ -2,23 +2,26 @@ const state = () => ({
 	shopping_list: [
 		{
 			id: 1,
-			img: "img/catalog/catalog-item1.png",
+			img: "img/catalog/catalog-item9.png",
 			name: "Люстра декоративная Ambra",
-			price: "19950",
+			price_old: 22000,
+			price: 19950,
 			article: "FR5167PL-06BS",
 		},
 		{
 			id: 2,
-			img: "img/catalog/catalog-item2.png",
+			img: "img/catalog/catalog-item3.png",
 			name: "Кресло Гомер Симпсон",
-			price: "9750",
+			price_old: 22000,
+			price: 9750,
 			article: "FR5167PL-06BS",
 		},
 		{
 			id: 3,
 			img: "img/catalog/catalog-item3.png",
 			name: "Кран водопроводный сенсорный",
-			price: "7250",
+			price_old: 22000,
+			price: 7250,
 			article: "FR5167PL-06BS",
 		},
 	],
@@ -37,10 +40,10 @@ const mutations = {
 }
 
 const actions = {
-	setShoppingList: async (context, ...params) => {
+	setShoppingList: async (context, params) => {
 		context.getters.SHOPPING_LIST.forEach(product => {
-			if (params[0].id == product.id) {
-				product.quantity = params[0].quantity;
+			if (params.id === product.id) {
+				product.quantity = Number(params.quantity);
 			}
 		});
 	},
