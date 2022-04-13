@@ -18,7 +18,7 @@ const state = () => ({
 		},
 		{
 			id: 3,
-			img: "img/catalog/catalog-item3.png",
+			img: "img/catalog/catalog-item2.png",
 			name: "Кран водопроводный сенсорный",
 			price_old: 22000,
 			price: 7250,
@@ -44,6 +44,22 @@ const actions = {
 		context.getters.SHOPPING_LIST.forEach(product => {
 			if (params.id === product.id) {
 				product.quantity = Number(params.quantity);
+			}
+		});
+	},
+
+	selectShoppingItem: async (context, params) => {
+		context.getters.SHOPPING_LIST.forEach(product => {
+			if (params.selectAll) {
+				product.selected = params.checked;
+			}
+			else if (params.selectAll === false) {
+				product.selected = false;
+			}
+			else {
+				if (params.id === product.id) {
+					product.selected = params.checked;
+				}
 			}
 		});
 	},

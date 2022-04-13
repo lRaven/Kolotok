@@ -8,7 +8,17 @@
 				<div class="basket__col">
 					<h2 class="basket__title">Корзина</h2>
 					<div class="basket__control">
-						<r-checkbox description="Выбрать всё"></r-checkbox>
+						<r-checkbox
+							description="Выбрать всё"
+							v-model="isAllSelected"
+							@click="
+								selectShoppingItem({
+									checked: true,
+									selectAll: !isAllSelected,
+								})
+							"
+						></r-checkbox>
+
 						<div class="basket__delete">
 							<svg
 								width="16"
@@ -44,7 +54,11 @@
 								Удалить выбранное
 							</p>
 						</div>
-						<div class="basket__clear">
+
+						<div
+							class="basket__clear"
+							@click="SET_SHOPPING_LIST([])"
+						>
 							<svg
 								width="17"
 								height="19"
@@ -115,7 +129,7 @@
 
 	import TheFooter from "@/components/TheFooter";
 
-	import { mapState } from "vuex";
+	import { mapState, mapMutations, mapActions } from "vuex";
 
 	export default {
 		name: "PageBasket",
@@ -143,11 +157,18 @@
 					current: true,
 				},
 			],
+
+			isAllSelected: false,
 		}),
 		computed: {
 			...mapState({
 				shopping_list: (state) => state.Basket.shopping_list,
 			}),
+		},
+		methods: {
+			...mapActions(["selectShoppingItem"]),
+
+			...mapMutations(["SET_SHOPPING_LIST"]),
 		},
 	};
 </script>

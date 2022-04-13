@@ -4,6 +4,7 @@
 			type="checkbox"
 			class="r-checkbox__real"
 			name=""
+			ref="checkbox"
 			@change="$emit('update:modelValue', $event.target.checked)"
 		/>
 		<span class="r-checkbox__fake">
@@ -42,6 +43,16 @@ c-553 551 -600 596 -662 625 -159 74 -328 51 -454 -63 -100 -90 -149 -234
 		name: "rCheckbox",
 		props: {
 			description: String,
+			checked: Boolean,
+		},
+		watch: {
+			checked() {
+				if (this.checked === true) {
+					this.$refs.checkbox.checked = true;
+				} else {
+					this.$refs.checkbox.checked = false;
+				}
+			},
 		},
 	};
 </script>

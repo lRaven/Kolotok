@@ -1,21 +1,40 @@
 <template>
-	<div class="basket-calculation shadow">
-		<h4 class="basket-calculation__title">Итого по заказу</h4>
+	<form class="basket-calculation">
+		<h3 class="basket-calculation__title">Ваш заказ</h3>
 		<div class="basket-calculation__row">
-			<h6 class="basket-calculation__row-title">Сумма заказа:</h6>
-			<p class="basket-calculation__row-value">{{ full_price }} руб.</p>
+			<p class="basket-calculation__row-title">Выбрано товаров</p>
+			<p class="basket-calculation__row-value">
+				{{ products.length }} шт.
+			</p>
 		</div>
 		<div class="basket-calculation__row">
-			<h6 class="basket-calculation__row-title">Скидка:</h6>
+			<p class="basket-calculation__row-title">Скидка</p>
 			<p class="basket-calculation__row-value">{{ discount_sum }} руб.</p>
 		</div>
 		<div class="basket-calculation__row">
-			<h6 class="basket-calculation__row-title">Сумма к оплате:</h6>
+			<p class="basket-calculation__row-title">Итого:</p>
 			<p class="basket-calculation__row-value">{{ final_price }} руб.</p>
 		</div>
+		<div class="basket-calculation__promo">
+			<input
+				type="text"
+				name="promo"
+				id=""
+				placeholder="Есть промокод?"
+				class="basket-calculation__promo-input"
+			/>
+			<button type="button" class="basket-calculation__promo-button">
+				<img
+					src="img/icon/Basket/arrow.svg"
+					alt=""
+					class="basket-calculation__promo-button-icon"
+				/>
+			</button>
+		</div>
 
-		<r-button class="blue" type="button" text="Оплатить"></r-button>
-	</div>
+		<r-button class="yellow" type="button" text="Оформить заказ">
+		</r-button>
+	</form>
 </template>
 
 <script>
@@ -54,12 +73,14 @@
 	.basket-calculation {
 		position: sticky;
 		left: 0;
-		top: 21rem;
+		top: 22rem;
 		padding: 2rem;
-		border-radius: 3rem;
+		border-radius: 1.6rem;
+		box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
 
 		&__title {
-			margin-bottom: 1.5rem;
+			margin-bottom: 4rem;
+			font-weight: 700;
 		}
 
 		&__row {
@@ -67,10 +88,17 @@
 			align-items: center;
 			justify-content: space-between;
 			&:nth-child(4) {
+				margin-bottom: 4rem;
 				.basket-calculation__row {
 					&-title,
 					&-value {
 						font-weight: 700;
+					}
+					&-title {
+						font-size: 2rem;
+					}
+					&-value {
+						font-size: 2.4rem;
 					}
 				}
 			}
@@ -78,16 +106,50 @@
 				font-weight: 500;
 			}
 			&-value {
-				font-size: 1.8rem;
-				font-weight: 500;
+				font-weight: 700;
 			}
 
 			+ .basket-calculation__row {
-				margin-top: 1.5rem;
+				margin-top: 2rem;
 			}
 		}
+
+		&__promo {
+			position: relative;
+			margin-bottom: 3rem;
+			&-input {
+				border: 0.1rem solid #e5e5e5;
+				width: 100%;
+				padding: 1rem 4.5rem 1rem 1rem;
+				font-size: 1.6rem;
+				border-radius: 0.6rem;
+				transition: all 0.2s ease;
+				&:hover {
+					border-color: var(--middle-gray);
+				}
+				&:focus {
+					border-color: var(--cool-gray);
+				}
+			}
+			&-button {
+				position: absolute;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				background-color: var(--yellow);
+				width: 4rem;
+				border-radius: 0.6rem;
+				&-icon {
+					width: 55%;
+					height: 55%;
+					object-fit: contain;
+				}
+			}
+		}
+
 		.r-button {
-			margin-top: 2rem;
+			padding-top: 1.8rem;
+			padding-bottom: 1.8rem;
 			width: 100%;
 			justify-content: center;
 		}

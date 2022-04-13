@@ -2,9 +2,7 @@
 	<footer class="the-footer" id="footer">
 		<div class="the-footer-inner center">
 			<div class="the-footer__top">
-				<div
-					class="the-footer__socials animate__animated animate__fadeInUp wow"
-				>
+				<div class="the-footer__socials">
 					<p>Соцсети</p>
 					<div class="the-footer__socials-group">
 						<a
@@ -73,9 +71,7 @@
 						</a>
 					</div>
 				</div>
-				<ul
-					class="the-footer__links animate__animated animate__fadeInUp wow"
-				>
+				<ul class="the-footer__links">
 					<li class="the-footer__link">
 						<a href="#" target="_blank">О компании</a>
 					</li>
@@ -103,7 +99,7 @@
 				</ul>
 			</div>
 			<div class="the-footer__disclaimer">
-				<p class="animate__animated animate__fadeInUp wow">
+				<p>
 					Любая информация, представленная на данном сайте, носит
 					исключительно информационный характер и ни при каких
 					условиях не является публичной офертой, определяемой

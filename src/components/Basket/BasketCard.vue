@@ -1,6 +1,6 @@
 <template>
 	<div class="basket-card">
-		<r-checkbox v-model="checked"></r-checkbox>
+		<r-checkbox v-model="checked" :checked="product.selected"></r-checkbox>
 
 		<img
 			:src="product.img"
@@ -24,7 +24,7 @@
 		</div>
 
 		<div class="basket-card__prices basket-card__col">
-			<p class="basket-card__price-old">{{ product.price_old }} руб.</p>
+			<p class="basket-card__price-old">{{ product.price_old }}р.</p>
 			<p class="basket-card__price">{{ product.price }} руб.</p>
 		</div>
 
@@ -36,13 +36,14 @@
 			class="basket-card__col"
 		></r-counter>
 
-		<div class="basket-card__full-price basket-card__col">
-			{{ full_price }} руб.
+		<div class="basket-card__col basket-card__full-prices">
+			<p class="basket-card__full-price-old">{{ full_price_old }}р.</p>
+			<p class="basket-card__full-price">{{ full_price }} руб.</p>
 		</div>
 
 		<div class="basket-card__remove">
 			<img
-				src="img/icon/Basket/close.svg"
+				src="img/icon/Basket/delete.svg"
 				alt=""
 				class="basket-card__remove-icon"
 			/>
@@ -68,17 +69,37 @@
 					quantity: this.counter,
 				});
 			},
+			checked() {
+				this.selectShoppingItem({
+					id: this.product.id,
+					checked: this.checked,
+				});
+			},
+			checkedUpdate() {
+				this.checked = this.checkedUpdate;
+			},
 		},
 		computed: {
+			full_price_old() {
+				return this.product.price_old * this.counter;
+			},
 			full_price() {
 				return this.product.price * this.counter;
 			},
+			checkedUpdate() {
+				return this.product.selected;
+			},
 		},
-		methods: { ...mapActions(["setShoppingList"]) },
+		methods: { ...mapActions(["setShoppingList", "selectShoppingItem"]) },
 		mounted() {
 			this.setShoppingList({
 				id: this.product.id,
 				quantity: this.counter,
+			});
+
+			this.selectShoppingItem({
+				id: this.product.id,
+				checked: this.checked,
 			});
 		},
 	};
@@ -108,7 +129,9 @@
 
 		&__image {
 			width: 100%;
+			max-width: 10rem;
 			height: 100%;
+			max-height: 10rem;
 			object-fit: contain;
 		}
 
@@ -124,6 +147,19 @@
 			font-weight: 700;
 			line-height: 1.3;
 		}
+		&__article {
+			display: flex;
+			gap: 1rem;
+
+			&-name {
+				font-size: 1.2rem;
+				color: var(--middle-gray);
+			}
+			&-value {
+				font-size: 1.2rem;
+				color: var(--cool-gray);
+			}
+		}
 
 		&__prices {
 			display: flex;
@@ -138,27 +174,31 @@
 			&-old {
 				text-decoration: line-through;
 				font-size: 1.4rem;
-				color: #8f8f8f;
+				color: #9d9d9d;
 			}
 		}
 
-		&__full-price {
-			font-size: 2.4rem;
-			font-weight: 700;
+		&__full {
+			&-prices {
+				width: max-content;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 0.5rem;
+			}
+			&-price {
+				font-size: 2.4rem;
+				font-weight: 700;
+				&-old {
+					text-decoration: line-through;
+					font-size: 1.4rem;
+					color: #9d9d9d;
+				}
+			}
 		}
 
-		&__article {
-			display: flex;
-			gap: 1rem;
-
-			&-name {
-				font-size: 1.2rem;
-				color: var(--middle-gray);
-			}
-			&-value {
-				font-size: 1.2rem;
-				color: var(--cool-gray);
-			}
+		&__remove {
+			cursor: pointer;
 		}
 	}
 </style>
