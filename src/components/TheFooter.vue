@@ -127,9 +127,9 @@
 		align-items: center;
 		position: relative;
 		background-color: var(--dark-blue);
-		padding: 4rem 1.5rem 1.5rem 1.5rem;
+		padding: 4rem 2rem 2rem 1.5rem;
 		color: #fff;
-		z-index: 3;
+
 		&::before {
 			content: "";
 			position: absolute;
@@ -148,7 +148,7 @@
 			top: -2.7rem;
 			width: 2.8rem;
 			height: 2.8rem;
-			background: url(/public/img/icon/decoration.svg) center / contain
+			background: url("/public/img/icon/decoration.svg") center / contain
 				no-repeat;
 			transform: rotate(-180deg);
 		}
@@ -201,8 +201,6 @@
 				width: max-content;
 				padding: 1.2rem 0;
 				transition: all 0.2s ease;
-				&:hover {
-				}
 			}
 		}
 		&__disclaimer {

@@ -2,55 +2,53 @@
 	<div class="page-product theme-container">
 		<the-header />
 		<main class="main">
-			<section class="page-product center" v-if="hasProduct === true">
+			<section class="product center" v-if="hasProduct === true">
 				<r-breadcrumbs :links="links"></r-breadcrumbs>
 
-				<div class="page-product__main shadow">
-					<div class="page-product__images">
+				<div class="product__main shadow">
+					<div class="product__images">
 						<r-discount
 							:discount="50"
-							class="page-product__discount"
+							class="product__discount"
 						></r-discount>
 						<img
 							:src="image"
 							alt=""
-							class="page-product__image page-product__image-main animate__animated animate__fadeInUp"
+							class="product__image product__image-main animate__animated animate__fadeInUp"
 							@click="openModal"
 						/>
 						<img
 							:src="images[0].img"
 							alt=""
-							class="page-product__image animate__animated animate__fadeIn"
+							class="product__image animate__animated animate__fadeIn"
 							@click="selectPhoto"
 						/>
 						<img
 							:src="images[1].img"
 							alt=""
-							class="page-product__image animate__animated animate__fadeIn"
+							class="product__image animate__animated animate__fadeIn"
 							@click="selectPhoto"
 						/>
 						<img
 							:src="images[2].img"
 							alt=""
-							class="page-product__image animate__animated animate__fadeIn"
+							class="product__image animate__animated animate__fadeIn"
 							@click="selectPhoto"
 						/>
 					</div>
 
-					<div class="page-product__info">
+					<div class="product__info">
 						<div
-							class="page-product__top animate__animated animate__fadeInUp"
+							class="product__top animate__animated animate__fadeInUp"
 						>
-							<r-favorite
-								class="page-product__favorite"
-							></r-favorite>
-							<h3 class="page-product__name">
+							<r-favorite class="product__favorite"></r-favorite>
+							<h3 class="product__name">
 								{{ product.name }}
 							</h3>
-							<p class="page-product__article">
+							<p class="product__article">
 								Артикул:
 								<span
-									class="page-product__article-number"
+									class="product__article-number"
 									v-if="
 										product.article !== 'None' &&
 										product.article !== null
@@ -58,22 +56,24 @@
 								>
 									{{ product.article }}
 								</span>
-								<span
-									class="page-product__article-number"
-									v-else
-								>
+								<span class="product__article-number" v-else>
 									не указан
 								</span>
 							</p>
 						</div>
 
 						<form
-							class="page-product__middle animate__animated animate__fadeInUp"
+							class="product__middle animate__animated animate__fadeInUp"
 						>
-							<h4 class="page-product__price">
+							<h4 class="product__price">
 								{{ product.price }} руб.
 							</h4>
-							<r-counter v-model="quantity"></r-counter>
+							<r-counter
+								v-model="quantity"
+								:getMin="1"
+								:getMax="100"
+								:getValue="1"
+							></r-counter>
 							<r-button
 								type="button"
 								text="Добавить в корзину"
@@ -82,22 +82,22 @@
 						</form>
 
 						<div
-							class="page-product__features animate__animated animate__fadeInUp"
+							class="product__features animate__animated animate__fadeInUp"
 						>
-							<h6 class="page-product__features-title">
+							<h6 class="product__features-title">
 								Характеристики товара
 							</h6>
 
 							<div
-								class="page-product__feature"
+								class="product__feature"
 								v-for="(value, key) in productTags"
 								:key="key"
 							>
-								<p class="page-product__feature-title">
+								<p class="product__feature-title">
 									{{ key }}
 								</p>
 
-								<p class="page-product__feature-value">
+								<p class="product__feature-value">
 									{{ value }}
 								</p>
 							</div>
@@ -105,36 +105,34 @@
 					</div>
 				</div>
 
-				<div class="page-product__details shadow">
-					<div class="page-product__details-title shadow">
-						Описание
-					</div>
+				<div class="product__details shadow">
+					<div class="product__details-title shadow">Описание</div>
 					<h6
-						class="page-product__details-name animate__animated animate__fadeInUp wow"
+						class="product__details-name animate__animated animate__fadeInUp wow"
 					>
 						{{ product.name }}
 					</h6>
 					<p
-						class="page-product__description animate__animated animate__fadeInUp wow"
+						class="product__description animate__animated animate__fadeInUp wow"
 					>
 						{{ product.descriptions }}
 					</p>
-					<div class="page-product__details-footer">
+					<div class="product__details-footer">
 						<img
 							src="img/catalog/logo-default.svg"
 							alt=""
-							class="page-product__logo"
+							class="product__logo"
 							v-if="!product.logo"
 						/>
-						<div class="page-product__details-link-wrapper">
-							<p class="page-product__details-link-description">
+						<div class="product__details-link-wrapper">
+							<p class="product__details-link-description">
 								Подробности<br />
 								на сайте производителя
 							</p>
 							<a
 								href="#"
 								target="_blank"
-								class="page-product__details-link"
+								class="product__details-link"
 								v-if="!product.link"
 							>
 								https://naimenovanie.com/
@@ -152,7 +150,7 @@
 				</transition>
 			</section>
 
-			<section class="recommendations center-carousel">
+			<section class="recommendations center">
 				<h2
 					class="recommendations-title animate__animated animate__fadeInUp"
 				>
@@ -263,7 +261,7 @@
 			product() {
 				let result = {};
 				this.products.forEach((product) => {
-					if (product.id == this.$route.query.product) {
+					if (product.id == this.$route.params["id"]) {
 						result = product;
 					}
 				});
@@ -329,7 +327,7 @@
 				return tags;
 			},
 
-			//*links list for breadcrumb component
+			// *links list for breadcrumb component
 			links() {
 				let links = [
 					{
@@ -341,7 +339,7 @@
 					{
 						id: 2,
 						description: "Каталог",
-						route: "/",
+						route: "/catalog",
 						current: false,
 					},
 					{
@@ -384,8 +382,9 @@
 </script>
 
 <style lang="scss" scoped>
-	.page-product {
+	.product {
 		color: var(--dark);
+		padding-top: 0;
 		&__main {
 			display: grid;
 			grid-template-columns: repeat(2, 1fr);

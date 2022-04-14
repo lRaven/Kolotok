@@ -1,5 +1,5 @@
 const state = () => ({
-	shopping_list: [
+	cart_list: [
 		{
 			id: 1,
 			img: "img/catalog/catalog-item9.png",
@@ -28,20 +28,20 @@ const state = () => ({
 })
 
 const getters = {
-	SHOPPING_LIST: state => {
-		return state.shopping_list;
+	CART_LIST: state => {
+		return state.cart_list;
 	},
 }
 
 const mutations = {
-	SET_SHOPPING_LIST(state, payload) {
-		state.shopping_list = payload;
+	SET_CART_LIST(state, payload) {
+		state.cart_list = payload;
 	},
 }
 
 const actions = {
 	setShoppingList: async (context, params) => {
-		context.getters.SHOPPING_LIST.forEach(product => {
+		context.getters.CART_LIST.forEach(product => {
 			if (params.id === product.id) {
 				product.quantity = Number(params.quantity);
 			}
@@ -49,7 +49,7 @@ const actions = {
 	},
 
 	selectShoppingItem: async (context, params) => {
-		context.getters.SHOPPING_LIST.forEach(product => {
+		context.getters.CART_LIST.forEach(product => {
 			if (params.selectAll) {
 				product.selected = params.checked;
 			}

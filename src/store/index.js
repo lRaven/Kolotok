@@ -1,7 +1,7 @@
 import { createStore } from 'vuex'
 import cabinet from '@/store/modules/cabinet'
 import catalog from '@/store/modules/catalog'
-import basket from '@/store/modules/basket'
+import cart from '@/store/modules/cart'
 
 export default createStore({
 	state: {
@@ -22,6 +22,6 @@ export default createStore({
 	modules: {
 		Cabinet: cabinet,
 		Catalog: catalog,
-		Basket: basket,
+		Cart: cart,
 	}
 })

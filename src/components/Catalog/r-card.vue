@@ -1,8 +1,5 @@
 <template>
-	<div
-		class="r-card animate__animated animate__fadeInUp wow"
-		@click="moveToProductPage"
-	>
+	<div class="r-card animate__animated animate__fadeInUp wow">
 		<div class="r-card__main shadow">
 			<r-discount
 				class="r-card__discount"
@@ -10,12 +7,14 @@
 				:discount="discount_percent"
 			></r-discount>
 			<r-favorite class="r-card__favorite"></r-favorite>
-			<img :src="img" alt="photo" class="r-card__img" v-if="img" />
-			<img
-				src="img/catalog/catalog__photo-default.svg"
-				alt="no photo"
-				v-else
-			/>
+			<router-link :to="`/catalog/product/${id}`">
+				<img :src="img" alt="photo" class="r-card__img" v-if="img" />
+				<img
+					src="img/catalog/catalog__photo-default.svg"
+					alt="no photo"
+					v-else
+				/>
+			</router-link>
 		</div>
 		<div class="r-card__footer">
 			<div class="r-card__row">
@@ -63,14 +62,14 @@
 				this.isFavorite = false;
 			},
 
-			moveToProductPage(e) {
-				if (!e.target.classList.contains("r-favorite__path")) {
-					this.$router.push({
-						name: "product",
-						query: { product: this.id },
-					});
-				}
-			},
+			// moveToProductPage(e) {
+			// 	if (!e.target.classList.contains("r-favorite__path")) {
+			// 		this.$router.push({
+			// 			name: "product",
+			// 			query: { product: this.id },
+			// 		});
+			// 	}
+			// },
 		},
 	};
 </script>

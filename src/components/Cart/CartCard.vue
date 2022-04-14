@@ -1,31 +1,31 @@
 <template>
-	<div class="basket-card">
+	<div class="cart-card">
 		<r-checkbox v-model="checked" :checked="product.selected"></r-checkbox>
 
 		<img
 			:src="product.img"
 			alt=""
 			v-if="product"
-			class="basket-card__image"
+			class="cart-card__image"
 		/>
 		<img
 			src="img/catalog/catalog__photo-default.svg"
 			alt=""
-			class="basket-card__image"
+			class="cart-card__image"
 			v-else
 		/>
 
-		<div class="basket-card__info basket-card__col">
-			<p class="basket-card__name">{{ product.name }}</p>
-			<div class="basket-card__article">
-				<p class="basket-card__article-name">Артикул:</p>
-				<p class="basket-card__article-value">{{ product.article }}</p>
+		<div class="cart-card__info cart-card__col">
+			<p class="cart-card__name">{{ product.name }}</p>
+			<div class="cart-card__article">
+				<p class="cart-card__article-name">Артикул:</p>
+				<p class="cart-card__article-value">{{ product.article }}</p>
 			</div>
 		</div>
 
-		<div class="basket-card__prices basket-card__col">
-			<p class="basket-card__price-old">{{ product.price_old }}р.</p>
-			<p class="basket-card__price">{{ product.price }} руб.</p>
+		<div class="cart-card__prices cart-card__col">
+			<p class="cart-card__price-old">{{ product.price_old }}р.</p>
+			<p class="cart-card__price">{{ product.price }} руб.</p>
 		</div>
 
 		<r-counter
@@ -33,19 +33,19 @@
 			:getMin="1"
 			:getMax="5"
 			v-model="counter"
-			class="basket-card__col"
+			class="cart-card__col"
 		></r-counter>
 
-		<div class="basket-card__col basket-card__full-prices">
-			<p class="basket-card__full-price-old">{{ full_price_old }}р.</p>
-			<p class="basket-card__full-price">{{ full_price }} руб.</p>
+		<div class="cart-card__col cart-card__full-prices">
+			<p class="cart-card__full-price-old">{{ full_price_old }}р.</p>
+			<p class="cart-card__full-price">{{ full_price }} руб.</p>
 		</div>
 
-		<div class="basket-card__remove">
+		<div class="cart-card__remove">
 			<img
 				src="img/icon/Basket/delete.svg"
 				alt=""
-				class="basket-card__remove-icon"
+				class="cart-card__remove-icon"
 			/>
 		</div>
 	</div>
@@ -58,7 +58,7 @@
 	import { mapActions } from "vuex";
 
 	export default {
-		name: "BasketCard",
+		name: "CartCard",
 		props: { product: Object },
 		components: { rCounter, rCheckbox },
 		data: () => ({ counter: 1, checked: false }),
@@ -106,7 +106,7 @@
 </script>
 
 <style lang="scss" scoped>
-	.basket-card {
+	.cart-card {
 		display: grid;
 		grid-template-columns: 2rem 10rem 1fr repeat(3, 14rem) 2rem;
 		align-items: center;
@@ -116,7 +116,7 @@
 		padding: 2rem;
 		color: var(--dark);
 
-		+ .basket-card {
+		+ .cart-card {
 			margin-top: 3rem;
 		}
 

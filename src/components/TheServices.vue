@@ -1,5 +1,5 @@
 <template>
-	<section class="the-services center-carousel">
+	<section class="the-services center">
 		<services-slider :slides="slides"></services-slider>
 	</section>
 </template>

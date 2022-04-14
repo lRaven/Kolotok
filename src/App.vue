@@ -150,14 +150,11 @@
 		display: flex;
 		flex-direction: column;
 		flex: 1 0 auto;
-		padding-top: 21rem;
+		padding: 25rem 2rem 0 2rem;
 	}
 
-	.header,
-	.footer {
-	}
 	section {
-		padding: 4rem 2.5rem;
+		padding: 2.5rem 0;
 	}
 
 	.footer {
@@ -190,7 +187,7 @@
 <style lang="scss">
 	.swiper {
 		width: 100%;
-		padding: 1rem !important;
+		padding: 0.5rem !important;
 		&-button {
 			&-prev,
 			&-next {

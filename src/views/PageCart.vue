@@ -1,13 +1,13 @@
 <template>
-	<div class="page-basket theme-container">
+	<div class="page-cart theme-container">
 		<the-header />
 		<main class="main">
-			<section class="basket center">
+			<section class="cart center">
 				<r-breadcrumbs :links="links"></r-breadcrumbs>
 
-				<div class="basket__col">
-					<h2 class="basket__title">Корзина</h2>
-					<div class="basket__control">
+				<div class="cart__col">
+					<h2 class="cart__title">Корзина</h2>
+					<div class="cart__control">
 						<r-checkbox
 							description="Выбрать всё"
 							v-model="isAllSelected"
@@ -19,14 +19,14 @@
 							"
 						></r-checkbox>
 
-						<div class="basket__delete">
+						<div class="cart__delete">
 							<svg
 								width="16"
 								height="16"
 								viewBox="0 0 16 16"
 								fill="none"
 								xmlns="http://www.w3.org/2000/svg"
-								class="basket__delete-icon"
+								class="cart__delete-icon"
 							>
 								<path
 									d="M11 5L5 11"
@@ -50,22 +50,19 @@
 								/>
 							</svg>
 
-							<p class="basket__delete-description">
+							<p class="cart__delete-description">
 								Удалить выбранное
 							</p>
 						</div>
 
-						<div
-							class="basket__clear"
-							@click="SET_SHOPPING_LIST([])"
-						>
+						<div class="cart__clear" @click="SET_CART_LIST([])">
 							<svg
 								width="17"
 								height="19"
 								viewBox="0 0 17 19"
 								fill="none"
 								xmlns="http://www.w3.org/2000/svg"
-								class="basket__clear-icon"
+								class="cart__clear-icon"
 							>
 								<path
 									d="M15.2147 6.80322C15.2147 6.80322 14.7102 13.061 14.4175 15.6969C14.2781 16.9559 13.5004 17.6937 12.2266 17.7169C9.80247 17.7606 7.37556 17.7633 4.95237 17.7122C3.72683 17.6872 2.96215 16.9401 2.82557 15.7034C2.53103 13.0442 2.0293 6.80322 2.0293 6.80322"
@@ -87,31 +84,31 @@
 								/>
 							</svg>
 
-							<p class="basket__clear-description">
+							<p class="cart__clear-description">
 								Очистить корзину
 							</p>
 						</div>
 					</div>
-					<div class="basket__list">
-						<div class="basket__captions">
-							<p class="basket__caption">Наименование</p>
-							<p class="basket__caption">Цена за шт.</p>
-							<p class="basket__caption">Кол-во</p>
-							<p class="basket__caption">Стоимость</p>
+					<div class="cart__list">
+						<div class="cart__captions">
+							<p class="cart__caption">Наименование</p>
+							<p class="cart__caption">Цена за шт.</p>
+							<p class="cart__caption">Кол-во</p>
+							<p class="cart__caption">Стоимость</p>
 						</div>
-						<basket-card
-							v-for="product in shopping_list"
+						<cart-card
+							v-for="product in cart_list"
 							:key="product.id"
 							:product="product"
-						></basket-card>
+						></cart-card>
 					</div>
 				</div>
 
-				<div class="basket__col basket__buy">
-					<basket-calculation
-						:products="shopping_list"
+				<div class="cart__col cart__buy">
+					<cart-calculation
+						:products="cart_list"
 						:discount="10"
-					></basket-calculation>
+					></cart-calculation>
 				</div>
 			</section>
 		</main>
@@ -124,22 +121,22 @@
 
 	import rBreadcrumbs from "@/components/r-breadcrumbs";
 	import rCheckbox from "@/components/r-checkbox";
-	import BasketCard from "@/components/Basket/BasketCard";
-	import BasketCalculation from "@/components/Basket/BasketCalculation";
+	import CartCard from "@/components/Cart/CartCard";
+	import CartCalculation from "@/components/Cart/CartCalculation";
 
 	import TheFooter from "@/components/TheFooter";
 
 	import { mapState, mapMutations, mapActions } from "vuex";
 
 	export default {
-		name: "PageBasket",
+		name: "PageCart",
 		components: {
 			TheHeader,
 
 			rBreadcrumbs,
 			rCheckbox,
-			BasketCard,
-			BasketCalculation,
+			CartCard,
+			CartCalculation,
 
 			TheFooter,
 		},
@@ -162,19 +159,19 @@
 		}),
 		computed: {
 			...mapState({
-				shopping_list: (state) => state.Basket.shopping_list,
+				cart_list: (state) => state.Cart.cart_list,
 			}),
 		},
 		methods: {
 			...mapActions(["selectShoppingItem"]),
 
-			...mapMutations(["SET_SHOPPING_LIST"]),
+			...mapMutations(["SET_CART_LIST"]),
 		},
 	};
 </script>
 
 <style lang="scss" scoped>
-	.basket {
+	.cart {
 		display: grid;
 		grid-template-columns: 1fr 39rem;
 		grid-gap: 3rem 5rem;
@@ -237,7 +234,7 @@
 			padding: 0 2rem;
 			grid-gap: 2.5rem;
 
-			.basket__caption {
+			.cart__caption {
 				text-align: center;
 				&:first-child {
 					grid-column: 1/3;

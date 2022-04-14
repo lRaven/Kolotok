@@ -1,9 +1,10 @@
 <template>
 	<section class="the-catalog center">
+		<slot name="breadcrumbs"></slot>
 		<h2
 			class="the-catalog__title animate__animated animate__fadeInLeft wow"
 		>
-			Категории товаров
+			{{ title }}
 		</h2>
 		<div class="the-catalog__categories">
 			<catalog-category
@@ -14,12 +15,15 @@
 				class="animate__animated animate__fadeInUp wow"
 			></catalog-category>
 		</div>
-		<r-button
-			type="button"
-			text="Смотреть всё"
-			color="yellow"
-			:arrow="true"
-		></r-button>
+		<router-link :to="{ name: 'catalog' }">
+			<r-button
+				type="button"
+				text="Смотреть всё"
+				color="yellow"
+				:arrow="true"
+				v-if="!isCatalogPage"
+			></r-button>
+		</router-link>
 	</section>
 </template>
 
@@ -32,6 +36,10 @@
 		components: {
 			CatalogCategory,
 			rButton,
+		},
+		props: {
+			title: String,
+			isCatalogPage: Boolean,
 		},
 		data() {
 			return {

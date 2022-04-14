@@ -1,5 +1,5 @@
 <template>
-	<section class="the-banner center-carousel">
+	<section class="the-banner center">
 		<banner-slider
 			class="the-banner__carousel"
 			:slides="slides"
@@ -112,10 +112,10 @@
 			overflow: hidden;
 			border-radius: 3rem;
 			&:nth-child(2) {
-				margin-left: 0.9rem;
+				margin-left: 0.5rem;
 			}
 			&:last-child {
-				margin-right: 0.9rem;
+				margin-right: 0.5rem;
 			}
 		}
 		&__deal {

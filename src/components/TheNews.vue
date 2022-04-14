@@ -1,5 +1,5 @@
 <template>
-	<div class="the-news center-carousel">
+	<div class="the-news center">
 		<h2 class="animate__animated animate__fadeInRight wow the-news__title">
 			Новости
 		</h2>
@@ -74,7 +74,7 @@
 
 <style lang="scss" scoped>
 	.the-news {
-		padding: 2rem 1.5rem;
+		padding: 2rem 0;
 		&__title {
 			color: var(--dark-blue);
 			padding: 0 1rem;

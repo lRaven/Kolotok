@@ -1,33 +1,31 @@
 <template>
-	<form class="basket-calculation">
-		<h3 class="basket-calculation__title">Ваш заказ</h3>
-		<div class="basket-calculation__row">
-			<p class="basket-calculation__row-title">Выбрано товаров</p>
-			<p class="basket-calculation__row-value">
-				{{ products.length }} шт.
-			</p>
+	<form class="cart-calculation">
+		<h3 class="cart-calculation__title">Ваш заказ</h3>
+		<div class="cart-calculation__row">
+			<p class="cart-calculation__row-title">Выбрано товаров</p>
+			<p class="cart-calculation__row-value">{{ products.length }} шт.</p>
 		</div>
-		<div class="basket-calculation__row">
-			<p class="basket-calculation__row-title">Скидка</p>
-			<p class="basket-calculation__row-value">{{ discount_sum }} руб.</p>
+		<div class="cart-calculation__row">
+			<p class="cart-calculation__row-title">Скидка</p>
+			<p class="cart-calculation__row-value">{{ discount_sum }} руб.</p>
 		</div>
-		<div class="basket-calculation__row">
-			<p class="basket-calculation__row-title">Итого:</p>
-			<p class="basket-calculation__row-value">{{ final_price }} руб.</p>
+		<div class="cart-calculation__row">
+			<p class="cart-calculation__row-title">Итого:</p>
+			<p class="cart-calculation__row-value">{{ final_price }} руб.</p>
 		</div>
-		<div class="basket-calculation__promo">
+		<div class="cart-calculation__promo">
 			<input
 				type="text"
 				name="promo"
 				id=""
 				placeholder="Есть промокод?"
-				class="basket-calculation__promo-input"
+				class="cart-calculation__promo-input"
 			/>
-			<button type="button" class="basket-calculation__promo-button">
+			<button type="button" class="cart-calculation__promo-button">
 				<img
 					src="img/icon/Basket/arrow.svg"
 					alt=""
-					class="basket-calculation__promo-button-icon"
+					class="cart-calculation__promo-button-icon"
 				/>
 			</button>
 		</div>
@@ -41,7 +39,7 @@
 	import rButton from "@/components/r-button";
 
 	export default {
-		name: "BasketCalculation",
+		name: "CartCalculation",
 		props: {
 			products: Array,
 			discount: Number,
@@ -70,7 +68,7 @@
 </script>
 
 <style lang="scss" scoped>
-	.basket-calculation {
+	.cart-calculation {
 		position: sticky;
 		left: 0;
 		top: 22rem;
@@ -89,7 +87,7 @@
 			justify-content: space-between;
 			&:nth-child(4) {
 				margin-bottom: 4rem;
-				.basket-calculation__row {
+				.cart-calculation__row {
 					&-title,
 					&-value {
 						font-weight: 700;
@@ -109,7 +107,7 @@
 				font-weight: 700;
 			}
 
-			+ .basket-calculation__row {
+			+ .cart-calculation__row {
 				margin-top: 2rem;
 			}
 		}

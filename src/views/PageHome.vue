@@ -3,7 +3,7 @@
 		<the-header />
 		<main class="main">
 			<the-banner />
-			<the-catalog />
+			<the-catalog title="Категории товаров" :isCatalogPage="false" />
 			<the-services />
 			<the-novelties />
 			<the-specials />

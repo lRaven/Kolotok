@@ -1,7 +1,9 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+
 import PageHome from '@/views/PageHome'
+import PageCatalog from '@/views/PageCatalog'
 import PageProduct from '@/views/PageProduct'
-import PageBasket from '@/views/PageBasket'
+import PageCart from '@/views/PageCart'
 
 import Page404 from '@/views/Page404'
 
@@ -19,9 +21,21 @@ const routes = [
 		},
 	},
 
+	//*catalog page
+	{
+		path: '/catalog',
+		name: 'catalog',
+		// component: import
+		component: PageCatalog,
+
+		meta: {
+			title: 'Каталог',
+		},
+	},
+
 	//*dynamic product page
 	{
-		path: '/catalog/product',
+		path: '/catalog/product/:id',
 		name: 'product',
 		component: PageProduct,
 
@@ -30,11 +44,11 @@ const routes = [
 		},
 	},
 
-	//*shopping cart page
+	//*cart page
 	{
-		path: '/basket',
-		name: 'ShoppingBasket',
-		component: PageBasket,
+		path: '/cart',
+		name: 'cart',
+		component: PageCart,
 
 		meta: {
 			title: 'Корзина',
@@ -60,7 +74,7 @@ const routes = [
 const router = createRouter({
 	history: createWebHashHistory(),
 	routes,
-	scrollBehavior(to, from, savedPosition) {
+	scrollBehavior() {
 		return { top: 0 }
 	}
 })

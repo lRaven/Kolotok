@@ -1,5 +1,5 @@
 <template>
-	<section class="the-novelties center-carousel">
+	<section class="the-novelties center">
 		<h2
 			class="animate__animated animate__fadeInRight wow the-novelties__title"
 		>

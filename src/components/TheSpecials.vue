@@ -1,5 +1,5 @@
 <template>
-	<section class="the-specials center-carousel">
+	<section class="the-specials center">
 		<h2
 			class="the-specials__title animate__animated animate__fadeInLeft wow"
 		>

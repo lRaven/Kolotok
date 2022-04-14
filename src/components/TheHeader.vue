@@ -313,26 +313,6 @@
 				}
 			},
 
-			adaptiveCatalogHeight() {
-				const body = document.querySelector("body");
-
-				const header = document.querySelector(".the-header");
-				const catalog = header.querySelector(".the-header__catalog");
-
-				const footer = document.querySelector(".the-footer");
-
-				document.addEventListener("scroll", () => {
-					if (
-						body.scrollHeight -
-							window.scrollY -
-							footer.scrollHeight <=
-						body.clientHeight
-					) {
-						catalog.classList.add("short");
-					} else catalog.classList.remove("short");
-				});
-			},
-
 			openCatalogList() {
 				const header = document.querySelector(".the-header");
 				const catalog = header.querySelector(".the-header__catalog");
@@ -350,9 +330,6 @@
 				}
 			},
 		},
-		mounted() {
-			this.adaptiveCatalogHeight();
-		},
 	};
 </script>
 
@@ -368,6 +345,7 @@
 		background-color: var(--dark-blue);
 		padding: 3rem 0;
 		z-index: 3;
+
 		&::before {
 			content: "";
 			position: absolute;
@@ -395,7 +373,6 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			padding: 0 2.5rem;
 			+ .the-header__row {
 				margin-top: 1.2rem;
 			}
@@ -443,19 +420,15 @@
 			position: absolute;
 			top: 100%;
 			height: fit-content;
-			max-height: calc(100vh - 21rem);
 			width: fit-content;
 			background-color: #fff;
 			overflow: hidden;
-			&.short {
-				max-height: calc(100vh - 34.5rem);
-			}
 
 			&-list {
-				display: block;
 				padding: 0.5rem 1rem;
-				overflow-y: auto;
 				max-width: 35rem;
+				overflow-y: auto;
+				height: 100%;
 				max-height: calc(100vh - 21rem);
 				width: 100%;
 			}

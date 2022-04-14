@@ -1,23 +1,35 @@
 <template>
-	<ul class="r-breadcrumbs animate__animated animate__fadeInDownBig wow">
-		<li class="r-breadcrumbs__item" v-for="link in links" :key="link.id">
-			<div class="r-breadcrumbs__col" v-if="link.current === false">
-				<router-link :to="link.route" class="r-breadcrumbs__link">
-					{{ link.description }}
-				</router-link>
-				<img
-					src="img/icon/arrow.svg"
-					class="r-breadcrumb__arrow"
-					alt=""
-				/>
-			</div>
-			<div class="r-breadcrumbs__col r-breadcrumbs__current" v-else>
-				<p class="r-breadcrumbs__current-description">
-					{{ link.description }}
-				</p>
-			</div>
+	<ol
+		itemscope
+		itemtype="http://schema.org/BreadcrumbList"
+		class="r-breadcrumbs animate__animated animate__fadeInDownBig wow"
+	>
+		<li
+			itemprop="itemListElement"
+			itemtype="http://schema.org/ListItem"
+			class="r-breadcrumbs__item"
+			v-for="link in links"
+			:key="link.id"
+		>
+			<router-link
+				itemprop="item"
+				:to="link.route"
+				class="r-breadcrumbs__link"
+				v-if="link.current === false"
+			>
+				{{ link.description }}
+			</router-link>
+
+			<a
+				itemprop="item"
+				itemscope
+				class="r-breadcrumbs__current-description"
+				v-else
+			>
+				{{ link.description }}
+			</a>
 		</li>
-	</ul>
+	</ol>
 </template>
 
 <script>
@@ -35,16 +47,11 @@
 		flex-wrap: wrap;
 		align-items: center;
 		gap: 1.5rem;
-		margin-bottom: 3rem;
+		margin-bottom: 6rem;
 		&__item {
 			list-style: none;
 			font-size: 1.4rem;
-		}
-
-		&__col {
-			display: flex;
-			align-items: center;
-			gap: 1.5rem;
+			padding-right: 2.5rem;
 		}
 
 		&__link {
@@ -53,10 +60,20 @@
 			color: var(--blue);
 			width: 100%;
 			height: 100%;
-		}
+			position: relative;
 
-		&__arrow {
-			height: 1rem;
+			&::after {
+				pointer-events: none;
+				content: "";
+				background: url("/public/img/icon/arrow.svg") center / contain
+					no-repeat;
+				position: absolute;
+				right: -2.5rem;
+				height: 1rem;
+				width: 1rem;
+				top: 50%;
+				transform: translateY(-50%);
+			}
 		}
 
 		&__current {
@@ -68,7 +85,7 @@
 	}
 
 	@media (max-width: 768px) {
-		.r-bread-crumb {
+		.r-breadcrumbs {
 		}
 	}
 </style>
