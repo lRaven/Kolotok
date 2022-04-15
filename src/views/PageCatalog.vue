@@ -1,7 +1,7 @@
 <template>
 	<div class="page-catalog theme-container">
 		<the-header />
-		<main class="catalog main">
+		<main class="main">
 			<the-catalog title="Каталог" :isCatalogPage="true">
 				<template v-slot:breadcrumbs>
 					<r-breadcrumbs :links="links"></r-breadcrumbs>
@@ -16,7 +16,7 @@
 	import TheHeader from "@/components/TheHeader";
 
 	import rBreadcrumbs from "@/components/r-breadcrumbs";
-	import TheCatalog from "@/components/TheCatalog";
+	import TheCatalog from "@/components/Catalog/TheCatalog";
 
 	import TheFooter from "@/components/TheFooter";
 

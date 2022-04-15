@@ -1,163 +1,179 @@
 <template>
-	<div class="page-product theme-container">
+	<div class="theme-container">
 		<the-header />
 		<main class="main">
-			<section class="product center" v-if="hasProduct === true">
-				<r-breadcrumbs :links="links"></r-breadcrumbs>
+			<div class="page-product" v-if="Object.keys(product).length > 0">
+				<section class="product center">
+					<r-breadcrumbs :links="links"></r-breadcrumbs>
 
-				<div class="product__main shadow">
-					<div class="product__images">
-						<r-discount
-							:discount="50"
-							class="product__discount"
-						></r-discount>
-						<img
-							:src="image"
-							alt=""
-							class="product__image product__image-main animate__animated animate__fadeInUp"
-							@click="openModal"
-						/>
-						<img
-							:src="images[0].img"
-							alt=""
-							class="product__image animate__animated animate__fadeIn"
-							@click="selectPhoto"
-						/>
-						<img
-							:src="images[1].img"
-							alt=""
-							class="product__image animate__animated animate__fadeIn"
-							@click="selectPhoto"
-						/>
-						<img
-							:src="images[2].img"
-							alt=""
-							class="product__image animate__animated animate__fadeIn"
-							@click="selectPhoto"
-						/>
-					</div>
-
-					<div class="product__info">
-						<div
-							class="product__top animate__animated animate__fadeInUp"
-						>
-							<r-favorite class="product__favorite"></r-favorite>
-							<h3 class="product__name">
-								{{ product.name }}
-							</h3>
-							<p class="product__article">
-								Артикул:
-								<span
-									class="product__article-number"
-									v-if="
-										product.article !== 'None' &&
-										product.article !== null
-									"
-								>
-									{{ product.article }}
-								</span>
-								<span class="product__article-number" v-else>
-									не указан
-								</span>
-							</p>
+					<div class="product__main shadow">
+						<div class="product__images">
+							<r-discount
+								:discount="50"
+								class="product__discount"
+							></r-discount>
+							<img
+								:src="image"
+								alt=""
+								class="product__image product__image-main animate__animated animate__fadeInUp"
+								@click="openModal"
+							/>
+							<img
+								:src="images[0].img"
+								alt=""
+								class="product__image animate__animated animate__fadeIn"
+								@click="selectPhoto"
+							/>
+							<img
+								:src="images[1].img"
+								alt=""
+								class="product__image animate__animated animate__fadeIn"
+								@click="selectPhoto"
+							/>
+							<img
+								:src="images[2].img"
+								alt=""
+								class="product__image animate__animated animate__fadeIn"
+								@click="selectPhoto"
+							/>
 						</div>
 
-						<form
-							class="product__middle animate__animated animate__fadeInUp"
-						>
-							<h4 class="product__price">
-								{{ product.price }} руб.
-							</h4>
-							<r-counter
-								v-model="quantity"
-								:getMin="1"
-								:getMax="100"
-								:getValue="1"
-							></r-counter>
-							<r-button
-								type="button"
-								text="Добавить в корзину"
-								color="blue"
-							></r-button>
-						</form>
+						<div class="product__info">
+							<div
+								class="product__top animate__animated animate__fadeInUp"
+							>
+								<r-favorite
+									class="product__favorite"
+								></r-favorite>
+								<h3 class="product__name">
+									{{ product.name }}
+								</h3>
+								<p class="product__article">
+									Артикул:
+									<span
+										class="product__article-number"
+										v-if="
+											product.article !== 'None' &&
+											product.article !== null
+										"
+									>
+										{{ product.article }}
+									</span>
+									<span
+										class="product__article-number"
+										v-else
+									>
+										не указан
+									</span>
+								</p>
+							</div>
 
-						<div
-							class="product__features animate__animated animate__fadeInUp"
-						>
-							<h6 class="product__features-title">
-								Характеристики товара
-							</h6>
+							<form
+								class="product__middle animate__animated animate__fadeInUp"
+							>
+								<h4 class="product__price">
+									{{ product.price }} руб.
+								</h4>
+								<r-counter
+									v-model="quantity"
+									:getMin="1"
+									:getMax="100"
+									:getValue="1"
+								></r-counter>
+								<r-button
+									type="button"
+									text="Добавить в корзину"
+									color="blue"
+								></r-button>
+							</form>
 
 							<div
-								class="product__feature"
-								v-for="(value, key) in productTags"
-								:key="key"
+								class="product__features animate__animated animate__fadeInUp"
 							>
-								<p class="product__feature-title">
-									{{ key }}
-								</p>
+								<h6 class="product__features-title">
+									Характеристики товара
+								</h6>
 
-								<p class="product__feature-value">
-									{{ value }}
-								</p>
+								<div
+									class="product__feature"
+									v-for="(value, key) in productTags"
+									:key="key"
+								>
+									<p class="product__feature-title">
+										{{ key }}
+									</p>
+
+									<p class="product__feature-value">
+										{{ value }}
+									</p>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
 
-				<div class="product__details shadow">
-					<div class="product__details-title shadow">Описание</div>
-					<h6
-						class="product__details-name animate__animated animate__fadeInUp wow"
-					>
-						{{ product.name }}
-					</h6>
-					<p
-						class="product__description animate__animated animate__fadeInUp wow"
-					>
-						{{ product.descriptions }}
-					</p>
-					<div class="product__details-footer">
-						<img
-							src="img/catalog/logo-default.svg"
-							alt=""
-							class="product__logo"
-							v-if="!product.logo"
-						/>
-						<div class="product__details-link-wrapper">
-							<p class="product__details-link-description">
-								Подробности<br />
-								на сайте производителя
-							</p>
-							<a
-								href="#"
-								target="_blank"
-								class="product__details-link"
-								v-if="!product.link"
-							>
-								https://naimenovanie.com/
-							</a>
+					<div class="product__details shadow">
+						<div class="product__details-title shadow">
+							Описание
+						</div>
+						<h6
+							class="product__details-name animate__animated animate__fadeInUp wow"
+						>
+							{{ product.name }}
+						</h6>
+						<p
+							class="product__description animate__animated animate__fadeInUp wow"
+						>
+							{{ product.descriptions }}
+						</p>
+						<div class="product__details-footer">
+							<img
+								src="img/catalog/logo-default.svg"
+								alt=""
+								class="product__logo"
+								v-if="!product.logo"
+							/>
+							<div class="product__details-link-wrapper">
+								<p class="product__details-link-description">
+									Подробности<br />
+									на сайте производителя
+								</p>
+								<a
+									href="#"
+									target="_blank"
+									class="product__details-link"
+									v-if="!product.link"
+								>
+									https://naimenovanie.com/
+								</a>
+							</div>
 						</div>
 					</div>
+
+					<transition>
+						<product-slider
+							:slides="images"
+							@closeModal="closeModal"
+							v-if="isModalOpened"
+						></product-slider>
+					</transition>
+				</section>
+
+				<section class="recommendations center">
+					<h2
+						class="recommendations-title animate__animated animate__fadeInUp"
+					>
+						С этим товаром также сочетаются
+					</h2>
+					<products-slider
+						:slides="recommendations"
+					></products-slider>
+				</section>
+			</div>
+			<div class="page-product" v-else>
+				<div class="page-product__404">
+					<p>Товар не найден</p>
 				</div>
-
-				<transition>
-					<product-slider
-						:slides="images"
-						@closeModal="closeModal"
-						v-if="isModalOpened"
-					></product-slider>
-				</transition>
-			</section>
-
-			<section class="recommendations center">
-				<h2
-					class="recommendations-title animate__animated animate__fadeInUp"
-				>
-					С этим товаром также сочетаются
-				</h2>
-				<products-slider :slides="recommendations"></products-slider>
-			</section>
+			</div>
 		</main>
 		<the-footer />
 	</div>
@@ -250,6 +266,7 @@
 				isModalOpened: false,
 			};
 		},
+		watch: {},
 		computed: {
 			...mapGetters({
 				categories: "CATEGORIES",
@@ -260,21 +277,15 @@
 			//*получение товара
 			product() {
 				let result = {};
-				this.products.forEach((product) => {
-					if (product.id == this.$route.params["id"]) {
-						result = product;
-					}
-				});
-				return result;
-			},
 
-			//*проверка что товар существует
-			hasProduct() {
-				let result = false;
-				if (Object.keys(this.product).length === 0) {
-					result = false;
-					this.goTo404Page();
-				} else result = true;
+				if (this.products !== null) {
+					this.products.forEach((product) => {
+						if (product.id == this.$route.params["id"]) {
+							result = product;
+						}
+					});
+				}
+
 				return result;
 			},
 
@@ -287,20 +298,25 @@
 			productSubCategory() {
 				let result = "";
 
-				this.sub_categories.forEach((sub_category) => {
-					if (sub_category.id === this.product.sub_category[0])
-						result = sub_category;
-				});
+				if (this.sub_categories !== null) {
+					this.sub_categories.forEach((sub_category) => {
+						if (sub_category.id === this.product.sub_category[0])
+							result = sub_category;
+					});
+				}
 				return result;
 			},
 
 			//*получение категории товара
 			productCategory() {
 				let result = "";
-				this.categories.forEach((category) => {
-					if (category.id === this.productSubCategory.category)
-						result = category;
-				});
+
+				if (this.categories !== null) {
+					this.categories.forEach((category) => {
+						if (category.id === this.productSubCategory.category)
+							result = category;
+					});
+				}
 				return result;
 			},
 
@@ -371,13 +387,8 @@
 				document.querySelector("body").classList.add("locked");
 				this.isModalOpened = true;
 			},
-			goTo404Page() {
-				this.$router.push("/404");
-			},
 		},
-		mounted() {
-			document.title = this.productName || "product";
-		},
+		mounted() {},
 	};
 </script>
 
@@ -536,6 +547,16 @@
 			color: var(--dark-blue);
 			margin-bottom: 3.5rem;
 			padding: 0 1.5rem;
+		}
+	}
+	.page-product__404 {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: calc(100vh - 21rem);
+		p {
+			font-size: 2.4rem;
+			font-weight: 500;
 		}
 	}
 </style>

@@ -179,41 +179,37 @@
 								class="the-header__catalog-list"
 								v-if="sub_category !== null"
 							>
-								<!-- <router-link :to="{name: "product", query: { product: 1 }}">hui </router-link> -->
-								<li
-									class="the-header__catalog-item"
+								<router-link
 									v-for="product in current_products"
 									:key="product.id"
-									@click="
-										this.$router.push({
-											name: 'product',
-											query: { product: product.id },
-										});
-										toggleCatalog();
-									"
+									:to="`/catalog/product/${product.id}`"
 								>
-									<p
-										class="the-header__catalog-item-description"
+									<li
+										class="the-header__catalog-item"
+										@click="toggleCatalog()"
 									>
-										{{ product.name }}
-									</p>
-									<svg
-										width="8"
-										height="14"
-										viewBox="0 0 8 14"
-										fill="none"
-										xmlns="http://www.w3.org/2000/svg"
-										class="the-header__catalog-item-arrow"
-									>
-										<path
-											d="M1.53125 13L6.92621 7L1.53125 1"
-											stroke="#AEB3BF"
-											stroke-width="2"
-											stroke-linecap="round"
-											stroke-linejoin="round"
-										/>
-									</svg>
-								</li>
+										<p
+											class="the-header__catalog-item-description"
+										>
+											{{ product.name }}
+										</p>
+										<svg
+											width="8"
+											height="14"
+											viewBox="0 0 8 14"
+											fill="none"
+											xmlns="http://www.w3.org/2000/svg"
+											class="the-header__catalog-item-arrow"
+										>
+											<path
+												d="M1.53125 13L6.92621 7L1.53125 1"
+												stroke="#AEB3BF"
+												stroke-width="2"
+												stroke-linecap="round"
+												stroke-linejoin="round"
+											/>
+										</svg></li
+								></router-link>
 							</ul>
 						</div>
 					</transition>
@@ -443,6 +439,7 @@
 				padding: 0 3rem;
 				transition: all 0.2s ease;
 				height: 6.6rem;
+				color: var(--dark);
 				&:nth-child(n + 2) {
 					border-top: 0.1rem solid var(--middle-gray);
 				}

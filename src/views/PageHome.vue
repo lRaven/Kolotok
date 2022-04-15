@@ -1,6 +1,7 @@
 <template>
 	<div class="page-home theme-container">
 		<the-header />
+
 		<main class="main">
 			<the-banner />
 			<the-catalog title="Категории товаров" :isCatalogPage="false" />
@@ -11,6 +12,7 @@
 			<the-projects />
 			<the-news />
 		</main>
+
 		<the-footer />
 	</div>
 </template>
@@ -19,7 +21,7 @@
 	import TheHeader from "@/components/TheHeader";
 
 	import TheBanner from "@/components/TheBanner";
-	import TheCatalog from "@/components/TheCatalog";
+	import TheCatalog from "@/components/Catalog/TheCatalog";
 	import TheServices from "@/components/TheServices";
 	import TheNovelties from "@/components/TheNovelties";
 	import TheSpecials from "@/components/TheSpecials";

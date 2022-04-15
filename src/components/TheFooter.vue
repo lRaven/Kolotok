@@ -2,6 +2,7 @@
 	<footer class="the-footer" id="footer">
 		<div class="the-footer-inner center">
 			<div class="the-footer__top">
+				<img src="img/icon/logo.svg" alt="" class="the-footer__logo" />
 				<div class="the-footer__socials">
 					<p>Соцсети</p>
 					<div class="the-footer__socials-group">
@@ -71,32 +72,6 @@
 						</a>
 					</div>
 				</div>
-				<ul class="the-footer__links">
-					<li class="the-footer__link">
-						<a href="#" target="_blank">О компании</a>
-					</li>
-					<li class="the-footer__link">
-						<a href="#" target="_blank">Новости</a>
-					</li>
-					<li class="the-footer__link">
-						<a href="#" target="_blank">Финансы</a>
-					</li>
-					<li class="the-footer__link">
-						<router-link to="/trade-in">Trade-in</router-link>
-					</li>
-					<li class="the-footer__link">
-						<a href="#" target="_blank">Реквизиты</a>
-					</li>
-					<li class="the-footer__link">
-						<a href="#" target="_blank">Вакансии</a>
-					</li>
-
-					<li class="the-footer__link">
-						<router-link :to="{ name: 'home' }">
-							Офисы продаж
-						</router-link>
-					</li>
-				</ul>
 			</div>
 			<div class="the-footer__disclaimer">
 				<p>
@@ -153,10 +128,17 @@
 			transform: rotate(-180deg);
 		}
 
+		&-inner {
+			display: flex;
+			flex-direction: column;
+			gap: 3rem;
+		}
+
 		&__top {
 			display: flex;
-			justify-content: center;
-			gap: 5rem;
+			justify-content: space-between;
+			align-items: center;
+			gap: 2rem;
 			font-size: 1.6rem;
 
 			p {
@@ -164,10 +146,12 @@
 				margin-right: 1rem;
 			}
 		}
+		&__logo {
+			height: 7rem;
+		}
 		&__socials {
 			display: flex;
 			align-items: center;
-			max-height: 4rem;
 			gap: 1rem;
 			&-group {
 				display: flex;
@@ -186,124 +170,13 @@
 			justify-content: center;
 			align-items: center;
 		}
-		&__links {
-			display: flex;
-			align-items: center;
-			gap: 3rem;
-		}
-		&__link {
-			a {
-				cursor: pointer;
-				position: relative;
-				display: inline-block;
-				color: var(--white);
-				height: 100%;
-				width: max-content;
-				padding: 1.2rem 0;
-				transition: all 0.2s ease;
-			}
-		}
+
 		&__disclaimer {
-			padding: 0.8rem 0;
 			text-align: center;
-			height: 4rem;
 			p {
 				font-size: 1rem;
-			}
-		}
-	}
-
-	@media (max-width: 1110px) {
-		.the-footer {
-			height: fit-content;
-			display: flex;
-			align-items: center;
-			z-index: 3;
-			&__disclaimer {
-				display: none;
-			}
-			&__top {
-				flex-direction: column;
-				align-items: center;
-				width: 100%;
-				gap: 0;
-				height: fit-content;
-			}
-			&__links {
-				gap: 1rem;
-			}
-		}
-	}
-
-	@media (max-width: 720px) {
-		.the-footer {
-			background-color: var(--blue);
-			color: var(--white);
-			height: 11rem;
-			&__links {
-				display: none;
-			}
-			&__socials {
-				flex-direction: column;
-				width: 100%;
-				max-height: inherit;
-
-				p {
-					color: var(--white);
-					grid-column: 1/3;
-					margin-right: 0;
-				}
-				&-group {
-					display: flex;
-					width: 100%;
-					height: 6rem;
-					gap: 0;
-					a {
-						display: flex;
-						justify-content: center;
-						align-items: center;
-						height: 100%;
-						width: 100%;
-						&:nth-child(-n + 2) {
-							position: relative;
-							&::after {
-								content: "";
-								position: absolute;
-								top: 0;
-								right: 0;
-								width: 0.1rem;
-								height: 100%;
-								background-color: #fff;
-							}
-						}
-					}
-					svg {
-						height: 5rem;
-						width: 5rem;
-						path {
-							fill: var(--white);
-						}
-					}
-				}
-			}
-		}
-	}
-
-	@media (max-width: 540px) {
-		.the-footer {
-			&__socials-group {
-				height: 4rem;
-				a {
-					height: 100%;
-					svg {
-						height: 100%;
-					}
-					&:last-child {
-						svg {
-							height: 90%;
-						}
-					}
-				}
+				color: #aeb3bf;
+				line-height: 1.4;
 			}
 		}
 	}

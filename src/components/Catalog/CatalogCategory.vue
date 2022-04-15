@@ -4,7 +4,7 @@
 			<img :src="img" alt="" />
 		</div>
 		<div class="catalog-category__bottom">
-			<r-link route="/" :text="text"></r-link>
+			<r-link :route="route" :text="text"></r-link>
 		</div>
 	</div>
 </template>
@@ -17,6 +17,7 @@
 		props: {
 			img: String,
 			text: String,
+			route: String,
 		},
 		components: {
 			rLink,
