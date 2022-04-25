@@ -1,6 +1,6 @@
 <template>
 	<router-view v-slot="{ Component }">
-		<transition name="scale" mode="out-in">
+		<transition name="fade-left" mode="out-in">
 			<component :is="Component" />
 		</transition>
 	</router-view>
@@ -12,13 +12,8 @@
 
 	export default {
 		watch: {
-			$route(to, from) {
+			$route(to) {
 				document.title = to.meta.title || "Default Title";
-
-				const toDepth = to.path.split("/").length;
-				const fromDepth = from.path.split("/").length;
-				this.transitionName =
-					toDepth < fromDepth ? "slide-right" : "slide-left";
 			},
 
 			"$route.path"() {
@@ -151,6 +146,7 @@
 		flex-direction: column;
 		flex: 1 0 auto;
 		padding: 25rem 2rem 0 2rem;
+		overflow-x: hidden;
 	}
 
 	section {
@@ -161,25 +157,39 @@
 		flex: 0 0 auto;
 	}
 
+	//*появление/скрытие "скольжение вверх"
 	.v-enter-active,
 	.v-leave-active {
-		transition: opacity 0.3s ease;
+		transition: all 0.3s ease;
 	}
 
 	.v-enter-from,
 	.v-leave-to {
 		opacity: 0;
+		transform: translateY(2rem);
 	}
 
-	.scale-enter-active,
-	.scale-leave-active {
+	//*появление/скрытие "скольжение влево"
+	.fade-left-enter-active,
+	.fade-left-leave-active {
 		transition: all 0.35s ease;
 	}
 
-	.scale-enter-from,
-	.scale-leave-to {
+	.fade-left-enter-from,
+	.fade-left-leave-to {
 		opacity: 0;
-		transform: scale(0.9);
+		transform: translateX(-5rem);
+	}
+
+	//*появление/скрытие "скольжение влево"
+	.fade-enter-active,
+	.fade-leave-active {
+		transition: all 0.35s ease;
+	}
+
+	.fade-enter-from,
+	.fade-leave-to {
+		opacity: 0;
 	}
 </style>
 

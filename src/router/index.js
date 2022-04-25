@@ -6,7 +6,7 @@ const routes = [
 	//*homepage
 	{
 		path: '/',
-		name: 'rLayout',
+		name: 'Home',
 		component: () => import('@/views/PageHome'),
 
 		meta: {
@@ -30,8 +30,7 @@ const routes = [
 		component: () => import('@/views/PageCategory'),
 
 		meta: {
-			// TODO:добавить в vuex переменные для динамических заголовков
-			title: '*название категории*',
+			title: `Категория`,
 		},
 	},
 

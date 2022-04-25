@@ -64,6 +64,7 @@
 
 <style lang="scss" scoped>
 	.the-novelties {
+		padding-bottom: 0;
 		&__title {
 			color: var(--dark-blue);
 			margin-bottom: 3.5rem;

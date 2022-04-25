@@ -1,9 +1,5 @@
 <template>
-	<button
-		class="animate__animated animate__fadeInUp wow r-button shadow"
-		:class="color"
-		:type="type"
-	>
+	<button class="r-button shadow" :class="color" :type="type">
 		{{ text }}
 		<img
 			src="img/icon/arrow-long.svg"

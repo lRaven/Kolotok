@@ -1,64 +1,52 @@
 <template>
-	<div class="r-card-wrapper" @mouseleave="removeMaximizeCard">
-		<div
-			class="r-card animate__animated animate__fadeInUp wow"
-			@mouseenter="maximizeCard"
-		>
-			<div class="r-card__main">
-				<r-discount
-					class="r-card__discount"
-					v-if="discount_percent"
-					:discount="discount_percent"
-				></r-discount>
-				<r-favorite class="r-card__favorite"></r-favorite>
-				<router-link :to="`/catalog/product/${id}`">
-					<img
-						:src="img"
-						alt="photo"
-						class="r-card__img"
-						v-if="img"
-					/>
-					<img
-						src="img/catalog/catalog__photo-default.svg"
-						alt="no photo"
-						v-else
-					/>
-				</router-link>
+	<div class="r-card-maximize shadow">
+		<div class="r-card-maximize__main">
+			<r-discount
+				class="r-card-maximize__discount"
+				v-if="discount_percent"
+				:discount="discount_percent"
+			></r-discount>
+			<r-favorite class="r-card-maximize__favorite"></r-favorite>
+			<router-link :to="`/catalog/product/${id}`">
+				<img
+					:src="img"
+					alt="photo"
+					class="r-card-maximize__img"
+					v-if="img"
+				/>
+				<img
+					src="img/catalog/catalog__photo-default.svg"
+					alt="no photo"
+					v-else
+				/>
+			</router-link>
+		</div>
+		<div class="r-card-maximize__footer">
+			<div class="r-card-maximize__row">
+				<p class="r-card-maximize__name">{{ name }}</p>
 			</div>
-			<div class="r-card__footer">
-				<div class="r-card__row">
-					<p class="r-card__name">{{ name }}</p>
-				</div>
-				<div class="r-card__row">
-					<p class="r-card__price">{{ price }}₽.</p>
-					<p class="r-card__price-old" v-if="price_old">
-						{{ price_old }}₽.
-					</p>
-				</div>
+			<div class="r-card-maximize__row">
+				<p class="r-card-maximize__price">{{ price }}₽.</p>
+				<p class="r-card-maximize__price-old" v-if="price_old">
+					{{ price_old }}₽.
+				</p>
+			</div>
+			<div class="r-card-maximize__row r-card-maximize__control">
+				<r-counter :getValue="1" :getMin="1" :getMax="5"></r-counter>
+				<r-button class="yellow" text="В корзину"></r-button>
 			</div>
 		</div>
-		<transition name="fade" mode="out-in">
-			<r-card-maximize
-				:id="id"
-				:discount_percent="discount_percent"
-				:img="img"
-				:price="price"
-				:price_old="price_old"
-				:name="name"
-				v-if="isMaximize"
-				@removeMaximizeCard="removeMaximizeCard"
-			></r-card-maximize>
-		</transition>
 	</div>
 </template>
 
 <script>
 	import rDiscount from "@/components/Catalog/r-discount";
 	import rFavorite from "@/components/Catalog/r-favorite";
-	import rCardMaximize from "@/components/Catalog/r-card-maximize";
+	import rCounter from "@/components/Catalog/r-counter";
+	import rButton from "@/components/r-button";
 
 	export default {
-		name: "r-card",
+		name: "r-card-maximize",
 		props: {
 			id: Number,
 			discount_percent: Number,
@@ -70,7 +58,8 @@
 		components: {
 			rDiscount,
 			rFavorite,
-			rCardMaximize,
+			rCounter,
+			rButton,
 		},
 		data() {
 			return {
@@ -86,36 +75,20 @@
 			removeFavorite() {
 				this.isFavorite = false;
 			},
-
-			maximizeCard() {
-				this.isMaximize = true;
-			},
-			removeMaximizeCard() {
-				this.isMaximize = false;
-			},
 		},
 	};
 </script>
 
 <style lang="scss" scoped>
 	.r-card-maximize {
-		position: absolute;
-		top: 0;
-		left: 50%;
-		transform: translateX(-50%);
-		max-width: 24rem;
-		width: 24rem;
-	}
-	.r-card {
 		position: relative;
 		color: var(--dark-blue);
-		transition: all 0.2s ease;
-		&-wrapper {
-			position: relative;
-			max-width: 22rem;
-			width: 100%;
-		}
-
+		max-width: 22rem;
+		width: 100%;
+		z-index: 2;
+		background-color: #fff;
+		border-radius: 3rem;
+		padding: 0 1rem;
 		&__main {
 			position: relative;
 			display: flex;
@@ -126,7 +99,6 @@
 			border-radius: 3rem;
 			height: 22rem;
 			margin-bottom: 1rem;
-			box-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.1);
 		}
 		&__discount {
 			position: absolute;
@@ -168,7 +140,11 @@
 			display: flex;
 			align-items: center;
 			gap: 1.3rem;
-			+ .r-card__row {
+			.r-button {
+				padding: 1.2rem 1.5rem;
+				font-size: 1.2rem;
+			}
+			+ .r-card-maximize__row {
 				margin-top: 0.5rem;
 			}
 		}
@@ -183,6 +159,10 @@
 		&__name {
 			font-weight: 300;
 			line-height: 1.3;
+		}
+
+		&__control {
+			padding-bottom: 1.3rem;
 		}
 	}
 </style>

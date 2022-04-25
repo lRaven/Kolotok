@@ -23,7 +23,7 @@
 			/>
 			<button type="button" class="cart-calculation__promo-button">
 				<img
-					src="img/icon/Basket/arrow.svg"
+					src="img/icon/basket/arrow.svg"
 					alt=""
 					class="cart-calculation__promo-button-icon"
 				/>

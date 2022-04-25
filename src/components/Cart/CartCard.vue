@@ -43,7 +43,7 @@
 
 		<div class="cart-card__remove">
 			<img
-				src="img/icon/Basket/delete.svg"
+				src="img/icon/basket/delete.svg"
 				alt=""
 				class="cart-card__remove-icon"
 			/>

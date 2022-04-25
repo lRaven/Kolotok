@@ -140,7 +140,7 @@
 		user-select: none;
 		display: flex;
 		align-items: center;
-		gap: 0.5rem;
+		gap: 0.3rem;
 		width: fit-content;
 		&__input {
 			text-align: center;
