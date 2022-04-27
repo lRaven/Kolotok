@@ -34,8 +34,6 @@
 	@import "@/assets/scss/center.scss";
 	@import "@/assets/scss/shadow.scss";
 
-	@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;800&display=swap");
-
 	* {
 		font-family: "Montserrat";
 
@@ -70,7 +68,7 @@
 	.theme-container {
 		display: flex;
 		flex-direction: column;
-		height: 100%;
+		height: max-content;
 		min-height: 100vh;
 	}
 

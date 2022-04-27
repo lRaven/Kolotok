@@ -63,8 +63,8 @@
 			id: Number,
 			discount_percent: Number,
 			img: String,
-			price: String,
-			price_old: String,
+			price: Number,
+			price_old: Number,
 			name: String,
 		},
 		components: {

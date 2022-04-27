@@ -12,199 +12,26 @@
 						:text="subcategory.name"
 					></subcategory-card>
 				</div>
+				<r-dropdown :values="sortVariations"></r-dropdown>
 				<div class="category__products">
 					<r-card
-						:id="id"
-						:discount_percent="discount_percent"
-						:img="img"
-						:price="price"
-						:price_old="price_old"
-						:name="name"
+						v-for="product in current_products"
+						:key="product.id"
+						:id="product.id"
+						:discount_percent="product.discount_percent"
+						:img="product.img"
+						:price="product.price"
+						:price_old="product.price_old"
+						:name="product.name"
 					></r-card>
-					<r-card
-						:id="id"
-						:discount_percent="discount_percent"
-						:img="img"
-						:price="price"
-						:price_old="price_old"
-						:name="name"
-					></r-card>
-					<r-card
-						:id="id"
-						:discount_percent="discount_percent"
-						:img="img"
-						:price="price"
-						:price_old="price_old"
-						:name="name"
-					></r-card>
-					<r-card
-						:id="id"
-						:discount_percent="discount_percent"
-						:img="img"
-						:price="price"
-						:price_old="price_old"
-						:name="name"
-					></r-card>
-					<r-card
-						:id="id"
-						:discount_percent="discount_percent"
-						:img="img"
-						:price="price"
-						:price_old="price_old"
-						:name="name"
-					></r-card>
-					<r-card
-						:id="id"
-						:discount_percent="discount_percent"
-						:img="img"
-						:price="price"
-						:price_old="price_old"
-						:name="name"
-					></r-card>
-					<r-card
-						:id="id"
-						:discount_percent="discount_percent"
-						:img="img"
-						:price="price"
-						:price_old="price_old"
-						:name="name"
-					></r-card>
-					<r-card
-						:id="id"
-						:discount_percent="discount_percent"
-						:img="img"
-						:price="price"
-						:price_old="price_old"
-						:name="name"
-					></r-card>
-					<r-card
-						:id="id"
-						:discount_percent="discount_percent"
-						:img="img"
-						:price="price"
-						:price_old="price_old"
-						:name="name"
-					></r-card>
-					<r-card
-						:id="id"
-						:discount_percent="discount_percent"
-						:img="img"
-						:price="price"
-						:price_old="price_old"
-						:name="name"
-					></r-card>
-					<r-card
-						:id="id"
-						:discount_percent="discount_percent"
-						:img="img"
-						:price="price"
-						:price_old="price_old"
-						:name="name"
-					></r-card>
-					<r-card
-						:id="id"
-						:discount_percent="discount_percent"
-						:img="img"
-						:price="price"
-						:price_old="price_old"
-						:name="name"
-					></r-card>
-					<r-card
-						:id="id"
-						:discount_percent="discount_percent"
-						:img="img"
-						:price="price"
-						:price_old="price_old"
-						:name="name"
-					></r-card>
-					<r-card
-						:id="id"
-						:discount_percent="discount_percent"
-						:img="img"
-						:price="price"
-						:price_old="price_old"
-						:name="name"
-					></r-card>
-					<r-card
-						:id="id"
-						:discount_percent="discount_percent"
-						:img="img"
-						:price="price"
-						:price_old="price_old"
-						:name="name"
-					></r-card>
-					<r-card
-						:id="id"
-						:discount_percent="discount_percent"
-						:img="img"
-						:price="price"
-						:price_old="price_old"
-						:name="name"
-					></r-card>
-					<r-card
-						:id="id"
-						:discount_percent="discount_percent"
-						:img="img"
-						:price="price"
-						:price_old="price_old"
-						:name="name"
-					></r-card>
-					<r-card
-						:id="id"
-						:discount_percent="discount_percent"
-						:img="img"
-						:price="price"
-						:price_old="price_old"
-						:name="name"
-					></r-card>
-					<r-card
-						:id="id"
-						:discount_percent="discount_percent"
-						:img="img"
-						:price="price"
-						:price_old="price_old"
-						:name="name"
-					></r-card>
-					<r-card
-						:id="id"
-						:discount_percent="discount_percent"
-						:img="img"
-						:price="price"
-						:price_old="price_old"
-						:name="name"
-					></r-card>
-					<r-card
-						:id="id"
-						:discount_percent="discount_percent"
-						:img="img"
-						:price="price"
-						:price_old="price_old"
-						:name="name"
-					></r-card>
-					<r-card
-						:id="id"
-						:discount_percent="discount_percent"
-						:img="img"
-						:price="price"
-						:price_old="price_old"
-						:name="name"
-					></r-card>
-					<r-card
-						:id="id"
-						:discount_percent="discount_percent"
-						:img="img"
-						:price="price"
-						:price_old="price_old"
-						:name="name"
-					></r-card>
-					<r-card
-						:id="id"
-						:discount_percent="discount_percent"
-						:img="img"
-						:price="price"
-						:price_old="price_old"
-						:name="name"
-					></r-card>
+				</div>
+				<div class="category__bottom">
+					<r-button
+						class="yellow"
+						text="Показать ещё"
+						:arrow="true"
+					></r-button>
+					<r-pagination :pages="paginationPages"></r-pagination>
 				</div>
 			</section>
 		</main>
@@ -213,13 +40,16 @@
 </template>
 
 <script>
-	import { mapGetters, mapMutations } from "vuex";
+	import { mapGetters } from "vuex";
 
 	import TheHeader from "@/components/TheHeader";
 
 	import rBreadcrumbs from "@/components/r-breadcrumbs";
 	import SubcategoryCard from "@/components/Catalog/Category/SubcategoryCard";
+	import rDropdown from "@/components/Catalog/Category/r-dropdown";
 	import rCard from "@/components/Catalog/r-card";
+	import rButton from "@/components/r-button";
+	import rPagination from "@/components/r-pagination";
 
 	import TheFooter from "@/components/TheFooter";
 
@@ -229,16 +59,31 @@
 			TheHeader,
 
 			rBreadcrumbs,
+			rDropdown,
 			SubcategoryCard,
 			rCard,
+			rButton,
+			rPagination,
 
 			TheFooter,
 		},
+		data: () => ({
+			sortVariations: [
+				{ id: 1, value: 1, text: "По цене (возрастание)" },
+				{ id: 2, value: 2, text: "По цене (убывание" },
+			],
+
+			paginationPages: [
+				{ id: 1, page: 1 },
+				{ id: 2, page: 2 },
+			],
+		}),
 
 		computed: {
 			...mapGetters({
 				categories: "CATEGORIES",
 				sub_categories: "SUB_CATEGORIES",
+				products: "PRODUCTS",
 			}),
 
 			current_category() {
@@ -271,6 +116,28 @@
 				return current_subcategories;
 			},
 
+			current_products() {
+				let products = [];
+
+				if (this.products !== null) {
+					this.products.forEach((product) => {
+						product.sub_category.forEach((subcategory) => {
+							this.current_subcategories.forEach(
+								(current_subcategory) => {
+									if (
+										subcategory === current_subcategory.id
+									) {
+										products.push(product);
+									}
+								}
+							);
+						});
+					});
+				}
+
+				return products;
+			},
+
 			links() {
 				let links = [
 					{
@@ -295,17 +162,6 @@
 				return links;
 			},
 		},
-		data: () => ({
-			id: 1,
-			img: "img/catalog/catalog-item1.png",
-			price: "22 000",
-			price_old: null,
-			name: "Садовые конструкции",
-			discount_percent: null,
-		}),
-		methods: {
-			...mapMutations(["SET_CATEGORY"]),
-		},
 	};
 </script>
 
@@ -321,11 +177,15 @@
 			grid-gap: 2rem 2.6rem;
 			margin-bottom: 6rem;
 		}
+		.r-dropdown {
+			margin-bottom: 4rem;
+		}
 		&__products {
 			display: grid;
 			grid-template-columns: repeat(6, 1fr);
 			justify-content: space-between;
 			grid-gap: 4rem 2.4rem;
+			padding-bottom: 5rem;
 			.r-card {
 				margin: auto;
 			}

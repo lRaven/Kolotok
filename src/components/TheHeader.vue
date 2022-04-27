@@ -225,7 +225,7 @@
 </template>
 
 <script>
-	import { mapState, mapGetters } from "vuex";
+	import { mapState, mapGetters, mapActions } from "vuex";
 
 	import rSearch from "@/components/r-search";
 
@@ -279,6 +279,8 @@
 			},
 		},
 		methods: {
+			...mapActions(["getCategories", "getSubcategories", "getProducts"]),
+
 			//*открытие и закрытие каталога
 			toggleCatalog() {
 				this.category = null;
@@ -325,6 +327,11 @@
 					}
 				}
 			},
+		},
+		created() {
+			this.getCategories();
+			this.getSubcategories();
+			this.getProducts();
 		},
 	};
 </script>

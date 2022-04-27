@@ -69,7 +69,6 @@ const routes = [
 	},
 ]
 
-
 const router = createRouter({
 	history: createWebHashHistory(),
 	routes,
@@ -79,8 +78,9 @@ const router = createRouter({
 })
 
 router.beforeEach(() => {
-	store.dispatch('setCategories');
-	store.dispatch('setProducts');
+	store.dispatch('getCategories');
+	store.dispatch('getSubcategories');
+	store.dispatch('getProducts');
 })
 
 export default router

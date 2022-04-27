@@ -1,4 +1,5 @@
-import { getCategories, getProducts } from "@/api/catalog";
+import axios from "axios";
+import store from '@/store';
 
 const state = () => ({
 	categories: null,
@@ -45,8 +46,43 @@ const mutations = {
 }
 
 const actions = {
-	setCategories: async () => { getCategories(); },
-	setProducts: async () => { getProducts(); }
+	getCategories: async ({ commit }) => {
+		try {
+			const request = await axios.get(`${store.state.baseURL}/kolotok/categories`,
+				{
+					headers: { Authorization: `token ${store.state.Cabinet.token}` },
+				}
+			);
+			if (request.status === 200) {
+				commit('SET_CATEGORIES', request.data);
+			} else if (request.status >= 400) {
+				console.error(request.status);
+			}
+		}
+		catch { console.error('Error'); }
+	},
+	getSubcategories: async ({ commit }) => {
+		try {
+			const request = await axios.get(`${store.state.baseURL}/kolotok/sub_categories`,
+				{
+					headers: { Authorization: `token ${store.state.Cabinet.token}` },
+				}
+			);
+			if (request.status === 200) commit('SET_SUB_CATEGORIES', request.data);
+		}
+		catch { console.error('Error'); }
+	},
+	getProducts: async ({ commit }) => {
+		try {
+			const request = await axios.get(`${store.state.baseURL}/kolotok/products`, {
+				headers: { Authorization: `token ${store.state.Cabinet.token}` }
+			})
+			if (request.status === 200) commit('SET_PRODUCTS', request.data);
+		}
+		catch {
+			console.error('Error');
+		}
+	}
 }
 
 export default {
