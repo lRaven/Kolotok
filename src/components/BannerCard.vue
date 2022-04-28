@@ -13,7 +13,7 @@
 			<r-tag v-for="tag in tags" :key="tag.id" :text="tag.text"></r-tag>
 		</div>
 		<r-link
-			route="/"
+			path="/catalog"
 			text="Перейти в каталог"
 			class="animate__animated animate__fadeInLeft wow banner-card__link"
 		></r-link>

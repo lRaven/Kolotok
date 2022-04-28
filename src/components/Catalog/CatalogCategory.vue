@@ -4,7 +4,7 @@
 			<img :src="img" alt="" />
 		</div>
 		<div class="catalog-category__bottom">
-			<r-link :route="route" :text="text"></r-link>
+			<r-link :path="routePath" :query="routeQuery" :text="text"></r-link>
 		</div>
 	</div>
 </template>
@@ -17,7 +17,9 @@
 		props: {
 			img: String,
 			text: String,
-			route: String,
+			routePath: String,
+			routeParams: Object,
+			routeQuery: Object,
 		},
 		components: {
 			rLink,

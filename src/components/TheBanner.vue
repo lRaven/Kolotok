@@ -12,7 +12,7 @@
 				<p class="the-banner__deal-text">
 					Специальные предложения на товары месяца
 				</p>
-				<r-link route="/" text="Подробнее"></r-link>
+				<r-link path="/" text="Подробнее"></r-link>
 			</div>
 			<img
 				src="img/catalog/catalog-item.png"
@@ -34,7 +34,7 @@
 				</p>
 				<!-- //TODO заменить отступ -->
 				<r-link
-					route="/"
+					path="/"
 					text="Подробнее"
 					style="transform: translateY(1.5rem)"
 				></r-link>

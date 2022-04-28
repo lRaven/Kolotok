@@ -19,7 +19,7 @@
 			<p class="news-card__text animate__animated animate__fadeInUp wow">
 				{{ text }}
 			</p>
-			<r-link :route="route" text="Читать далее"></r-link>
+			<r-link path="/" text="Читать далее"></r-link>
 		</div>
 	</div>
 </template>

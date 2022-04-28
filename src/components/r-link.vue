@@ -1,6 +1,6 @@
 <template>
 	<router-link
-		:to="route"
+		:to="{ path: path, query }"
 		class="animate__animated animate__fadeInLeft wow r-link"
 	>
 		<svg
@@ -24,7 +24,8 @@
 	export default {
 		name: "rLink",
 		props: {
-			route: String,
+			path: String,
+			query: Object,
 			text: String,
 		},
 	};

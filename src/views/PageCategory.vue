@@ -31,7 +31,11 @@
 						text="Показать ещё"
 						:arrow="true"
 					></r-button>
-					<r-pagination :pages="paginationPages"></r-pagination>
+					<r-pagination
+						:pages="paginationPages"
+						:currentPage="page_number"
+						@selectPage="selectPage"
+					></r-pagination>
 				</div>
 			</section>
 		</main>
@@ -76,6 +80,14 @@
 			paginationPages: [
 				{ id: 1, page: 1 },
 				{ id: 2, page: 2 },
+				{ id: 3, page: 3 },
+				{ id: 4, page: 4 },
+				{ id: 5, page: 5 },
+				{ id: 6, page: 6 },
+				{ id: 7, page: 7 },
+				{ id: 8, page: 8 },
+				{ id: 9, page: 9 },
+				{ id: 10, page: 10 },
 			],
 		}),
 
@@ -161,6 +173,21 @@
 				];
 				return links;
 			},
+
+			page_number() {
+				return Number(this.$route.query.page);
+			},
+			current_path() {
+				return this.$router.currentRoute._value.path;
+			},
+		},
+		methods: {
+			selectPage(page) {
+				this.$router.push({
+					path: this.current_path,
+					query: { page },
+				});
+			},
 		},
 	};
 </script>
@@ -188,6 +215,20 @@
 			padding-bottom: 5rem;
 			.r-card {
 				margin: auto;
+			}
+		}
+
+		&__bottom {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			padding-bottom: 8rem;
+			.r-button {
+				grid-area: 1/2/1/3;
+				margin: auto;
+			}
+			.r-pagination {
+				grid-area: 1/3/1/4;
+				margin-left: auto;
 			}
 		}
 	}

@@ -11,18 +11,18 @@
 				v-for="category in categories"
 				:key="category.id"
 				:img="category.img"
-				:text="category.text"
-				:route="category.route"
+				:text="category.router.description"
+				:routePath="category.router.path"
+				:routeQuery="category.router.query"
 				class="animate__animated animate__fadeInUp wow"
 			></catalog-category>
 		</div>
-		<router-link :to="{ name: 'catalog' }">
+		<router-link :to="{ name: 'catalog' }" v-if="!isCatalogPage">
 			<r-button
 				type="button"
 				text="Смотреть всё"
 				color="yellow"
 				:arrow="true"
-				v-if="!isCatalogPage"
 			></r-button>
 		</router-link>
 	</section>
@@ -48,93 +48,168 @@
 					{
 						id: 1,
 						img: "img/catalog/category_1.png",
-						text: "Плитка",
-						route: "/catalog/4",
+						router: {
+							description: "Плитка",
+							path: "/catalog/4",
+							query: {
+								page: 1,
+							},
+						},
 					},
 					{
 						id: 2,
 						img: "img/catalog/category_2.svg",
-						text: "Сантехника",
-						route: "/catalog/7",
+						router: {
+							description: "Сантехника",
+							path: "/catalog/7",
+							query: {
+								page: 1,
+							},
+						},
 					},
 					{
 						id: 3,
 						img: "img/catalog/category_3.svg",
-						text: "Натяжные потолки",
-						route: "/catalog/8",
+						router: {
+							description: "Натяжные потолки",
+							path: "/catalog/8",
+							query: {
+								page: 1,
+							},
+						},
 					},
 
 					{
 						id: 4,
 						img: "img/catalog/category_4.svg",
-						text: "Напольные покрытия",
-						route: "/catalog/1",
+						router: {
+							description: "Напольные покрытия",
+							path: "/catalog/1",
+							query: {
+								page: 1,
+							},
+						},
 					},
 					{
 						id: 5,
 						img: "img/catalog/category_5.svg",
-						text: "Система «Умный дом»",
-						route: "/catalog/13",
+						router: {
+							description: "Система «Умный дом»",
+							path: "/catalog/13",
+							query: {
+								page: 1,
+							},
+						},
 					},
 					{
 						id: 6,
 						img: "img/catalog/category_6.svg",
-						text: "Охранная система",
-						route: "/catalog/14",
+						router: {
+							description: "Охранная система",
+							path: "/catalog/14",
+							query: {
+								page: 1,
+							},
+						},
 					},
 					{
 						id: 7,
 						img: "img/catalog/category_7.svg",
-						text: "Лестницы",
-						route: "/catalog/12",
+						router: {
+							description: "Лестницы",
+							path: "/catalog/12",
+							query: {
+								page: 1,
+							},
+						},
 					},
 					{
 						id: 8,
 						img: "img/catalog/category_8.svg",
-						text: "Мебель",
-						route: "/catalog/9",
+						router: {
+							description: "Мебель",
+							path: "/catalog/9",
+							query: {
+								page: 1,
+							},
+						},
 					},
 					{
 						id: 9,
 						img: "img/catalog/category_9.svg",
-						text: "Камины",
-						route: "/catalog/11",
+						router: {
+							description: "Камины",
+							path: "/catalog/11",
+							query: {
+								page: 1,
+							},
+						},
 					},
 					{
 						id: 10,
 						img: "img/catalog/category_10.svg",
-						text: "Окна",
-						route: "/catalog/3",
+						router: {
+							description: "Окна",
+							path: "/catalog/3",
+							query: {
+								page: 1,
+							},
+						},
 					},
 					{
 						id: 11,
 						img: "img/catalog/category_11.svg",
-						text: "Декор стен",
-						route: "/catalog/10",
+						router: {
+							description: "Декор стен",
+							path: "/catalog/10",
+							query: {
+								page: 1,
+							},
+						},
 					},
 					{
 						id: 12,
 						img: "img/catalog/category_12.png",
-						text: "Обои",
-						route: "/catalog/6",
+						router: {
+							description: "Обои",
+							path: "/catalog/6",
+							query: {
+								page: 1,
+							},
+						},
 					},
 					{
 						id: 13,
 						img: "img/catalog/category_13.svg",
-						text: "Садовые конструкции",
-						route: "/catalog/15",
+						router: {
+							description: "Садовые конструкции",
+							path: "/catalog/15",
+							query: {
+								page: 1,
+							},
+						},
 					},
 					{
 						id: 14,
 						img: "img/catalog/category_14.svg",
-						text: "Освещение",
-						route: "/catalog/5",
+						router: {
+							description: "Освещение",
+							path: "/catalog/5",
+							query: {
+								page: 1,
+							},
+						},
 					},
 					{
 						id: 15,
 						img: "img/catalog/category_15.svg",
-						text: "Двери",
-						route: "/catalog/2",
+						router: {
+							description: "Двери",
+							path: "/catalog/2",
+							query: {
+								page: 1,
+							},
+						},
 					},
 				],
 			};
