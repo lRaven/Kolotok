@@ -14,6 +14,7 @@
 		</li>
 		<li
 			class="r-pagination__item"
+			:class="page.class"
 			v-for="page in viewedPages"
 			:key="page.id"
 			@click="selectPage(page.page)"
@@ -52,6 +53,11 @@
 				let pages = [];
 
 				this.pages.forEach((page) => {
+					if (page.page === this.currentPage) {
+						page.class = "current";
+					} else {
+						page.class = null;
+					}
 					if (
 						page.page >= this.currentPage &&
 						page.page < this.currentPage + 5

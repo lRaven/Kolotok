@@ -78,16 +78,16 @@
 			],
 
 			paginationPages: [
-				{ id: 1, page: 1 },
-				{ id: 2, page: 2 },
-				{ id: 3, page: 3 },
-				{ id: 4, page: 4 },
-				{ id: 5, page: 5 },
-				{ id: 6, page: 6 },
-				{ id: 7, page: 7 },
-				{ id: 8, page: 8 },
-				{ id: 9, page: 9 },
-				{ id: 10, page: 10 },
+				{ id: 1, page: 1, class: "current" },
+				{ id: 2, page: 2, class: null },
+				{ id: 3, page: 3, class: null },
+				{ id: 4, page: 4, class: null },
+				{ id: 5, page: 5, class: null },
+				{ id: 6, page: 6, class: null },
+				{ id: 7, page: 7, class: null },
+				{ id: 8, page: 8, class: null },
+				{ id: 9, page: 9, class: null },
+				{ id: 10, page: 10, class: null },
 			],
 		}),
 
@@ -177,6 +177,7 @@
 			page_number() {
 				return Number(this.$route.query.page);
 			},
+
 			current_path() {
 				return this.$router.currentRoute._value.path;
 			},
