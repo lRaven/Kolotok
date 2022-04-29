@@ -7,7 +7,7 @@
 				:discount="discount_percent"
 			></r-discount>
 			<r-favorite class="r-card-maximize__favorite"></r-favorite>
-			<router-link :to="`/catalog/product/${id}`">
+			<router-link :to="`/catalog/${category}/product/${id}`">
 				<img
 					:src="img"
 					alt="photo"
@@ -54,6 +54,7 @@
 			price: String,
 			price_old: String,
 			name: String,
+			category: Number,
 		},
 		components: {
 			rDiscount,

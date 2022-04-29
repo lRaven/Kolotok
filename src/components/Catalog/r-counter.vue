@@ -48,6 +48,7 @@
 			:value="value"
 			:min="getMin"
 			:max="getMax"
+			disabled
 			class="r-counter__input"
 			@input="
 				$emit('update:modelValue', $event.target.value);

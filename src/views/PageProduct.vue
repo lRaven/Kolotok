@@ -111,10 +111,7 @@
 						</div>
 					</div>
 
-					<div class="product__details shadow">
-						<div class="product__details-title shadow">
-							Описание
-						</div>
+					<div class="product__details">
 						<h6
 							class="product__details-name animate__animated animate__fadeInUp wow"
 						>
@@ -291,7 +288,11 @@
 
 			//*получение названия товара
 			productName() {
-				return this.product.name;
+				const product = this.product.name;
+
+				document.title = product;
+
+				return product;
 			},
 
 			//*получение подкатегории товара
@@ -361,7 +362,7 @@
 					{
 						id: 3,
 						description: this.productCategory.name,
-						route: "/",
+						route: `/catalog/${this.productCategory.id}`,
 						current: false,
 					},
 					{
@@ -388,7 +389,6 @@
 				this.isModalOpened = true;
 			},
 		},
-		mounted() {},
 	};
 </script>
 
@@ -505,17 +505,7 @@
 
 		&__details {
 			border-radius: 3rem;
-			padding: 3.2rem 4.5rem 3.8rem 3.2rem;
-			&-title {
-				width: fit-content;
-				background-color: var(--middle-gray);
-				padding: 1.2rem 6rem;
-				border-radius: 4.2rem;
-				font-size: 1.6rem;
-				font-weight: 700;
-				color: var(--white);
-				margin-bottom: 4rem;
-			}
+
 			&-name {
 				margin-bottom: 4rem;
 			}

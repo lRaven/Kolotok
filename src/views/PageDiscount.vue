@@ -1,20 +1,20 @@
 <template>
-	<div class="page-category theme-container">
+	<div class="page-discount theme-container">
 		<the-header />
 		<main class="main">
-			<section class="category center">
+			<section class="discount center">
 				<r-breadcrumbs :links="links"></r-breadcrumbs>
-				<h2 class="category__title">{{ current_category.name }}</h2>
-				<div class="category__subcategories">
-					<subcategory-card
+				<h2 class="discount__title">Акции</h2>
+				<div class="discount__subcategories">
+					<!-- <subcategory-card
 						v-for="subcategory in current_subcategories"
 						:key="subcategory.id"
 						:text="subcategory.name"
-					></subcategory-card>
+					></subcategory-card> -->
 				</div>
 				<r-dropdown :values="sortVariations"></r-dropdown>
-				<div class="category__products">
-					<r-card
+				<div class="discount__products">
+					<!-- <r-card
 						v-for="product in current_products"
 						:key="product.id"
 						:id="product.id"
@@ -24,9 +24,9 @@
 						:price_old="product.price_old"
 						:name="product.name"
 						:category="current_category.id"
-					></r-card>
+					></r-card> -->
 				</div>
-				<div class="category__bottom">
+				<div class="discount__bottom">
 					<r-button
 						class="yellow"
 						text="Показать ещё"
@@ -50,23 +50,23 @@
 	import TheHeader from "@/components/TheHeader";
 
 	import rBreadcrumbs from "@/components/r-breadcrumbs";
-	import SubcategoryCard from "@/components/Catalog/Category/SubcategoryCard";
+	// import SubcategoryCard from "@/components/Catalog/Category/SubcategoryCard";
 	import rDropdown from "@/components/Catalog/Category/r-dropdown";
-	import rCard from "@/components/Catalog/r-card";
+	// import rCard from "@/components/Catalog/r-card";
 	import rButton from "@/components/r-button";
 	import rPagination from "@/components/r-pagination";
 
 	import TheFooter from "@/components/TheFooter";
 
 	export default {
-		name: "PageCategory",
+		name: "PageDiscount",
 		components: {
 			TheHeader,
 
 			rBreadcrumbs,
 			rDropdown,
-			SubcategoryCard,
-			rCard,
+			// SubcategoryCard,
+			// rCard,
 			rButton,
 			rPagination,
 
@@ -100,58 +100,6 @@
 				products: "PRODUCTS",
 			}),
 
-			current_category() {
-				let category = "";
-
-				if (this.categories !== null) {
-					this.categories.forEach((v_category) => {
-						if (v_category.id == this.$route.params.category) {
-							category = v_category;
-						}
-					});
-				}
-
-				document.title = category.name;
-
-				return category;
-			},
-
-			current_subcategories() {
-				let current_subcategories = [];
-
-				if (this.sub_categories !== null) {
-					this.sub_categories.forEach((subcategory) => {
-						if (this.current_category.id === subcategory.category) {
-							current_subcategories.push(subcategory);
-						}
-					});
-				}
-
-				return current_subcategories;
-			},
-
-			current_products() {
-				let products = [];
-
-				if (this.products !== null) {
-					this.products.forEach((product) => {
-						product.sub_category.forEach((subcategory) => {
-							this.current_subcategories.forEach(
-								(current_subcategory) => {
-									if (
-										subcategory === current_subcategory.id
-									) {
-										products.push(product);
-									}
-								}
-							);
-						});
-					});
-				}
-
-				return products;
-			},
-
 			links() {
 				let links = [
 					{
@@ -162,13 +110,7 @@
 					},
 					{
 						id: 2,
-						description: "Каталог",
-						route: "/catalog",
-						current: false,
-					},
-					{
-						id: 3,
-						description: this.current_category.name,
+						description: "Акции",
 						route: "/",
 						current: true,
 					},
@@ -196,7 +138,7 @@
 </script>
 
 <style lang="scss" scoped>
-	.category {
+	.discount {
 		&__title {
 			color: var(--dark-blue);
 			margin-bottom: 4rem;

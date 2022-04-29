@@ -14,6 +14,16 @@ const routes = [
 		},
 	},
 	{
+		path: '/discount',
+		name: 'discount',
+
+		component: () => import('@/views/PageDiscount'),
+
+		meta: {
+			title: 'Акции',
+		},
+	},
+	{
 		path: '/catalog',
 		name: 'catalog',
 
@@ -41,8 +51,7 @@ const routes = [
 		component: () => import('@/views/PageProduct'),
 
 		meta: {
-			// TODO:добавить в vuex переменные для динамических заголовков
-			title: '*название товара*',
+			title: 'Товар',
 		},
 	},
 
@@ -57,7 +66,7 @@ const routes = [
 		},
 	},
 
-	//* 404
+	//*404
 	{
 		path: '/:pathMatch(.*)*',
 		name: 'NotFound',
