@@ -144,7 +144,6 @@
 		flex-direction: column;
 		flex: 1 0 auto;
 		padding: 25rem 2rem 0 2rem;
-		overflow-x: hidden;
 	}
 
 	section {

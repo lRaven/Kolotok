@@ -6,16 +6,16 @@
 				<r-breadcrumbs :links="links"></r-breadcrumbs>
 				<h2 class="discount__title">Акции</h2>
 				<div class="discount__subcategories">
-					<!-- <subcategory-card
-						v-for="subcategory in current_subcategories"
-						:key="subcategory.id"
-						:text="subcategory.name"
-					></subcategory-card> -->
+					<subcategory-card
+						v-for="sub_category in sub_categories"
+						:key="sub_category.id"
+						:text="sub_category.name"
+					></subcategory-card>
 				</div>
 				<r-dropdown :values="sortVariations"></r-dropdown>
 				<div class="discount__products">
-					<!-- <r-card
-						v-for="product in current_products"
+					<r-card
+						v-for="product in products"
 						:key="product.id"
 						:id="product.id"
 						:discount_percent="product.discount_percent"
@@ -23,8 +23,7 @@
 						:price="product.price"
 						:price_old="product.price_old"
 						:name="product.name"
-						:category="current_category.id"
-					></r-card> -->
+					></r-card>
 				</div>
 				<div class="discount__bottom">
 					<r-button
@@ -50,9 +49,9 @@
 	import TheHeader from "@/components/TheHeader";
 
 	import rBreadcrumbs from "@/components/r-breadcrumbs";
-	// import SubcategoryCard from "@/components/Catalog/Category/SubcategoryCard";
+	import SubcategoryCard from "@/components/Catalog/Category/SubcategoryCard";
 	import rDropdown from "@/components/Catalog/Category/r-dropdown";
-	// import rCard from "@/components/Catalog/r-card";
+	import rCard from "@/components/Catalog/r-card";
 	import rButton from "@/components/r-button";
 	import rPagination from "@/components/r-pagination";
 
@@ -65,8 +64,8 @@
 
 			rBreadcrumbs,
 			rDropdown,
-			// SubcategoryCard,
-			// rCard,
+			SubcategoryCard,
+			rCard,
 			rButton,
 			rPagination,
 

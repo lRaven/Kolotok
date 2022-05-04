@@ -15,7 +15,7 @@
 							<img
 								:src="image"
 								alt=""
-								class="product__image product__image-main animate__animated animate__fadeInUp"
+								class="product__image product__image-main product__image-main animate__animated animate__fadeInUp"
 								@click="openModal"
 							/>
 							<img
@@ -398,9 +398,10 @@
 		padding-top: 0;
 		&__main {
 			display: grid;
-			grid-template-columns: repeat(2, 1fr);
+			grid-template-columns: minmax(50rem, 50rem) minmax(66rem, 66rem);
+			justify-content: space-between;
 			border-radius: 3rem;
-			padding: 1.5rem;
+			padding: 3rem 4rem;
 			margin-bottom: 4rem;
 		}
 
@@ -408,6 +409,8 @@
 			position: absolute;
 			left: 0;
 			top: 0;
+			z-index: 2;
+			transform: scale(2);
 		}
 
 		&__images {
@@ -416,18 +419,22 @@
 			grid-template-rows: repeat(4, 1fr);
 			grid-gap: 3rem;
 			position: relative;
-			padding: 4rem 8rem;
+			justify-content: center;
 		}
 		&__image {
 			cursor: pointer;
 			pointer-events: all;
-			width: 100%;
-			max-height: 14rem;
+			height: 14rem;
 			object-fit: contain;
+			&:nth-child(n + 3) {
+				margin: auto;
+			}
 			&-main {
 				grid-column: 1/4;
 				grid-row: 1/4;
+				height: 100%;
 				max-height: 50rem;
+				width: 100%;
 			}
 		}
 

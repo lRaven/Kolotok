@@ -37,10 +37,12 @@
 		align-items: center;
 		gap: 1rem;
 		&__arrow {
+			min-width: 4.5rem;
 		}
 		&__text {
 			color: var(--dark-blue);
 			font-size: 1.4rem;
+			// word-wrap: break-word;
 		}
 	}
 </style>

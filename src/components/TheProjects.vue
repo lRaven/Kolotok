@@ -32,7 +32,12 @@
 				alt=""
 			/>
 		</div>
-		<r-button text="Смотреть всё" :arrow="true" color="yellow"></r-button>
+		<r-button
+			text="Смотреть всё"
+			:arrow="true"
+			color="yellow"
+			@click="this.$router.push('/projects')"
+		></r-button>
 	</section>
 </template>
 

@@ -17,14 +17,14 @@
 				class="animate__animated animate__fadeInUp wow"
 			></catalog-category>
 		</div>
-		<router-link :to="{ name: 'catalog' }" v-if="!isCatalogPage">
-			<r-button
-				type="button"
-				text="Смотреть всё"
-				color="yellow"
-				:arrow="true"
-			></r-button>
-		</router-link>
+		<r-button
+			type="button"
+			text="Смотреть всё"
+			color="yellow"
+			:arrow="true"
+			v-if="!isCatalogPage"
+			@click="this.$router.push('/catalog')"
+		></r-button>
 	</section>
 </template>
 

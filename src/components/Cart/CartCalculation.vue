@@ -13,7 +13,7 @@
 			<p class="cart-calculation__row-title">Итого:</p>
 			<p class="cart-calculation__row-value">{{ final_price }} руб.</p>
 		</div>
-		<div class="cart-calculation__promo">
+		<!-- <div class="cart-calculation__promo">
 			<input
 				type="text"
 				name="promo"
@@ -28,7 +28,7 @@
 					class="cart-calculation__promo-button-icon"
 				/>
 			</button>
-		</div>
+		</div> -->
 
 		<r-button class="yellow" type="button" text="Оформить заказ">
 		</r-button>

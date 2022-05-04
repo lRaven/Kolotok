@@ -13,19 +13,19 @@
 				</div>
 				<div class="the-header__col the-header__col-right">
 					<router-link
-						to="/"
-						class="animate__animated animate__fadeInDown the-header__basket-container"
+						to="/cart"
+						class="animate__animated animate__fadeInDown the-header__cart-container"
 					>
 						<img
-							src="img/icon/basket.svg"
+							src="img/icon/cart.svg"
 							alt=""
-							class="the-header__basket"
+							class="the-header__cart"
 						/>
 						<span
-							class="the-header__basket-counter"
-							v-if="basket !== 0"
+							class="the-header__cart-counter"
+							v-if="cart_list_length !== 0"
 						>
-							{{ basket }}
+							{{ cart_list_length }}
 						</span>
 					</router-link>
 					<router-link
@@ -240,23 +240,32 @@
 				this.isCatalogOpen = false;
 			},
 		},
-		data() {
-			return {
-				basket: 0,
-				isCatalogOpen: false,
-				category: null,
-				sub_category: null,
-				catalog_columns: 1,
-			};
-		},
+		data: () => ({
+			isCatalogOpen: false,
+			category: null,
+			sub_category: null,
+			catalog_columns: 1,
+		}),
 		computed: {
 			...mapState({
 				categories: (state) => state.Catalog.categories,
+				cart_list: (state) => state.Cart.cart_list,
 			}),
+
 			...mapGetters({
 				sub_categories: "SUB_CATEGORIES",
 				products: "PRODUCTS",
 			}),
+
+			cart_list_length() {
+				let length = 0;
+
+				if (this.cart_list !== null) {
+					length = this.cart_list.length;
+				}
+
+				return length;
+			},
 
 			current_sub_categories() {
 				let sub_categories = [];
@@ -394,7 +403,7 @@
 		}
 		&__logo {
 		}
-		&__basket {
+		&__cart {
 			&-container {
 				position: relative;
 				width: 5rem;

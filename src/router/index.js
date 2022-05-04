@@ -3,7 +3,6 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import store from '@/store'
 
 const routes = [
-	//*homepage
 	{
 		path: '/',
 		name: 'Home',
@@ -63,6 +62,16 @@ const routes = [
 
 		meta: {
 			title: 'Корзина',
+		},
+	},
+
+	{
+		path: '/projects',
+
+		component: () => import('@/views/PageProjects'),
+
+		meta: {
+			title: 'Проекты клиентов',
 		},
 	},
 
