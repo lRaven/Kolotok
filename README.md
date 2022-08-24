@@ -1,4 +1,4 @@
-# kolotok
+# Online store of building materials «Kolotok»
 
 # Frameworks, libraries, technologies:
 
