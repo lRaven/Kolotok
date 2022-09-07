@@ -1,8 +1,9 @@
 <template>
 	<ol
+		data-aos="fade-down"
 		itemscope
 		itemtype="http://schema.org/BreadcrumbList"
-		class="r-breadcrumbs animate__animated animate__fadeInDownBig wow"
+		class="r-breadcrumbs"
 	>
 		<li
 			itemprop="itemListElement"
@@ -42,6 +43,8 @@
 </script>
 
 <style lang="scss" scoped>
+	@import "@/assets/scss/variables.scss";
+
 	.r-breadcrumbs {
 		display: flex;
 		flex-wrap: wrap;
@@ -57,7 +60,7 @@
 		&__link {
 			display: block;
 			text-decoration: none;
-			color: var(--blue);
+			color: $blue;
 			width: 100%;
 			height: 100%;
 			position: relative;
@@ -78,7 +81,7 @@
 
 		&__current {
 			&-description {
-				color: var(--cool-gray);
+				color: $cool-gray;
 				font-size: 1.4rem;
 			}
 		}

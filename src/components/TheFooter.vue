@@ -26,7 +26,7 @@
 								/>
 							</svg>
 						</a>
-						<a
+						<!-- <a
 							href="https://instagram.com/3dom_vlg?utm_medium=copy_link"
 							target="_blank"
 							class="the-footer__social"
@@ -51,7 +51,7 @@
 									fill="#007BFC"
 								/>
 							</svg>
-						</a>
+						</a> -->
 						<a
 							href="https://t.me/tridom_vlg"
 							class="the-footer__social footer__tg"
@@ -90,20 +90,19 @@
 </template>
 
 <script>
-	export default {
-		name: "TheFooter",
-		data: () => ({}),
-	};
+	export default { name: "TheFooter" };
 </script>
 
 <style lang="scss" scoped>
+	@import "@/assets/scss/variables.scss";
+
 	.the-footer {
 		display: flex;
 		align-items: center;
 		position: relative;
-		background-color: var(--dark-blue);
+		background-color: $dark-blue;
 		padding: 4rem 2rem 2rem 1.5rem;
-		color: #fff;
+		color: $white;
 
 		&::before {
 			content: "";

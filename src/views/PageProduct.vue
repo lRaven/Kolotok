@@ -112,14 +112,10 @@
 					</div>
 
 					<div class="product__details">
-						<h6
-							class="product__details-name animate__animated animate__fadeInUp wow"
-						>
+						<h6 data-aos="fade-up" class="product__details-name">
 							{{ product.name }}
 						</h6>
-						<p
-							class="product__description animate__animated animate__fadeInUp wow"
-						>
+						<p data-aos="fade-up" class="product__description">
 							{{ product.descriptions }}
 						</p>
 						<div class="product__details-footer">
@@ -393,8 +389,10 @@
 </script>
 
 <style lang="scss" scoped>
+	@import "@/assets/scss/variables";
+
 	.product {
-		color: var(--dark);
+		color: $dark;
 		padding-top: 0;
 		&__main {
 			display: grid;
@@ -458,9 +456,9 @@
 		}
 		&__article {
 			font-size: 1.2rem;
-			color: var(--middle-gray);
+			color: $middle-gray;
 			&-number {
-				color: var(--cool-gray);
+				color: $cool-gray;
 			}
 		}
 
@@ -470,8 +468,8 @@
 			justify-content: space-between;
 			flex-wrap: wrap;
 			gap: 1.5rem;
-			border-top: 0.1rem solid var(--middle-gray);
-			border-bottom: 0.1rem solid var(--middle-gray);
+			border-top: 0.1rem solid $middle-gray;
+			border-bottom: 0.1rem solid $middle-gray;
 			padding: 3.5rem 0;
 			margin-bottom: 4rem;
 			animation-delay: 0.4s;
@@ -479,7 +477,7 @@
 		&__price {
 			font-size: 2.4rem;
 			font-weight: 700;
-			color: var(--dark);
+			color: $dark;
 		}
 
 		&__features {
@@ -497,13 +495,13 @@
 		&__feature {
 			margin-bottom: 2rem;
 			&-title {
-				color: var(--middle-gray);
+				color: $middle-gray;
 				font-size: 1.4em;
 				font-weight: 500;
 				margin-bottom: 1rem;
 			}
 			&-value {
-				color: var(--cool-gray);
+				color: $cool-gray;
 				font-size: 1.4em;
 				font-weight: 500;
 				line-height: 1.3;
@@ -522,7 +520,7 @@
 				gap: 2rem;
 			}
 			&-link {
-				color: var(--blue);
+				color: $blue;
 
 				&-wrapper {
 					font-size: 1.3rem;
@@ -541,7 +539,7 @@
 	}
 	.recommendations {
 		&-title {
-			color: var(--dark-blue);
+			color: $dark-blue;
 			margin-bottom: 3.5rem;
 			padding: 0 1.5rem;
 		}

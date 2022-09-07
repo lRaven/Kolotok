@@ -4,6 +4,7 @@
 			type="checkbox"
 			class="r-checkbox__real"
 			name=""
+			:checked="modelValue"
 			ref="checkbox"
 			@change="$emit('update:modelValue', $event.target.checked)"
 		/>
@@ -42,6 +43,7 @@ c-553 551 -600 596 -662 625 -159 74 -328 51 -454 -63 -100 -90 -149 -234
 	export default {
 		name: "rCheckbox",
 		props: {
+			modelValue: Boolean,
 			description: String,
 			checked: Boolean,
 		},
@@ -58,6 +60,8 @@ c-553 551 -600 596 -662 625 -159 74 -328 51 -454 -63 -100 -90 -149 -234
 </script>
 
 <style lang="scss" scoped>
+	@import "@/assets/scss/variables.scss";
+
 	.r-checkbox {
 		user-select: none;
 		display: flex;
@@ -89,7 +93,7 @@ c-553 551 -600 596 -662 625 -159 74 -328 51 -454 -63 -100 -90 -149 -234
 			opacity: 0;
 			transition: all 0.2s ease;
 			path {
-				fill: var(--dark);
+				fill: $dark;
 			}
 		}
 		&__description {

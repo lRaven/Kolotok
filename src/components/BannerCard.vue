@@ -1,12 +1,10 @@
 <template>
-	<div class="banner-card shadow">
+	<div class="banner-card">
 		<img :src="img" alt="" class="banner-card__bg" />
-		<h1 class="banner-card__title animate__animated animate__fadeInUp wow">
+		<h1 class="banner-card__title">
 			{{ title }}
 		</h1>
-		<h4
-			class="banner-card__subtitle animate__animated animate__fadeInUp wow"
-		>
+		<h4 class="banner-card__subtitle">
 			{{ subtitle }}
 		</h4>
 		<div class="banner-card__tags">
@@ -15,7 +13,7 @@
 		<r-link
 			path="/catalog"
 			text="Перейти в каталог"
-			class="animate__animated animate__fadeInLeft wow banner-card__link"
+			class="banner-card__link"
 		></r-link>
 	</div>
 </template>
@@ -40,6 +38,8 @@
 </script>
 
 <style lang="scss" scoped>
+	@import "@/assets/scss/variables.scss";
+
 	.banner-card {
 		position: relative;
 		padding: 6rem 5rem 16rem 5rem;
@@ -59,12 +59,12 @@
 
 		&__title {
 			text-align: left;
-			color: var(--dark-blue);
+			color: $dark-blue;
 			margin-bottom: 1.7rem;
 		}
 		&__subtitle {
 			text-align: left;
-			color: var(--dark-blue);
+			color: $dark-blue;
 			max-width: 39rem;
 			line-height: 1.5;
 			margin-bottom: 7rem;
@@ -76,6 +76,7 @@
 			max-width: 43rem;
 			margin-bottom: 7rem;
 			.r-tag {
+				box-shadow: 0 0.4rem 0.4rem rgba($cool-gray, $alpha: 0.4);
 				&:first-child {
 					animation-delay: 0.2s;
 				}

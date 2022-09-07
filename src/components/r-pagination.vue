@@ -83,6 +83,8 @@
 </script>
 
 <style lang="scss" scoped>
+	@import "@/assets/scss/variables.scss";
+
 	.r-pagination {
 		display: flex;
 		gap: 2rem;
@@ -103,14 +105,14 @@
 			border-radius: 50%;
 			transition: all 0.2s ease;
 			&:hover {
-				outline-color: var(--yellow);
-				border-color: var(--yellow);
-				color: var(--dark-blue);
+				outline-color: $yellow;
+				border-color: $yellow;
+				color: $dark-blue;
 			}
 			&.current {
-				outline-color: var(--yellow);
-				border-color: var(--yellow);
-				color: var(--dark-blue);
+				outline-color: $yellow;
+				border-color: $yellow;
+				color: $dark-blue;
 			}
 		}
 		&__btn {

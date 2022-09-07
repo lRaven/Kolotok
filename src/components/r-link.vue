@@ -1,7 +1,8 @@
 <template>
 	<router-link
+		data-aos="fade-right"
 		:to="{ path: path, query }"
-		class="animate__animated animate__fadeInLeft wow r-link"
+		class="r-link"
 	>
 		<svg
 			width="38"
@@ -13,7 +14,7 @@
 		>
 			<path
 				d="M0 6.15625H37M37 6.15625L29.7734 12M37 6.15625L29.7734 1"
-				stroke="var(--dark-blue)"
+				stroke="#000888"
 			/>
 		</svg>
 		<p class="r-link__text">{{ text }}</p>
@@ -32,6 +33,8 @@
 </script>
 
 <style lang="scss" scoped>
+	@import "@/assets/scss/variables.scss";
+
 	.r-link {
 		display: flex;
 		align-items: center;
@@ -40,9 +43,8 @@
 			min-width: 4.5rem;
 		}
 		&__text {
-			color: var(--dark-blue);
+			color: $dark-blue;
 			font-size: 1.4rem;
-			// word-wrap: break-word;
 		}
 	}
 </style>

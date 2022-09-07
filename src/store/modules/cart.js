@@ -1,3 +1,8 @@
+import axios from "axios";
+// import store from '@/store';
+
+const baseURL = process.env.VUE_APP_BACKEND_BASEURL;
+
 const state = () => ({
 	cart_list: [
 		{
@@ -27,39 +32,51 @@ const state = () => ({
 	],
 })
 
-const getters = {
-	CART_LIST: state => {
-		return state.cart_list;
-	},
-}
+const getters = {}
 
 const mutations = {
-	SET_CART_LIST(state, payload) {
-		state.cart_list = payload;
+	SET_CART_LIST: (state, payload) => state.cart_list = payload,
+
+	SELECT_ALL_CART_ITEMS: state => {
+		state.cart_list.forEach(item => item.selected = true);
 	},
+	SELECT_CART_ITEM: (state, payload) => {
+		state.cart_list.forEach(item => {
+			if (item.id === payload) { item.selected = true }
+		})
+	},
+
+
+	UNSELECT_ALL_CART_ITEMS: state => {
+		state.cart_list.forEach(item => item.selected = false);
+	},
+	UNSELECT_CART_ITEM: (state, payload) => {
+		state.cart_list.forEach(item => {
+			if (item.id === payload) { item.selected = false }
+		})
+	},
+
+	SET_CART_ITEM_COUNT: (state, payload) => {
+		state.cart_list.forEach(item => {
+			if (item.id === payload.id) { item.count = payload.count }
+		})
+	}
 }
 
 const actions = {
-	setShoppingList: async (context, params) => {
-		context.getters.CART_LIST.forEach(product => {
-			if (params.id === product.id) {
-				product.quantity = Number(params.quantity);
-			}
-		});
+	getCartList: async () => {
+		try {
+			const response = await axios(`${baseURL}/`);
+
+			return response;
+		}
+		catch (err) { throw new Error(err) }
 	},
 
-	selectShoppingItem: async (context, params) => {
-		context.getters.CART_LIST.forEach(product => {
-			if (params.selectAll) {
-				product.selected = params.checked;
-			}
-			else if (params.selectAll === false) {
-				product.selected = false;
-			}
-			else {
-				if (params.id === product.id) {
-					product.selected = params.checked;
-				}
+	setShoppingList: (context, params) => {
+		context.state.cart_list.forEach(product => {
+			if (params.id === product.id) {
+				product.quantity = Number(params.quantity);
 			}
 		});
 	},

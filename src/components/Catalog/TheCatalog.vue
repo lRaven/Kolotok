@@ -1,30 +1,29 @@
 <template>
-	<section class="the-catalog center">
-		<slot name="breadcrumbs"></slot>
-		<h2
-			class="the-catalog__title animate__animated animate__fadeInLeft wow"
-		>
-			{{ title }}
-		</h2>
-		<div class="the-catalog__categories">
-			<catalog-category
-				v-for="category in categories"
-				:key="category.id"
-				:img="category.img"
-				:text="category.router.description"
-				:routePath="category.router.path"
-				:routeQuery="category.router.query"
-				class="animate__animated animate__fadeInUp wow"
-			></catalog-category>
+	<section class="the-catalog">
+		<div class="the-catalog__container center">
+			<slot name="breadcrumbs"></slot>
+			<h2 data-aos="fade-right" class="the-catalog__title">
+				{{ title }}
+			</h2>
+			<div class="the-catalog__categories">
+				<catalog-category
+					v-for="category in categories"
+					:key="category.id"
+					:img="category.img"
+					:text="category.router.description"
+					:routePath="category.router.path"
+					:routeQuery="category.router.query"
+				></catalog-category>
+			</div>
+			<r-button
+				type="button"
+				text="Смотреть всё"
+				color="yellow"
+				:arrow="true"
+				v-if="!isCatalogPage"
+				@click="this.$router.push('/catalog')"
+			></r-button>
 		</div>
-		<r-button
-			type="button"
-			text="Смотреть всё"
-			color="yellow"
-			:arrow="true"
-			v-if="!isCatalogPage"
-			@click="this.$router.push('/catalog')"
-		></r-button>
 	</section>
 </template>
 
@@ -218,10 +217,12 @@
 </script>
 
 <style lang="scss" scoped>
+	@import "@/assets/scss/variables.scss";
+
 	.the-catalog {
 		&__title {
 			margin-bottom: 5rem;
-			color: var(--dark-blue);
+			color: $dark-blue;
 		}
 		&__categories {
 			display: grid;

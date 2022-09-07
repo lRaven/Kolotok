@@ -1,6 +1,8 @@
 <template>
-	<section class="the-services center">
-		<services-slider :slides="slides"></services-slider>
+	<section class="the-services">
+		<div class="the-services__container center">
+			<services-slider :slides="slides"></services-slider>
+		</div>
 	</section>
 </template>
 
@@ -36,3 +38,10 @@
 		},
 	};
 </script>
+
+<style lang="scss" scoped>
+	.the-services {
+		&__container {
+		}
+	}
+</style>

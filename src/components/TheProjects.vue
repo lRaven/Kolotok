@@ -1,34 +1,37 @@
 <template>
 	<section class="the-projects center">
-		<h2
-			class="animate__animated animate__fadeInLeft wow the-projects__title"
-		>
+		<h2 data-aos="fade-right" class="the-projects__title">
 			Проекты клиентов
 		</h2>
 		<div class="the-projects__list">
 			<img
+				data-aos="fade-up"
 				src="img/projects/project1.png"
-				class="animate__animated animate__fadeInUp wow the-projects__list-item the-projects__list-item1"
+				class="the-projects__list-item the-projects__list-item1"
 				alt=""
 			/>
 			<img
+				data-aos="fade-up"
 				src="img/projects/project2.png"
-				class="animate__animated animate__fadeInUp wow the-projects__list-item the-projects__list-item2"
+				class="the-projects__list-item the-projects__list-item2"
 				alt=""
 			/>
 			<img
+				data-aos="fade-up"
 				src="img/projects/project3.png"
-				class="animate__animated animate__fadeInUp wow the-projects__list-item the-projects__list-item3"
+				class="the-projects__list-item the-projects__list-item3"
 				alt=""
 			/>
 			<img
+				data-aos="fade-up"
 				src="img/projects/project4.png"
-				class="animate__animated animate__fadeInUp wow the-projects__list-item the-projects__list-item4"
+				class="the-projects__list-item the-projects__list-item4"
 				alt=""
 			/>
 			<img
+				data-aos="fade-up"
 				src="img/projects/project5.png"
-				class="animate__animated animate__fadeInUp wow the-projects__list-item the-projects__list-item5"
+				class="the-projects__list-item the-projects__list-item5"
 				alt=""
 			/>
 		</div>
@@ -53,9 +56,11 @@
 </script>
 
 <style lang="scss" scoped>
+	@import "@/assets/scss/variables.scss";
+
 	.the-projects {
 		&__title {
-			color: var(--dark-blue);
+			color: $dark-blue;
 			margin-bottom: 3.5rem;
 		}
 		&__list {

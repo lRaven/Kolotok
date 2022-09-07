@@ -14,12 +14,14 @@
 </script>
 
 <style lang="scss" scoped>
+	@import "@/assets/scss/variables.scss";
+
 	.r-tag {
 		user-select: none;
 		display: inline-block;
 		border-radius: 3rem;
-		background-color: var(--white);
-		color: var(--dark-blue);
+		background-color: $white;
+		color: $dark-blue;
 		font-size: 1.6rem;
 		font-weight: 600;
 		padding: 1.2rem 2.5rem;

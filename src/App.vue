@@ -9,6 +9,8 @@
 
 <script>
 	import rBlur from "@/components/r-blur";
+	import Aos from "aos";
+	import "aos/dist/aos.css";
 
 	export default {
 		watch: {
@@ -22,38 +24,42 @@
 				document.querySelector(".r-blur").classList.remove("open");
 			},
 		},
-		components: {
-			rBlur,
+		components: { rBlur },
+		mounted() {
+			Aos.init();
+
+			setTimeout(() => {
+				Aos.refresh();
+			}, 1000);
 		},
 	};
 </script>
 
-//* default styles
 <style lang="scss">
-	@import "@/assets/css/variables.css";
+	@import "@/assets/scss/variables.scss";
 	@import "@/assets/scss/center.scss";
 	@import "@/assets/scss/shadow.scss";
+	@import "@/assets/scss/swiper.scss";
+	@import "@/assets/scss/animations.scss";
 
 	* {
 		font-family: "Montserrat";
 
 		//*chrome/safari
 		&::-webkit-scrollbar {
-			width: var(--scrollbarWidth); /* ширина scrollbar */
+			width: $scrollbarWidth; /* ширина scrollbar */
 		}
 		&::-webkit-scrollbar-track {
-			background: var(--scrollbarBg); /* цвет дорожки */
+			background: $scrollbarBg; /* цвет дорожки */
 		}
 		&::-webkit-scrollbar-thumb {
-			background-color: var(--scrollbarThumb); /* цвет плашки */
-			border-radius: var(
-				--scrollbarBorderRadius
-			); /* закругления плашки */
-			border: var(--scrollbarBorder); /* padding вокруг плашки */
+			background-color: $scrollbarThumb; /* цвет плашки */
+			border-radius: $scrollbarBorderRadius; /* закругления плашки */
+			border: $scrollbarBorder; /* padding вокруг плашки */
 		}
 		//*firefox
 		scrollbar-width: thin; /* "auto" или "thin"  */
-		scrollbar-color: var(--scrollbarThumb) var(--scrollbarBg);
+		scrollbar-color: $scrollbarThumb $scrollbarBg;
 	}
 
 	body {
@@ -143,80 +149,14 @@
 		display: flex;
 		flex-direction: column;
 		flex: 1 0 auto;
-		padding: 25rem 2rem 0 2rem;
+		padding-top: 25rem;
 	}
 
 	section {
-		padding: 2.5rem 0;
+		padding: 2.5rem;
 	}
 
 	.footer {
 		flex: 0 0 auto;
-	}
-
-	//*появление/скрытие "скольжение вверх"
-	.v-enter-active,
-	.v-leave-active {
-		transition: all 0.3s ease;
-	}
-
-	.v-enter-from,
-	.v-leave-to {
-		opacity: 0;
-		transform: translateY(2rem);
-	}
-
-	//*появление/скрытие "скольжение влево"
-	.fade-left-enter-active,
-	.fade-left-leave-active {
-		transition: all 0.35s ease;
-	}
-
-	.fade-left-enter-from,
-	.fade-left-leave-to {
-		opacity: 0;
-		transform: translateX(-5rem);
-	}
-
-	//*появление/скрытие "скольжение влево"
-	.fade-enter-active,
-	.fade-leave-active {
-		transition: all 0.35s ease;
-	}
-
-	.fade-enter-from,
-	.fade-leave-to {
-		opacity: 0;
-	}
-</style>
-
-//*carousel styles
-<style lang="scss">
-	.swiper {
-		width: 100%;
-		padding: 0.5rem !important;
-		&-button {
-			&-prev,
-			&-next {
-				background-color: #d8d8d7;
-				border-radius: 50%;
-				width: 5rem !important;
-				height: 5rem !important;
-				&::after {
-					font-size: 2.4rem !important;
-				}
-			}
-			&-prev {
-				left: 1.5rem !important;
-			}
-			&-next {
-				right: 1.5rem !important;
-			}
-		}
-		&-slide {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
 	}
 </style>

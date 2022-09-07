@@ -1,11 +1,11 @@
 <template>
-	<section class="the-specials center">
-		<h2
-			class="the-specials__title animate__animated animate__fadeInLeft wow"
-		>
-			Специальные предложения
-		</h2>
-		<products-slider :slides="slides"></products-slider>
+	<section class="the-specials">
+		<div class="the-specials__container center">
+			<h2 data-aos="fade-right" class="the-specials__title">
+				Специальные предложения
+			</h2>
+			<products-slider :slides="slides"></products-slider>
+		</div>
 	</section>
 </template>
 
@@ -81,10 +81,19 @@
 </script>
 
 <style lang="scss" scoped>
+	@import "@/assets/scss/variables.scss";
+
 	.the-specials {
-		padding-bottom: 0;
+		padding: 2.5rem 0 0 0;
+		display: flex;
+		justify-content: center;
+		&__container {
+			overflow: hidden;
+			max-width: 145rem;
+			padding: 0 2.5rem;
+		}
 		&__title {
-			color: var(--dark-blue);
+			color: $dark-blue;
 			margin-bottom: 3.5rem;
 			padding: 0 1rem;
 		}

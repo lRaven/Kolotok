@@ -22,6 +22,8 @@
 </script>
 
 <style lang="scss" scoped>
+	@import "@/assets/scss/variables.scss";
+
 	.subcategory-card {
 		display: flex;
 		align-items: center;
@@ -34,7 +36,7 @@
 			object-fit: contain;
 		}
 		&__text {
-			color: var(--dark-blue);
+			color: $dark-blue;
 			font-size: 1.4rem;
 			line-height: 1.3;
 		}

@@ -3,37 +3,35 @@
 		<div class="r-card-maximize__main">
 			<r-discount
 				class="r-card-maximize__discount"
-				v-if="discount_percent"
-				:discount="discount_percent"
+				v-show="card.discount_percent"
+				:discount="card.discount_percent"
 			></r-discount>
 			<r-favorite class="r-card-maximize__favorite"></r-favorite>
-			<router-link :to="`/catalog/${category}/product/${id}`">
+			<router-link :to="`/catalog/${card.category}/product/${card.id}`">
 				<img
-					:src="img"
+					:src="
+						card.img
+							? card.img
+							: 'img/catalog/catalog__photo-default.svg'
+					"
 					alt="photo"
 					class="r-card-maximize__img"
-					v-if="img"
-				/>
-				<img
-					src="img/catalog/catalog__photo-default.svg"
-					alt="no photo"
-					v-else
 				/>
 			</router-link>
 		</div>
 		<div class="r-card-maximize__footer">
 			<div class="r-card-maximize__row">
-				<p class="r-card-maximize__name">{{ name }}</p>
+				<p class="r-card-maximize__name">{{ card.name }}</p>
 			</div>
 			<div class="r-card-maximize__row">
-				<p class="r-card-maximize__price">{{ price }}₽.</p>
-				<p class="r-card-maximize__price-old" v-if="price_old">
-					{{ price_old }}₽.
+				<p class="r-card-maximize__price">{{ card.price }}₽.</p>
+				<p class="r-card-maximize__price-old" v-show="card.price_old">
+					{{ card.price_old }}₽.
 				</p>
 			</div>
 			<div class="r-card-maximize__row r-card-maximize__control">
 				<r-counter :getValue="1" :getMin="1" :getMax="5"></r-counter>
-				<r-button class="yellow" text="В корзину"></r-button>
+				<r-button color="yellow" text="В корзину"></r-button>
 			</div>
 		</div>
 	</div>
@@ -47,28 +45,14 @@
 
 	export default {
 		name: "r-card-maximize",
-		props: {
-			id: Number,
-			discount_percent: Number,
-			img: String,
-			price: String,
-			price_old: String,
-			name: String,
-			category: Number,
-		},
+		props: { card: Object },
 		components: {
 			rDiscount,
 			rFavorite,
 			rCounter,
 			rButton,
 		},
-		data() {
-			return {
-				isFavorite: false,
-				isMaximize: false,
-			};
-		},
-		computed: {},
+		data: () => ({ isFavorite: false, isMaximize: false }),
 		methods: {
 			addFavorite() {
 				this.isFavorite = true;
@@ -81,13 +65,15 @@
 </script>
 
 <style lang="scss" scoped>
+	@import "@/assets/scss/variables.scss";
+
 	.r-card-maximize {
 		position: relative;
-		color: var(--dark-blue);
+		color: $dark-blue;
 		max-width: 22rem;
 		width: 100%;
 		z-index: 2;
-		background-color: #fff;
+		background-color: $white;
 		border-radius: 3rem;
 		padding: 0 1rem;
 		&__main {
@@ -111,7 +97,7 @@
 			width: 5rem;
 			height: 5rem;
 			border-radius: 50%;
-			background-color: var(--yellow);
+			background-color: $yellow;
 			font-size: 1.6rem;
 			font-weight: 600;
 			animation-delay: 0.2s;
@@ -153,7 +139,7 @@
 			font-weight: 600;
 			&-old {
 				text-decoration: line-through;
-				color: var(--gray);
+				color: $gray;
 				font-size: 1.2rem;
 			}
 		}

@@ -1,5 +1,5 @@
 <template>
-	<div class="catalog-category shadow">
+	<div data-aos="fade-up" class="catalog-category shadow">
 		<div class="catalog-category__top">
 			<img :src="img" alt="" />
 		</div>

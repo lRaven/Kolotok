@@ -346,6 +346,8 @@
 </script>
 
 <style lang="scss" scoped>
+	@import "@/assets/scss/variables.scss";
+
 	.the-header {
 		position: fixed;
 		left: 0;
@@ -354,8 +356,8 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		background-color: var(--dark-blue);
-		padding: 3rem 0;
+		background-color: $dark-blue;
+		padding: 3rem 2.5rem;
 		z-index: 3;
 
 		&::before {
@@ -415,8 +417,8 @@
 				display: flex;
 				justify-content: center;
 				align-items: center;
-				background-color: var(--yellow);
-				color: var(--dark-blue);
+				background-color: $yellow;
+				color: $dark-blue;
 				border-radius: 50%;
 				width: 2.3rem;
 				height: 2.3rem;
@@ -455,12 +457,12 @@
 				padding: 0 3rem;
 				transition: all 0.2s ease;
 				height: 6.6rem;
-				color: var(--dark);
+				color: $dark;
 				&:nth-child(n + 2) {
-					border-top: 0.1rem solid var(--middle-gray);
+					border-top: 0.1rem solid $middle-gray;
 				}
 				&:last-child {
-					border-bottom: 0.1rem solid var(--middle-gray);
+					border-bottom: 0.1rem solid $middle-gray;
 				}
 
 				&-arrow {
@@ -472,10 +474,10 @@
 					}
 				}
 				&:hover {
-					color: var(--blue);
+					color: $blue;
 					.the-header__catalog-item-arrow {
 						path {
-							stroke: var(--blue);
+							stroke: $blue;
 						}
 					}
 				}
@@ -490,7 +492,7 @@
 				cursor: pointer;
 				width: 5rem;
 				height: 5rem;
-				border: 0.2rem solid var(--white);
+				border: 0.2rem solid $white;
 				display: flex;
 				align-items: center;
 				justify-content: center;
@@ -501,10 +503,10 @@
 				transition: all 0.2s ease;
 				&.open {
 					border-radius: 0.3rem;
-					background-color: var(--white);
+					background-color: $white;
 					.the-header__catalog-line {
 						path {
-							stroke: var(--dark-blue);
+							stroke: $dark-blue;
 						}
 						&:first-child {
 							transform: translateY(0.5rem) rotate(45deg);
@@ -524,7 +526,7 @@
 			}
 			&-title {
 				user-select: none;
-				color: var(--white);
+				color: $white;
 				font-weight: 500;
 			}
 		}

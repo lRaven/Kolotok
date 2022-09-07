@@ -12,10 +12,9 @@
 							description="Выбрать всё"
 							v-model="isAllSelected"
 							@click="
-								selectShoppingItem({
-									checked: true,
-									selectAll: !isAllSelected,
-								})
+								isAllSelected
+									? UNSELECT_ALL_CART_ITEMS()
+									: SELECT_ALL_CART_ITEMS()
 							"
 						></r-checkbox>
 
@@ -30,13 +29,13 @@
 							>
 								<path
 									d="M11 5L5 11"
-									stroke="var(--yellow)"
+									stroke="#efba1c"
 									stroke-linecap="round"
 									stroke-linejoin="round"
 								/>
 								<path
 									d="M11 11L5 5"
-									stroke="var(--yellow)"
+									stroke="#efba1c"
 									stroke-linecap="round"
 									stroke-linejoin="round"
 								/>
@@ -44,7 +43,7 @@
 									fill-rule="evenodd"
 									clip-rule="evenodd"
 									d="M11.2798 1H4.71946C2.4333 1 1 2.6187 1 4.90941V11.0906C1 13.3813 2.42649 15 4.71946 15H11.279C13.5728 15 15 13.3813 15 11.0906V4.90941C15 2.6187 13.5728 1 11.2798 1Z"
-									stroke="var(--yellow)"
+									stroke="#efba1c"
 									stroke-linecap="round"
 									stroke-linejoin="round"
 								/>
@@ -66,19 +65,19 @@
 							>
 								<path
 									d="M15.2147 6.80322C15.2147 6.80322 14.7102 13.061 14.4175 15.6969C14.2781 16.9559 13.5004 17.6937 12.2266 17.7169C9.80247 17.7606 7.37556 17.7633 4.95237 17.7122C3.72683 17.6872 2.96215 16.9401 2.82557 15.7034C2.53103 13.0442 2.0293 6.80322 2.0293 6.80322"
-									stroke="var(--blue)"
+									stroke="#007bfc"
 									stroke-linecap="round"
 									stroke-linejoin="round"
 								/>
 								<path
 									d="M16.5005 3.80319H0.744141"
-									stroke="var(--blue)"
+									stroke="#007bfc"
 									stroke-linecap="round"
 									stroke-linejoin="round"
 								/>
 								<path
 									d="M13.4647 3.80329C12.7353 3.80329 12.1072 3.28762 11.9641 2.57311L11.7383 1.44328C11.599 0.922029 11.127 0.561523 10.589 0.561523H6.65596C6.11799 0.561523 5.64598 0.922029 5.50661 1.44328L5.28083 2.57311C5.13774 3.28762 4.50965 3.80329 3.78027 3.80329"
-									stroke="var(--blue)"
+									stroke="#007bfc"
 									stroke-linecap="round"
 									stroke-linejoin="round"
 								/>
@@ -126,7 +125,7 @@
 
 	import TheFooter from "@/components/TheFooter";
 
-	import { mapState, mapMutations, mapActions } from "vuex";
+	import { mapState, mapMutations } from "vuex";
 
 	export default {
 		name: "PageCart",
@@ -163,14 +162,18 @@
 			}),
 		},
 		methods: {
-			...mapActions(["selectShoppingItem"]),
-
-			...mapMutations(["SET_CART_LIST"]),
+			...mapMutations([
+				"SET_CART_LIST",
+				"SELECT_ALL_CART_ITEMS",
+				"UNSELECT_ALL_CART_ITEMS",
+			]),
 		},
 	};
 </script>
 
 <style lang="scss" scoped>
+	@import "@/assets/scss/variables";
+
 	.cart {
 		display: grid;
 		grid-template-columns: 1fr 39rem;
@@ -183,7 +186,7 @@
 		}
 
 		&__title {
-			color: var(--dark-blue);
+			color: $dark-blue;
 			margin-bottom: 3rem;
 		}
 
@@ -211,7 +214,7 @@
 			}
 			&-description {
 				font-size: 1.4rem;
-				color: var(--yellow);
+				color: $yellow;
 			}
 		}
 
@@ -223,7 +226,7 @@
 			gap: 1.7rem;
 			&-description {
 				font-size: 1.4rem;
-				color: var(--blue);
+				color: $blue;
 			}
 		}
 
@@ -246,7 +249,7 @@
 		}
 		&__caption {
 			font-size: 1.8rem;
-			color: var(--middle-gray);
+			color: $middle-gray;
 			font-weight: 500;
 		}
 

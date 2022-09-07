@@ -55,7 +55,7 @@
 	import rCheckbox from "@/components/r-checkbox";
 	import rCounter from "@/components/Catalog/r-counter";
 
-	import { mapActions } from "vuex";
+	import { mapMutations, mapActions } from "vuex";
 
 	export default {
 		name: "CartCard",
@@ -64,16 +64,17 @@
 		data: () => ({ counter: 1, checked: false }),
 		watch: {
 			counter() {
-				this.setShoppingList({
-					id: this.product.id,
-					quantity: this.counter,
-				});
+				// this.setShoppingList({
+				// 	id: this.product.id,
+				// 	quantity: this.counter,
+				// });
 			},
 			checked() {
-				this.selectShoppingItem({
-					id: this.product.id,
-					checked: this.checked,
-				});
+				if (this.checked) {
+					this.SELECT_CART_ITEM(this.product.id);
+				} else {
+					this.UNSELECT_CART_ITEM(this.product.id);
+				}
 			},
 			checkedUpdate() {
 				this.checked = this.checkedUpdate;
@@ -90,22 +91,22 @@
 				return this.product.selected;
 			},
 		},
-		methods: { ...mapActions(["setShoppingList", "selectShoppingItem"]) },
+		methods: {
+			...mapMutations(["SELECT_CART_ITEM", "UNSELECT_CART_ITEM"]),
+			...mapActions(["setShoppingList"]),
+		},
 		mounted() {
-			this.setShoppingList({
-				id: this.product.id,
-				quantity: this.counter,
-			});
-
-			this.selectShoppingItem({
-				id: this.product.id,
-				checked: this.checked,
-			});
+			// this.setShoppingList({
+			// 	id: this.product.id,
+			// 	quantity: this.counter,
+			// });
 		},
 	};
 </script>
 
 <style lang="scss" scoped>
+	@import "@/assets/scss/variables.scss";
+
 	.cart-card {
 		display: grid;
 		grid-template-columns: 2rem 10rem 1fr repeat(3, 14rem) 2rem;
@@ -114,7 +115,7 @@
 		border: 0.1rem solid #e5e5e5;
 		border-radius: 0.4rem;
 		padding: 2rem;
-		color: var(--dark);
+		color: $dark;
 
 		+ .cart-card {
 			margin-top: 3rem;
@@ -153,11 +154,11 @@
 
 			&-name {
 				font-size: 1.2rem;
-				color: var(--middle-gray);
+				color: $middle-gray;
 			}
 			&-value {
 				font-size: 1.2rem;
-				color: var(--cool-gray);
+				color: $cool-gray;
 			}
 		}
 

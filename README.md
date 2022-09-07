@@ -4,8 +4,10 @@
 
 -   Vue (VueX, Vue Router)
 -   SCSS
--   WoW.js + animate.css
--   swiper.js
+-   AOS
+-   Swiper
+-   vue-toastification
+-   axios
 
 ## Project setup
 

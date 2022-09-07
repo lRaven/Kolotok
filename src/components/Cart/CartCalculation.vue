@@ -30,7 +30,7 @@
 			</button>
 		</div> -->
 
-		<r-button class="yellow" type="button" text="Оформить заказ">
+		<r-button color="yellow" type="button" text="Оформить заказ">
 		</r-button>
 	</form>
 </template>
@@ -68,6 +68,8 @@
 </script>
 
 <style lang="scss" scoped>
+	@import "@/assets/scss/variables.scss";
+
 	.cart-calculation {
 		position: sticky;
 		left: 0;
@@ -123,10 +125,10 @@
 				border-radius: 0.6rem;
 				transition: all 0.2s ease;
 				&:hover {
-					border-color: var(--middle-gray);
+					border-color: $middle-gray;
 				}
 				&:focus {
-					border-color: var(--cool-gray);
+					border-color: $cool-gray;
 				}
 			}
 			&-button {
@@ -134,7 +136,7 @@
 				right: 0;
 				top: 0;
 				bottom: 0;
-				background-color: var(--yellow);
+				background-color: $yellow;
 				width: 4rem;
 				border-radius: 0.6rem;
 				&-icon {

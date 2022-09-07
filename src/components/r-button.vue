@@ -3,9 +3,9 @@
 		{{ text }}
 		<img
 			src="img/icon/arrow-long.svg"
-			alt=""
+			alt="arrow"
 			class="r-button__arrow"
-			v-if="arrow === true"
+			v-show="arrow"
 		/>
 	</button>
 </template>
@@ -16,13 +16,18 @@
 		props: {
 			text: String,
 			type: String,
-			arrow: Boolean,
+			arrow: {
+				value: Boolean,
+				default: false,
+			},
 			color: String,
 		},
 	};
 </script>
 
 <style lang="scss" scoped>
+	@import "@/assets/scss/variables.scss";
+
 	.r-button {
 		display: flex;
 		align-items: center;
@@ -33,8 +38,8 @@
 		width: max-content;
 		transition: all 0.2s ease;
 		&.yellow {
-			background-color: var(--yellow);
-			color: var(--dark-blue);
+			background-color: $yellow;
+			color: $dark-blue;
 			font-weight: 500;
 		}
 		&.blue {
@@ -45,7 +50,7 @@
 				#005fd3 67.71%,
 				#4fa5ff 100%
 			);
-			color: #fff;
+			color: $white;
 			font-weight: 700;
 		}
 		&:hover {

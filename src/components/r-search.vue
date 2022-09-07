@@ -39,29 +39,31 @@
 </script>
 
 <style lang="scss" scoped>
+	@import "@/assets/scss/variables.scss";
+
 	.r-search {
 		position: relative;
 		display: flex;
-		border: 0.2rem solid var(--white);
+		border: 0.2rem solid $white;
 		border-radius: 3rem;
 		width: 100%;
 		max-width: 68rem;
 		overflow: hidden;
 		transition: all 0.2s ease;
 		&.open {
-			background-color: #fff;
+			background-color: $white;
 			border-radius: 0.3rem;
 			.r-search {
 				&__input {
-					color: var(--dark-blue);
-					caret-color: var(--dark-blue);
+					color: $dark-blue;
+					caret-color: $dark-blue;
 					&::placeholder {
-						color: var(--dark-blue);
+						color: $dark-blue;
 					}
 				}
 				&__icon {
 					path {
-						fill: var(--dark-blue);
+						fill: $dark-blue;
 					}
 				}
 			}
@@ -71,12 +73,12 @@
 			background-color: transparent;
 			padding: 1.5rem 6rem 1.5rem 2.1rem;
 			width: 100%;
-			caret-color: var(--white);
-			color: var(--white);
+			caret-color: $white;
+			color: $white;
 			font-size: 1.4rem;
 			font-weight: 500;
 			&::placeholder {
-				color: var(--white);
+				color: $white;
 				font-weight: 500;
 			}
 		}

@@ -137,9 +137,11 @@
 </script>
 
 <style lang="scss" scoped>
+	@import "@/assets/scss/variables";
+
 	.discount {
 		&__title {
-			color: var(--dark-blue);
+			color: $dark-blue;
 			margin-bottom: 4rem;
 		}
 		&__subcategories {

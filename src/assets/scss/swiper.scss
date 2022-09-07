@@ -1,0 +1,47 @@
+@import "@/assets/scss/variables";
+
+.swiper {
+	width: 100%;
+	&-button {
+		&-prev,
+		&-next {
+			--swiper-navigation-color: "#7a7a7a";
+			background-color: #d8d8d7;
+			border-radius: 50%;
+			width: 5rem !important;
+			height: 5rem !important;
+			z-index: 2 !important;
+			&::after {
+				font-size: 2.4rem !important;
+			}
+		}
+		&-prev {
+			left: -2.5rem !important;
+		}
+		&-next {
+			right: -2.5rem !important;
+		}
+	}
+
+	&-slide {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&-pagination {
+		&-bullet {
+			width: 2.2rem !important;
+			height: 2.2rem !important;
+			margin: 0 1rem !important;
+			background-color: $white !important;
+			opacity: 0.5 !important;
+			&-active {
+				opacity: 1 !important;
+			}
+		}
+		&-horizontal {
+			bottom: 3rem !important;
+		}
+	}
+}

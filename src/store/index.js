@@ -5,7 +5,7 @@ import cart from '@/store/modules/cart'
 
 export default createStore({
 	state: {
-		baseURL: `http://localhost:8001`,
+		baseURL: process.env.VUE_APP_BACKEND_BASEURL,
 	},
 	getters: {
 		BASEURL: state => {

@@ -1,20 +1,15 @@
+import cookies from "vue-cookies";
+
 const state = () => ({
-	//*user
-	token: localStorage.getItem('at') || '731fc0bf4f998e26644636a6b7ed4a0a064e26cd',
+	token: cookies.get('auth_token') || '9d05008dfcbdfab1870cfa281b9e617dcbab3627',
 })
-const getters = {
-	//*user
-	TOKEN: state => {
-		return state.token;
-	},
-}
-const mutations = {
-	//*user
-	SET_TOKEN(state, payload) {
-		state.token = payload;
-	},
-}
+
+const getters = {}
+
+const mutations = {}
+
 const actions = {}
+
 export default {
 	state,
 	getters,

@@ -4,17 +4,17 @@
 		:style="`background: url(${img}) center / cover no-repeat`"
 	>
 		<div class="r-service__content">
-			<h3
-				class="r-service__title animate__animated animate__fadeInUp wow"
-			>
+			<h3 data-aos="fade-up" class="r-service__title">
 				{{ title }}
 			</h3>
-			<p
-				class="r-service__description animate__animated animate__fadeInUp wow"
-			>
+			<p data-aos="fade-up" class="r-service__description">
 				{{ description }}
 			</p>
-			<r-button :text="button_text" color="yellow"></r-button>
+			<r-button
+				data-aos="fade-up"
+				:text="button_text"
+				color="yellow"
+			></r-button>
 		</div>
 	</div>
 </template>
@@ -37,6 +37,8 @@
 </script>
 
 <style lang="scss" scoped>
+	@import "@/assets/scss/variables.scss";
+
 	.r-service {
 		display: flex;
 		align-items: flex-end;
@@ -45,11 +47,11 @@
 		border-radius: 3rem;
 		overflow: hidden;
 		&__content {
-			background: rgba(255, 255, 255, 0.8);
+			background-color: rgba($white, 0.8);
 			backdrop-filter: blur(5rem);
 			padding: 6.5rem 14rem 7.5rem 6rem;
 			border-radius: 3rem 3rem 0 0;
-			color: var(--dark-blue);
+			color: $dark-blue;
 			max-width: 45rem;
 		}
 		&__title {

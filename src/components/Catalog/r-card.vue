@@ -1,52 +1,43 @@
 <template>
 	<div class="r-card-wrapper" @mouseleave="removeMaximizeCard">
-		<div
-			class="r-card animate__animated animate__fadeInUp wow"
-			@mouseenter="maximizeCard"
-		>
+		<div data-aos="fade-up" class="r-card" @mouseenter="maximizeCard">
 			<div class="r-card__main">
 				<r-discount
 					class="r-card__discount"
-					v-if="discount_percent"
-					:discount="discount_percent"
+					v-show="card.discount_percent"
+					:discount="card.discount_percent"
 				></r-discount>
 				<r-favorite class="r-card__favorite"></r-favorite>
-				<router-link :to="`/catalog/${category}/product/${id}`">
+				<router-link
+					:to="`/catalog/${card.category}/product/${card.id}`"
+				>
 					<img
-						:src="img"
+						:src="
+							card.img
+								? card.img
+								: 'img/catalog/catalog__photo-default.svg'
+						"
 						alt="photo"
 						class="r-card__img"
-						v-if="img"
-					/>
-					<img
-						src="img/catalog/catalog__photo-default.svg"
-						alt="no photo"
-						v-else
 					/>
 				</router-link>
 			</div>
 			<div class="r-card__footer">
 				<div class="r-card__row">
-					<p class="r-card__name">{{ name }}</p>
+					<p class="r-card__name">{{ card.name }}</p>
 				</div>
 				<div class="r-card__row">
-					<p class="r-card__price">{{ price }}₽.</p>
-					<p class="r-card__price-old" v-if="price_old">
-						{{ price_old }}₽.
+					<p class="r-card__price">{{ card.price }}₽.</p>
+					<p class="r-card__price-old" v-if="card.price_old">
+						{{ card.price_old }}₽.
 					</p>
 				</div>
 			</div>
 		</div>
 		<transition name="fade" mode="out-in">
 			<r-card-maximize
-				:id="id"
-				:discount_percent="discount_percent"
-				:img="img"
-				:price="price"
-				:price_old="price_old"
-				:name="name"
-				:category="category"
-				v-if="isMaximize"
+				:card="card"
+				v-show="isMaximize"
 				@removeMaximizeCard="removeMaximizeCard"
 			></r-card-maximize>
 		</transition>
@@ -60,27 +51,14 @@
 
 	export default {
 		name: "r-card",
-		props: {
-			id: Number,
-			discount_percent: Number,
-			img: String,
-			price: Number,
-			price_old: Number,
-			name: String,
-			category: Number,
-		},
 		components: {
 			rDiscount,
 			rFavorite,
 			rCardMaximize,
 		},
-		data() {
-			return {
-				isFavorite: false,
-				isMaximize: false,
-			};
-		},
-		computed: {},
+		props: { card: Object },
+
+		data: () => ({ isFavorite: false, isMaximize: false }),
 		methods: {
 			addFavorite() {
 				this.isFavorite = true;
@@ -100,6 +78,8 @@
 </script>
 
 <style lang="scss" scoped>
+	@import "@/assets/scss/variables.scss";
+
 	.r-card-maximize {
 		position: absolute;
 		top: 0;
@@ -110,7 +90,7 @@
 	}
 	.r-card {
 		position: relative;
-		color: var(--dark-blue);
+		color: $dark-blue;
 		transition: all 0.2s ease;
 		&-wrapper {
 			position: relative;
@@ -140,7 +120,7 @@
 			width: 5rem;
 			height: 5rem;
 			border-radius: 50%;
-			background-color: var(--yellow);
+			background-color: $yellow;
 			font-size: 1.6rem;
 			font-weight: 600;
 			animation-delay: 0.2s;
@@ -178,7 +158,7 @@
 			font-weight: 600;
 			&-old {
 				text-decoration: line-through;
-				color: var(--gray);
+				color: $gray;
 				font-size: 1.2rem;
 			}
 		}

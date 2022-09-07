@@ -196,9 +196,11 @@
 </script>
 
 <style lang="scss" scoped>
+	@import "@/assets/scss/variables";
+
 	.category {
 		&__title {
-			color: var(--dark-blue);
+			color: $dark-blue;
 			margin-bottom: 4rem;
 		}
 		&__subcategories {

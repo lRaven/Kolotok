@@ -1,22 +1,18 @@
 <template>
-	<div class="animate__animated animate__fadeInUp wow news-card shadow">
+	<div data-aos="fade-up" class="news-card shadow">
 		<div
 			class="news-card__top"
 			:style="`background: url(${img}) center / cover no-repeat`"
 		>
-			<div
-				class="animate__animated animate__fadeInDown wow news-card__date"
-			>
+			<div class="news-card__date">
 				{{ date }}
 			</div>
 		</div>
 		<div class="news-card__bottom">
-			<h3
-				class="animate__animated animate__fadeInUp wow news-card__title"
-			>
+			<h3 class="news-card__title">
 				{{ title }}
 			</h3>
-			<p class="news-card__text animate__animated animate__fadeInUp wow">
+			<p class="news-card__text">
 				{{ text }}
 			</p>
 			<r-link path="/" text="Читать далее"></r-link>
@@ -43,10 +39,12 @@
 </script>
 
 <style lang="scss" scoped>
+	@import "@/assets/scss/variables.scss";
+
 	.news-card {
 		display: grid;
 		grid-template-rows: 1.35fr 1fr;
-		color: var(--dark-blue);
+		color: $dark-blue;
 		border-radius: 3rem;
 		overflow: hidden;
 

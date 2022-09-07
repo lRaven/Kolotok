@@ -12,6 +12,8 @@
 </script>
 
 <style lang="scss" scoped>
+	@import "@/assets/scss/variables.scss";
+
 	.r-discount {
 		user-select: none;
 		display: flex;
@@ -20,9 +22,9 @@
 		width: 5rem;
 		height: 5rem;
 		border-radius: 50%;
-		background-color: var(--yellow);
+		background-color: $yellow;
 		font-size: 1.6rem;
 		font-weight: 600;
-		color: var(--dark-blue);
+		color: $dark-blue;
 	}
 </style>

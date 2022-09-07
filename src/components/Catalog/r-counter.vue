@@ -137,6 +137,8 @@
 </script>
 
 <style lang="scss" scoped>
+	@import "@/assets/scss/variables.scss";
+
 	.r-counter {
 		user-select: none;
 		display: flex;
@@ -151,15 +153,15 @@
 			background-color: #dfe1e6;
 			font-size: 1.4rem;
 			transition: all 0.2s ease;
-			color: var(--cool-gray);
+			color: $cool-gray;
 			&:hover {
-				border-color: var(--dark);
+				border-color: $dark;
 			}
 			&:focus {
-				border-color: var(--blue);
+				border-color: $blue;
 			}
 			&:invalid {
-				border-color: var(--red);
+				border-color: $red;
 			}
 		}
 		&__btn {
@@ -169,12 +171,12 @@
 			width: 3.4rem;
 			height: 3.4rem;
 			border-radius: 50%;
-			border: 0.1rem solid var(--middle-gray);
+			border: 0.1rem solid $middle-gray;
 			transition: all 0.2s ease;
 			&-path {
 				transition: all 0.2s ease;
 				&.active {
-					fill: var(--blue);
+					fill: $blue;
 				}
 			}
 			&-icon {
@@ -183,7 +185,7 @@
 			}
 			&.active {
 				cursor: pointer;
-				border-color: var(--blue);
+				border-color: $blue;
 			}
 		}
 		&__minus {

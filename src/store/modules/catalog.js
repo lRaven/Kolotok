@@ -48,11 +48,8 @@ const mutations = {
 const actions = {
 	getCategories: async ({ commit }) => {
 		try {
-			const request = await axios.get(`${store.state.baseURL}/kolotok/categories`,
-				{
-					headers: { Authorization: `token ${store.state.Cabinet.token}` },
-				}
-			);
+			const request = await axios.get(`${store.state.baseURL}/kolotok/categories`);
+
 			if (request.status === 200) {
 				commit('SET_CATEGORIES', request.data);
 			} else if (request.status >= 400) {
@@ -63,20 +60,15 @@ const actions = {
 	},
 	getSubcategories: async ({ commit }) => {
 		try {
-			const request = await axios.get(`${store.state.baseURL}/kolotok/sub_categories`,
-				{
-					headers: { Authorization: `token ${store.state.Cabinet.token}` },
-				}
-			);
+			const request = await axios.get(`${store.state.baseURL}/kolotok/sub_categories`);
 			if (request.status === 200) commit('SET_SUB_CATEGORIES', request.data);
 		}
 		catch { console.error('Error'); }
 	},
 	getProducts: async ({ commit }) => {
 		try {
-			const request = await axios.get(`${store.state.baseURL}/kolotok/products`, {
-				headers: { Authorization: `token ${store.state.Cabinet.token}` }
-			})
+			const request = await axios.get(`${store.state.baseURL}/search/products`);
+
 			if (request.status === 200) commit('SET_PRODUCTS', request.data);
 		}
 		catch {
