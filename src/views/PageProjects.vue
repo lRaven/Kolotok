@@ -35,10 +35,7 @@
 <script>
 	import TheHeader from "@/components/TheHeader";
 
-	import rBreadcrumbs from "@/components/r-breadcrumbs";
 	import ProjectCard from "@/components/Projects/ProjectCard";
-	import rButton from "@/components/r-button";
-	import rPagination from "@/components/r-pagination";
 
 	import TheFooter from "@/components/TheFooter";
 
@@ -47,10 +44,7 @@
 		components: {
 			TheHeader,
 
-			rBreadcrumbs,
 			ProjectCard,
-			rButton,
-			rPagination,
 
 			TheFooter,
 		},

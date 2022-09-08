@@ -45,13 +45,8 @@
 </template>
 
 <script>
-	import rButton from "@/components/r-button";
-
 	export default {
 		name: "TheProjects",
-		components: {
-			rButton,
-		},
 	};
 </script>
 

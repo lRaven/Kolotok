@@ -151,15 +151,17 @@
 					</transition>
 				</section>
 
-				<section class="recommendations center">
-					<h2
-						class="recommendations-title animate__animated animate__fadeInUp"
-					>
-						С этим товаром также сочетаются
-					</h2>
-					<products-slider
-						:slides="recommendations"
-					></products-slider>
+				<section class="recommendations">
+					<div class="recommendations__container center">
+						<h2
+							class="recommendations-title animate__animated animate__fadeInUp"
+						>
+							С этим товаром также сочетаются
+						</h2>
+						<products-slider
+							:slides="recommendations"
+						></products-slider>
+					</div>
 				</section>
 			</div>
 			<div class="page-product" v-else>
@@ -173,15 +175,14 @@
 </template>
 
 <script>
-	import { mapGetters } from "vuex";
+	import { mapState } from "vuex";
+	import { getProduct } from "@/api/catalog";
 
 	import TheHeader from "@/components/TheHeader";
 
-	import rBreadcrumbs from "@/components/r-breadcrumbs";
 	import rDiscount from "@/components/Catalog/r-discount";
 	import rFavorite from "@/components/Catalog/r-favorite";
 	import rCounter from "@/components/Catalog/r-counter";
-	import rButton from "@/components/r-button";
 	import ProductSlider from "@/components/Catalog/ProductSlider";
 	import ProductsSlider from "@/components/ProductsSlider";
 
@@ -193,114 +194,102 @@
 		components: {
 			TheHeader,
 
-			rBreadcrumbs,
 			rDiscount,
 			rFavorite,
 			rCounter,
-			rButton,
 			ProductSlider,
 			ProductsSlider,
 
 			TheFooter,
 		},
-		data() {
-			return {
-				recommendations: [
-					{
-						id: 1,
-						price: "1 653",
-						price_old: "3 300",
-						name: "Ламинат Woodstyle Breeze Дуб Солано Теплый",
-						discount_percent: 50,
-					},
-					{
-						id: 2,
-						price: "1 653",
-						price_old: "3 300",
-						name: "Ламинат Woodstyle Breeze Дуб Солано Теплый",
-						discount_percent: 50,
-					},
-					{
-						id: 3,
-						price: "1 653",
-						price_old: "3 300",
-						name: "Ламинат Woodstyle Breeze Дуб Солано Теплый",
-						discount_percent: 50,
-					},
-					{
-						id: 4,
-						price: "1 653",
-						price_old: "3 300",
-						name: "Ламинат Woodstyle Breeze Дуб Солано Теплый",
-						discount_percent: 50,
-					},
-					{
-						id: 5,
-						price: "1 653",
-						price_old: "3 300",
-						name: "Ламинат Woodstyle Breeze Дуб Солано Теплый",
-						discount_percent: 50,
-					},
-					{
-						id: 6,
-						price: "1 653",
-						price_old: "3 300",
-						name: "Ламинат Woodstyle Breeze Дуб Солано Теплый",
-						discount_percent: 50,
-					},
-				],
-				quantity: null,
-				image: "img/catalog/catalog__photo.png",
-				images: [
-					{ id: 1, img: "img/catalog/catalog__photo.png" },
-					{ id: 2, img: "img/catalog/catalog__photo-default.svg" },
-					{ id: 3, img: "img/catalog/catalog__photo-default.svg" },
-				],
-				isModalOpened: false,
-			};
-		},
-		watch: {},
+		data: () => ({
+			product: {},
+
+			recommendations: [
+				{
+					id: 1,
+					price: "1 653",
+					price_old: "3 300",
+					name: "Ламинат Woodstyle Breeze Дуб Солано Теплый",
+					discount_percent: 50,
+				},
+				{
+					id: 2,
+					price: "1 653",
+					price_old: "3 300",
+					name: "Ламинат Woodstyle Breeze Дуб Солано Теплый",
+					discount_percent: 50,
+				},
+				{
+					id: 3,
+					price: "1 653",
+					price_old: "3 300",
+					name: "Ламинат Woodstyle Breeze Дуб Солано Теплый",
+					discount_percent: 50,
+				},
+				{
+					id: 4,
+					price: "1 653",
+					price_old: "3 300",
+					name: "Ламинат Woodstyle Breeze Дуб Солано Теплый",
+					discount_percent: 50,
+				},
+				{
+					id: 5,
+					price: "1 653",
+					price_old: "3 300",
+					name: "Ламинат Woodstyle Breeze Дуб Солано Теплый",
+					discount_percent: 50,
+				},
+				{
+					id: 6,
+					price: "1 653",
+					price_old: "3 300",
+					name: "Ламинат Woodstyle Breeze Дуб Солано Теплый",
+					discount_percent: 50,
+				},
+			],
+			quantity: null,
+			image: "img/catalog/catalog__photo.png",
+			images: [
+				{ id: 1, img: "img/catalog/catalog__photo.png" },
+				{ id: 2, img: "img/catalog/catalog__photo-default.svg" },
+				{ id: 3, img: "img/catalog/catalog__photo-default.svg" },
+			],
+			isModalOpened: false,
+		}),
 		computed: {
-			...mapGetters({
-				categories: "CATEGORIES",
-				sub_categories: "SUB_CATEGORIES",
-				products: "PRODUCTS",
+			...mapState({
+				categories: (state) => state.Catalog.categories,
+				sub_categories: (state) => state.Catalog.sub_categories,
+				products: (state) => state.Catalog.products,
 			}),
 
-			//*получение товара
-			product() {
-				let result = {};
-
-				if (this.products !== null) {
-					this.products.forEach((product) => {
-						if (product.id == this.$route.params["id"]) {
-							result = product;
-						}
-					});
-				}
-
-				return result;
+			productId() {
+				return this.$route.params.id;
 			},
 
 			//*получение названия товара
 			productName() {
-				const product = this.product.name;
+				// const product = this.product.name;
 
-				document.title = product;
+				// document.title = product;
 
-				return product;
+				// return product;
+				return "";
 			},
 
-			//*получение подкатегории товара
+			//* получение подкатегории товара
 			productSubCategory() {
 				let result = "";
 
-				if (this.sub_categories !== null) {
-					this.sub_categories.forEach((sub_category) => {
-						if (sub_category.id === this.product.sub_category[0])
-							result = sub_category;
-					});
-				}
+				// if (this.sub_categories !== null) {
+				// 	this.sub_categories.forEach((sub_category) => {
+				// 		if (sub_category.id === this.product.sub_category[0])
+				// 			result = sub_category;
+				// 	});
+				// }
+
 				return result;
 			},
 
@@ -384,6 +373,20 @@
 				document.querySelector("body").classList.add("locked");
 				this.isModalOpened = true;
 			},
+
+			async getCurrentProduct(id) {
+				try {
+					const response = await getProduct(id);
+
+					this.product = response.data;
+				} catch (err) {
+					throw new Error(err);
+				}
+			},
+		},
+
+		created() {
+			this.getCurrentProduct(this.productId);
 		},
 	};
 </script>
@@ -537,13 +540,22 @@
 			margin-bottom: 3rem;
 		}
 	}
+
 	.recommendations {
+		padding-left: 0;
+		padding-right: 0;
+		&__container {
+			overflow: hidden;
+			max-width: 145rem;
+			padding: 0 2.5rem;
+		}
 		&-title {
 			color: $dark-blue;
 			margin-bottom: 3.5rem;
 			padding: 0 1.5rem;
 		}
 	}
+
 	.page-product__404 {
 		display: flex;
 		justify-content: center;

@@ -12,6 +12,8 @@
 	import Aos from "aos";
 	import "aos/dist/aos.css";
 
+	import { mapActions } from "vuex";
+
 	export default {
 		watch: {
 			$route(to) {
@@ -25,12 +27,20 @@
 			},
 		},
 		components: { rBlur },
+		methods: {
+			...mapActions(["getCategories", "getSubcategories", "getProducts"]),
+		},
+		created() {
+			this.getCategories();
+			this.getSubcategories();
+			// this.getProducts();
+		},
 		mounted() {
 			Aos.init();
 
-			setTimeout(() => {
+			setInterval(() => {
 				Aos.refresh();
-			}, 1000);
+			}, 5000);
 		},
 	};
 </script>

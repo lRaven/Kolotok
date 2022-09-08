@@ -36,16 +36,11 @@
 </template>
 
 <script>
-	import rButton from "@/components/r-button";
-
 	export default {
 		name: "CartCalculation",
 		props: {
 			products: Array,
 			discount: Number,
-		},
-		components: {
-			rButton,
 		},
 		computed: {
 			full_price() {

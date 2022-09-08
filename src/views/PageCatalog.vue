@@ -15,7 +15,6 @@
 <script>
 	import TheHeader from "@/components/TheHeader";
 
-	import rBreadcrumbs from "@/components/r-breadcrumbs";
 	import TheCatalog from "@/components/Catalog/TheCatalog";
 
 	import TheFooter from "@/components/TheFooter";
@@ -25,7 +24,6 @@
 		components: {
 			TheHeader,
 
-			rBreadcrumbs,
 			TheCatalog,
 
 			TheFooter,

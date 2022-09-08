@@ -44,16 +44,13 @@
 </template>
 
 <script>
-	import { mapGetters } from "vuex";
+	import { mapState } from "vuex";
 
 	import TheHeader from "@/components/TheHeader";
 
-	import rBreadcrumbs from "@/components/r-breadcrumbs";
 	import SubcategoryCard from "@/components/Catalog/Category/SubcategoryCard";
 	import rDropdown from "@/components/Catalog/Category/r-dropdown";
 	import rCard from "@/components/Catalog/r-card";
-	import rButton from "@/components/r-button";
-	import rPagination from "@/components/r-pagination";
 
 	import TheFooter from "@/components/TheFooter";
 
@@ -62,12 +59,9 @@
 		components: {
 			TheHeader,
 
-			rBreadcrumbs,
 			rDropdown,
 			SubcategoryCard,
 			rCard,
-			rButton,
-			rPagination,
 
 			TheFooter,
 		},
@@ -93,10 +87,10 @@
 		}),
 
 		computed: {
-			...mapGetters({
-				categories: "CATEGORIES",
-				sub_categories: "SUB_CATEGORIES",
-				products: "PRODUCTS",
+			...mapState({
+				categories: (state) => state.Catalog.categories,
+				sub_categories: (state) => state.Catalog.sub_categories,
+				products: (state) => state.Catalog.products,
 			}),
 
 			links() {

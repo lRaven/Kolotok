@@ -1,31 +1,18 @@
 import axios from "axios";
-import store from '@/store';
+
+const baseURL = process.env.VUE_APP_BACKEND_BASEURL;
 
 const state = () => ({
 	categories: null,
 	category: null,
+
 	sub_categories: null,
 	sub_category: null,
+
 	products: null,
 })
 
-const getters = {
-	CATEGORIES: state => {
-		return state.categories
-	},
-	CATEGORY: state => {
-		return state.category;
-	},
-	SUB_CATEGORIES: state => {
-		return state.sub_categories
-	},
-	SUB_CATEGORY: state => {
-		return state.sub_category
-	},
-	PRODUCTS: state => {
-		return state.products
-	}
-}
+const getters = {}
 
 const mutations = {
 	SET_CATEGORIES(state, payload) {
@@ -48,7 +35,7 @@ const mutations = {
 const actions = {
 	getCategories: async ({ commit }) => {
 		try {
-			const request = await axios.get(`${store.state.baseURL}/kolotok/categories`);
+			const request = await axios.get(`${baseURL}/kolotok/categories`);
 
 			if (request.status === 200) {
 				commit('SET_CATEGORIES', request.data);
@@ -58,23 +45,25 @@ const actions = {
 		}
 		catch { console.error('Error'); }
 	},
+
 	getSubcategories: async ({ commit }) => {
 		try {
-			const request = await axios.get(`${store.state.baseURL}/kolotok/sub_categories`);
+			const request = await axios.get(`${baseURL}/kolotok/sub_categories`);
 			if (request.status === 200) commit('SET_SUB_CATEGORIES', request.data);
 		}
 		catch { console.error('Error'); }
 	},
+
 	getProducts: async ({ commit }) => {
 		try {
-			const request = await axios.get(`${store.state.baseURL}/search/products`);
+			const request = await axios.get(`${baseURL}/search/products`);
 
 			if (request.status === 200) commit('SET_PRODUCTS', request.data);
 		}
 		catch {
 			console.error('Error');
 		}
-	}
+	},
 }
 
 export default {

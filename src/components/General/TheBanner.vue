@@ -14,7 +14,7 @@
 					<p class="the-banner__deal-text">
 						Специальные предложения на товары месяца
 					</p>
-					<r-link path="/" text="Подробнее"></r-link>
+					<r-link :way="{ name: 'Home' }" text="Подробнее"></r-link>
 				</div>
 				<img
 					src="img/catalog/catalog-item.png"
@@ -32,7 +32,7 @@
 					<p class="the-banner__tariffs-text">
 						Тарифы на ремонт под ключ
 					</p>
-					<r-link path="/" text="Подробнее"></r-link>
+					<r-link :way="{ name: 'Home' }" text="Подробнее"></r-link>
 				</div>
 			</div>
 		</div>
@@ -40,12 +40,11 @@
 </template>
 
 <script>
-	import BannerSlider from "@/components/BannerSlider";
-	import rLink from "@/components/r-link";
+	import BannerSlider from "@/components/General/BannerSlider";
 
 	export default {
 		name: "TheBanner",
-		components: { BannerSlider, rLink },
+		components: { BannerSlider },
 		data: () => ({
 			slides: [
 				{

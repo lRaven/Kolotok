@@ -4,25 +4,18 @@
 			<img :src="img" alt="" />
 		</div>
 		<div class="catalog-category__bottom">
-			<r-link :path="routePath" :query="routeQuery" :text="text"></r-link>
+			<r-link :way="way" :text="text"></r-link>
 		</div>
 	</div>
 </template>
 
 <script>
-	import rLink from "@/components/r-link";
-
 	export default {
 		name: "catalogCategory",
 		props: {
 			img: String,
 			text: String,
-			routePath: String,
-			routeParams: Object,
-			routeQuery: Object,
-		},
-		components: {
-			rLink,
+			way: Object,
 		},
 	};
 </script>

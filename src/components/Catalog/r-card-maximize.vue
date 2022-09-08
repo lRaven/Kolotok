@@ -41,7 +41,6 @@
 	import rDiscount from "@/components/Catalog/r-discount";
 	import rFavorite from "@/components/Catalog/r-favorite";
 	import rCounter from "@/components/Catalog/r-counter";
-	import rButton from "@/components/r-button";
 
 	export default {
 		name: "r-card-maximize",
@@ -50,7 +49,6 @@
 			rDiscount,
 			rFavorite,
 			rCounter,
-			rButton,
 		},
 		data: () => ({ isFavorite: false, isMaximize: false }),
 		methods: {

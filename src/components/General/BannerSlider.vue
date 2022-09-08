@@ -41,7 +41,7 @@
 	import "swiper/css/navigation";
 	import "swiper/css/pagination";
 
-	import BannerCard from "@/components/BannerCard";
+	import BannerCard from "@/components/General/BannerCard";
 
 	export default {
 		props: { slides: Array },

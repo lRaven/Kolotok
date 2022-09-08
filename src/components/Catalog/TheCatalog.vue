@@ -11,8 +11,10 @@
 					:key="category.id"
 					:img="category.img"
 					:text="category.router.description"
-					:routePath="category.router.path"
-					:routeQuery="category.router.query"
+					:way="{
+						path: category.router.path,
+						query: category.router.query,
+					}"
 				></catalog-category>
 			</div>
 			<r-button
@@ -29,14 +31,10 @@
 
 <script>
 	import CatalogCategory from "@/components/Catalog/CatalogCategory";
-	import rButton from "@/components/r-button";
 
 	export default {
 		name: "TheCatalog",
-		components: {
-			CatalogCategory,
-			rButton,
-		},
+		components: { CatalogCategory },
 		props: {
 			title: String,
 			isCatalogPage: Boolean,

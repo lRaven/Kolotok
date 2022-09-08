@@ -2,24 +2,19 @@
 	<div class="project-card">
 		<img :src="img" alt="project main photo" class="project-card__image" />
 		<div class="project-card__bottom">
-			<r-link path="/projects" :text="description"></r-link>
+			<r-link :way="{ name: 'Projects' }" :text="description"></r-link>
 			<span class="project-card__count">({{ count }} фото)</span>
 		</div>
 	</div>
 </template>
 
 <script>
-	import rLink from "@/components/r-link";
-
 	export default {
 		name: "ProjectCard",
 		props: {
 			img: String,
 			description: String,
 			count: Number,
-		},
-		components: {
-			rLink,
 		},
 	};
 </script>

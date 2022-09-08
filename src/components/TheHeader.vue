@@ -3,7 +3,7 @@
 		<div class="the-header__container center">
 			<div class="the-header__row">
 				<div class="the-header__col the-header__col-left">
-					<router-link to="/">
+					<router-link :to="{ name: 'Home' }">
 						<img
 							src="img/icon/logo.svg"
 							alt="logo"
@@ -13,7 +13,7 @@
 				</div>
 				<div class="the-header__col the-header__col-right">
 					<router-link
-						to="/cart"
+						:to="{ name: 'Cart' }"
 						class="animate__animated animate__fadeInDown the-header__cart-container"
 					>
 						<img
@@ -29,7 +29,7 @@
 						</span>
 					</router-link>
 					<router-link
-						to="/"
+						:to="{ name: 'Home' }"
 						class="animate__animated animate__fadeInDown"
 					>
 						<img
@@ -225,15 +225,13 @@
 </template>
 
 <script>
-	import { mapState, mapGetters, mapActions } from "vuex";
+	import { mapState } from "vuex";
 
 	import rSearch from "@/components/r-search";
 
 	export default {
 		name: "TheHeader",
-		components: {
-			rSearch,
-		},
+		components: { rSearch },
 		watch: {
 			"$route.path"() {
 				//* срабатывает при переходе по router-link
@@ -250,11 +248,7 @@
 			...mapState({
 				categories: (state) => state.Catalog.categories,
 				cart_list: (state) => state.Cart.cart_list,
-			}),
-
-			...mapGetters({
-				sub_categories: "SUB_CATEGORIES",
-				products: "PRODUCTS",
+				sub_categories: (state) => state.Catalog.sub_categories,
 			}),
 
 			cart_list_length() {
@@ -288,8 +282,6 @@
 			},
 		},
 		methods: {
-			...mapActions(["getCategories", "getSubcategories", "getProducts"]),
-
 			//*открытие и закрытие каталога
 			toggleCatalog() {
 				this.category = null;
@@ -336,11 +328,6 @@
 					}
 				}
 			},
-		},
-		created() {
-			this.getCategories();
-			this.getSubcategories();
-			this.getProducts();
 		},
 	};
 </script>

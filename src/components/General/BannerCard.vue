@@ -11,7 +11,7 @@
 			<r-tag v-for="tag in tags" :key="tag.id" :text="tag.text"></r-tag>
 		</div>
 		<r-link
-			path="/catalog"
+			:way="{ name: 'Catalog' }"
 			text="Перейти в каталог"
 			class="banner-card__link"
 		></r-link>
@@ -20,7 +20,6 @@
 
 <script>
 	import rTag from "@/components/r-tag";
-	import rLink from "@/components/r-link";
 
 	export default {
 		name: "BannerCard",
@@ -30,10 +29,7 @@
 			img: String,
 			tags: Array,
 		},
-		components: {
-			rTag,
-			rLink,
-		},
+		components: { rTag },
 	};
 </script>
 

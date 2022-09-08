@@ -118,8 +118,6 @@
 <script>
 	import TheHeader from "@/components/TheHeader";
 
-	import rBreadcrumbs from "@/components/r-breadcrumbs";
-	import rCheckbox from "@/components/r-checkbox";
 	import CartCard from "@/components/Cart/CartCard";
 	import CartCalculation from "@/components/Cart/CartCalculation";
 
@@ -132,8 +130,6 @@
 		components: {
 			TheHeader,
 
-			rBreadcrumbs,
-			rCheckbox,
 			CartCard,
 			CartCalculation,
 

@@ -20,8 +20,6 @@
 </template>
 
 <script>
-	import rButton from "@/components/r-button";
-
 	export default {
 		name: "rService",
 		props: {
@@ -29,9 +27,6 @@
 			title: String,
 			description: String,
 			button_text: String,
-		},
-		components: {
-			rButton,
 		},
 	};
 </script>

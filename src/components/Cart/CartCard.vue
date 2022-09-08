@@ -52,7 +52,6 @@
 </template>
 
 <script>
-	import rCheckbox from "@/components/r-checkbox";
 	import rCounter from "@/components/Catalog/r-counter";
 
 	import { mapMutations, mapActions } from "vuex";
@@ -60,7 +59,7 @@
 	export default {
 		name: "CartCard",
 		props: { product: Object },
-		components: { rCounter, rCheckbox },
+		components: { rCounter },
 		data: () => ({ counter: 1, checked: false }),
 		watch: {
 			counter() {

@@ -1,9 +1,5 @@
 <template>
-	<router-link
-		data-aos="fade-right"
-		:to="{ path: path, query }"
-		class="r-link"
-	>
+	<router-link data-aos="fade-right" :to="way" class="r-link">
 		<svg
 			width="38"
 			height="13"
@@ -25,8 +21,7 @@
 	export default {
 		name: "rLink",
 		props: {
-			path: String,
-			query: Object,
+			way: Object,
 			text: String,
 		},
 	};

@@ -1,12 +1,13 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
-import store from '@/store'
+import PageHome from '@/views/PageHome'
+import Page404 from '@/views/Page404'
 
 const routes = [
 	{
 		path: '/',
 		name: 'Home',
-		component: () => import('@/views/PageHome'),
+		component: PageHome,
 
 		meta: {
 			title: 'Колоток',
@@ -14,7 +15,7 @@ const routes = [
 	},
 	{
 		path: '/discount',
-		name: 'discount',
+		name: 'Discount',
 
 		component: () => import('@/views/PageDiscount'),
 
@@ -24,7 +25,7 @@ const routes = [
 	},
 	{
 		path: '/catalog',
-		name: 'catalog',
+		name: 'Catalog',
 
 		component: () => import('@/views/PageCatalog'),
 
@@ -34,7 +35,7 @@ const routes = [
 	},
 	{
 		path: '/catalog/:category',
-		name: 'category',
+		name: 'Category',
 
 		component: () => import('@/views/PageCategory'),
 
@@ -45,7 +46,7 @@ const routes = [
 
 	{
 		path: '/catalog/:category/product/:id',
-		name: 'product',
+		name: 'Product',
 
 		component: () => import('@/views/PageProduct'),
 
@@ -57,7 +58,7 @@ const routes = [
 	//*cart page
 	{
 		path: '/cart',
-		name: 'cart',
+		name: 'Cart',
 		component: () => import('@/views/PageCart'),
 
 		meta: {
@@ -67,6 +68,7 @@ const routes = [
 
 	{
 		path: '/projects',
+		name: 'Projects',
 
 		component: () => import('@/views/PageProjects'),
 
@@ -79,7 +81,7 @@ const routes = [
 	{
 		path: '/:pathMatch(.*)*',
 		name: 'NotFound',
-		component: () => import('@/views/Page404'),
+		component: Page404,
 
 		meta: {
 			title: '404',
@@ -93,12 +95,6 @@ const router = createRouter({
 	scrollBehavior() {
 		return { top: 0 }
 	}
-})
-
-router.beforeEach(() => {
-	store.dispatch('getCategories');
-	store.dispatch('getSubcategories');
-	store.dispatch('getProducts');
 })
 
 export default router

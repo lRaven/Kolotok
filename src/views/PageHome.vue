@@ -20,14 +20,14 @@
 <script>
 	import TheHeader from "@/components/TheHeader";
 
-	import TheBanner from "@/components/TheBanner";
+	import TheBanner from "@/components/General/TheBanner";
 	import TheCatalog from "@/components/Catalog/TheCatalog";
-	import TheServices from "@/components/TheServices";
-	import TheNovelties from "@/components/TheNovelties";
-	import TheSpecials from "@/components/TheSpecials";
-	import TheBenefits from "@/components/TheBenefits";
-	import TheProjects from "@/components/TheProjects";
-	import TheNews from "@/components/TheNews";
+	import TheServices from "@/components/General/TheServices";
+	import TheNovelties from "@/components/General/TheNovelties";
+	import TheSpecials from "@/components/General/TheSpecials";
+	import TheBenefits from "@/components/General/TheBenefits";
+	import TheProjects from "@/components/General/TheProjects";
+	import TheNews from "@/components/General/TheNews";
 
 	import TheFooter from "@/components/TheFooter";
 

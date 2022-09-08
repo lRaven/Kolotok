@@ -15,14 +15,12 @@
 			<p class="news-card__text">
 				{{ text }}
 			</p>
-			<r-link path="/" text="Читать далее"></r-link>
+			<r-link :way="{ name: 'Home' }" text="Читать далее"></r-link>
 		</div>
 	</div>
 </template>
 
 <script>
-	import rLink from "@/components/r-link";
-
 	export default {
 		name: "NewsCard",
 		props: {
@@ -31,9 +29,6 @@
 			title: String,
 			text: String,
 			route: String,
-		},
-		components: {
-			rLink,
 		},
 	};
 </script>
