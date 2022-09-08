@@ -12,7 +12,7 @@
 				prevEl: '.banner-slider__btn-prev',
 				nextEl: '.banner-slider__btn-next',
 			}"
-			:pagination="true"
+			:pagination="isHasPagination"
 			:modules="modules"
 			:speed="600"
 			:loop="true"
@@ -43,6 +43,8 @@
 
 	import BannerCard from "@/components/General/BannerCard";
 
+	import { mapState } from "vuex";
+
 	export default {
 		props: { slides: Array },
 		components: {
@@ -50,6 +52,36 @@
 			SwiperSlide,
 
 			BannerCard,
+		},
+		watch: {
+			document_width() {
+				this.paginationAdaptiveVisibility();
+			},
+		},
+		computed: {
+			...mapState({
+				document_width: (state) => state.document_width,
+			}),
+		},
+		data: () => ({
+			isHasPagination: true,
+		}),
+		methods: {
+			paginationAdaptiveVisibility() {
+				if (this.document_width > 1023) {
+					this.isHasPagination = true;
+				} else if (
+					this.document_width <= 1023 &&
+					this.document_width > 540
+				) {
+					this.isHasPagination = false;
+				} else {
+					this.isHasPagination = true;
+				}
+			},
+		},
+		mounted() {
+			this.paginationAdaptiveVisibility();
 		},
 		setup: () => ({ modules: [Navigation, Pagination] }),
 	};

@@ -104,27 +104,25 @@
 		padding: 4rem 2rem 2rem 1.5rem;
 		color: $white;
 
-		&::before {
-			content: "";
-			position: absolute;
-			left: -0.1rem;
-			top: -2.7rem;
-			width: 2.8rem;
-			height: 2.8rem;
-			background: url("/public/img/icon/decoration.svg") center / contain
-				no-repeat;
-			transform: rotate(-90deg);
-		}
+		&::before,
 		&::after {
 			content: "";
+			top: -10rem;
 			position: absolute;
+			height: 10rem;
+			width: 5rem;
+			background-color: transparent;
+			z-index: -1;
+		}
+		&::before {
+			border-radius: 0 0 0 3rem;
+			box-shadow: 0 5rem 0 0 $dark-blue;
+			left: 0;
+		}
+		&::after {
+			border-radius: 0 0 3rem 0;
+			box-shadow: 0 5rem 0 0 $dark-blue;
 			right: 0;
-			top: -2.7rem;
-			width: 2.8rem;
-			height: 2.8rem;
-			background: url("/public/img/icon/decoration.svg") center / contain
-				no-repeat;
-			transform: rotate(-180deg);
 		}
 
 		&-inner {

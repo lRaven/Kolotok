@@ -6,6 +6,7 @@ import cart from '@/store/modules/cart'
 export default createStore({
 	state: {
 		baseURL: process.env.VUE_APP_BACKEND_BASEURL,
+		document_width: document.documentElement.clientWidth,
 	},
 	getters: {
 		BASEURL: state => {
@@ -13,11 +14,19 @@ export default createStore({
 		}
 	},
 	mutations: {
-		SET_BASEURL(state, payload) {
-			state.baseURL = payload;
-		}
+		SET_BASEURL: (state, payload) => state.baseURL = payload,
+
+		SET_DOCUMENT_WIDTH: (state, payload) => state.document_width = payload,
 	},
 	actions: {
+		getDocumentWidth: async (context) => {
+			await context.commit('SET_DOCUMENT_WIDTH', document.documentElement.clientWidth);
+			await window.addEventListener("resize", () => {
+				setTimeout(() => {
+					context.commit('SET_DOCUMENT_WIDTH', document.documentElement.clientWidth);
+				}, 100);
+			});
+		},
 	},
 	modules: {
 		Cabinet: cabinet,

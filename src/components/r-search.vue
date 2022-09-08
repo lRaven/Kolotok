@@ -28,13 +28,7 @@
 <script>
 	export default {
 		name: "rSearch",
-		props: {
-			placeholder: String,
-		},
-		data() {
-			return {};
-		},
-		methods: {},
+		props: { placeholder: String },
 	};
 </script>
 
@@ -77,6 +71,10 @@
 			color: $white;
 			font-size: 1.4rem;
 			font-weight: 500;
+			@media (max-width: 540px) {
+				font-size: 1.2rem;
+				padding: 1rem 5rem 1rem 2rem;
+			}
 			&::placeholder {
 				color: $white;
 				font-weight: 500;
@@ -86,10 +84,13 @@
 		&__button {
 			position: absolute;
 			top: 0;
-			right: 0;
+			right: 1rem;
 			background-color: transparent;
 			width: 6rem;
 			height: 100%;
+			@media (max-width: 540px) {
+				width: 4rem;
+			}
 		}
 		&-icon {
 		}

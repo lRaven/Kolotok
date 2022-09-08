@@ -24,9 +24,21 @@
 	.catalog-category {
 		border-radius: 3rem;
 		overflow: hidden;
+		@media (max-width: 767px) {
+			display: flex;
+			border-radius: 1rem;
+			gap: 2rem;
+		}
+
 		&__top {
 			height: 30rem;
-			padding: 1rem;
+			@media (max-width: 767px) {
+				height: 10rem;
+			}
+			@media (max-width: 425px) {
+				height: 6rem;
+			}
+
 			img {
 				width: 100%;
 				height: 100%;
@@ -34,18 +46,37 @@
 			}
 		}
 		&__bottom {
-			border-top: 1px solid #c4c4c4;
+			border-top: 0.1rem solid #c4c4c4;
 			display: flex;
 			align-items: center;
 			padding: 3rem;
+			@media (max-width: 767px) {
+				padding: 2rem 2.5rem;
+				border-top: none;
+			}
+			@media (max-width: 425px) {
+				padding: 1rem;
+			}
 		}
 	}
 </style>
+
 <style lang="scss">
 	.catalog-category {
 		.r-link {
+			&__arrow {
+				@media (max-width: 767px) {
+					display: none;
+				}
+			}
 			&__text {
-				font-size: 2rem;
+				font-size: 2rem !important;
+				@media (max-width: 767px) {
+					font-weight: 600;
+				}
+				@media (max-width: 540px) {
+					font-size: 1.6rem !important;
+				}
 			}
 		}
 	}

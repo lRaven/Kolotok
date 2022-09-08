@@ -11,15 +11,31 @@
 			width: 5rem !important;
 			height: 5rem !important;
 			z-index: 2 !important;
+			margin-top: 0 !important;
+			transform: translateY(-50%);
+			@media (max-width: 540px) {
+				background-color: transparent;
+				width: 2rem !important;
+				height: 2rem !important;
+			}
 			&::after {
 				font-size: 2.4rem !important;
+				@media (max-width: 540px) {
+					font-size: 1.8rem !important;
+				}
 			}
 		}
 		&-prev {
 			left: -2.5rem !important;
+			@media (max-width: 1023px) {
+				left: 0 !important;
+			}
 		}
 		&-next {
 			right: -2.5rem !important;
+			@media (max-width: 1023px) {
+				right: 0 !important;
+			}
 		}
 	}
 
@@ -36,12 +52,20 @@
 			margin: 0 1rem !important;
 			background-color: $white !important;
 			opacity: 0.5 !important;
+			@media (max-width: 540px) {
+				width: 1rem !important;
+				height: 1rem !important;
+				margin: 0 0.5rem !important;
+			}
 			&-active {
 				opacity: 1 !important;
 			}
 		}
 		&-horizontal {
 			bottom: 3rem !important;
+			@media (max-width: 540px) {
+				bottom: 1rem !important;
+			}
 		}
 	}
 }

@@ -1,8 +1,12 @@
 <template>
-	<button class="r-button shadow" :class="color" :type="type">
+	<button class="r-button shadow" :class="[color, reverse ? 'reverse' : '']">
 		{{ text }}
 		<img
-			src="img/icon/arrow-long.svg"
+			:src="
+				document_width > 540
+					? '/img/icon/arrow-long.svg'
+					: '/img/icon/basket/arrow.svg'
+			"
 			alt="arrow"
 			class="r-button__arrow"
 			v-show="arrow"
@@ -11,16 +15,24 @@
 </template>
 
 <script>
+	import { mapState } from "vuex";
+
 	export default {
 		name: "rButton",
 		props: {
 			text: String,
-			type: String,
 			arrow: {
 				value: Boolean,
 				default: false,
 			},
+			reverse: {
+				value: Boolean,
+				default: false,
+			},
 			color: String,
+		},
+		computed: {
+			...mapState(["document_width"]),
 		},
 	};
 </script>
@@ -37,6 +49,14 @@
 		font-size: 1.6rem;
 		width: max-content;
 		transition: all 0.2s ease;
+		@media (max-width: 540px) {
+			padding: 1rem 1.2rem;
+			font-size: 1.4rem;
+		}
+		&.reverse {
+			flex-direction: row-reverse;
+		}
+
 		&.yellow {
 			background-color: $yellow;
 			color: $dark-blue;
@@ -53,11 +73,23 @@
 			color: $white;
 			font-weight: 700;
 		}
+		&.white {
+			background-color: $white;
+			color: $dark-blue;
+			font-weight: 500;
+		}
 		&:hover {
 			transform: translateY(-0.3rem);
 		}
 		&:active {
 			transform: translateY(-0.1rem);
+		}
+
+		&__arrow {
+			height: 1.8rem;
+			@media (max-width: 540px) {
+				height: 1rem;
+			}
 		}
 	}
 </style>

@@ -62,12 +62,17 @@
 </script>
 
 <style lang="scss" scoped>
+	@import "@/assets/scss/variables";
+
 	.services-slider {
 		position: relative;
 		&__swiper {
 		}
 
-		&__button {
+		&__btn {
+			@media (max-width: 540px) {
+				color: rgba($white, $alpha: 0.5);
+			}
 		}
 	}
 </style>

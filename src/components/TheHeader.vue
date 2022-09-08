@@ -2,15 +2,75 @@
 	<div class="the-header animate__animated animate__fadeInDown">
 		<div class="the-header__container center">
 			<div class="the-header__row">
-				<div class="the-header__col the-header__col-left">
-					<router-link :to="{ name: 'Home' }">
-						<img
-							src="img/icon/logo.svg"
-							alt="logo"
-							class="animate__animated animate__fadeInDown the-header__logo"
+				<button
+					v-show="document_width <= 540"
+					type="button"
+					class="the-header__catalog-burger"
+					:class="{ open: isCatalogOpen }"
+					@click="
+						isCatalogOpen
+							? (isCatalogOpen = false)
+							: (isCatalogOpen = true)
+					"
+				>
+					<svg
+						width="26"
+						height="2"
+						viewBox="0 0 26 2"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+						class="the-header__catalog-line"
+					>
+						<path
+							d="M1 1H25"
+							stroke="#FEFEFE"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
 						/>
-					</router-link>
-				</div>
+					</svg>
+					<svg
+						width="26"
+						height="2"
+						viewBox="0 0 26 2"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+						class="the-header__catalog-line"
+					>
+						<path
+							d="M1 1H25"
+							stroke="#FEFEFE"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						/>
+					</svg>
+					<svg
+						width="26"
+						height="2"
+						viewBox="0 0 26 2"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+						class="the-header__catalog-line"
+					>
+						<path
+							d="M1 1H25"
+							stroke="#FEFEFE"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						/>
+					</svg>
+				</button>
+
+				<router-link class="the-header__col" :to="{ name: 'Home' }">
+					<img
+						src="img/icon/logo.svg"
+						alt="logo"
+						class="animate__animated animate__fadeInDown the-header__logo"
+					/>
+				</router-link>
+
 				<div class="the-header__col the-header__col-right">
 					<router-link
 						:to="{ name: 'Cart' }"
@@ -31,6 +91,7 @@
 					<router-link
 						:to="{ name: 'Home' }"
 						class="animate__animated animate__fadeInDown"
+						v-show="document_width > 540"
 					>
 						<img
 							src="img/icon/avatar.svg"
@@ -43,14 +104,21 @@
 
 			<div class="the-header__row">
 				<div
+					v-show="document_width > 540"
 					class="the-header__col the-header__col-left the-header__catalog-wrapper"
 				>
 					<div
 						class="the-header__catalog-button animate__animated animate__fadeInDown"
 					>
-						<div
+						<button
+							type="button"
 							class="the-header__catalog-burger"
-							@click="toggleCatalog"
+							:class="{ open: isCatalogOpen }"
+							@click="
+								isCatalogOpen
+									? (isCatalogOpen = false)
+									: (isCatalogOpen = true)
+							"
 						>
 							<svg
 								width="26"
@@ -100,9 +168,10 @@
 									stroke-linejoin="round"
 								/>
 							</svg>
-						</div>
+						</button>
 						<h5 class="the-header__catalog-title">Каталог</h5>
 					</div>
+
 					<transition>
 						<div class="the-header__catalog" v-show="isCatalogOpen">
 							<ul class="the-header__catalog-list">
@@ -184,10 +253,7 @@
 									:key="product.id"
 									:to="`/catalog/product/${product.id}`"
 								>
-									<li
-										class="the-header__catalog-item"
-										@click="toggleCatalog()"
-									>
+									<li class="the-header__catalog-item">
 										<p
 											class="the-header__catalog-item-description"
 										>
@@ -214,14 +280,19 @@
 						</div>
 					</transition>
 				</div>
-				<div class="the-header__col the-header__col-right">
-					<form class="the-header__search">
-						<r-search placeholder="Поиск..."></r-search>
-					</form>
-				</div>
+
+				<form class="the-header__search">
+					<r-search
+						:class="{ open: isCatalogOpen }"
+						placeholder="Поиск..."
+					></r-search>
+				</form>
 			</div>
 		</div>
 	</div>
+	<transition mode="out-in">
+		<div class="blur" v-show="isCatalogOpen"></div>
+	</transition>
 </template>
 
 <script>
@@ -237,9 +308,25 @@
 				//* срабатывает при переходе по router-link
 				this.isCatalogOpen = false;
 			},
+			isCatalogOpen() {
+				if (this.isCatalogOpen) {
+					document.body.classList.add("locked");
+				} else {
+					document.body.classList.remove("locked");
+					this.category = null;
+					this.sub_category = null;
+					this.catalog_columns = 1;
+				}
+			},
+			document_width() {
+				if (this.document_width <= 540 && this.isCatalogOpen) {
+					this.isCatalogOpen = false;
+				}
+			},
 		},
 		data: () => ({
 			isCatalogOpen: false,
+
 			category: null,
 			sub_category: null,
 			catalog_columns: 1,
@@ -249,6 +336,7 @@
 				categories: (state) => state.Catalog.categories,
 				cart_list: (state) => state.Cart.cart_list,
 				sub_categories: (state) => state.Catalog.sub_categories,
+				document_width: (state) => state.document_width,
 			}),
 
 			cart_list_length() {
@@ -282,36 +370,6 @@
 			},
 		},
 		methods: {
-			//*открытие и закрытие каталога
-			toggleCatalog() {
-				this.category = null;
-				const body = document.querySelector("body");
-
-				const header = document.querySelector(".the-header");
-				const rSearch = header.querySelector(".r-search");
-				const catalog = header.querySelector(".the-header__catalog");
-				const burger = header.querySelector(
-					".the-header__catalog-burger"
-				);
-
-				const blur = document.querySelector(".r-blur");
-
-				if (burger.classList.contains("open")) {
-					burger.classList.remove("open");
-					this.isCatalogOpen = false;
-					body.classList.remove("locked");
-					blur.classList.remove("open");
-					rSearch.classList.remove("open");
-					catalog.removeAttribute("style");
-				} else {
-					burger.classList.add("open");
-					this.isCatalogOpen = true;
-					body.classList.add("locked");
-					blur.classList.add("open");
-					rSearch.classList.add("open");
-				}
-			},
-
 			openCatalogList() {
 				const header = document.querySelector(".the-header");
 				const catalog = header.querySelector(".the-header__catalog");
@@ -345,28 +403,33 @@
 		justify-content: center;
 		background-color: $dark-blue;
 		padding: 3rem 2.5rem;
-		z-index: 3;
-
-		&::before {
-			content: "";
-			position: absolute;
-			left: 0;
-			bottom: -2.7rem;
-			width: 2.8rem;
-			height: 2.8rem;
-			background: url("/public/img/icon/decoration.svg") center / contain
-				no-repeat;
+		z-index: 4;
+		@media (max-width: 1023px) {
+			padding: 2rem;
 		}
+		@media (max-width: 540px) {
+			padding: 1rem 1.5rem;
+		}
+
+		&::before,
 		&::after {
 			content: "";
+			bottom: -10rem;
 			position: absolute;
-			right: -0.1rem;
-			bottom: -2.7rem;
-			width: 2.8rem;
-			height: 2.8rem;
-			background: url("/public/img/icon/decoration.svg") center / contain
-				no-repeat;
-			transform: rotate(90deg);
+			height: 10rem;
+			width: 5rem;
+			background-color: transparent;
+			z-index: -1;
+		}
+		&::before {
+			border-top-left-radius: 3rem;
+			box-shadow: 0 -5rem 0 0 $dark-blue;
+			left: 0;
+		}
+		&::after {
+			border-top-right-radius: 3rem;
+			box-shadow: 0 -5rem 0 0 $dark-blue;
+			right: 0;
 		}
 		&__container {
 		}
@@ -374,6 +437,13 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
+			&:first-child {
+				.the-header__col {
+					width: max-content;
+					&-right {
+					}
+				}
+			}
 			+ .the-header__row {
 				margin-top: 1.2rem;
 			}
@@ -387,15 +457,28 @@
 			&-left {
 			}
 			&-right {
-				justify-content: flex-end;
+				// justify-content: flex-end;
 			}
 		}
 		&__logo {
+			height: 8.5rem;
+			@media (max-width: 1023px) {
+				height: 4rem;
+			}
+			@media (max-width: 540px) {
+				height: 2rem;
+			}
 		}
 		&__cart {
+			@media (max-width: 540px) {
+				width: 2.4rem;
+			}
 			&-container {
 				position: relative;
 				width: 5rem;
+				@media (max-width: 540px) {
+					width: 3.3rem;
+				}
 			}
 			&-counter {
 				position: absolute;
@@ -411,6 +494,12 @@
 				height: 2.3rem;
 				font-size: 1.6rem;
 				font-weight: 600;
+				@media (max-width: 540px) {
+					width: 1.5rem;
+					height: 1.5rem;
+					font-size: 1rem;
+					top: -0.5rem;
+				}
 			}
 		}
 		&__avatar {
@@ -422,7 +511,7 @@
 			top: 100%;
 			height: fit-content;
 			width: fit-content;
-			background-color: #fff;
+			background-color: $white;
 			overflow: hidden;
 
 			&-list {
@@ -476,10 +565,10 @@
 				gap: 3rem;
 			}
 			&-burger {
-				cursor: pointer;
 				width: 5rem;
 				height: 5rem;
 				border: 0.2rem solid $white;
+				background-color: transparent;
 				display: flex;
 				align-items: center;
 				justify-content: center;
@@ -488,6 +577,11 @@
 				border-radius: 50%;
 				overflow: hidden;
 				transition: all 0.2s ease;
+				@media (max-width: 540px) {
+					width: 2.8rem;
+					height: 2.8rem;
+					gap: 0.2rem;
+				}
 				&.open {
 					border-radius: 0.3rem;
 					background-color: $white;
@@ -497,9 +591,17 @@
 						}
 						&:first-child {
 							transform: translateY(0.5rem) rotate(45deg);
+							@media (max-width: 540px) {
+								transform: translateY(0.2rem) rotate(45deg)
+									scale(0.5, 0.75);
+							}
 						}
 						&:last-child {
 							transform: translateY(-0.5rem) rotate(-45deg);
+							@media (max-width: 540px) {
+								transform: translateY(-0.2rem) rotate(-45deg)
+									scale(0.5, 0.75);
+							}
 						}
 						&:nth-child(2) {
 							display: none;
@@ -510,6 +612,10 @@
 			&-line {
 				display: block;
 				transition: all 0.2s ease;
+
+				@media (max-width: 540px) {
+					transform: scale(0.5, 0.75);
+				}
 			}
 			&-title {
 				user-select: none;
@@ -523,5 +629,15 @@
 			justify-content: flex-end;
 			width: 100%;
 		}
+	}
+
+	.blur {
+		position: fixed;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		background-color: rgba($color: #000000, $alpha: 0.5);
+		z-index: 3;
 	}
 </style>

@@ -28,12 +28,19 @@
 		},
 		components: { rBlur },
 		methods: {
-			...mapActions(["getCategories", "getSubcategories", "getProducts"]),
+			...mapActions([
+				"getCategories",
+				"getSubcategories",
+				"getProducts",
+				"getDocumentWidth",
+			]),
 		},
 		created() {
 			this.getCategories();
 			this.getSubcategories();
 			// this.getProducts();
+
+			this.getDocumentWidth();
 		},
 		mounted() {
 			Aos.init();
@@ -124,18 +131,39 @@
 	h1 {
 		font-size: 5rem;
 		font-weight: 500;
+		@media (max-width: 1023px) {
+			font-size: 3.6rem;
+		}
+		@media (max-width: 540px) {
+			font-size: 2rem;
+		}
 	}
 	h2 {
 		font-size: 4.5rem;
 		font-weight: 500;
+		@media (max-width: 1023px) {
+			font-size: 3.2rem;
+		}
+		@media (max-width: 540px) {
+			font-size: 2.4rem;
+		}
 	}
 	h3 {
 		font-size: 3rem;
 		font-weight: 500;
+		@media (max-width: 1023px) {
+			font-size: 2rem;
+		}
+		@media (max-width: 540px) {
+			font-size: 1.8rem;
+		}
 	}
 	h4 {
 		font-size: 2.5rem;
 		font-weight: 400;
+		@media (max-width: 1023px) {
+			font-size: 2rem;
+		}
 	}
 	h5 {
 		font-size: 2rem;
@@ -147,6 +175,9 @@
 	}
 	p {
 		font-size: 1.6rem;
+		@media (max-width: 1023px) {
+			font-size: 1.4rem;
+		}
 	}
 
 	img,
@@ -159,11 +190,23 @@
 		display: flex;
 		flex-direction: column;
 		flex: 1 0 auto;
-		padding-top: 25rem;
+		padding-top: 21rem;
+		@media (max-width: 1023px) {
+			padding-top: 14rem;
+		}
+		@media (max-width: 540px) {
+			padding-top: 10rem;
+		}
 	}
 
 	section {
 		padding: 2.5rem;
+		@media (max-width: 1023px) {
+			padding: 2rem;
+		}
+		@media (max-width: 540px) {
+			padding: 1.5rem;
+		}
 	}
 
 	.footer {

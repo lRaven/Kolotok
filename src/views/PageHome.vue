@@ -4,16 +4,19 @@
 
 		<main class="main">
 			<the-banner />
+
 			<the-catalog title="Категории товаров" :isCatalogPage="false" />
 			<the-services />
 			<the-novelties />
-			<the-specials />
-			<the-benefits />
-			<the-projects />
-			<the-news />
+			<template v-if="false">
+				<the-specials />
+				<the-benefits />
+				<the-projects />
+				<the-news />
+			</template>
 		</main>
 
-		<the-footer />
+		<the-footer v-if="false" />
 	</div>
 </template>
 

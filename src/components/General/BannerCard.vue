@@ -4,32 +4,47 @@
 		<h1 class="banner-card__title">
 			{{ title }}
 		</h1>
-		<h4 class="banner-card__subtitle">
+		<h4 class="banner-card__subtitle" v-show="document_width > 540">
 			{{ subtitle }}
 		</h4>
-		<div class="banner-card__tags">
+		<div class="banner-card__tags" v-show="document_width > 1023">
 			<r-tag v-for="tag in tags" :key="tag.id" :text="tag.text"></r-tag>
 		</div>
+
 		<r-link
+			v-show="document_width > 1023"
 			:way="{ name: 'Catalog' }"
 			text="Перейти в каталог"
 			class="banner-card__link"
 		></r-link>
+
+		<r-button
+			v-show="document_width <= 1023"
+			color="white"
+			:arrow="true"
+			:reverse="true"
+			text="Перейти в каталог"
+		></r-button>
 	</div>
 </template>
 
 <script>
 	import rTag from "@/components/r-tag";
 
+	import { mapState } from "vuex";
+
 	export default {
 		name: "BannerCard",
+		components: { rTag },
 		props: {
 			title: String,
 			subtitle: String,
 			img: String,
 			tags: Array,
 		},
-		components: { rTag },
+		computed: {
+			...mapState(["document_width"]),
+		},
 	};
 </script>
 
@@ -43,6 +58,13 @@
 		overflow: hidden;
 		width: 100%;
 		height: 100%;
+		@media (max-width: 1023px) {
+			padding: 5rem 5rem 3rem 5rem;
+			border-radius: 2rem;
+		}
+		@media (max-width: 540px) {
+			padding: 3rem 2rem 4rem 2rem;
+		}
 		&__bg {
 			position: absolute;
 			left: 0;
@@ -64,6 +86,10 @@
 			max-width: 39rem;
 			line-height: 1.5;
 			margin-bottom: 7rem;
+			@media (max-width: 1023px) {
+				margin-bottom: 11rem;
+				line-height: 1.2;
+			}
 		}
 		&__tags {
 			display: flex;
