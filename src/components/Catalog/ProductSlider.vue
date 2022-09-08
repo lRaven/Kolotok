@@ -1,13 +1,16 @@
 <template>
 	<div class="product-slider">
 		<div class="product-slider__body">
+			<button
+				class="product-slider__btn product-slider__prev swiper-button-prev"
+			></button>
 			<swiper
 				:slidesPerView="1"
-				:navigation="true"
-				:modules="modules"
-				:style="{
-					'--swiper-navigation-color': '#7a7a7a',
+				:navigation="{
+					prevEl: '.product-slider__prev',
+					nextEl: '.product-slider__next',
 				}"
+				:modules="modules"
 				:speed="350"
 				:loop="true"
 			>
@@ -15,6 +18,9 @@
 					<img :src="slide.img" alt="" class="product-slider__img" />
 				</swiper-slide>
 			</swiper>
+			<button
+				class="product-slider__btn product-slider__next swiper-button-next"
+			></button>
 		</div>
 
 		<div class="product-slider__bg" @click="closeModal"></div>
@@ -51,6 +57,8 @@
 </script>
 
 <style lang="scss" scoped>
+	@import "@/assets/scss/variables";
+
 	.product-slider {
 		position: fixed;
 		left: 0;
@@ -63,7 +71,8 @@
 		z-index: 4;
 		padding: 2rem;
 		&__body {
-			background-color: #fff;
+			position: relative;
+			background-color: $white;
 			display: flex;
 			justify-content: center;
 			align-items: center;
@@ -72,6 +81,12 @@
 			height: 100%;
 			max-width: 80vh;
 			width: 100%;
+		}
+		&__prev {
+			left: 1.5rem !important;
+		}
+		&__next {
+			right: 1.5rem !important;
 		}
 		&__img {
 			height: 100%;
