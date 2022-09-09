@@ -36,8 +36,8 @@
 	import { Swiper, SwiperSlide } from "swiper/vue";
 	import { Navigation } from "swiper";
 
-	import "swiper/css";
-	import "swiper/css/navigation";
+	import "swiper/scss";
+	import "swiper/scss/navigation";
 
 	import rService from "@/components/r-service";
 

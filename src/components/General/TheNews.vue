@@ -84,6 +84,9 @@
 			color: $dark-blue;
 			padding: 0 1rem;
 			margin-bottom: 3.5rem;
+			@media (max-width: 540px) {
+				margin-bottom: 3rem;
+			}
 		}
 	}
 </style>

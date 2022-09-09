@@ -91,11 +91,20 @@
 			overflow: hidden;
 			max-width: 145rem;
 			padding: 0 2.5rem;
+			@media (max-width: 1023px) {
+				padding: 0 2rem;
+			}
+			@media (max-width: 540px) {
+				padding: 0 1.5rem;
+			}
 		}
 		&__title {
 			color: $dark-blue;
 			margin-bottom: 3.5rem;
 			padding: 0 1rem;
+			@media (max-width: 540px) {
+				margin-bottom: 3rem;
+			}
 		}
 	}
 </style>

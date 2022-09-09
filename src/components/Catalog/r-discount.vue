@@ -26,5 +26,10 @@
 		font-size: 1.6rem;
 		font-weight: 600;
 		color: $dark-blue;
+		@media (max-width: 767px) {
+			width: 4rem;
+			height: 4rem;
+			font-size: 1.4rem;
+		}
 	}
 </style>

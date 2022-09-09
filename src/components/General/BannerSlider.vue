@@ -37,9 +37,9 @@
 	import { Swiper, SwiperSlide } from "swiper/vue";
 	import { Navigation, Pagination } from "swiper";
 
-	import "swiper/css";
-	import "swiper/css/navigation";
-	import "swiper/css/pagination";
+	import "swiper/scss";
+	import "swiper/scss/navigation";
+	import "swiper/scss/pagination";
 
 	import BannerCard from "@/components/General/BannerCard";
 

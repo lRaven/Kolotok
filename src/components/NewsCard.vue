@@ -42,13 +42,21 @@
 		color: $dark-blue;
 		border-radius: 3rem;
 		overflow: hidden;
+		@media (max-width: 1200px) {
+			grid-template-rows: 20rem 1fr;
+			border-radius: 1rem;
+		}
+		@media (max-width: 767px) {
+			max-width: 22rem;
+			grid-template-rows: 10rem 1fr;
+		}
 
 		&__top {
 			display: flex;
 			justify-content: flex-end;
 		}
 		&__date {
-			background: rgba(255, 255, 255, 0.4);
+			background: rgba($white, 0.4);
 			box-shadow: 0 0.4rem 0.4rem rgba(0, 0, 0, 0.1);
 			backdrop-filter: blur(5rem);
 			width: fit-content;
@@ -59,7 +67,10 @@
 			border-radius: 0 0 0 3rem;
 			animation-delay: 0.2s;
 			@-moz-document url-prefix() {
-				background: rgba(255, 255, 255, 0.85);
+				background: rgba($white, 0.85);
+			}
+			@media (max-width: 767px) {
+				display: none;
 			}
 		}
 
@@ -67,6 +78,12 @@
 			padding: 3.7rem 2.8rem 4.5rem 3.6rem;
 			display: flex;
 			flex-direction: column;
+			@media (max-width: 1200px) {
+				padding: 2rem;
+			}
+			@media (max-width: 1023px) {
+				padding: 2rem 1rem;
+			}
 		}
 		&__title {
 			margin-bottom: 1.5rem;
@@ -76,6 +93,15 @@
 			line-height: 1.3;
 			margin-bottom: 10rem;
 			animation-delay: 0.4s;
+			@media (max-width: 1200px) {
+				margin-bottom: 4rem;
+			}
+			@media (max-width: 1023px) {
+				margin-bottom: 2rem;
+			}
+			@media (max-width: 767px) {
+				color: $dark;
+			}
 		}
 		.r-link {
 			margin-left: auto;

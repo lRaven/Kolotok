@@ -1,13 +1,19 @@
 <template>
-	<div class="r-card-wrapper" @mouseleave="removeMaximizeCard">
-		<div data-aos="fade-up" class="r-card" @mouseenter="maximizeCard">
+	<div class="r-card-wrapper">
+		<div data-aos="fade-up" class="r-card">
 			<div class="r-card__main">
 				<r-discount
 					class="r-card__discount"
 					v-show="card.discount_percent"
 					:discount="card.discount_percent"
 				></r-discount>
-				<r-favorite class="r-card__favorite"></r-favorite>
+				<r-favorite
+					@addFavorite="addFavorite"
+					@removeFavorite="removeFavorite"
+					class="r-card__favorite"
+					:isFavorite="isFavorite"
+					v-model="isFavorite"
+				></r-favorite>
 				<router-link
 					:to="`/catalog/${card.category}/product/${card.id}`"
 				>
@@ -37,7 +43,7 @@
 		<transition name="fade" mode="out-in">
 			<r-card-maximize
 				:card="card"
-				v-show="isMaximize"
+				v-if="isMaximize"
 				@removeMaximizeCard="removeMaximizeCard"
 			></r-card-maximize>
 		</transition>
@@ -80,22 +86,18 @@
 <style lang="scss" scoped>
 	@import "@/assets/scss/variables.scss";
 
-	.r-card-maximize {
-		position: absolute;
-		top: 0;
-		left: 50%;
-		transform: translateX(-50%);
-		max-width: 24rem;
-		width: 24rem;
-	}
 	.r-card {
 		position: relative;
 		color: $dark-blue;
 		transition: all 0.2s ease;
 		&-wrapper {
 			position: relative;
-			max-width: 22rem;
+			min-width: 21rem;
 			width: 100%;
+			@media (max-width: 540px) {
+				max-width: 14rem;
+				min-width: inherit;
+			}
 		}
 
 		&__main {
@@ -109,6 +111,12 @@
 			height: 22rem;
 			margin-bottom: 1rem;
 			box-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.1);
+			@media (max-width: 767px) {
+				border-radius: 2rem;
+			}
+			@media (max-width: 540px) {
+				height: 14rem;
+			}
 		}
 		&__discount {
 			position: absolute;
@@ -142,6 +150,9 @@
 			max-width: 100%;
 			max-height: 20rem;
 			object-fit: contain;
+			@media (max-width: 540px) {
+				max-height: 12rem;
+			}
 		}
 
 		&__footer {
@@ -165,6 +176,15 @@
 		&__name {
 			font-weight: 300;
 			line-height: 1.3;
+		}
+
+		&-maximize {
+			position: absolute;
+			top: 0;
+			left: 50%;
+			transform: translateX(-50%);
+			max-width: 24rem;
+			width: 24rem;
 		}
 	}
 </style>

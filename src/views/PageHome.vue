@@ -8,15 +8,13 @@
 			<the-catalog title="Категории товаров" :isCatalogPage="false" />
 			<the-services />
 			<the-novelties />
-			<template v-if="false">
-				<the-specials />
-				<the-benefits />
-				<the-projects />
-				<the-news />
-			</template>
+			<the-specials />
+			<the-benefits />
+			<the-projects />
+			<the-news />
 		</main>
 
-		<the-footer v-if="false" />
+		<the-footer />
 	</div>
 </template>
 

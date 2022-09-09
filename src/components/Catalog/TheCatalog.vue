@@ -22,8 +22,8 @@
 				text="Смотреть всё"
 				color="yellow"
 				:arrow="true"
-				v-if="!isCatalogPage"
-				@click="this.$router.push('/catalog')"
+				v-show="!isCatalogPage"
+				@click="this.$router.push({ name: 'Catalog' })"
 			></r-button>
 		</div>
 	</section>
@@ -221,6 +221,9 @@
 			color: $dark-blue;
 			@media (max-width: 1023px) {
 				margin-bottom: 4rem;
+			}
+			@media (max-width: 540px) {
+				margin-bottom: 3rem;
 			}
 		}
 		&__categories {

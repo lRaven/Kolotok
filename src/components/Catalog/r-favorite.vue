@@ -10,17 +10,8 @@
 		>
 			<path
 				d="M14.5 27L12.3975 25.0578C4.93 18.1864 0 13.6545 0 8.09267C0 3.56076 3.50901 0 7.975 0C10.498 0 12.9195 1.19183 14.5 3.07521C16.0805 1.19183 18.502 0 21.0249 0C25.4911 0 29 3.56076 29 8.09267C29 13.6545 24.0699 18.1864 16.6025 25.0725L14.5 27Z"
-				fill="#B8B8B8"
-				fill-opacity="0.3"
-				v-if="!favorited"
-				@click="addToFavorites"
-				class="r-favorite__path"
-			/>
-			<path
-				d="M14.5 27L12.3975 25.0578C4.93 18.1864 0 13.6545 0 8.09267C0 3.56076 3.50901 0 7.975 0C10.498 0 12.9195 1.19183 14.5 3.07521C16.0805 1.19183 18.502 0 21.0249 0C25.4911 0 29 3.56076 29 8.09267C29 13.6545 24.0699 18.1864 16.6025 25.0725L14.5 27Z"
-				fill="#fb1174"
-				v-else
-				@click="removeFromFavorites"
+				:fill="color"
+				@click="isFavorite ? removeFavorite() : addFavorite()"
 				class="r-favorite__path"
 			/>
 		</svg>
@@ -30,27 +21,20 @@
 <script>
 	export default {
 		name: "rFavorite",
-		props: {
-			favorite: Boolean,
-		},
+		props: { isFavorite: Boolean },
 		computed: {
 			color() {
 				let result = "#eaeaea";
-				if (this.favorited === true) result = "#fb1174";
+				if (this.isFavorite === true) result = "#fb1174";
 				return result;
 			},
 		},
-		data: () => ({
-			favorited: false,
-		}),
 		methods: {
-			addToFavorites() {
-				this.favorited = true;
-				this.$emit("addToFavorites", true);
+			addFavorite() {
+				this.$emit("addFavorite");
 			},
-			removeFromFavorites() {
-				this.favorited = false;
-				this.$emit("addToFavorites", false);
+			removeFavorite() {
+				this.$emit("removeFavorite");
 			},
 		},
 	};
@@ -62,8 +46,15 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		width: fit-content;
+		width: 3rem;
+		height: 3rem;
+		@media (max-width: 540px) {
+			width: 2rem;
+			height: 2rem;
+		}
 		&__icon {
+			width: 100%;
+			height: 100%;
 		}
 		&__path {
 			pointer-events: all;

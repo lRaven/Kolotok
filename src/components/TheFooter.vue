@@ -2,7 +2,6 @@
 	<footer class="the-footer" id="footer">
 		<div class="the-footer-inner center">
 			<div class="the-footer__top">
-				<img src="img/icon/logo.svg" alt="" class="the-footer__logo" />
 				<div class="the-footer__socials">
 					<p>Соцсети</p>
 					<div class="the-footer__socials-group">
@@ -72,6 +71,64 @@
 						</a>
 					</div>
 				</div>
+				<ul class="the-footer__links">
+					<li class="the-footer__link-wrapper">
+						<router-link
+							:to="{ name: 'Home' }"
+							class="the-footer__link"
+						>
+							О компании
+						</router-link>
+					</li>
+					<li class="the-footer__link-wrapper">
+						<router-link
+							:to="{ name: 'Home' }"
+							class="the-footer__link"
+						>
+							Новости
+						</router-link>
+					</li>
+					<li class="the-footer__link-wrapper">
+						<router-link
+							:to="{ name: 'Home' }"
+							class="the-footer__link"
+						>
+							Финансы
+						</router-link>
+					</li>
+					<li class="the-footer__link-wrapper">
+						<router-link
+							:to="{ name: 'Home' }"
+							class="the-footer__link"
+						>
+							Trade-In
+						</router-link>
+					</li>
+					<li class="the-footer__link-wrapper">
+						<router-link
+							:to="{ name: 'Home' }"
+							class="the-footer__link"
+						>
+							Реквизиты
+						</router-link>
+					</li>
+					<li class="the-footer__link-wrapper">
+						<router-link
+							:to="{ name: 'Home' }"
+							class="the-footer__link"
+						>
+							Вакансии
+						</router-link>
+					</li>
+					<li class="the-footer__link-wrapper">
+						<router-link
+							:to="{ name: 'Home' }"
+							class="the-footer__link"
+						>
+							Офисы продаж
+						</router-link>
+					</li>
+				</ul>
 			</div>
 			<div class="the-footer__disclaimer">
 				<p>
@@ -101,8 +158,14 @@
 		align-items: center;
 		position: relative;
 		background-color: $dark-blue;
-		padding: 4rem 2rem 2rem 1.5rem;
+		padding: 4rem 2.5rem 2.5rem 1.5rem;
 		color: $white;
+		@media (max-width: 1023px) {
+			padding: 3rem 2rem 2rem 2rem;
+		}
+		@media (max-width: 540px) {
+			padding: 3rem 1.5rem 2rem 1.5rem;
+		}
 
 		&::before,
 		&::after {
@@ -137,23 +200,36 @@
 			align-items: center;
 			gap: 2rem;
 			font-size: 1.6rem;
+			@media (max-width: 1023px) {
+				align-items: flex-start;
+			}
+			@media (max-width: 540px) {
+				flex-direction: column;
+			}
 
 			p {
 				font-weight: 600;
 				margin-right: 1rem;
 			}
 		}
-		&__logo {
-			height: 7rem;
-		}
+
 		&__socials {
 			display: flex;
 			align-items: center;
 			gap: 1rem;
+			@media (max-width: 1023px) {
+				flex-direction: column;
+				align-items: flex-start;
+				gap: 2rem;
+			}
+
 			&-group {
 				display: flex;
 				align-items: center;
 				gap: 2rem;
+			}
+			p {
+				font-size: 1.6rem;
 			}
 			a {
 				height: 3rem;
@@ -166,6 +242,31 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
+		}
+
+		&__links {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			@media (max-width: 1023px) {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+			}
+			@media (max-width: 375px) {
+				grid-template-columns: repeat(2, 1fr);
+			}
+		}
+		&__link {
+			display: block;
+			color: $white;
+			padding: 1rem;
+			width: max-content;
+			font-size: 1.6rem;
+			@media (max-width: 1023px) {
+				font-size: 1.4rem;
+			}
+			&-wrapper {
+			}
 		}
 
 		&__disclaimer {

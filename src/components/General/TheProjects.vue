@@ -3,50 +3,54 @@
 		<h2 data-aos="fade-right" class="the-projects__title">
 			Проекты клиентов
 		</h2>
-		<div class="the-projects__list">
+		<div class="the-projects__list" v-show="document_width > 540">
 			<img
 				data-aos="fade-up"
-				src="img/projects/project1.png"
-				class="the-projects__list-item the-projects__list-item1"
-				alt=""
-			/>
-			<img
-				data-aos="fade-up"
-				src="img/projects/project2.png"
-				class="the-projects__list-item the-projects__list-item2"
-				alt=""
-			/>
-			<img
-				data-aos="fade-up"
-				src="img/projects/project3.png"
-				class="the-projects__list-item the-projects__list-item3"
-				alt=""
-			/>
-			<img
-				data-aos="fade-up"
-				src="img/projects/project4.png"
-				class="the-projects__list-item the-projects__list-item4"
-				alt=""
-			/>
-			<img
-				data-aos="fade-up"
-				src="img/projects/project5.png"
-				class="the-projects__list-item the-projects__list-item5"
-				alt=""
+				:src="project.img"
+				alt="project"
+				v-for="project in projects"
+				:key="project.id"
+				:class="`the-projects__list-item the-projects__list-item${project.id}`"
 			/>
 		</div>
+
+		<r-swiper
+			v-show="document_width <= 540"
+			:slides="projects"
+			id="projects"
+		></r-swiper>
+
 		<r-button
 			text="Смотреть всё"
 			:arrow="true"
 			color="yellow"
-			@click="this.$router.push('/projects')"
+			@click="this.$router.push({ name: 'Projects' })"
 		></r-button>
 	</section>
 </template>
 
 <script>
+	import rSwiper from "@/components/UI/r-swiper.vue";
+
+	import { mapState } from "vuex";
+
 	export default {
 		name: "TheProjects",
+		components: {
+			rSwiper,
+		},
+		computed: {
+			...mapState(["document_width"]),
+		},
+		data: () => ({
+			projects: [
+				{ id: 1, img: "/img/projects/project1.png" },
+				{ id: 2, img: "/img/projects/project2.png" },
+				{ id: 3, img: "/img/projects/project3.png" },
+				{ id: 4, img: "/img/projects/project4.png" },
+				{ id: 5, img: "/img/projects/project5.png" },
+			],
+		}),
 	};
 </script>
 
@@ -57,30 +61,35 @@
 		&__title {
 			color: $dark-blue;
 			margin-bottom: 3.5rem;
+			@media (max-width: 540px) {
+				margin-bottom: 3rem;
+			}
 		}
 		&__list {
 			display: grid;
-			grid-template-areas:
-				"one one one two two two"
-				"three three four four five five";
+			grid-template-columns: repeat(6, 1fr);
 			grid-gap: 2.4rem;
 			margin-bottom: 4rem;
+			@media (max-width: 767px) {
+				grid-gap: 1.2rem;
+			}
+
 			&-item {
 				width: 100%;
 				&1 {
-					grid-area: one;
+					grid-column: 1/4;
 				}
 				&2 {
-					grid-area: two;
+					grid-column: 4/7;
 				}
 				&3 {
-					grid-area: three;
+					grid-column: 1/3;
 				}
 				&4 {
-					grid-area: four;
+					grid-column: 3/5;
 				}
 				&5 {
-					grid-area: five;
+					grid-column: 5/7;
 				}
 			}
 		}
