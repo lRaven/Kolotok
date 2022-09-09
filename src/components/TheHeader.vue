@@ -414,6 +414,7 @@
 		&::before,
 		&::after {
 			content: "";
+			pointer-events: none;
 			bottom: -10rem;
 			position: absolute;
 			height: 10rem;

@@ -24,6 +24,7 @@
 		&__image {
 			border-radius: 3rem;
 			margin-bottom: 2rem;
+			width: 100%;
 		}
 		&__bottom {
 			display: flex;
@@ -43,7 +44,6 @@
 
 <style lang="scss">
 	.project-card {
-		max-width: 45rem;
 		.r-link__text {
 			font-size: 2rem;
 		}

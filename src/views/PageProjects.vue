@@ -2,10 +2,10 @@
 	<div class="page-projects theme-container">
 		<the-header />
 		<main class="main">
-			<section class="projects center">
+			<section class="page-projects__projects center">
 				<r-breadcrumbs :links="links"></r-breadcrumbs>
-				<h2 class="projects__title">Проекты клиентов</h2>
-				<div class="projects__list">
+				<h2 class="page-projects__title">Проекты клиентов</h2>
+				<div class="page-projects__list">
 					<project-card
 						v-for="project in projects"
 						:key="project.id"
@@ -14,7 +14,7 @@
 						:count="project.count"
 					></project-card>
 				</div>
-				<div class="projects__bottom">
+				<div class="page-projects__bottom">
 					<r-button
 						class="yellow"
 						text="Показать ещё"
@@ -66,73 +66,73 @@
 			projects: [
 				{
 					id: 1,
-					img: "img/projects/projects-page/project1.png",
+					img: "/img/projects/projects-page/project1.png",
 					description: "Проект гостинной",
 					count: 12,
 				},
 				{
 					id: 2,
-					img: "img/projects/projects-page/project2.png",
+					img: "/img/projects/projects-page/project2.png",
 					description: "Квартира-студия",
 					count: 12,
 				},
 				{
 					id: 3,
-					img: "img/projects/projects-page/project3.png",
+					img: "/img/projects/projects-page/project3.png",
 					description: "Проект детской комнаты",
 					count: 12,
 				},
 				{
 					id: 4,
-					img: "img/projects/projects-page/project4.png",
+					img: "/img/projects/projects-page/project4.png",
 					description: "2-х комнатная",
 					count: 12,
 				},
 				{
 					id: 5,
-					img: "img/projects/projects-page/project5.png",
+					img: "/img/projects/projects-page/project5.png",
 					description: "Проект рабочего кабинета",
 					count: 12,
 				},
 				{
 					id: 6,
-					img: "img/projects/projects-page/project6.png",
+					img: "/img/projects/projects-page/project6.png",
 					description: "Проект гостинной",
 					count: 12,
 				},
 				{
 					id: 7,
-					img: "img/projects/projects-page/project1.png",
+					img: "/img/projects/projects-page/project1.png",
 					description: "Проект гостинной",
 					count: 12,
 				},
 				{
 					id: 8,
-					img: "img/projects/projects-page/project2.png",
+					img: "/img/projects/projects-page/project2.png",
 					description: "Квартира-студия",
 					count: 12,
 				},
 				{
 					id: 9,
-					img: "img/projects/projects-page/project3.png",
+					img: "/img/projects/projects-page/project3.png",
 					description: "Проект детской комнаты",
 					count: 12,
 				},
 				{
 					id: 10,
-					img: "img/projects/projects-page/project4.png",
+					img: "/img/projects/projects-page/project4.png",
 					description: "2-х комнатная",
 					count: 12,
 				},
 				{
 					id: 11,
-					img: "img/projects/projects-page/project5.png",
+					img: "/img/projects/projects-page/project5.png",
 					description: "Проект рабочего кабинета",
 					count: 12,
 				},
 				{
 					id: 12,
-					img: "img/projects/projects-page/project6.png",
+					img: "/img/projects/projects-page/project6.png",
 					description: "Проект гостинной",
 					count: 12,
 				},
@@ -175,18 +175,27 @@
 <style lang="scss" scoped>
 	@import "@/assets/scss/variables";
 
-	.projects {
-		margin-bottom: 8rem;
+	.page-projects {
+		&__projects {
+			margin-bottom: 8rem;
+		}
 		&__title {
 			color: $dark-blue;
 			margin-bottom: 4rem;
 		}
 		&__list {
 			display: grid;
-			grid-template-columns: repeat(3, max-content);
+			grid-template-columns: repeat(3, 1fr);
 			justify-content: space-between;
 			grid-gap: 6rem 4rem;
 			margin-bottom: 6rem;
+			@media (max-width: 1023px) {
+				grid-template-columns: repeat(2, 1fr);
+				grid-gap: 2rem;
+			}
+			@media (max-width: 630px) {
+				grid-template-columns: 1fr;
+			}
 		}
 		&__bottom {
 			display: grid;

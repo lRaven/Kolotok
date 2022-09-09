@@ -38,7 +38,7 @@
 		created() {
 			this.getCategories();
 			this.getSubcategories();
-			// this.getProducts();
+			this.getProducts();
 
 			this.getDocumentWidth();
 		},

@@ -2,12 +2,12 @@
 	<div class="page-cart theme-container">
 		<the-header />
 		<main class="main">
-			<section class="cart center">
+			<section class="page-cart__cart center">
 				<r-breadcrumbs :links="links"></r-breadcrumbs>
 
-				<div class="cart__col">
-					<h2 class="cart__title">Корзина</h2>
-					<div class="cart__control">
+				<div class="page-cart__col">
+					<h2 class="page-cart__title">Корзина</h2>
+					<div class="page-cart__control">
 						<r-checkbox
 							description="Выбрать всё"
 							v-model="isAllSelected"
@@ -18,14 +18,14 @@
 							"
 						></r-checkbox>
 
-						<div class="cart__delete">
+						<div class="page-cart__delete">
 							<svg
 								width="16"
 								height="16"
 								viewBox="0 0 16 16"
 								fill="none"
 								xmlns="http://www.w3.org/2000/svg"
-								class="cart__delete-icon"
+								class="page-cart__delete-icon"
 							>
 								<path
 									d="M11 5L5 11"
@@ -49,19 +49,22 @@
 								/>
 							</svg>
 
-							<p class="cart__delete-description">
+							<p class="page-cart__delete-description">
 								Удалить выбранное
 							</p>
 						</div>
 
-						<div class="cart__clear" @click="SET_CART_LIST([])">
+						<div
+							class="page-cart__clear"
+							@click="SET_CART_LIST([])"
+						>
 							<svg
 								width="17"
 								height="19"
 								viewBox="0 0 17 19"
 								fill="none"
 								xmlns="http://www.w3.org/2000/svg"
-								class="cart__clear-icon"
+								class="page-cart__clear-icon"
 							>
 								<path
 									d="M15.2147 6.80322C15.2147 6.80322 14.7102 13.061 14.4175 15.6969C14.2781 16.9559 13.5004 17.6937 12.2266 17.7169C9.80247 17.7606 7.37556 17.7633 4.95237 17.7122C3.72683 17.6872 2.96215 16.9401 2.82557 15.7034C2.53103 13.0442 2.0293 6.80322 2.0293 6.80322"
@@ -83,17 +86,17 @@
 								/>
 							</svg>
 
-							<p class="cart__clear-description">
+							<p class="page-cart__clear-description">
 								Очистить корзину
 							</p>
 						</div>
 					</div>
-					<div class="cart__list">
-						<div class="cart__captions">
-							<p class="cart__caption">Наименование</p>
-							<p class="cart__caption">Цена за шт.</p>
-							<p class="cart__caption">Кол-во</p>
-							<p class="cart__caption">Стоимость</p>
+					<div class="page-cart__list">
+						<div class="page-cart__captions">
+							<p class="page-cart__caption">Наименование</p>
+							<p class="page-cart__caption">Цена за шт.</p>
+							<p class="page-cart__caption">Кол-во</p>
+							<p class="page-cart__caption">Стоимость</p>
 						</div>
 						<cart-card
 							v-for="product in cart_list"
@@ -103,7 +106,7 @@
 					</div>
 				</div>
 
-				<div class="cart__col cart__buy">
+				<div class="page-cart__col page-cart__buy">
 					<cart-calculation
 						:products="cart_list"
 						:discount="10"
@@ -170,12 +173,21 @@
 <style lang="scss" scoped>
 	@import "@/assets/scss/variables";
 
-	.cart {
-		display: grid;
-		grid-template-columns: 1fr 39rem;
-		grid-gap: 3rem 5rem;
+	.page-cart {
+		&__cart {
+			display: grid;
+			grid-template-columns: 1fr 39rem;
+			grid-gap: 3rem 5rem;
+			@media (max-width: 1400px) {
+				grid-template-columns: 1fr;
+			}
+		}
+
 		.r-breadcrumbs {
 			grid-column: 1/3;
+			@media (max-width: 1400px) {
+				grid-column: inherit;
+			}
 		}
 
 		&__col {
@@ -193,6 +205,12 @@
 			align-items: center;
 			margin-bottom: 4rem;
 			padding: 0 2rem;
+			@media (max-width: 767px) {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 2rem;
+			}
+
 			&-icon {
 			}
 			&-description {
@@ -232,8 +250,11 @@
 			margin-bottom: 2rem;
 			padding: 0 2rem;
 			grid-gap: 2.5rem;
+			@media (max-width: 1023px) {
+				display: none;
+			}
 
-			.cart__caption {
+			.page-cart__caption {
 				text-align: center;
 				&:first-child {
 					grid-column: 1/3;

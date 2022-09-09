@@ -72,6 +72,9 @@
 		padding: 2rem;
 		border-radius: 1.6rem;
 		box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+		@media (max-width: 1400px) {
+			position: static;
+		}
 
 		&__title {
 			margin-bottom: 4rem;

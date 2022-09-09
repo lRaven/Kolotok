@@ -5,6 +5,7 @@
 			<section class="category center">
 				<r-breadcrumbs :links="links"></r-breadcrumbs>
 				<h2 class="category__title">{{ current_category.name }}</h2>
+
 				<div class="category__subcategories">
 					<subcategory-card
 						v-for="subcategory in current_subcategories"
@@ -12,6 +13,7 @@
 						:text="subcategory.name"
 					></subcategory-card>
 				</div>
+
 				<r-dropdown :values="sortVariations"></r-dropdown>
 				<div class="category__products">
 					<r-card
@@ -127,21 +129,22 @@
 			current_products() {
 				let products = [];
 
-				if (this.products !== null) {
-					this.products.forEach((product) => {
-						product.sub_category.forEach((subcategory) => {
-							this.current_subcategories.forEach(
-								(current_subcategory) => {
-									if (
-										subcategory === current_subcategory.id
-									) {
-										products.push(product);
-									}
-								}
-							);
-						});
-					});
-				}
+				// if (this.products !== null) {
+				// 	this.products.results.forEach((product) => {
+				// 		// product.sub_category
+				// 		// product.sub_category.forEach((subcategory) => {
+				// 		// 	this.current_subcategories.forEach(
+				// 		// 		(current_subcategory) => {
+				// 		// 			if (
+				// 		// 				subcategory === current_subcategory.id
+				// 		// 			) {
+				// 		// 				products.push(product);
+				// 		// 			}
+				// 		// 		}
+				// 		// 	);
+				// 		// });
+				// 	});
+				// }
 
 				return products;
 			},
@@ -220,14 +223,30 @@
 		&__bottom {
 			display: grid;
 			grid-template-columns: repeat(3, 1fr);
-			padding-bottom: 8rem;
+			grid-gap: 2rem;
+			@media (max-width: 1023px) {
+				grid-template-columns: repeat(2, max-content);
+				justify-content: space-between;
+			}
+			@media (max-width: 767px) {
+				display: flex;
+				flex-direction: column-reverse;
+			}
+
 			.r-button {
 				grid-area: 1/2/1/3;
 				margin: auto;
+				@media (max-width: 1023px) {
+					grid-area: inherit;
+				}
 			}
 			.r-pagination {
 				grid-area: 1/3/1/4;
 				margin-left: auto;
+				@media (max-width: 1023px) {
+					grid-area: inherit;
+					margin: auto;
+				}
 			}
 		}
 	}

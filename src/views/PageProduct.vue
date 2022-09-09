@@ -396,7 +396,6 @@
 
 	.product {
 		color: $dark;
-		padding-top: 0;
 		&__main {
 			display: grid;
 			grid-template-columns: minmax(50rem, 50rem) minmax(66rem, 66rem);
@@ -404,6 +403,13 @@
 			border-radius: 3rem;
 			padding: 3rem 4rem;
 			margin-bottom: 4rem;
+			@media (max-width: 1300px) {
+				grid-template-columns: repeat(2, 1fr);
+			}
+			@media (max-width: 1023px) {
+				display: flex;
+				flex-direction: column;
+			}
 		}
 
 		&__discount {
@@ -427,6 +433,9 @@
 			pointer-events: all;
 			height: 14rem;
 			object-fit: contain;
+			@media (max-width: 540px) {
+				height: 8rem;
+			}
 			&:nth-child(n + 3) {
 				margin: auto;
 			}
@@ -476,6 +485,8 @@
 			padding: 3.5rem 0;
 			margin-bottom: 4rem;
 			animation-delay: 0.4s;
+			@media (max-width: 767px) {
+			}
 		}
 		&__price {
 			font-size: 2.4rem;
@@ -521,6 +532,9 @@
 				display: flex;
 				align-items: center;
 				gap: 2rem;
+				@media (max-width: 767px) {
+					flex-wrap: wrap;
+				}
 			}
 			&-link {
 				color: $blue;

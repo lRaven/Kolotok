@@ -51,6 +51,9 @@
 		align-items: center;
 		gap: 1.5rem;
 		margin-bottom: 6rem;
+		@media (max-width: 1023px) {
+			margin-bottom: 3rem;
+		}
 		&__item {
 			list-style: none;
 			font-size: 1.4rem;

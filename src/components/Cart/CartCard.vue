@@ -115,6 +115,13 @@
 		border-radius: 0.4rem;
 		padding: 2rem;
 		color: $dark;
+		@media (max-width: 1023px) {
+			grid-template-columns: 3rem 14rem repeat(2, 1fr);
+		}
+		@media (max-width: 767px) {
+			grid-template-columns: 3rem 1fr;
+			align-items: flex-start;
+		}
 
 		+ .cart-card {
 			margin-top: 3rem;
@@ -122,6 +129,13 @@
 
 		&__col {
 			margin: auto;
+			@media (max-width: 1023px) {
+				margin: 0;
+			}
+			@media (max-width: 767px) {
+				grid-column: 2/3;
+			}
+
 			&:nth-child(3) {
 				margin: 0;
 			}
@@ -133,6 +147,12 @@
 			height: 100%;
 			max-height: 10rem;
 			object-fit: contain;
+			@media (max-width: 767px) {
+				max-width: 100%;
+				width: inherit;
+				height: 30rem;
+				max-height: inherit;
+			}
 		}
 
 		&__info {
@@ -166,6 +186,13 @@
 			flex-direction: column;
 			align-items: center;
 			gap: 0.5rem;
+			@media (max-width: 1023px) {
+				grid-area: 2/3;
+				align-items: flex-start;
+			}
+			@media (max-width: 767px) {
+				grid-area: 2/2;
+			}
 		}
 
 		&__price {
@@ -185,6 +212,13 @@
 				flex-direction: column;
 				align-items: center;
 				gap: 0.5rem;
+				@media (max-width: 1023px) {
+					grid-area: 2/4;
+					align-items: flex-start;
+				}
+				@media (max-width: 767px) {
+					grid-area: 3/2;
+				}
 			}
 			&-price {
 				font-size: 2.4rem;
@@ -199,6 +233,9 @@
 
 		&__remove {
 			cursor: pointer;
+			@media (max-width: 767px) {
+				grid-area: 1/3;
+			}
 		}
 	}
 </style>

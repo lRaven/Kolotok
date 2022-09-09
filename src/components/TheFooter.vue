@@ -170,6 +170,7 @@
 		&::before,
 		&::after {
 			content: "";
+			pointer-events: none;
 			top: -10rem;
 			position: absolute;
 			height: 10rem;

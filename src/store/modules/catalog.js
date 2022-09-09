@@ -56,13 +56,14 @@ const actions = {
 
 	getProducts: async ({ commit }) => {
 		try {
-			const request = await axios.get(`${baseURL}/search/products`);
+			const response = await axios.get(`${baseURL}/search/products/`);
 
-			if (request.status === 200) commit('SET_PRODUCTS', request.data);
+			if (response.status === 200) {
+				commit('SET_PRODUCTS', response.data);
+			}
+			return response;
 		}
-		catch {
-			console.error('Error');
-		}
+		catch (err) { throw new Error(err) }
 	},
 }
 
