@@ -261,7 +261,7 @@
 		computed: {
 			...mapState({
 				categories: (state) => state.Catalog.categories,
-				sub_categories: (state) => state.Catalog.sub_categories,
+				subcategories: (state) => state.Catalog.subcategories,
 				products: (state) => state.Catalog.products,
 			}),
 
@@ -283,10 +283,10 @@
 			productSubCategory() {
 				let result = "";
 
-				// if (this.sub_categories !== null) {
-				// 	this.sub_categories.forEach((sub_category) => {
-				// 		if (sub_category.id === this.product.sub_category[0])
-				// 			result = sub_category;
+				// if (this.subcategories !== null) {
+				// 	this.subcategories.forEach((subcategory) => {
+				// 		if (subcategory.id === this.product.subcategory[0])
+				// 			result = subcategory;
 				// 	});
 				// }
 
@@ -508,6 +508,9 @@
 		}
 		&__feature {
 			margin-bottom: 2rem;
+			@media (max-width: 540px) {
+				grid-column: 1/3;
+			}
 			&-title {
 				color: $middle-gray;
 				font-size: 1.4em;

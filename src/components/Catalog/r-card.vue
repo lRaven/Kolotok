@@ -1,5 +1,9 @@
 <template>
-	<div class="r-card-wrapper">
+	<div
+		class="r-card-wrapper"
+		@mouseenter="isMaximize = true"
+		@mouseleave="isMaximize = false"
+	>
 		<div data-aos="fade-up" class="r-card">
 			<div class="r-card__main">
 				<r-discount
@@ -43,7 +47,7 @@
 		<transition name="fade" mode="out-in">
 			<r-card-maximize
 				:card="card"
-				v-if="isMaximize"
+				v-show="isMaximize"
 				@removeMaximizeCard="removeMaximizeCard"
 			></r-card-maximize>
 		</transition>
@@ -97,6 +101,9 @@
 			@media (max-width: 540px) {
 				max-width: 14rem;
 				min-width: inherit;
+			}
+			@media (max-width: 1160px) {
+				min-width: 23.4rem;
 			}
 		}
 
@@ -183,8 +190,6 @@
 			top: 0;
 			left: 50%;
 			transform: translateX(-50%);
-			max-width: 24rem;
-			width: 24rem;
 		}
 	}
 </style>

@@ -181,7 +181,7 @@
 									:key="category.id"
 									@click="
 										this.category = category.id;
-										this.sub_category = null;
+										this.subcategory = null;
 										openCatalogList();
 									"
 								>
@@ -214,17 +214,17 @@
 							>
 								<li
 									class="the-header__catalog-item"
-									v-for="sub_category in current_sub_categories"
-									:key="sub_category.id"
+									v-for="subcategory in current_subcategories"
+									:key="subcategory.id"
 									@click="
-										this.sub_category = sub_category.id;
+										this.subcategory = subcategory.id;
 										openCatalogList();
 									"
 								>
 									<p
 										class="the-header__catalog-item-description"
 									>
-										{{ sub_category.name }}
+										{{ subcategory.name }}
 									</p>
 									<svg
 										width="8"
@@ -246,7 +246,7 @@
 							</ul>
 							<ul
 								class="the-header__catalog-list"
-								v-if="sub_category !== null"
+								v-if="subcategory !== null"
 							>
 								<router-link
 									v-for="product in current_products"
@@ -314,7 +314,7 @@
 				} else {
 					document.body.classList.remove("locked");
 					this.category = null;
-					this.sub_category = null;
+					this.subcategory = null;
 					this.catalog_columns = 1;
 				}
 			},
@@ -328,14 +328,14 @@
 			isCatalogOpen: false,
 
 			category: null,
-			sub_category: null,
+			subcategory: null,
 			catalog_columns: 1,
 		}),
 		computed: {
 			...mapState({
 				categories: (state) => state.Catalog.categories,
 				cart_list: (state) => state.Cart.cart_list,
-				sub_categories: (state) => state.Catalog.sub_categories,
+				subcategories: (state) => state.Catalog.subcategories,
 				document_width: (state) => state.document_width,
 			}),
 
@@ -349,20 +349,20 @@
 				return length;
 			},
 
-			current_sub_categories() {
-				let sub_categories = [];
-				this.sub_categories.forEach((sub_category) => {
-					if (sub_category.category === this.category) {
-						sub_categories.push(sub_category);
+			current_subcategories() {
+				let subcategories = [];
+				this.subcategories.forEach((subcategory) => {
+					if (subcategory.category === this.category) {
+						subcategories.push(subcategory);
 					}
 				});
-				return sub_categories;
+				return subcategories;
 			},
 
 			current_products() {
 				let products = [];
 				this.products.forEach((product) => {
-					if (product.sub_category[0] === this.sub_category) {
+					if (product.subcategory[0] === this.subcategory) {
 						products.push(product);
 					}
 				});
@@ -378,7 +378,7 @@
 						"style",
 						"grid-template-columns: repeat(2, 1fr)"
 					);
-					if (this.sub_category !== null) {
+					if (this.subcategory !== null) {
 						catalog.setAttribute(
 							"style",
 							"grid-template-columns: repeat(3, 1fr)"

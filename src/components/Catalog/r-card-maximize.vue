@@ -50,7 +50,7 @@
 			rFavorite,
 			rCounter,
 		},
-		data: () => ({ isFavorite: false, isMaximize: false }),
+		data: () => ({ isFavorite: false }),
 		methods: {
 			addFavorite() {
 				this.isFavorite = true;
@@ -68,12 +68,17 @@
 	.r-card-maximize {
 		position: relative;
 		color: $dark-blue;
-		max-width: 22rem;
-		width: 100%;
+		max-width: 23.4rem;
+		width: 23.4rem;
 		z-index: 2;
 		background-color: $white;
 		border-radius: 3rem;
 		padding: 0 1rem;
+		@media (max-width: 1160px) {
+			max-width: 100%;
+			width: 100%;
+			padding: 0;
+		}
 		&__main {
 			position: relative;
 			display: flex;
@@ -120,11 +125,14 @@
 		}
 
 		&__footer {
+			@media (max-width: 1160px) {
+				padding: 0 1rem;
+			}
 		}
 		&__row {
 			display: flex;
 			align-items: center;
-			gap: 1.3rem;
+			gap: 1rem;
 			.r-button {
 				padding: 1.2rem 1.5rem;
 				font-size: 1.2rem;

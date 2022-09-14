@@ -7,9 +7,9 @@
 				<h2 class="discount__title">Акции</h2>
 				<div class="discount__subcategories">
 					<subcategory-card
-						v-for="sub_category in sub_categories"
-						:key="sub_category.id"
-						:text="sub_category.name"
+						v-for="subcategory in subcategories"
+						:key="subcategory.id"
+						:text="subcategory.name"
 					></subcategory-card>
 				</div>
 				<r-dropdown :values="sortVariations"></r-dropdown>
@@ -89,7 +89,7 @@
 		computed: {
 			...mapState({
 				categories: (state) => state.Catalog.categories,
-				sub_categories: (state) => state.Catalog.sub_categories,
+				subcategories: (state) => state.Catalog.subcategories,
 				products: (state) => state.Catalog.products,
 			}),
 

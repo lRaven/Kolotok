@@ -46,7 +46,6 @@ const mutations = {
 		})
 	},
 
-
 	UNSELECT_ALL_CART_ITEMS: state => {
 		state.cart_list.forEach(item => item.selected = false);
 	},
@@ -60,7 +59,9 @@ const mutations = {
 		state.cart_list.forEach(item => {
 			if (item.id === payload.id) { item.count = payload.count }
 		})
-	}
+	},
+
+	CLEAR_CART: (state) => state.cart_list = [],
 }
 
 const actions = {

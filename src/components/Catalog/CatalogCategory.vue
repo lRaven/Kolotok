@@ -1,10 +1,10 @@
 <template>
 	<div data-aos="fade-up" class="catalog-category shadow">
 		<div class="catalog-category__top">
-			<img :src="img" alt="" />
+			<img :src="category.icon" alt="" />
 		</div>
 		<div class="catalog-category__bottom">
-			<r-link :way="way" :text="text"></r-link>
+			<r-link :way="way" :text="category.name"></r-link>
 		</div>
 	</div>
 </template>
@@ -13,8 +13,12 @@
 	export default {
 		name: "catalogCategory",
 		props: {
-			img: String,
-			text: String,
+			// img: String,
+			// text: String,
+			category: {
+				value: Object,
+				required: true,
+			},
 			way: Object,
 		},
 	};

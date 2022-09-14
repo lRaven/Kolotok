@@ -1,4 +1,4 @@
-//*появление/скрытие "скольжение вверх"
+//* появление/скрытие "скольжение вверх"
 .v-enter-active,
 .v-leave-active {
 	transition: all 0.3s ease;
@@ -10,7 +10,7 @@
 	transform: translateY(2rem);
 }
 
-//*появление/скрытие "скольжение влево"
+//* появление/скрытие "скольжение влево"
 .fade-left-enter-active,
 .fade-left-leave-active {
 	transition: all 0.35s ease;
@@ -22,7 +22,7 @@
 	transform: translateX(-5rem);
 }
 
-//*появление/скрытие "скольжение влево"
+//* появление/скрытие "скольжение влево"
 .fade-enter-active,
 .fade-leave-active {
 	transition: all 0.35s ease;

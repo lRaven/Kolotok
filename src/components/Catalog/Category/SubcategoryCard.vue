@@ -1,13 +1,11 @@
 <template>
 	<div class="subcategory-card shadow">
-		<img src="" alt="" v-if="img" class="subcategory-card__img" />
 		<img
-			src="img/catalog/catalog__photo-default.svg"
-			alt=""
+			:src="subcategory.img || `/img/catalog/catalog__photo-default.svg`"
+			alt="icon"
 			class="subcategory-card__img"
-			v-else
 		/>
-		<p class="subcategory-card__text">{{ text }}</p>
+		<p class="subcategory-card__text">{{ subcategory.name }}</p>
 	</div>
 </template>
 
@@ -15,8 +13,10 @@
 	export default {
 		name: "SubcategoryCard",
 		props: {
-			img: String,
-			text: String,
+			subcategory: {
+				value: Object,
+				required: true,
+			},
 		},
 	};
 </script>
@@ -30,6 +30,7 @@
 		gap: 1.2rem;
 		padding: 1rem;
 		border-radius: 1rem;
+		min-width: 25rem;
 		&__img {
 			height: 5rem;
 			width: 5rem;

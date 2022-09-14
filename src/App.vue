@@ -4,11 +4,9 @@
 			<component :is="Component" />
 		</transition>
 	</router-view>
-	<r-blur />
 </template>
 
 <script>
-	import rBlur from "@/components/r-blur";
 	import Aos from "aos";
 	import "aos/dist/aos.css";
 
@@ -23,22 +21,18 @@
 			"$route.path"() {
 				//* срабатывает при переходе по router-link
 				document.querySelector("body").classList.remove("locked");
-				document.querySelector(".r-blur").classList.remove("open");
 			},
 		},
-		components: { rBlur },
 		methods: {
 			...mapActions([
 				"getCategories",
 				"getSubcategories",
-				"getProducts",
 				"getDocumentWidth",
 			]),
 		},
 		created() {
 			this.getCategories();
 			this.getSubcategories();
-			this.getProducts();
 
 			this.getDocumentWidth();
 		},

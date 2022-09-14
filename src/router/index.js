@@ -1,13 +1,10 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
-import PageHome from '@/views/PageHome'
-import Page404 from '@/views/Page404'
-
 const routes = [
 	{
 		path: '/',
 		name: 'Home',
-		component: PageHome,
+		component: () => import('@/views/PageHome'),
 
 		meta: {
 			title: 'Колоток',
@@ -81,7 +78,7 @@ const routes = [
 	{
 		path: '/:pathMatch(.*)*',
 		name: 'NotFound',
-		component: Page404,
+		component: () => import('@/views/Page404'),
 
 		meta: {
 			title: '404',

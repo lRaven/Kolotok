@@ -130,6 +130,7 @@
 <style lang="scss" scoped>
 	.products-slider {
 		position: relative;
+		padding-bottom: 7.5rem;
 		@media (max-width: 767px) {
 			display: grid;
 			grid-template-columns: max-content 1fr max-content;
@@ -143,6 +144,7 @@
 		}
 
 		&__btn {
+			top: 36%;
 			@media (max-width: 767px) {
 				position: static;
 				transform: none;
