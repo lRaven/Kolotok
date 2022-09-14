@@ -98,13 +98,12 @@
 					{
 						id: 1,
 						description: "Главная",
-						route: "/",
+						route: { name: "Home" },
 						current: false,
 					},
 					{
 						id: 2,
 						description: "Акции",
-						route: "/",
 						current: true,
 					},
 				];

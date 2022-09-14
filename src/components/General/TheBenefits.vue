@@ -11,7 +11,7 @@
 					class="the-benefits__benefit shadow"
 				>
 					<img
-						src="img/icon/shipping.svg"
+						src="/img/icon/shipping.svg"
 						class="the-benefits__benefit-icon"
 						alt=""
 					/>
@@ -31,7 +31,7 @@
 					class="the-benefits__benefit shadow"
 				>
 					<img
-						src="img/icon/pay.svg"
+						src="/img/icon/pay.svg"
 						class="the-benefits__benefit-icon"
 						alt=""
 					/>
@@ -51,7 +51,7 @@
 					class="the-benefits__benefit shadow"
 				>
 					<img
-						src="img/icon/shipping.svg"
+						src="/img/icon/shipping.svg"
 						class="the-benefits__benefit-icon"
 						alt=""
 					/>

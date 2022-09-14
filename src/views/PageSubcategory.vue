@@ -1,25 +1,17 @@
 <template>
-	<div class="page-category theme-container">
+	<div class="page-subcategory theme-container">
 		<the-header />
-		<main class="main">
-			<section class="page-category__section">
-				<div class="page-category__container center">
+
+		<main class="main page-subcategory__main">
+			<section class="page-subcategory__section">
+				<div class="page-subcategory__container center">
 					<r-breadcrumbs :links="links"></r-breadcrumbs>
-					<h2 class="page-category__title">
-						{{ current_category.name }}
+					<h2 class="page-subcategory__title">
+						{{ subcategory.name }}
 					</h2>
-
-					<div class="page-category__subcategories">
-						<subcategory-card
-							v-for="subcategory in current_subcategories"
-							:key="subcategory.id"
-							:subcategory="subcategory"
-						></subcategory-card>
-					</div>
-
 					<r-dropdown :values="sortVariations"></r-dropdown>
 
-					<div class="page-category__products">
+					<div class="page-subcategory__products">
 						<r-loader v-if="!isProductsLoaded"></r-loader>
 						<template v-else>
 							<r-card
@@ -30,7 +22,7 @@
 						</template>
 					</div>
 
-					<div class="page-category__bottom">
+					<div class="page-subcategory__bottom">
 						<r-button
 							class="yellow"
 							text="Показать ещё"
@@ -47,6 +39,7 @@
 				</div>
 			</section>
 		</main>
+
 		<the-footer />
 	</div>
 </template>
@@ -57,30 +50,21 @@
 
 	import TheHeader from "@/components/TheHeader";
 
-	import SubcategoryCard from "@/components/Catalog/Category/SubcategoryCard";
 	import rDropdown from "@/components/Catalog/Category/r-dropdown";
 	import rCard from "@/components/Catalog/r-card";
 
 	import TheFooter from "@/components/TheFooter";
 
 	export default {
-		name: "PageCategory",
+		name: "PageSubcategory",
 		mixins: [paginationMixin],
 		components: {
 			TheHeader,
 
 			rDropdown,
-			SubcategoryCard,
 			rCard,
 
 			TheFooter,
-		},
-		watch: {
-			"$route.path"() {
-				if (this.$route.path === this.pagination.path) {
-					this.getCards();
-				}
-			},
 		},
 		data: () => ({
 			sortVariations: [
@@ -97,8 +81,8 @@
 				subcategories: (state) => state.Catalog.subcategories,
 			}),
 
-			current_category() {
-				let current_category = "";
+			category() {
+				let current_category = {};
 
 				if (this.categories) {
 					this.categories.forEach((category) => {
@@ -112,22 +96,13 @@
 				return current_category;
 			},
 
-			current_subcategories() {
-				let current_subcategories = [];
-
-				if (this.subcategories !== null) {
-					current_subcategories = this.subcategories.reduce(
-						(acc, cur) => {
-							if (cur.category.id === this.current_category.id) {
-								acc.push(cur);
-							}
-							return acc;
-						},
-						[]
-					);
-				}
-
-				return current_subcategories;
+			subcategory() {
+				return (
+					this.subcategories.find(
+						(subcategory) =>
+							subcategory.id == this.$route.params.subcategory
+					) || {}
+				);
 			},
 
 			links() {
@@ -146,7 +121,16 @@
 					},
 					{
 						id: 3,
-						description: this.current_category.name,
+						description: this.category.name,
+						route: {
+							path: `/catalog/${this.category.id}`,
+							query: { page: 1 },
+						},
+						current: false,
+					},
+					{
+						id: 4,
+						description: this.subcategory.name,
 						current: true,
 					},
 				];
@@ -158,7 +142,7 @@
 			async getCards(addCards = false) {
 				try {
 					const response = await this.getProducts({
-						sub_category: this.current_subcategories[0].id,
+						sub_category: this.subcategory.id,
 						page_size: this.pagination.cards_in_page,
 						page: this.page,
 					});
@@ -188,7 +172,7 @@
 					}
 				} catch (err) {
 					this.isProductsLoaded = true;
-					this.$router.push({ name: "Catalog" });
+					// this.$router.push({ name: "Catalog" });
 					throw new Error(err);
 				}
 			},
@@ -201,7 +185,7 @@
 				}
 
 				this.$router.push({
-					name: "Category",
+					path: `/catalog/${this.category.id}/${this.subcategory.id}`,
 					query: { page: page_number },
 				});
 			},
@@ -215,7 +199,7 @@
 <style lang="scss" scoped>
 	@import "@/assets/scss/variables";
 
-	.page-category {
+	.page-subcategory {
 		&__section {
 			min-height: calc(100vh - 21rem);
 			display: grid;
@@ -225,27 +209,11 @@
 			display: flex;
 			flex-direction: column;
 		}
-
 		&__title {
 			color: $dark-blue;
 			margin-bottom: 4rem;
-		}
-		&__subcategories {
-			display: grid;
-			grid-template-columns: repeat(5, 1fr);
-			grid-gap: 2rem 2.5rem;
-			margin-bottom: 6rem;
-			@media (max-width: 1200px) {
-				grid-template-columns: repeat(4, 1fr);
-			}
-			@media (max-width: 1023px) {
-				grid-template-columns: repeat(3, 1fr);
-			}
-			@media (max-width: 767px) {
-				grid-template-columns: repeat(2, 1fr);
-			}
 			@media (max-width: 540px) {
-				grid-template-columns: 1fr;
+				margin-bottom: 3rem;
 			}
 		}
 		.r-dropdown {

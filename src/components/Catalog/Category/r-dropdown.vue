@@ -5,7 +5,7 @@
 				{{ getDefaultValue.text }}
 			</p>
 			<img
-				src="img/icon/catalog/arrow.svg"
+				src="/img/icon/catalog/arrow.svg"
 				alt=""
 				class="r-dropdown__arrow"
 				ref="arrow"

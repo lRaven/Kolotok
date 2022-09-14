@@ -1,5 +1,13 @@
 <template>
-	<div class="subcategory-card shadow">
+	<div
+		class="subcategory-card shadow"
+		@click="
+			this.$router.push({
+				path: `/catalog/${subcategory.category.id}/${subcategory.id}`,
+				query: { page: 1 },
+			})
+		"
+	>
 		<img
 			:src="subcategory.img || `/img/catalog/catalog__photo-default.svg`"
 			alt="icon"
@@ -25,12 +33,13 @@
 	@import "@/assets/scss/variables.scss";
 
 	.subcategory-card {
+		cursor: pointer;
 		display: flex;
 		align-items: center;
 		gap: 1.2rem;
 		padding: 1rem;
 		border-radius: 1rem;
-		min-width: 25rem;
+		width: 100%;
 		&__img {
 			height: 5rem;
 			width: 5rem;

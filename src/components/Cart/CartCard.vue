@@ -9,7 +9,7 @@
 			class="cart-card__image"
 		/>
 		<img
-			src="img/catalog/catalog__photo-default.svg"
+			src="/img/catalog/catalog__photo-default.svg"
 			alt=""
 			class="cart-card__image"
 			v-else
@@ -43,7 +43,7 @@
 
 		<div class="cart-card__remove">
 			<img
-				src="img/icon/basket/delete.svg"
+				src="/img/icon/basket/delete.svg"
 				alt=""
 				class="cart-card__remove-icon"
 			/>

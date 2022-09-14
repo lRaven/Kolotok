@@ -41,14 +41,7 @@
 			:loop="true"
 		>
 			<swiper-slide v-for="slide in slides" :key="slide.id">
-				<news-card
-					:id="slide.id"
-					:img="slide.img"
-					:date="slide.date"
-					:title="slide.title"
-					:text="slide.text"
-					:route="slide.route"
-				></news-card>
+				<news-card :news="slide"></news-card>
 			</swiper-slide>
 		</swiper>
 

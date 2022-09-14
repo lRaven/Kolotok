@@ -120,7 +120,7 @@
 						</p>
 						<div class="product__details-footer">
 							<img
-								src="img/catalog/logo-default.svg"
+								src="/img/catalog/logo-default.svg"
 								alt=""
 								class="product__logo"
 								v-if="!product.logo"
@@ -250,11 +250,11 @@
 				},
 			],
 			quantity: null,
-			image: "img/catalog/catalog__photo.png",
+			image: "/img/catalog/catalog__photo.png",
 			images: [
-				{ id: 1, img: "img/catalog/catalog__photo.png" },
-				{ id: 2, img: "img/catalog/catalog__photo-default.svg" },
-				{ id: 3, img: "img/catalog/catalog__photo-default.svg" },
+				{ id: 1, img: "/img/catalog/catalog__photo.png" },
+				{ id: 2, img: "/img/catalog/catalog__photo-default.svg" },
+				{ id: 3, img: "/img/catalog/catalog__photo-default.svg" },
 			],
 			isModalOpened: false,
 		}),
@@ -335,7 +335,7 @@
 					{
 						id: 1,
 						description: "Главная",
-						route: "/",
+						route: { name: "Home" },
 						current: false,
 					},
 					{
@@ -353,7 +353,7 @@
 					{
 						id: 4,
 						description: this.productSubCategory.name,
-						route: "/",
+						route: { name: "Home" },
 						current: false,
 					},
 					{ id: 5, description: this.productName, current: true },

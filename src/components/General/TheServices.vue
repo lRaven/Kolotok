@@ -19,7 +19,7 @@
 				slides: [
 					{
 						id: 1,
-						img: "img/services/services-img.png",
+						img: "/img/services/services-img.png",
 						title: "Услуги",
 						description:
 							"Проектирование, ремонт и обустройство квартиры",
@@ -27,7 +27,7 @@
 					},
 					{
 						id: 2,
-						img: "img/services/services-img.png",
+						img: "/img/services/services-img.png",
 						title: "Услуги",
 						description:
 							"Проектирование, ремонт и обустройство квартиры",

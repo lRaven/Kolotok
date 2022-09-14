@@ -20,37 +20,37 @@
 			slides: [
 				{
 					id: 1,
-					img: "img/catalog/catalog-item1.png",
+					img: "/img/catalog/catalog-item1.png",
 					price: 22000,
 					name: "Садовые конструкции",
 				},
 				{
 					id: 2,
-					img: "img/catalog/catalog-item2.png",
+					img: "/img/catalog/catalog-item2.png",
 					price: 22000,
 					name: "Садовые конструкции",
 				},
 				{
 					id: 3,
-					img: "img/catalog/catalog-item3.png",
+					img: "/img/catalog/catalog-item3.png",
 					price: 22000,
 					name: "Садовые конструкции",
 				},
 				{
 					id: 4,
-					img: "img/catalog/catalog-item4.png",
+					img: "/img/catalog/catalog-item4.png",
 					price: 22000,
 					name: "Садовые конструкции",
 				},
 				{
 					id: 5,
-					img: "img/catalog/catalog-item5.png",
+					img: "/img/catalog/catalog-item5.png",
 					price: 22000,
 					name: "Садовые конструкции",
 				},
 				{
 					id: 6,
-					img: "img/catalog/catalog-item6.png",
+					img: "/img/catalog/catalog-item6.png",
 					price: 22000,
 					name: "Садовые конструкции",
 				},

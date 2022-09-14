@@ -24,6 +24,8 @@
 			class="products-slider__swiper"
 			slidesPerView="auto"
 			:spaceBetween="20"
+			:lazy="true"
+			:loop="true"
 			:navigation="{
 				prevEl: `.products-slider__prev-${id}`,
 				nextEl: `.products-slider__next-${id}`,
@@ -38,7 +40,7 @@
 					slidesPerView: 3,
 					spaceBetween: 30,
 				},
-				'900': {
+				'1024': {
 					slidesPerView: 4,
 					spaceBetween: 35,
 				},
@@ -53,7 +55,6 @@
 			}"
 			:modules="modules"
 			:speed="600"
-			:loop="true"
 		>
 			<swiper-slide v-for="slide in slides" :key="slide.id">
 				<r-card :id="slide.id" :card="slide"></r-card>
@@ -134,6 +135,7 @@
 		@media (max-width: 767px) {
 			display: grid;
 			grid-template-columns: max-content 1fr max-content;
+			grid-gap: 2rem;
 		}
 
 		&__swiper {

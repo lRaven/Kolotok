@@ -25,7 +25,7 @@
 						:src="
 							card.img
 								? card.img
-								: 'img/catalog/catalog__photo-default.svg'
+								: '/img/catalog/catalog__photo-default.svg'
 						"
 						alt="photo"
 						class="r-card__img"
@@ -98,12 +98,11 @@
 			position: relative;
 			min-width: 21rem;
 			width: 100%;
-			@media (max-width: 540px) {
-				max-width: 14rem;
-				min-width: inherit;
-			}
 			@media (max-width: 1160px) {
 				min-width: 23.4rem;
+			}
+			@media (max-width: 540px) {
+				min-width: 14rem;
 			}
 		}
 
@@ -121,7 +120,7 @@
 			@media (max-width: 767px) {
 				border-radius: 2rem;
 			}
-			@media (max-width: 540px) {
+			@media (max-width: 540px) and (min-width: 376px) {
 				height: 14rem;
 			}
 		}
@@ -157,7 +156,7 @@
 			max-width: 100%;
 			max-height: 20rem;
 			object-fit: contain;
-			@media (max-width: 540px) {
+			@media (max-width: 540px) and (min-width: 376px) {
 				max-height: 12rem;
 			}
 		}

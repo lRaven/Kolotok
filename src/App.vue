@@ -7,8 +7,8 @@
 </template>
 
 <script>
-	import Aos from "aos";
-	import "aos/dist/aos.css";
+	// import Aos from "aos";
+	// import "aos/dist/aos.css";
 
 	import { mapActions } from "vuex";
 
@@ -37,11 +37,10 @@
 			this.getDocumentWidth();
 		},
 		mounted() {
-			Aos.init();
-
-			setInterval(() => {
-				Aos.refresh();
-			}, 5000);
+			// Aos.init();
+			// setInterval(() => {
+			// 	Aos.refresh();
+			// }, 5000);
 		},
 	};
 </script>

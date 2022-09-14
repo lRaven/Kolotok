@@ -21,7 +21,7 @@
 					<r-link :way="{ name: 'Home' }" text="Подробнее"></r-link>
 				</div>
 				<!-- <img
-					src="img/catalog/catalog-item.png"
+					src="/img/catalog/catalog-item.png"
 					alt=""
 					class="the-banner__deal-img"
 				/> -->
@@ -62,7 +62,7 @@
 			slides: [
 				{
 					id: 1,
-					img: "img/banner-img.png",
+					img: "/img/banner-img.png",
 					title: "Всё для ремонта",
 					subtitle: "Удобный интернет-магазин от застройщика",
 					tags: [
@@ -74,7 +74,7 @@
 				},
 				{
 					id: 2,
-					img: "img/banner-img.png",
+					img: "/img/banner-img.png",
 					title: "Всё для ремонта",
 					subtitle: "Удобный интернет-магазин от застройщика",
 					tags: [
@@ -86,7 +86,7 @@
 				},
 				{
 					id: 3,
-					img: "img/banner-img.png",
+					img: "/img/banner-img.png",
 					title: "Всё для ремонта",
 					subtitle: "Удобный интернет-магазин от застройщика",
 					tags: [

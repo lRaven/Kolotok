@@ -65,7 +65,7 @@
 
 				<router-link class="the-header__col" :to="{ name: 'Home' }">
 					<img
-						src="img/icon/logo.svg"
+						src="/img/icon/logo.svg"
 						alt="logo"
 						class="animate__animated animate__fadeInDown the-header__logo"
 					/>
@@ -77,7 +77,7 @@
 						class="animate__animated animate__fadeInDown the-header__cart-container"
 					>
 						<img
-							src="img/icon/cart.svg"
+							src="/img/icon/cart.svg"
 							alt=""
 							class="the-header__cart"
 						/>
@@ -94,7 +94,7 @@
 						v-show="document_width > 540"
 					>
 						<img
-							src="img/icon/avatar.svg"
+							src="/img/icon/avatar.svg"
 							class="the-header__avatar"
 							alt=""
 						/>

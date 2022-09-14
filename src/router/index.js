@@ -37,12 +37,21 @@ const routes = [
 		component: () => import('@/views/PageCategory'),
 
 		meta: {
-			title: `Категория`,
+			title: 'Категория',
 		},
 	},
-
 	{
-		path: '/catalog/:category/product/:id',
+		path: '/catalog/:category/:subcategory',
+		name: 'Subcategory',
+
+		component: () => import('@/views/PageSubcategory'),
+
+		meta: {
+			title: 'Подкатегория',
+		},
+	},
+	{
+		path: '/catalog/:category/:subcategory/:id',
 		name: 'Product',
 
 		component: () => import('@/views/PageProduct'),

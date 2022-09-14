@@ -53,7 +53,7 @@
 				{
 					id: 1,
 					description: "Главная",
-					route: "/",
+					route: { name: "Home" },
 					current: false,
 				},
 				{

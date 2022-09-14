@@ -2,18 +2,18 @@
 	<div data-aos="fade-up" class="news-card shadow">
 		<div
 			class="news-card__top"
-			:style="`background: url(${img}) center / cover no-repeat`"
+			:style="`background: url(${news.img}) center / cover no-repeat`"
 		>
 			<div class="news-card__date">
-				{{ date }}
+				{{ news.date }}
 			</div>
 		</div>
 		<div class="news-card__bottom">
 			<h3 class="news-card__title">
-				{{ title }}
+				{{ news.title }}
 			</h3>
 			<p class="news-card__text">
-				{{ text }}
+				{{ news.text }}
 			</p>
 			<r-link :way="{ name: 'Home' }" text="Читать далее"></r-link>
 		</div>
@@ -24,11 +24,7 @@
 	export default {
 		name: "NewsCard",
 		props: {
-			img: String,
-			date: String,
-			title: String,
-			text: String,
-			route: String,
+			news: Object,
 		},
 	};
 </script>

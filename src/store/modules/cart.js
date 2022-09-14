@@ -7,7 +7,7 @@ const state = () => ({
 	cart_list: [
 		{
 			id: 1,
-			img: "img/catalog/catalog-item9.png",
+			img: "/img/catalog/catalog-item9.png",
 			name: "Люстра декоративная Ambra",
 			price_old: 22000,
 			price: 19950,
@@ -15,7 +15,7 @@ const state = () => ({
 		},
 		{
 			id: 2,
-			img: "img/catalog/catalog-item3.png",
+			img: "/img/catalog/catalog-item3.png",
 			name: "Кресло Гомер Симпсон",
 			price_old: 22000,
 			price: 9750,
@@ -23,7 +23,7 @@ const state = () => ({
 		},
 		{
 			id: 3,
-			img: "img/catalog/catalog-item2.png",
+			img: "/img/catalog/catalog-item2.png",
 			name: "Кран водопроводный сенсорный",
 			price_old: 22000,
 			price: 7250,

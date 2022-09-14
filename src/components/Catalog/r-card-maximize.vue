@@ -12,7 +12,7 @@
 					:src="
 						card.img
 							? card.img
-							: 'img/catalog/catalog__photo-default.svg'
+							: '/img/catalog/catalog__photo-default.svg'
 					"
 					alt="photo"
 					class="r-card-maximize__img"
@@ -79,6 +79,10 @@
 			width: 100%;
 			padding: 0;
 		}
+		@media (max-width: 767px) {
+			border-radius: 2rem;
+		}
+
 		&__main {
 			position: relative;
 			display: flex;
@@ -89,6 +93,9 @@
 			border-radius: 3rem;
 			height: 22rem;
 			margin-bottom: 1rem;
+			@media (max-width: 540px) and (min-width: 376px) {
+				height: 14rem;
+			}
 		}
 		&__discount {
 			position: absolute;
@@ -122,6 +129,9 @@
 			max-width: 100%;
 			max-height: 20rem;
 			object-fit: contain;
+			@media (max-width: 540px) and (min-width: 376px) {
+				max-height: 12rem;
+			}
 		}
 
 		&__footer {
@@ -156,6 +166,16 @@
 
 		&__control {
 			padding-bottom: 1.3rem;
+			@media (max-width: 540px) {
+				flex-direction: column;
+				align-items: flex-start;
+			}
+			.r-button {
+				@media (max-width: 540px) {
+					width: 100%;
+					justify-content: center;
+				}
+			}
 		}
 	}
 </style>
