@@ -115,7 +115,7 @@
 							subcategory.id == this.$route.params.subcategory
 					);
 
-					if (current_subcategory) {
+					if (Object.keys(current_subcategory).length > 1) {
 						document.title = current_subcategory.name;
 					}
 				}

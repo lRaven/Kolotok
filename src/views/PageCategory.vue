@@ -117,7 +117,10 @@
 							current_category = category;
 						}
 					});
-					document.title = current_category.name;
+
+					if (Object.keys(current_category).length > 0) {
+						document.title = current_category.name;
+					}
 				}
 
 				return current_category;
