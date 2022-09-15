@@ -41,10 +41,10 @@ const actions = {
 			if (request.status === 200) {
 				commit('SET_CATEGORIES', request.data);
 			} else if (request.status >= 400) {
-				console.error(request.status);
+				throw new Error(request.status)
 			}
 		}
-		catch { console.error('Error'); }
+		catch (err) { throw new Error(err) }
 	},
 
 	getSubcategories: async ({ commit }) => {
@@ -52,7 +52,7 @@ const actions = {
 			const request = await axios.get(`${baseURL}/kolotok/sub_categories`);
 			if (request.status === 200) commit('SET_SUBCATEGORIES', request.data);
 		}
-		catch { console.error('Error'); }
+		catch (err) { throw new Error(err) }
 	},
 
 	getProducts: async (context, params) => {

@@ -35,12 +35,15 @@
 							class="yellow"
 							text="Показать ещё"
 							:arrow="true"
+							v-show="pagination_data.next"
 							@click="page_changed(page + 1, true)"
 						></r-button>
 						<r-pagination
 							:start_page="page"
 							:count="count"
 							:items_on_page="pagination.cards_in_page"
+							:prev_page="pagination_data.previous"
+							:next_page="pagination_data.next"
 							@page_changed="page_changed"
 						></r-pagination>
 					</div>
@@ -77,9 +80,17 @@
 		},
 		watch: {
 			"$route.path"() {
-				if (this.$route.path === this.pagination.path) {
+				if (this.$route.name === this.pagination.path_name) {
 					this.getCards();
 				}
+			},
+			current_subcategories: {
+				handler() {
+					if (this.current_subcategories.length > 0) {
+						this.getCards();
+					}
+				},
+				deep: true,
 			},
 		},
 		data: () => ({
@@ -98,7 +109,7 @@
 			}),
 
 			current_category() {
-				let current_category = "";
+				let current_category = {};
 
 				if (this.categories) {
 					this.categories.forEach((category) => {
@@ -115,7 +126,7 @@
 			current_subcategories() {
 				let current_subcategories = [];
 
-				if (this.subcategories !== null) {
+				if (this.subcategories) {
 					current_subcategories = this.subcategories.reduce(
 						(acc, cur) => {
 							if (cur.category.id === this.current_category.id) {
@@ -207,7 +218,9 @@
 			},
 		},
 		mounted() {
-			this.getCards();
+			if (this.current_subcategories.length > 0) {
+				this.getCards();
+			}
 		},
 	};
 </script>

@@ -66,7 +66,10 @@
 	@import "@/assets/scss/variables.scss";
 
 	.r-card-maximize {
-		position: relative;
+		position: absolute;
+		top: 0;
+		left: 50%;
+		transform: translateX(-50%);
 		color: $dark-blue;
 		max-width: 23.4rem;
 		width: 23.4rem;

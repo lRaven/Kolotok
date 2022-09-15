@@ -1,7 +1,7 @@
 export const paginationMixin = {
 	watch: {
 		page() {
-			if (this.$route.path === this.pagination.path) {
+			if (this.$route.name === this.pagination.path_name) {
 				this.pagination.load_next_cards
 					?
 					this.getCards(true)
@@ -27,7 +27,7 @@ export const paginationMixin = {
 	data() {
 		return {
 			pagination: {
-				path: this.$route.path,
+				path_name: this.$route.name,
 				cards_in_page: 48,
 				cards_list: [],
 				load_next_cards: false,

@@ -3,7 +3,7 @@
 		<button
 			type="button"
 			class="r-pagination__btn r-pagination__btn-prev"
-			v-show="current_page > 1"
+			v-show="prev_page"
 			@click="changePage(current_page - 1)"
 		>
 			<img
@@ -90,7 +90,7 @@
 		<button
 			type="button"
 			class="r-pagination__btn r-pagination__btn-next"
-			v-show="current_page < totalPages"
+			v-show="next_page"
 			@click="changePage(current_page + 1)"
 		>
 			<img
@@ -119,6 +119,15 @@
 			items_on_page: {
 				value: Number,
 				default: 10,
+			},
+
+			next_page: {
+				value: String,
+				required: true,
+			},
+			prev_page: {
+				value: String,
+				required: true,
 			},
 		},
 		watch: {

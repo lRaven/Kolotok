@@ -33,6 +33,8 @@
 							:start_page="page"
 							:count="count"
 							:items_on_page="pagination.cards_in_page"
+							:prev_page="pagination_data.previous"
+							:next_page="pagination_data.next"
 							@page_changed="page_changed"
 						></r-pagination>
 					</div>
@@ -66,6 +68,13 @@
 
 			TheFooter,
 		},
+		watch: {
+			"$route.path"() {
+				if (this.$route.name === this.pagination.path_name) {
+					this.getCards();
+				}
+			},
+		},
 		data: () => ({
 			sortVariations: [
 				{ id: 1, value: 1, text: "По цене (возрастание)" },
@@ -90,19 +99,28 @@
 							current_category = category;
 						}
 					});
-					document.title = current_category.name;
 				}
 
 				return current_category;
 			},
 
 			subcategory() {
-				return (
-					this.subcategories.find(
+				let current_subcategory = {
+					id: this.$route.params.subcategory,
+				};
+
+				if (this.subcategories) {
+					current_subcategory = this.subcategories.find(
 						(subcategory) =>
 							subcategory.id == this.$route.params.subcategory
-					) || {}
-				);
+					);
+
+					if (current_subcategory) {
+						document.title = current_subcategory.name;
+					}
+				}
+
+				return current_subcategory;
 			},
 
 			links() {
@@ -172,7 +190,7 @@
 					}
 				} catch (err) {
 					this.isProductsLoaded = true;
-					// this.$router.push({ name: "Catalog" });
+					this.$router.push({ name: "Catalog" });
 					throw new Error(err);
 				}
 			},

@@ -4,7 +4,7 @@
 		@mouseenter="isMaximize = true"
 		@mouseleave="isMaximize = false"
 	>
-		<div data-aos="fade-up" class="r-card">
+		<div class="r-card">
 			<div class="r-card__main">
 				<r-discount
 					class="r-card__discount"
@@ -57,7 +57,11 @@
 <script>
 	import rDiscount from "@/components/Catalog/r-discount";
 	import rFavorite from "@/components/Catalog/r-favorite";
-	import rCardMaximize from "@/components/Catalog/r-card-maximize";
+	import { defineAsyncComponent } from "vue";
+
+	const rCardMaximize = defineAsyncComponent(() =>
+		import("@/components/Catalog/r-card-maximize.vue")
+	);
 
 	export default {
 		name: "r-card",
@@ -185,10 +189,6 @@
 		}
 
 		&-maximize {
-			position: absolute;
-			top: 0;
-			left: 50%;
-			transform: translateX(-50%);
 		}
 	}
 </style>
