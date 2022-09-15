@@ -4,94 +4,76 @@ const routes = [
 	{
 		path: '/',
 		name: 'Home',
-		component: () => import('@/views/PageHome'),
+		component: () => import(/* webpackChunkName: "home" */ '@/views/PageHome.vue'),
 
-		meta: {
-			title: 'Колоток',
-		},
+		meta: { title: 'Колоток', },
 	},
 	{
 		path: '/discount',
 		name: 'Discount',
+		component: () => import(/* webpackChunkName: "discount" */ '@/views/PageDiscount.vue'),
 
-		component: () => import('@/views/PageDiscount'),
-
-		meta: {
-			title: 'Акции',
-		},
+		meta: { title: 'Акции', },
 	},
 	{
 		path: '/catalog',
 		name: 'Catalog',
+		component: () => import(/* webpackChunkName: "catalog" */ '@/views/PageCatalog.vue'),
 
-		component: () => import('@/views/PageCatalog'),
-
-		meta: {
-			title: 'Каталог',
-		},
+		meta: { title: 'Каталог', },
 	},
 	{
 		path: '/catalog/:category',
 		name: 'Category',
+		component: () => import(/* webpackChunkName: "category" */ '@/views/PageCategory.vue'),
 
-		component: () => import('@/views/PageCategory'),
-
-		meta: {
-			title: 'Категория',
-		},
+		meta: { title: 'Категория', },
 	},
 	{
 		path: '/catalog/:category/:subcategory',
 		name: 'Subcategory',
+		component: () => import(/* webpackChunkName: "subcategory" */ '@/views/PageSubcategory.vue'),
 
-		component: () => import('@/views/PageSubcategory'),
-
-		meta: {
-			title: 'Подкатегория',
-		},
+		meta: { title: 'Подкатегория', },
 	},
 	{
 		path: '/catalog/:category/:subcategory/:id',
 		name: 'Product',
+		component: () => import(/* webpackChunkName: "product" */ '@/views/PageProduct.vue'),
 
-		component: () => import('@/views/PageProduct'),
-
-		meta: {
-			title: 'Товар',
-		},
+		meta: { title: 'Товар', },
 	},
+	{
+		path: '/login',
+		name: 'Login',
+		component: () => import(/* webpackChunkName: "login" */ '@/views/PageLogin.vue'),
 
-	//*cart page
+		meta: { title: 'Авторизация' }
+	},
+	//* cart page
 	{
 		path: '/cart',
 		name: 'Cart',
-		component: () => import('@/views/PageCart'),
+		component: () => import(/* webpackChunkName: "cart" */ '@/views/PageCart.vue'),
 
-		meta: {
-			title: 'Корзина',
-		},
+		meta: { title: 'Корзина', },
 	},
 
 	{
 		path: '/projects',
 		name: 'Projects',
+		component: () => import(/* webpackChunkName: "projects" */ '@/views/PageProjects.vue'),
 
-		component: () => import('@/views/PageProjects'),
-
-		meta: {
-			title: 'Проекты клиентов',
-		},
+		meta: { title: 'Проекты клиентов', },
 	},
 
-	//*404
+	//* 404 page
 	{
 		path: '/:pathMatch(.*)*',
 		name: 'NotFound',
-		component: () => import('@/views/Page404'),
+		component: () => import(/* webpackChunkName: "not_found" */ '@/views/Page404.vue'),
 
-		meta: {
-			title: '404',
-		}
+		meta: { title: '404', }
 	},
 ]
 

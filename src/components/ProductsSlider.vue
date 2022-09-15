@@ -191,6 +191,7 @@
 				}
 			}
 			&-pagination {
+				z-index: 1;
 				&-bullet {
 					background-color: $light-gray !important;
 					width: 1rem !important;

@@ -1,5 +1,9 @@
 <template>
-	<footer class="the-footer" id="footer">
+	<footer
+		class="the-footer"
+		id="footer"
+		:class="{ cabinet: isCabinetVersion }"
+	>
 		<div class="the-footer__container center">
 			<div class="the-footer__top">
 				<img
@@ -97,7 +101,15 @@
 </template>
 
 <script>
-	export default { name: "TheFooter" };
+	export default {
+		name: "TheFooter",
+		props: {
+			isCabinetVersion: {
+				value: Boolean,
+				default: false,
+			},
+		},
+	};
 </script>
 
 <style lang="scss" scoped>
@@ -108,28 +120,41 @@
 		align-items: center;
 		position: relative;
 		background-color: $dark-blue;
-		padding: 4rem 2rem 2rem 1.5rem;
+		padding: 4rem 2.5rem 1.5rem 2.5rem;
 		color: $white;
+		@media (max-width: 1023px) {
+			padding: 2rem 2rem 1.5rem 2rem;
+		}
+		@media (max-width: 540px) {
+			padding: 2rem 1.5rem 1.5rem 1.5rem;
+		}
 
-		&::before,
-		&::after {
-			content: "";
-			top: -10rem;
-			position: absolute;
-			height: 10rem;
-			width: 5rem;
-			background-color: transparent;
-			z-index: -1;
+		&:not(.cabinet) {
+			&::before,
+			&::after {
+				content: "";
+				top: -10rem;
+				position: absolute;
+				height: 10rem;
+				width: 5rem;
+				background-color: transparent;
+				z-index: -1;
+			}
+			&::before {
+				border-radius: 0 0 0 3rem;
+				box-shadow: 0 5rem 0 0 $dark-blue;
+				left: 0;
+			}
+			&::after {
+				border-radius: 0 0 3rem 0;
+				box-shadow: 0 5rem 0 0 $dark-blue;
+				right: 0;
+			}
 		}
-		&::before {
-			border-radius: 0 0 0 3rem;
-			box-shadow: 0 5rem 0 0 $dark-blue;
-			left: 0;
-		}
-		&::after {
-			border-radius: 0 0 3rem 0;
-			box-shadow: 0 5rem 0 0 $dark-blue;
-			right: 0;
+
+		&.cabinet {
+			padding: 2rem 2rem 1rem 2rem;
+			border-radius: 3rem 3rem 0 0;
 		}
 
 		&__container {

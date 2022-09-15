@@ -1,5 +1,8 @@
 <template>
-	<div class="the-header animate__animated animate__fadeInDown">
+	<div
+		class="the-header animate__animated animate__fadeInDown"
+		:class="{ cabinet: isCabinetVersion }"
+	>
 		<div class="the-header__container center">
 			<div class="the-header__row">
 				<button
@@ -65,11 +68,21 @@
 
 				<router-link class="the-header__col" :to="{ name: 'Home' }">
 					<img
-						src="/img/icon/logo.svg"
+						:src="
+							isCabinetVersion && document_width <= 540
+								? '/img/icon/logo-mobile.svg'
+								: isCabinetVersion && document_width > 540
+								? '/img/icon/logo-inline.svg'
+								: `/img/icon/logo.svg`
+						"
 						alt="logo"
 						class="animate__animated animate__fadeInDown the-header__logo"
 					/>
 				</router-link>
+
+				<h4 class="the-header__description" v-show="isCabinetVersion">
+					МАГАЗИН ДЛЯ ТЕХ, КТО СТРОИТ
+				</h4>
 
 				<div class="the-header__col the-header__col-right">
 					<router-link
@@ -89,7 +102,7 @@
 						</span>
 					</router-link>
 					<router-link
-						:to="{ name: 'Home' }"
+						:to="{ name: 'Login' }"
 						class="animate__animated animate__fadeInDown"
 						v-show="document_width > 540"
 					>
@@ -102,7 +115,7 @@
 				</div>
 			</div>
 
-			<div class="the-header__row">
+			<div class="the-header__row" v-show="!isCabinetVersion">
 				<div
 					v-show="document_width > 540"
 					class="the-header__col the-header__col-left the-header__catalog-wrapper"
@@ -303,6 +316,12 @@
 	export default {
 		name: "TheHeader",
 		components: { rSearch },
+		props: {
+			isCabinetVersion: {
+				value: Boolean,
+				default: false,
+			},
+		},
 		watch: {
 			"$route.path"() {
 				//* срабатывает при переходе по router-link
@@ -411,29 +430,41 @@
 			padding: 1rem 1.5rem;
 		}
 
-		&::before,
-		&::after {
-			content: "";
-			pointer-events: none;
-			bottom: -10rem;
-			position: absolute;
-			height: 10rem;
-			width: 5rem;
-			background-color: transparent;
-			z-index: -1;
+		&:not(.cabinet) {
+			&::before,
+			&::after {
+				content: "";
+				pointer-events: none;
+				bottom: -10rem;
+				position: absolute;
+				height: 10rem;
+				width: 5rem;
+				background-color: transparent;
+				z-index: -1;
+			}
+			&::before {
+				border-top-left-radius: 3rem;
+				box-shadow: 0 -5rem 0 0 $dark-blue;
+				left: 0;
+			}
+			&::after {
+				border-top-right-radius: 3rem;
+				box-shadow: 0 -5rem 0 0 $dark-blue;
+				right: 0;
+			}
 		}
-		&::before {
-			border-top-left-radius: 3rem;
-			box-shadow: 0 -5rem 0 0 $dark-blue;
-			left: 0;
+
+		&.cabinet {
+			border-radius: 0 0 3rem 3rem;
+			padding: 2rem 2.5rem;
+
+			.the-header {
+				&__logo {
+					height: 4.5rem;
+				}
+			}
 		}
-		&::after {
-			border-top-right-radius: 3rem;
-			box-shadow: 0 -5rem 0 0 $dark-blue;
-			right: 0;
-		}
-		&__container {
-		}
+
 		&__row {
 			display: flex;
 			align-items: center;
@@ -449,7 +480,6 @@
 				margin-top: 1.2rem;
 			}
 		}
-
 		&__col {
 			display: flex;
 			align-items: center;
@@ -461,6 +491,7 @@
 				// justify-content: flex-end;
 			}
 		}
+
 		&__logo {
 			height: 8.5rem;
 			@media (max-width: 1023px) {
@@ -502,8 +533,6 @@
 					top: -0.5rem;
 				}
 			}
-		}
-		&__avatar {
 		}
 
 		&__catalog {
@@ -624,11 +653,15 @@
 				font-weight: 500;
 			}
 		}
-
 		&__search {
 			display: flex;
 			justify-content: flex-end;
 			width: 100%;
+		}
+
+		&__description {
+			color: $white;
+			font-weight: 700;
 		}
 	}
 
