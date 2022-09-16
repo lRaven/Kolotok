@@ -1,19 +1,19 @@
 <template>
-	<div class="page-login theme-container">
+	<div class="page-registration theme-container">
 		<the-header :isCabinetVersion="true"></the-header>
 
-		<main class="page-login__main main">
-			<div class="page-login__container">
-				<div data-aos="fade-up" class="page-login__links shadow">
+		<main class="page-registration__main main">
+			<div class="page-registration__container">
+				<div data-aos="fade-up" class="page-registration__links shadow">
 					<router-link
 						:to="{ name: 'Login' }"
-						class="page-login__link"
+						class="page-registration__link"
 					>
 						Войти
 					</router-link>
 					<router-link
 						:to="{ name: 'Registration' }"
-						class="page-login__link"
+						class="page-registration__link"
 					>
 						Зарегистрироваться
 					</router-link>
@@ -21,23 +21,30 @@
 
 				<form
 					data-aos="fade-up"
-					class="page-login__form shadow"
+					class="page-registration__form shadow"
 					@submit.prevent="attemptToEnter = true"
 				>
-					<div class="page-login__form-header">
-						<h3 class="page-login__title">Вход в личный кабинет</h3>
+					<div class="page-registration__form-header">
+						<h3 class="page-registration__title">Регистрация</h3>
 					</div>
-					<div class="page-login__form-body">
+					<div class="page-registration__form-body">
 						<r-input
 							name="username"
 							placeholder="Логин"
 							v-model="authData.username"
 						></r-input>
 						<r-input
+							name="email"
+							placeholder="E-mail"
+							type="email"
+							v-model="authData.email"
+						></r-input>
+						<r-input
 							name="password"
 							placeholder="Пароль"
 							type="password"
 							v-model="authData.password"
+							autocomplete="new-password"
 						></r-input>
 						<r-button
 							:disabled="!isFormValid"
@@ -45,11 +52,12 @@
 							color="yellow"
 							type="submit"
 						></r-button>
-
-						<p class="page-login__form-confirmation">
+						<p class="page-registration__form-confirmation">
 							Нажимая кнопку «Зарегистрироваться», вы
 							подтверждаете своё согласие на
-							<a class="page-login__form-confirmation-link">
+							<a
+								class="page-registration__form-confirmation-link"
+							>
 								обработку персональных данных
 							</a>
 						</p>
@@ -65,14 +73,14 @@
 <script>
 	import TheHeader from "@/components/TheHeader";
 
-	import { login } from "@/api/user";
+	import { registration } from "@/api/user";
 	import { useToast } from "vue-toastification";
 	import { returnErrorMessages } from "@/js/returnErrorMessages";
 
 	import TheFooter from "@/components/TheFooter";
 
 	export default {
-		name: "PageLogin",
+		name: "PageRegistration",
 		components: {
 			TheHeader,
 
@@ -94,6 +102,7 @@
 
 			authData: {
 				username: "",
+				email: "",
 				password: "",
 			},
 		}),
@@ -101,6 +110,7 @@
 			isFormValid() {
 				if (
 					this.authData.username.length > 0 &&
+					this.authData.email.length > 0 &&
 					this.authData.password.length >= 8
 				)
 					return true;
@@ -110,16 +120,12 @@
 		methods: {
 			async auth() {
 				try {
-					const response = await login(this.authData);
-
-					if (response.status === 200) {
-						this.$cookies.set(
-							"auth_token",
-							response.data.auth_token
+					const response = await registration(this.authData);
+					if (response.status === 201) {
+						this.$router.push({ name: "Login" });
+						this.toast.success(
+							"Вы успешно зарегистрировали свой аккаунт"
 						);
-						this.toast.success("Вход выполнен успешно");
-
-						this.$router.push({ name: "Cabinet" });
 					}
 					if (response.status === 400) {
 						const error_list = returnErrorMessages(response.data);
@@ -142,7 +148,7 @@
 <style lang="scss" scoped>
 	@import "@/assets/scss/variables";
 
-	.page-login {
+	.page-registration {
 		&__main {
 			display: flex;
 			justify-content: center;
@@ -184,7 +190,6 @@
 			border-radius: 3rem;
 			color: $dark;
 			background: $white;
-			width: 100%;
 			&-header {
 				padding: 3rem 10rem;
 				border-bottom: 0.1rem solid $gray;

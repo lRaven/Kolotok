@@ -52,6 +52,13 @@ const routes = [
 		meta: { title: 'Авторизация' }
 	},
 	{
+		path: '/registration',
+		name: 'Registration',
+		component: () => import(/* webpackChunkName: "registration" */ '@/views/PageRegistration.vue'),
+
+		meta: { title: 'Регистрация' }
+	},
+	{
 		path: '/cabinet',
 		name: 'Cabinet',
 		component: () => import(/* webpackChunkName: "cabinet" */ '@/views/PageCabinet.vue'),

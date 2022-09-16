@@ -6,7 +6,8 @@
 				transparent: isTransparent,
 				password: type === 'password',
 			}"
-			:disabled="disabled"
+			:name="name"
+			:disabled="isDisabled"
 			:type="input_type"
 			:placeholder="placeholder"
 			:value="modelValue"
@@ -15,7 +16,7 @@
 
 		<label
 			class="r-input__eye"
-			:class="{ disabled: disabled }"
+			:class="{ disabled: isDisabled }"
 			v-if="type === 'password'"
 		>
 			<input
@@ -42,12 +43,14 @@
 				value: Boolean,
 				default: false,
 			},
-			disabled: {
+			isDisabled: {
 				value: Boolean,
 				default: false,
 			},
+
 			modelValue: String,
 			type: String,
+			name: String,
 			placeholder: String,
 		},
 		watch: {
