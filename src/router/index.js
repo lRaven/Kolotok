@@ -62,14 +62,28 @@ const routes = [
 		path: '/cabinet',
 		name: 'Cabinet',
 		component: () => import(/* webpackChunkName: "cabinet" */ '@/views/PageCabinet.vue'),
+		redirect: { name: 'Profile' },
 
 		children: [
 			{
 				path: 'profile',
 				name: 'Profile',
+				component: () => import(/* webpackChunkName: "profile" */ '@/views/CabinetPages/PageProfile.vue'),
+
 
 				meta: {
 					title: 'Профиль',
+					requiresAuth: true,
+				}
+			},
+			{
+				path: 'cart',
+				name: 'CartCabinet',
+				component: () => import(/* webpackChunkName: "cart_cabinet" */ '@/views/CabinetPages/PageCartCabinet.vue'),
+
+
+				meta: {
+					title: 'Корзина',
 					requiresAuth: true,
 				}
 			},

@@ -28,6 +28,7 @@
 				"getCategories",
 				"getSubcategories",
 				"getDocumentWidth",
+				"getUserData",
 			]),
 		},
 		created() {
@@ -37,6 +38,8 @@
 			this.getDocumentWidth();
 		},
 		mounted() {
+			this.getUserData();
+
 			Aos.init();
 			setInterval(() => {
 				Aos.refresh();

@@ -3,7 +3,22 @@ import axios from "axios";
 
 const baseURL = process.env.VUE_APP_BACKEND_BASEURL;
 
-const state = () => ({ user: {}, })
+const state = () => ({
+	user: {},
+
+	tabs_user: [
+		{ id: 1, icon: '/img/icon/cabinet/profile.svg', icon_selected: '/img/icon/cabinet/profile-selected.svg', description: 'Мой профиль', tab: 'profile', link: { name: 'Profile' } },
+		{ id: 2, icon: '/img/icon/cabinet/cart.svg', icon_selected: '/img/icon/cabinet/cart.svg', description: 'Корзина', tab: 'cart', link: { name: 'CartCabinet' } },
+		{ id: 3, icon: '/img/icon/cabinet/orders.svg', icon_selected: '/img/icon/cabinet/orders-selected.svg', description: 'История заказов', tab: 'orders', link: { name: 'Orders' } },
+		{ id: 4, icon: '/img/icon/cabinet/bonuses.svg', icon_selected: '/img/icon/cabinet/bonuses-selected.svg', description: 'Бонусы', tab: 'bonuses', link: { name: 'Bonuses' } },
+	],
+	tabs_admin: [
+		{ id: 1, icon: '/img/icon/cabinet/profile.svg', icon_selected: '/img/icon/cabinet/profile-selected.svg', description: 'Мой профиль', tab: 'profile', link: { name: 'Profile' } },
+		{ id: 2, icon: '/img/icon/cabinet/cart.svg', icon_selected: '/img/icon/cabinet/cart.svg', description: 'Корзина', tab: 'cart', link: { name: 'CartCabinet' } },
+		{ id: 3, icon: '/img/icon/cabinet/orders.svg', icon_selected: '/img/icon/cabinet/orders-selected.svg', description: 'История заказов', tab: 'orders', link: { name: 'Orders' } },
+		{ id: 4, icon: '/img/icon/cabinet/bonuses.svg', icon_selected: '/img/icon/cabinet/bonuses-selected.svg', description: 'Бонусы', tab: 'bonuses', link: { name: 'Bonuses' } },
+	],
+})
 
 const getters = {
 	userAuth(context, getters) {

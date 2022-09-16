@@ -95,6 +95,10 @@
 			color: $dark-blue;
 			font-weight: 500;
 		}
+		&.gray {
+			color: $blue;
+			background-color: #eee;
+		}
 
 		&__arrow {
 			height: 1.8rem;
