@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import store from '@/store'
 
 const routes = [
 	{
@@ -50,6 +51,29 @@ const routes = [
 
 		meta: { title: 'Авторизация' }
 	},
+	{
+		path: '/cabinet',
+		name: 'Cabinet',
+		component: () => import(/* webpackChunkName: "cabinet" */ '@/views/PageCabinet.vue'),
+
+		children: [
+			{
+				path: 'profile',
+				name: 'Profile',
+
+				meta: {
+					title: 'Профиль',
+					requiresAuth: true,
+				}
+			},
+		],
+
+		meta: {
+			title: 'Личный кабинет',
+			requiresAuth: true,
+		}
+	},
+
 	//* cart page
 	{
 		path: '/cart',
@@ -78,11 +102,20 @@ const routes = [
 ]
 
 const router = createRouter({
-	history: createWebHashHistory(),
+	history: createWebHashHistory(process.env.BASE_URL),
 	routes,
-	scrollBehavior() {
-		return { top: 0 }
+})
+
+router.beforeEach((to) => {
+	window.scrollTo(0, 0);
+
+	const userAuth = store.getters.userAuth;
+
+	if (to.meta.requiresAuth) {
+		if (userAuth) return true
+		else return { name: 'Login' }
 	}
+	else return true
 })
 
 export default router

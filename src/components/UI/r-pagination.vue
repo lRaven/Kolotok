@@ -136,7 +136,7 @@
 			},
 		},
 		computed: {
-			...mapState(["document_width"]),
+			...mapState(["documentWidth"]),
 
 			totalPages() {
 				return Math.ceil(this.count / this.items_on_page);

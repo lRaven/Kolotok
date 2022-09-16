@@ -3,19 +3,19 @@ import cookie from 'vue-cookies';
 
 const baseURL = process.env.VUE_APP_BACKEND_BASEURL;
 
-const login = async (username, password) => {
+const login = async (authData) => {
 	try {
 		const response = await axios.post(`${baseURL}/auth/token/login/`,
-			{ username, password, }
+			{ ...authData }
 		);
 		return response;
 	}
 	catch (err) { return err.response }
 }
 
-const registration = async (user_data) => {
+const registration = async (authData) => {
 	try {
-		const response = await axios.post(`${baseURL}/auth/users/`, { ...user_data })
+		const response = await axios.post(`${baseURL}/auth/users/`, { ...authData })
 		return response;
 	}
 	catch (err) { return err.response }
@@ -44,11 +44,11 @@ const change_user_data = async (new_data) => {
 	catch (err) { return err.response }
 }
 
-const change_password = async (new_password, current_password) => {
+const change_password = async (passwords) => {
 	try {
 		const response =
 			await axios.post(`${baseURL}/auth/users/set_password/`,
-				{ new_password, current_password },
+				{ ...passwords },
 				{ headers: { Authorization: `token ${cookie.get('auth_token')}`, }, }
 			)
 		return response;

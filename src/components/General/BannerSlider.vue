@@ -54,13 +54,13 @@
 			BannerCard,
 		},
 		watch: {
-			document_width() {
+			documentWidth() {
 				this.paginationAdaptiveVisibility();
 			},
 		},
 		computed: {
 			...mapState({
-				document_width: (state) => state.document_width,
+				documentWidth: (state) => state.documentWidth,
 			}),
 		},
 		data: () => ({
@@ -68,11 +68,11 @@
 		}),
 		methods: {
 			paginationAdaptiveVisibility() {
-				if (this.document_width > 1023) {
+				if (this.documentWidth > 1023) {
 					this.isHasPagination = true;
 				} else if (
-					this.document_width <= 1023 &&
-					this.document_width > 540
+					this.documentWidth <= 1023 &&
+					this.documentWidth > 540
 				) {
 					this.isHasPagination = false;
 				} else {

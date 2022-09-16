@@ -3,7 +3,7 @@
 		{{ text }}
 		<img
 			:src="
-				document_width > 540
+				documentWidth > 540
 					? '/img/icon/arrow-long.svg'
 					: '/img/icon/basket/arrow.svg'
 			"
@@ -32,7 +32,7 @@
 			color: String,
 		},
 		computed: {
-			...mapState(["document_width"]),
+			...mapState(["documentWidth"]),
 		},
 	};
 </script>
@@ -53,6 +53,19 @@
 			padding: 1rem 1.2rem;
 			font-size: 1.4rem;
 		}
+
+		&:disabled {
+			cursor: default;
+		}
+		&:not(:disabled) {
+			&:hover {
+				transform: translateY(-0.3rem);
+			}
+			&:active {
+				transform: translateY(-0.1rem);
+			}
+		}
+
 		&.reverse {
 			flex-direction: row-reverse;
 		}
@@ -61,6 +74,10 @@
 			background-color: $yellow;
 			color: $dark-blue;
 			font-weight: 500;
+			&:disabled {
+				background-color: rgba($light-gray, 0.7);
+				color: $white;
+			}
 		}
 		&.blue {
 			background: linear-gradient(
@@ -77,12 +94,6 @@
 			background-color: $white;
 			color: $dark-blue;
 			font-weight: 500;
-		}
-		&:hover {
-			transform: translateY(-0.3rem);
-		}
-		&:active {
-			transform: translateY(-0.1rem);
 		}
 
 		&__arrow {

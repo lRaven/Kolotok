@@ -6,7 +6,7 @@
 		<div class="the-header__container center">
 			<div class="the-header__row">
 				<button
-					v-show="document_width <= 540"
+					v-show="documentWidth <= 540"
 					type="button"
 					class="the-header__catalog-burger"
 					:class="{ open: isCatalogOpen }"
@@ -69,9 +69,9 @@
 				<router-link class="the-header__col" :to="{ name: 'Home' }">
 					<img
 						:src="
-							isCabinetVersion && document_width <= 540
+							isCabinetVersion && documentWidth <= 540
 								? '/img/icon/logo-mobile.svg'
-								: isCabinetVersion && document_width > 540
+								: isCabinetVersion && documentWidth > 540
 								? '/img/icon/logo-inline.svg'
 								: `/img/icon/logo.svg`
 						"
@@ -102,9 +102,9 @@
 						</span>
 					</router-link>
 					<router-link
-						:to="{ name: 'Login' }"
+						:to="{ name: userAuth ? 'Cabinet' : 'Login' }"
 						class="animate__animated animate__fadeInDown"
-						v-show="document_width > 540"
+						v-show="documentWidth > 540"
 					>
 						<img
 							src="/img/icon/avatar.svg"
@@ -117,7 +117,7 @@
 
 			<div class="the-header__row" v-show="!isCabinetVersion">
 				<div
-					v-show="document_width > 540"
+					v-show="documentWidth > 540"
 					class="the-header__col the-header__col-left the-header__catalog-wrapper"
 				>
 					<div
@@ -309,7 +309,7 @@
 </template>
 
 <script>
-	import { mapState } from "vuex";
+	import { mapState, mapGetters } from "vuex";
 
 	import rSearch from "@/components/r-search";
 
@@ -337,8 +337,8 @@
 					this.catalog_columns = 1;
 				}
 			},
-			document_width() {
-				if (this.document_width <= 540 && this.isCatalogOpen) {
+			documentWidth() {
+				if (this.documentWidth <= 540 && this.isCatalogOpen) {
 					this.isCatalogOpen = false;
 				}
 			},
@@ -355,8 +355,9 @@
 				categories: (state) => state.Catalog.categories,
 				cart_list: (state) => state.Cart.cart_list,
 				subcategories: (state) => state.Catalog.subcategories,
-				document_width: (state) => state.document_width,
+				documentWidth: (state) => state.documentWidth,
 			}),
+			...mapGetters(["userAuth"]),
 
 			cart_list_length() {
 				let length = 0;

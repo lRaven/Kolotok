@@ -3,14 +3,25 @@
 		<the-header :isCabinetVersion="true"></the-header>
 
 		<main class="page-login__main main">
-			<form class="page-login__form shadow">
+			<form
+				class="page-login__form shadow"
+				@submit.prevent="attemptToEnter = true"
+			>
 				<div class="page-login__form-header">
 					<h3 class="page-login__title">Вход в личный кабинет</h3>
 				</div>
 				<div class="page-login__form-body">
-					<r-input placeholder="Логин"></r-input>
-					<r-input placeholder="Пароль" type="password"></r-input>
+					<r-input
+						placeholder="Логин"
+						v-model="authData.username"
+					></r-input>
+					<r-input
+						placeholder="Пароль"
+						type="password"
+						v-model="authData.password"
+					></r-input>
 					<r-button
+						:disabled="!isFormValid"
 						text="Войти"
 						color="yellow"
 						type="submit"
@@ -37,22 +48,47 @@
 
 			TheFooter,
 		},
+		watch: {
+			attemptToEnter() {
+				if (this.attemptToEnter) {
+					this.auth();
+
+					setTimeout(() => {
+						this.attemptToEnter = false;
+					}, 5000);
+				}
+			},
+		},
 		data: () => ({
-			auth_data: {
-				login: "",
+			attemptToEnter: false,
+
+			authData: {
+				username: "",
 				password: "",
 			},
 		}),
+		computed: {
+			isFormValid() {
+				if (
+					this.authData.username.length > 0 &&
+					this.authData.password.length >= 8
+				)
+					return true;
+				else return false;
+			},
+		},
 		methods: {
 			async auth() {
 				try {
-					const response = await login({
-						login: this.auth.data.login,
-						password: this.auth_data.password,
-					});
+					const response = await login(this.authData);
 
-					if (response) {
-						console.log(response);
+					if (response.status === 200) {
+						this.$cookies.set(
+							"auth_token",
+							response.data.auth_token
+						);
+
+						this.$router.push({ name: "Cabinet" });
 					}
 				} catch (err) {
 					throw new Error(err);

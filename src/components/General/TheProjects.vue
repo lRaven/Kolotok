@@ -3,7 +3,7 @@
 		<h2 data-aos="fade-right" class="the-projects__title">
 			Проекты клиентов
 		</h2>
-		<div class="the-projects__list" v-show="document_width > 540">
+		<div class="the-projects__list" v-show="documentWidth > 540">
 			<img
 				data-aos="fade-up"
 				:src="project.img"
@@ -15,7 +15,7 @@
 		</div>
 
 		<r-swiper
-			v-show="document_width <= 540"
+			v-show="documentWidth <= 540"
 			:slides="projects"
 			id="projects"
 		></r-swiper>
@@ -40,7 +40,7 @@
 			rSwiper,
 		},
 		computed: {
-			...mapState(["document_width"]),
+			...mapState(["documentWidth"]),
 		},
 		data: () => ({
 			projects: [

@@ -4,22 +4,22 @@
 		<h1 class="banner-card__title">
 			{{ title }}
 		</h1>
-		<h4 class="banner-card__subtitle" v-show="document_width > 540">
+		<h4 class="banner-card__subtitle" v-show="documentWidth > 540">
 			{{ subtitle }}
 		</h4>
-		<div class="banner-card__tags" v-show="document_width > 1023">
+		<div class="banner-card__tags" v-show="documentWidth > 1023">
 			<r-tag v-for="tag in tags" :key="tag.id" :text="tag.text"></r-tag>
 		</div>
 
 		<r-link
-			v-show="document_width > 1023"
+			v-show="documentWidth > 1023"
 			:way="{ name: 'Catalog' }"
 			text="Перейти в каталог"
 			class="banner-card__link"
 		></r-link>
 
 		<r-button
-			v-show="document_width <= 1023"
+			v-show="documentWidth <= 1023"
 			color="white"
 			:arrow="true"
 			:reverse="true"
@@ -43,7 +43,7 @@
 			tags: Array,
 		},
 		computed: {
-			...mapState(["document_width"]),
+			...mapState(["documentWidth"]),
 		},
 	};
 </script>

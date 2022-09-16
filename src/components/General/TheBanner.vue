@@ -13,7 +13,7 @@
 					<h3 class="the-banner__deal-title">ВЫГОДНАЯ ПОКУПКА</h3>
 					<p class="the-banner__deal-text">
 						{{
-							document_width > 540
+							documentWidth > 540
 								? "Специальные предложения на товары месяца"
 								: "Специальные\nпредложения\nна товары месяца"
 						}}
@@ -35,7 +35,7 @@
 					<h3 class="the-banner__tariffs-title">ТАРИФЫ</h3>
 					<p class="the-banner__tariffs-text">
 						{{
-							document_width > 540
+							documentWidth > 540
 								? "Тарифы на ремонт под ключ"
 								: "Тарифы на ремонт\nпод ключ"
 						}}
@@ -56,7 +56,7 @@
 		name: "TheBanner",
 		components: { BannerSlider },
 		computed: {
-			...mapState(["document_width"]),
+			...mapState(["documentWidth"]),
 		},
 		data: () => ({
 			slides: [
