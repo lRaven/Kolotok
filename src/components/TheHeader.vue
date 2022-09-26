@@ -309,7 +309,7 @@
 </template>
 
 <script>
-	import { mapState, mapGetters } from "vuex";
+	import { mapState } from "vuex";
 
 	import rSearch from "@/components/r-search";
 
@@ -355,9 +355,9 @@
 				categories: (state) => state.Catalog.categories,
 				cart_list: (state) => state.Cart.cart_list,
 				subcategories: (state) => state.Catalog.subcategories,
+				userAuth: (state) => state.Cabinet.userAuth,
 				documentWidth: (state) => state.documentWidth,
 			}),
-			...mapGetters(["userAuth"]),
 
 			cart_list_length() {
 				let length = 0;

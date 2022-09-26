@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import store from '@/store'
+import cookies from 'vue-cookies'
 
 const routes = [
 	{
@@ -130,10 +130,8 @@ const router = createRouter({
 router.beforeEach((to) => {
 	window.scrollTo(0, 0);
 
-	const userAuth = store.getters.userAuth;
-
 	if (to.meta.requiresAuth) {
-		if (userAuth) return true
+		if (cookies.get('auth_token')) return true
 		else return { name: 'Login' }
 	}
 	else return true

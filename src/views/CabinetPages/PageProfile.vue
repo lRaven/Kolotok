@@ -49,7 +49,7 @@
 									? 'Не указано'
 									: ''
 							"
-							:disabled="isNameFormDisabled"
+							:isDisabled="isNameFormDisabled"
 							v-model="userData.last_name"
 							:isTransparent="isNameFormDisabled"
 						></r-input>
@@ -64,7 +64,7 @@
 									? 'Не указано'
 									: ''
 							"
-							:disabled="isNameFormDisabled"
+							:isDisabled="isNameFormDisabled"
 							v-model="userData.first_name"
 							:isTransparent="isNameFormDisabled"
 						></r-input>
@@ -75,7 +75,7 @@
 							@click="
 								isNameFormDisabled
 									? (isNameFormDisabled = false)
-									: send_new_personal_data()
+									: send_name()
 							"
 						>
 							{{ isNameFormDisabled ? "Изменить" : "Применить" }}
@@ -96,7 +96,7 @@
 									? 'Не указано'
 									: ''
 							"
-							:disabled="isPhoneFormDisabled"
+							:isDisabled="isPhoneFormDisabled"
 							v-model="userData.phone_number"
 							:isTransparent="isPhoneFormDisabled"
 						></r-input>
@@ -107,7 +107,7 @@
 							@click="
 								isPhoneFormDisabled
 									? (isPhoneFormDisabled = false)
-									: (isPhoneFormDisabled = true)
+									: send_phone_number()
 							"
 						>
 							{{ isPhoneFormDisabled ? "Изменить" : "Применить" }}
@@ -128,7 +128,7 @@
 									? 'Не указано'
 									: ''
 							"
-							:disabled="isEmailFormDisabled"
+							:isDisabled="isEmailFormDisabled"
 							v-model="userData.email"
 							:isTransparent="isEmailFormDisabled"
 						></r-input>
@@ -139,7 +139,7 @@
 							@click="
 								isEmailFormDisabled
 									? (isEmailFormDisabled = false)
-									: (isEmailFormDisabled = true)
+									: send_email()
 							"
 						>
 							{{ isEmailFormDisabled ? "Изменить" : "Применить" }}
@@ -163,7 +163,7 @@
 						</p>
 						<r-input
 							type="password"
-							:disabled="isPasswordFormDisabled"
+							:isDisabled="isPasswordFormDisabled"
 							v-model="userData.password"
 							:isTransparent="isPasswordFormDisabled"
 							v-else
@@ -186,7 +186,7 @@
 						<p class="page-profile__item-key">Новый пароль:</p>
 						<r-input
 							type="password"
-							:disabled="isPasswordFormDisabled"
+							:isDisabled="isPasswordFormDisabled"
 							v-model="userData.password_new"
 							:isTransparent="isPasswordFormDisabled"
 						></r-input>
@@ -201,7 +201,7 @@
 						</p>
 						<r-input
 							type="password"
-							:disabled="isPasswordFormDisabled"
+							:isDisabled="isPasswordFormDisabled"
 							v-model="userData.password_repeat"
 							:isTransparent="isPasswordFormDisabled"
 						></r-input>
@@ -218,7 +218,7 @@
 						<button
 							v-else
 							type="submit"
-							:disabled="!isPasswordFormValid"
+							:isDisabled="!isPasswordFormValid"
 							class="page-profile__item-change"
 						>
 							Применить
@@ -231,7 +231,7 @@
 </template>
 
 <script>
-	import { mapState, mapActions } from "vuex";
+	import { mapState, mapMutations, mapActions } from "vuex";
 	import {
 		logout,
 		change_user_data,
@@ -299,8 +299,9 @@
 			new_avatar: "",
 		}),
 		methods: {
+			...mapMutations(["SET_USER_AUTH"]),
 			...mapActions([
-				"getUser",
+				"getUserData",
 				"clearCabinetState",
 				"clearAcademState",
 				"clearCRMState",
@@ -316,6 +317,7 @@
 						this.$cookies.remove("auth_token");
 
 						this.clearCabinetState();
+						this.SET_USER_AUTH(false);
 						console.log("Logout successfully");
 					}
 				} catch (err) {
@@ -323,20 +325,21 @@
 				}
 			},
 
-			async send_new_personal_data() {
+			//* обновление пользовательских данных юзера
+			async send_new_personal_data(
+				newUserData,
+				successMessage = "Success"
+			) {
 				try {
-					const response = await change_user_data({
-						first_name: this.userData.first_name,
-						last_name: this.userData.last_name,
-					});
+					const response = await change_user_data(newUserData);
 
 					if (response.status === 200) {
-						this.toast.success("ФИО обновлена");
+						this.toast.success(successMessage);
 						console.log("personal data changed");
 
 						this.isNameFormDisabled = true;
 
-						this.getUser();
+						this.getUserData();
 					}
 					if (response.status === 400) {
 						const error_list = returnErrorMessages(response.data);
@@ -344,6 +347,8 @@
 							this.toast.error(el);
 						});
 					}
+
+					return response;
 				} catch (err) {
 					throw new Error(err);
 				}
@@ -373,6 +378,58 @@
 				}
 			},
 
+			async send_name() {
+				try {
+					const response = await this.send_new_personal_data(
+						{
+							first_name: this.userData.first_name,
+							last_name: this.userData.last_name,
+						},
+						"ФИО обновлена"
+					);
+
+					if (response.status === 200) {
+						this.isNameFormDisabled = true;
+					}
+				} catch (err) {
+					throw new Error(err);
+				}
+			},
+
+			async send_phone_number() {
+				try {
+					const response = await this.send_new_personal_data(
+						{
+							phone_number: this.userData.phone_number,
+						},
+						"Номер телефона обновлён"
+					);
+
+					if (response.status === 200) {
+						this.isPhoneFormDisabled = true;
+					}
+				} catch (err) {
+					throw new Error(err);
+				}
+			},
+
+			async send_email() {
+				try {
+					const response = await this.send_new_personal_data(
+						{
+							email: this.userData.email,
+						},
+						"E-mail обновлён"
+					);
+
+					if (response.status === 200) {
+						this.isEmailFormDisabled = true;
+					}
+				} catch (err) {
+					throw new Error(err);
+				}
+			},
+
 			async send_avatar() {
 				try {
 					const response = await upload_avatar(
@@ -385,7 +442,7 @@
 						this.toast.success("Изображение профиля изменено");
 
 						try {
-							const response = await this.getUser();
+							const response = await this.getUserData();
 							if (response.status === 200) {
 								this.new_avatar = "";
 							}
@@ -406,7 +463,6 @@
 					throw new Error(err);
 				}
 			},
-
 			change_avatar(target) {
 				//* запись в переменную для отправки на сервер
 				this.new_avatar = target.files[0];
@@ -520,6 +576,7 @@
 		&__full-name {
 			font-size: 2rem;
 			font-weight: 600;
+			word-break: break-word;
 		}
 
 		&__logout {

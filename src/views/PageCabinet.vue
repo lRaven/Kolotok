@@ -49,7 +49,7 @@
 	import TheHeader from "@/components/TheHeader";
 
 	import TheNavigation from "@/components/Cabinet/TheNavigation";
-	import { mapState, mapGetters } from "vuex";
+	import { mapState, mapActions } from "vuex";
 
 	import TheFooter from "@/components/TheFooter";
 
@@ -72,10 +72,14 @@
 			tab: "profile",
 		}),
 		computed: {
-			...mapState(["documentWidth"]),
-			...mapGetters(["userAuth"]),
+			...mapState({
+				documentWidth: (state) => state.documentWidth,
+				userAuth: (state) => state.Cabinet.userAuth,
+			}),
 		},
 		methods: {
+			...mapActions(["getUserData"]),
+
 			openPopup() {
 				this.isPopupOpen = true;
 			},
@@ -99,6 +103,9 @@
 			changeTab(newTab) {
 				this.tab = newTab;
 			},
+		},
+		created() {
+			this.getUserData();
 		},
 	};
 </script>

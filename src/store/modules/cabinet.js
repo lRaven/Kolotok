@@ -5,6 +5,7 @@ const baseURL = process.env.VUE_APP_BACKEND_BASEURL;
 
 const state = () => ({
 	user: {},
+	userAuth: null,
 
 	tabs_user: [
 		{ id: 1, icon: '/img/icon/cabinet/profile.svg', icon_selected: '/img/icon/cabinet/profile-selected.svg', description: 'Мой профиль', tab: 'profile', link: { name: 'Profile' } },
@@ -21,11 +22,6 @@ const state = () => ({
 })
 
 const getters = {
-	userAuth(context, getters) {
-		if (getters.token) return true
-		else return false
-	},
-
 	token() {
 		if (cookies.get('auth_token')) return cookies.get('auth_token')
 		else return null
@@ -35,6 +31,8 @@ const getters = {
 const mutations = {
 	SET_USER_DATA: (state, payload) => state.user = payload,
 	SET_USER_ID: (state, payload) => state.user.id = payload,
+
+	SET_USER_AUTH: (state, payload) => state.userAuth = payload,
 
 	CLEAR_USER_DATA: (state) => state.user = {},
 }
@@ -48,12 +46,14 @@ const actions = {
 
 			if (response.status === 200) {
 				context.commit("SET_USER_DATA", response.data);
+				context.commit("SET_USER_AUTH", true);
 				context.dispatch('getUserId');
 			}
 			else {
 				//* clear cookies, cabinet data
 				cookies.remove('auth_token');
 
+				context.commit("SET_USER_AUTH", false);
 				context.dispatch('clearCabinetState');
 			}
 
