@@ -18,6 +18,7 @@
 								v-for="product in pagination.cards_list"
 								:key="product.id"
 								:card="product"
+								:category="category"
 							></r-card>
 						</template>
 					</div>
@@ -47,8 +48,9 @@
 </template>
 
 <script>
-	import { mapState, mapActions } from "vuex";
+	import { mapState } from "vuex";
 	import { paginationMixin } from "@/mixins/paginationMixins";
+	import { getProducts } from "@/api/catalog";
 
 	import TheHeader from "@/components/TheHeader";
 
@@ -95,7 +97,7 @@
 
 				if (this.categories) {
 					this.categories.forEach((category) => {
-						if (category.id == this.$route.params.category) {
+						if (category.slug === this.$route.params.category) {
 							current_category = category;
 						}
 					});
@@ -105,19 +107,13 @@
 			},
 
 			subcategory() {
-				let current_subcategory = {
-					id: this.$route.params.subcategory,
-				};
+				const current_subcategory = this.subcategories.find(
+					(subcategory) =>
+						subcategory.slug === this.$route.params.subcategory
+				);
 
-				if (this.subcategories) {
-					current_subcategory = this.subcategories.find(
-						(subcategory) =>
-							subcategory.id == this.$route.params.subcategory
-					);
-
-					if (Object.keys(current_subcategory).length > 1) {
-						document.title = current_subcategory.name;
-					}
+				if (current_subcategory) {
+					document.title = current_subcategory.name;
 				}
 
 				return current_subcategory;
@@ -141,7 +137,7 @@
 						id: 3,
 						description: this.category.name,
 						route: {
-							path: `/catalog/${this.category.id}`,
+							path: `/catalog/${this.category.slug}`,
 							query: { page: 1 },
 						},
 						current: false,
@@ -155,11 +151,9 @@
 			},
 		},
 		methods: {
-			...mapActions(["getProducts"]),
-
 			async getCards(addCards = false) {
 				try {
-					const response = await this.getProducts({
+					const response = await getProducts({
 						sub_category: this.subcategory.id,
 						page_size: this.pagination.cards_in_page,
 						page: this.page,

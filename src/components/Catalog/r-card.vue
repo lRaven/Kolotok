@@ -19,7 +19,7 @@
 					v-model="isFavorite"
 				></r-favorite>
 				<router-link
-					:to="`/catalog/${card.category}/product/${card.id}`"
+					:to="`/catalog/${category.slug}/product/${card.id}`"
 				>
 					<img
 						:src="
@@ -47,6 +47,7 @@
 		<transition name="fade" mode="out-in">
 			<r-card-maximize
 				:card="card"
+				:category="category"
 				v-show="isMaximize"
 				@removeMaximizeCard="removeMaximizeCard"
 			></r-card-maximize>
@@ -70,7 +71,13 @@
 			rFavorite,
 			rCardMaximize,
 		},
-		props: { card: Object },
+		props: {
+			card: Object,
+			category: {
+				value: Object,
+				required: true,
+			},
+		},
 
 		data: () => ({ isFavorite: false, isMaximize: false }),
 		methods: {

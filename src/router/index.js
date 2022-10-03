@@ -38,7 +38,7 @@ const routes = [
 		meta: { title: 'Подкатегория', },
 	},
 	{
-		path: '/catalog/:category/:subcategory/:id',
+		path: '/catalog/:category/:subcategory/:product',
 		name: 'Product',
 		component: () => import(/* webpackChunkName: "product" */ '@/views/PageProduct.vue'),
 

@@ -269,7 +269,7 @@
 				return this.$route.params.id;
 			},
 
-			//*получение названия товара
+			//* получение названия товара
 			productName() {
 				// const product = this.product.name;
 
@@ -293,7 +293,7 @@
 				return result;
 			},
 
-			//*получение категории товара
+			//* получение категории товара
 			productCategory() {
 				let result = "";
 
@@ -329,9 +329,9 @@
 				return tags;
 			},
 
-			// *links list for breadcrumb component
+			//* links list for breadcrumb component
 			links() {
-				let links = [
+				return [
 					{
 						id: 1,
 						description: "Главная",
@@ -358,7 +358,6 @@
 					},
 					{ id: 5, description: this.productName, current: true },
 				];
-				return links;
 			},
 		},
 		methods: {

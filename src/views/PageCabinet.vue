@@ -121,6 +121,7 @@
 			display: grid;
 			grid-template-rows: 1fr max-content;
 			padding-top: 6rem;
+			padding-bottom: 6rem;
 		}
 
 		&__left-panel {

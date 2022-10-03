@@ -3,7 +3,12 @@
 		<div class="the-novelties__container center">
 			<h2 data-aos="fade-right" class="the-novelties__title">Новинки</h2>
 
-			<products-slider id="novelties" :slides="slides"></products-slider>
+			<products-slider
+				id="novelties"
+				:slides="slides"
+				:category="category"
+				v-show="slides.length > 0"
+			></products-slider>
 		</div>
 	</section>
 </template>
@@ -11,51 +16,62 @@
 <script>
 	import ProductsSlider from "@/components/ProductsSlider";
 
+	import { getProducts } from "@/api/catalog";
+	import { mapState } from "vuex";
+
 	export default {
 		name: "TheNovelties",
 		components: {
 			ProductsSlider,
 		},
-		data: () => ({
-			slides: [
-				{
-					id: 1,
-					img: "/img/catalog/catalog-item1.png",
-					price: 22000,
-					name: "Садовые конструкции",
+		watch: {
+			subcategory: {
+				handler() {
+					if (this.subcategory) {
+						this.getProductsNovelties();
+					}
 				},
-				{
-					id: 2,
-					img: "/img/catalog/catalog-item2.png",
-					price: 22000,
-					name: "Садовые конструкции",
-				},
-				{
-					id: 3,
-					img: "/img/catalog/catalog-item3.png",
-					price: 22000,
-					name: "Садовые конструкции",
-				},
-				{
-					id: 4,
-					img: "/img/catalog/catalog-item4.png",
-					price: 22000,
-					name: "Садовые конструкции",
-				},
-				{
-					id: 5,
-					img: "/img/catalog/catalog-item5.png",
-					price: 22000,
-					name: "Садовые конструкции",
-				},
-				{
-					id: 6,
-					img: "/img/catalog/catalog-item6.png",
-					price: 22000,
-					name: "Садовые конструкции",
-				},
-			],
-		}),
+				deep: true,
+			},
+		},
+		data: () => ({ slides: [] }),
+		computed: {
+			...mapState({
+				categories: (state) => state.Catalog.categories,
+				subcategories: (state) => state.Catalog.subcategories,
+			}),
+
+			subcategory() {
+				return this.subcategories[0];
+			},
+			category() {
+				return this.categories.find(
+					(el) => el.id === this.subcategory.category.id
+				);
+			},
+		},
+		methods: {
+			async getProductsNovelties() {
+				try {
+					const response = await getProducts({
+						sub_category: this.subcategory.id,
+						page_size: 6,
+						page: 1,
+					});
+
+					if (response.status === 200) {
+						this.slides = response.data.results;
+					}
+				} catch (err) {
+					throw new Error(err);
+				}
+			},
+		},
+		mounted() {
+			if (this.subcategory) {
+				this.getProductsNovelties();
+			}
+		},
 	};
 </script>
 

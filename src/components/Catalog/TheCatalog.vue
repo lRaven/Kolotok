@@ -11,7 +11,7 @@
 					:key="category.id"
 					:category="category"
 					:way="{
-						path: `/catalog/${category.id}/`,
+						path: `/catalog/${category.slug}/`,
 						query: { page: 1 },
 					}"
 				></catalog-category>

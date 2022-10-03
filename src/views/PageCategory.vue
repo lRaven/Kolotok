@@ -26,6 +26,7 @@
 								v-for="product in pagination.cards_list"
 								:key="product.id"
 								:card="product"
+								:category="current_category"
 							></r-card>
 						</template>
 					</div>
@@ -55,8 +56,9 @@
 </template>
 
 <script>
-	import { mapState, mapActions } from "vuex";
+	import { mapState } from "vuex";
 	import { paginationMixin } from "@/mixins/paginationMixins";
+	import { getProducts } from "@/api/catalog";
 
 	import TheHeader from "@/components/TheHeader";
 
@@ -113,7 +115,7 @@
 
 				if (this.categories) {
 					this.categories.forEach((category) => {
-						if (category.id == this.$route.params.category) {
+						if (category.slug === this.$route.params.category) {
 							current_category = category;
 						}
 					});
@@ -167,11 +169,9 @@
 			},
 		},
 		methods: {
-			...mapActions(["getProducts"]),
-
 			async getCards(addCards = false) {
 				try {
-					const response = await this.getProducts({
+					const response = await getProducts({
 						sub_category: this.current_subcategories[0].id,
 						page_size: this.pagination.cards_in_page,
 						page: this.page,

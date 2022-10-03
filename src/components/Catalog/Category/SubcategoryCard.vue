@@ -3,7 +3,7 @@
 		class="subcategory-card shadow"
 		@click="
 			this.$router.push({
-				path: `/catalog/${subcategory.category.id}/${subcategory.id}`,
+				path: `/catalog/${subcategory.category.slug}/${subcategory.slug}`,
 				query: { page: 1 },
 			})
 		"

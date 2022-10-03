@@ -2,8 +2,6 @@ import axios from "axios";
 
 const baseURL = process.env.VUE_APP_BACKEND_BASEURL;
 
-import { objectToStringQueryParams } from "@/js/objectToStringQueryParams";
-
 const state = () => ({
 	categories: null,
 	category: null,
@@ -51,17 +49,6 @@ const actions = {
 		try {
 			const request = await axios.get(`${baseURL}/kolotok/sub_categories`);
 			if (request.status === 200) commit('SET_SUBCATEGORIES', request.data);
-		}
-		catch (err) { throw new Error(err) }
-	},
-
-	getProducts: async (context, params) => {
-		const queryParams = objectToStringQueryParams(params || {});
-
-		try {
-			const response = await axios.get(`${baseURL}/search/products/${queryParams}`);
-
-			return response;
 		}
 		catch (err) { throw new Error(err) }
 	},
