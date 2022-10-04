@@ -161,7 +161,7 @@
 						<products-slider
 							id="recommendations"
 							:category="category"
-							v-if="slides.length > 0"
+							v-show="slides.length > 0"
 							:slides="slides"
 						></products-slider>
 					</div>
@@ -179,10 +179,7 @@
 
 <script>
 	import { mapState } from "vuex";
-	import {
-		getProduct,
-		//  getProducts
-	} from "@/api/catalog";
+	import { getProduct, getProducts } from "@/api/catalog";
 
 	import TheHeader from "@/components/TheHeader";
 
@@ -207,6 +204,14 @@
 			ProductsSlider,
 
 			TheFooter,
+		},
+		watch: {
+			product: {
+				handler() {
+					this.getProductsRecommendations();
+				},
+				deep: true,
+			},
 		},
 		data: () => ({
 			product: {},
@@ -278,7 +283,6 @@
 				return tags;
 			},
 
-			//* links list for breadcrumb component
 			links() {
 				return [
 					{
@@ -337,9 +341,25 @@
 					throw new Error(err);
 				}
 			},
+
+			async getProductsRecommendations() {
+				try {
+					const response = await getProducts({
+						sub_category: this.subcategory.id,
+						page_size: 6,
+						page: 1,
+					});
+
+					if (response.status === 200) {
+						this.slides = response.data.results;
+					}
+				} catch (err) {
+					throw new Error(err);
+				}
+			},
 		},
 
-		created() {
+		mounted() {
 			this.getCurrentProduct(this.productId);
 		},
 	};
