@@ -159,7 +159,10 @@
 							С этим товаром также сочетаются
 						</h2>
 						<products-slider
-							:slides="recommendations"
+							id="recommendations"
+							:category="category"
+							v-if="slides.length > 0"
+							:slides="slides"
 						></products-slider>
 					</div>
 				</section>
@@ -176,7 +179,10 @@
 
 <script>
 	import { mapState } from "vuex";
-	import { getProduct } from "@/api/catalog";
+	import {
+		getProduct,
+		//  getProducts
+	} from "@/api/catalog";
 
 	import TheHeader from "@/components/TheHeader";
 
@@ -204,58 +210,16 @@
 		},
 		data: () => ({
 			product: {},
-
-			recommendations: [
-				{
-					id: 1,
-					price: "1 653",
-					price_old: "3 300",
-					name: "Ламинат Woodstyle Breeze Дуб Солано Теплый",
-					discount_percent: 50,
-				},
-				{
-					id: 2,
-					price: "1 653",
-					price_old: "3 300",
-					name: "Ламинат Woodstyle Breeze Дуб Солано Теплый",
-					discount_percent: 50,
-				},
-				{
-					id: 3,
-					price: "1 653",
-					price_old: "3 300",
-					name: "Ламинат Woodstyle Breeze Дуб Солано Теплый",
-					discount_percent: 50,
-				},
-				{
-					id: 4,
-					price: "1 653",
-					price_old: "3 300",
-					name: "Ламинат Woodstyle Breeze Дуб Солано Теплый",
-					discount_percent: 50,
-				},
-				{
-					id: 5,
-					price: "1 653",
-					price_old: "3 300",
-					name: "Ламинат Woodstyle Breeze Дуб Солано Теплый",
-					discount_percent: 50,
-				},
-				{
-					id: 6,
-					price: "1 653",
-					price_old: "3 300",
-					name: "Ламинат Woodstyle Breeze Дуб Солано Теплый",
-					discount_percent: 50,
-				},
-			],
-			quantity: null,
 			image: "/img/catalog/catalog__photo.png",
 			images: [
 				{ id: 1, img: "/img/catalog/catalog__photo.png" },
 				{ id: 2, img: "/img/catalog/catalog__photo-default.svg" },
 				{ id: 3, img: "/img/catalog/catalog__photo-default.svg" },
 			],
+			quantity: null,
+
+			slides: [],
+
 			isModalOpened: false,
 		}),
 		computed: {
@@ -266,61 +230,46 @@
 			}),
 
 			productId() {
-				return this.$route.params.id;
+				return this.$route.params.product;
 			},
 
-			//* получение названия товара
 			productName() {
-				// const product = this.product.name;
+				const product = this.product.name;
 
-				// document.title = product;
+				document.title = product;
 
-				// return product;
-				return "";
+				return product;
 			},
 
-			//* получение подкатегории товара
-			productSubCategory() {
-				let result = "";
-
-				// if (this.subcategories !== null) {
-				// 	this.subcategories.forEach((subcategory) => {
-				// 		if (subcategory.id === this.product.subcategory[0])
-				// 			result = subcategory;
-				// 	});
-				// }
-
-				return result;
+			subcategory() {
+				if (this.subcategories) {
+					return this.subcategories.find(
+						(subcategory) =>
+							subcategory.id === this.product.sub_category.id
+					);
+				} else return {};
 			},
 
-			//* получение категории товара
-			productCategory() {
-				let result = "";
-
-				if (this.categories !== null) {
-					this.categories.forEach((category) => {
-						if (category.id === this.productSubCategory.category)
-							result = category;
-					});
-				}
-				return result;
+			category() {
+				return this.subcategory.category;
 			},
 
 			productTags() {
-				let tags = {};
+				const tags = {};
+
 				for (const key in this.product) {
 					if (Object.hasOwnProperty.call(this.product, key)) {
 						if (
-							key !== "id" &&
 							key !== "name" &&
 							key !== "price" &&
 							key !== "sub_category" &&
-							key !== "descriptions"
+							key !== "descriptions" &&
+							key !== "images" &&
+							this.product[key]
 						) {
-							if (
-								(this.product[key] !== 0) &
-								(this.product[key] !== "None")
-							) {
+							if (typeof this.product[key] === "object") {
+								tags[key] = this.product[key].name;
+							} else {
 								tags[key] = this.product[key];
 							}
 						}
@@ -346,14 +295,20 @@
 					},
 					{
 						id: 3,
-						description: this.productCategory.name,
-						route: `/catalog/${this.productCategory.id}`,
+						description: this.category.name,
+						route: {
+							path: `/catalog/${this.category.slug}`,
+							query: { page: 1 },
+						},
 						current: false,
 					},
 					{
 						id: 4,
-						description: this.productSubCategory.name,
-						route: { name: "Home" },
+						description: this.subcategory.name,
+						route: {
+							path: `/catalog/${this.category.slug}/${this.subcategory.slug}`,
+							query: { page: 1 },
+						},
 						current: false,
 					},
 					{ id: 5, description: this.productName, current: true },

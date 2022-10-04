@@ -6,7 +6,7 @@
 				<div class="page-category__container center">
 					<r-breadcrumbs :links="links"></r-breadcrumbs>
 					<h2 class="page-category__title">
-						{{ current_category.name }}
+						{{ category.name }}
 					</h2>
 
 					<div class="page-category__subcategories">
@@ -26,7 +26,7 @@
 								v-for="product in pagination.cards_list"
 								:key="product.id"
 								:card="product"
-								:category="current_category"
+								:category="category"
 							></r-card>
 						</template>
 					</div>
@@ -86,14 +86,6 @@
 					this.getCards();
 				}
 			},
-			current_subcategories: {
-				handler() {
-					if (this.current_subcategories.length > 0) {
-						this.getCards();
-					}
-				},
-				deep: true,
-			},
 		},
 		data: () => ({
 			sortVariations: [
@@ -110,15 +102,14 @@
 				subcategories: (state) => state.Catalog.subcategories,
 			}),
 
-			current_category() {
+			category() {
 				let current_category = {};
 
 				if (this.categories) {
-					this.categories.forEach((category) => {
-						if (category.slug === this.$route.params.category) {
-							current_category = category;
-						}
-					});
+					current_category = this.categories.find(
+						(category) =>
+							category.slug === this.$route.params.category
+					);
 
 					if (Object.keys(current_category).length > 0) {
 						document.title = current_category.name;
@@ -134,7 +125,7 @@
 				if (this.subcategories) {
 					current_subcategories = this.subcategories.reduce(
 						(acc, cur) => {
-							if (cur.category.id === this.current_category.id) {
+							if (cur.category.id === this.category.id) {
 								acc.push(cur);
 							}
 							return acc;
@@ -162,7 +153,7 @@
 					},
 					{
 						id: 3,
-						description: this.current_category.name,
+						description: this.category.name,
 						current: true,
 					},
 				];

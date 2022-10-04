@@ -7,7 +7,9 @@
 				:discount="card.discount_percent"
 			></r-discount>
 			<r-favorite class="r-card-maximize__favorite"></r-favorite>
-			<router-link :to="`/catalog/${category.slug}/product/${card.id}`">
+			<router-link
+				:to="`/catalog/${category.slug}/${subcategory.slug}/${card.id}`"
+			>
 				<img
 					:src="
 						card.img
@@ -44,7 +46,11 @@
 
 	export default {
 		name: "r-card-maximize",
-		props: { card: Object, category: Object },
+		props: {
+			card: Object,
+			category: Object,
+			subcategory: Object,
+		},
 		components: {
 			rDiscount,
 			rFavorite,

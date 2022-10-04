@@ -19,7 +19,7 @@
 					v-model="isFavorite"
 				></r-favorite>
 				<router-link
-					:to="`/catalog/${category.slug}/product/${card.id}`"
+					:to="`/catalog/${category.slug}/${subcategory.slug}/${card.id}`"
 				>
 					<img
 						:src="
@@ -48,6 +48,7 @@
 			<r-card-maximize
 				:card="card"
 				:category="category"
+				:subcategory="subcategory"
 				v-show="isMaximize"
 				@removeMaximizeCard="removeMaximizeCard"
 			></r-card-maximize>
@@ -58,7 +59,9 @@
 <script>
 	import rDiscount from "@/components/Catalog/r-discount";
 	import rFavorite from "@/components/Catalog/r-favorite";
+
 	import { defineAsyncComponent } from "vue";
+	import { mapState } from "vuex";
 
 	const rCardMaximize = defineAsyncComponent(() =>
 		import("@/components/Catalog/r-card-maximize.vue")
@@ -78,7 +81,17 @@
 				required: true,
 			},
 		},
+		computed: {
+			...mapState({
+				subcategories: (state) => state.Catalog.subcategories,
+			}),
 
+			subcategory() {
+				return this.subcategories.find(
+					(subcategory) => subcategory.id === this.card.sub_category
+				);
+			},
+		},
 		data: () => ({ isFavorite: false, isMaximize: false }),
 		methods: {
 			addFavorite() {

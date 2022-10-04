@@ -96,11 +96,10 @@
 				let current_category = {};
 
 				if (this.categories) {
-					this.categories.forEach((category) => {
-						if (category.slug === this.$route.params.category) {
-							current_category = category;
-						}
-					});
+					current_category = this.categories.find(
+						(category) =>
+							category.slug === this.$route.params.category
+					);
 				}
 
 				return current_category;
@@ -197,7 +196,7 @@
 				}
 
 				this.$router.push({
-					path: `/catalog/${this.category.id}/${this.subcategory.id}`,
+					path: `/catalog/${this.category.slug}/${this.subcategory.slug}`,
 					query: { page: page_number },
 				});
 			},
