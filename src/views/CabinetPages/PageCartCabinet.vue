@@ -46,7 +46,7 @@
 							Сумма к оплате
 						</p>
 						<p class="page-cart-cabinet__sum-row-value">
-							{{ 0 }} руб.
+							{{ cart.total_price }} руб.
 						</p>
 					</div>
 
@@ -59,16 +59,35 @@
 			</div>
 		</div>
 
-		<div class="page-card-cabinet__list"></div>
+		<div class="page-card-cabinet__list">
+			<div class="page-cart-cabinet__list-header">
+				<p class="page-cart-cabinet__list-col-description">Товар</p>
+				<p class="page-cart-cabinet__list-col-description">Цена</p>
+				<p class="page-cart-cabinet__list-col-description">
+					Количество
+				</p>
+				<p class="page-cart-cabinet__list-col-description">Стоимость</p>
+			</div>
+		</div>
 	</div>
 </template>
 
 <script>
+	import { mapState, mapActions } from "vuex";
+
 	export default {
 		name: "PageCartCabinet",
 		data: () => ({
 			promoCode: null,
 		}),
+		computed: {
+			...mapState({
+				cart: (state) => state.Cart.cart,
+			}),
+		},
+		methods: {
+			...mapActions(["getCartList"]),
+		},
 		created() {
 			this.$emit("changeTab", "cart");
 		},
@@ -84,6 +103,7 @@
 			align-items: center;
 			justify-content: space-between;
 			gap: 3rem;
+			margin-bottom: 3rem;
 			&-col {
 				display: flex;
 				gap: 3rem;
@@ -157,6 +177,23 @@
 				justify-content: center;
 				padding: 1.5rem 3rem;
 				margin-top: 4rem;
+			}
+		}
+
+		&__list {
+			&-header {
+				display: grid;
+				grid-template-columns: repeat(5, 1fr);
+				@for $i from 1 through 30 {
+					p:nth-child(#{$i}) {
+						grid-column: #{$i + 1}/#{$i + 2};
+					}
+				}
+			}
+			&-col-description {
+				font-size: 1.8rem;
+				color: $middle-gray;
+				font-weight: 500;
 			}
 		}
 	}

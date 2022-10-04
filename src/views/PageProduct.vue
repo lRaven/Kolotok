@@ -256,7 +256,9 @@
 			},
 
 			category() {
-				return this.subcategory.category;
+				if (this.subcategory) {
+					return this.subcategory.category;
+				} else return {};
 			},
 
 			productTags() {

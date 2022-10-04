@@ -54,10 +54,7 @@
 							</p>
 						</div>
 
-						<div
-							class="page-cart__clear"
-							@click="SET_CART_LIST([])"
-						>
+						<div class="page-cart__clear" @click="SET_CART([])">
 							<svg
 								width="17"
 								height="19"
@@ -99,7 +96,7 @@
 							<p class="page-cart__caption">Стоимость</p>
 						</div>
 						<cart-card
-							v-for="product in cart_list"
+							v-for="product in cart"
 							:key="product.id"
 							:product="product"
 						></cart-card>
@@ -108,7 +105,7 @@
 
 				<div class="page-cart__col page-cart__buy">
 					<cart-calculation
-						:products="cart_list"
+						:products="cart"
 						:discount="10"
 					></cart-calculation>
 				</div>
@@ -157,12 +154,12 @@
 		}),
 		computed: {
 			...mapState({
-				cart_list: (state) => state.Cart.cart_list,
+				cart: (state) => state.Cart.cart,
 			}),
 		},
 		methods: {
 			...mapMutations([
-				"SET_CART_LIST",
+				"SET_CART",
 				"SELECT_ALL_CART_ITEMS",
 				"UNSELECT_ALL_CART_ITEMS",
 			]),

@@ -96,9 +96,9 @@
 						/>
 						<span
 							class="the-header__cart-counter"
-							v-if="cart_list_length !== 0"
+							v-if="cart_length"
 						>
-							{{ cart_list_length }}
+							{{ cart_length }}
 						</span>
 					</router-link>
 					<router-link
@@ -353,40 +353,29 @@
 		computed: {
 			...mapState({
 				categories: (state) => state.Catalog.categories,
-				cart_list: (state) => state.Cart.cart_list,
+				cart: (state) => state.Cart.cart,
+				cart_products: (state) => state.Cart.cart.products,
 				subcategories: (state) => state.Catalog.subcategories,
 				userAuth: (state) => state.Cabinet.userAuth,
 				documentWidth: (state) => state.documentWidth,
 			}),
 
-			cart_list_length() {
-				let length = 0;
-
-				if (this.cart_list !== null) {
-					length = this.cart_list.length;
-				}
-
-				return length;
+			cart_length() {
+				if (this.cart_products) {
+					return this.cart_products.length;
+				} else return 0;
 			},
 
 			current_subcategories() {
-				let subcategories = [];
-				this.subcategories.forEach((subcategory) => {
-					if (subcategory.category === this.category) {
-						subcategories.push(subcategory);
-					}
-				});
-				return subcategories;
+				return this.subcategories.filter(
+					(subcategory) => subcategory.category === this.category
+				);
 			},
 
 			current_products() {
-				let products = [];
-				this.products.forEach((product) => {
-					if (product.subcategory[0] === this.subcategory) {
-						products.push(product);
-					}
-				});
-				return products;
+				return this.products.filter(
+					(product) => product.subcategory[0] === this.subcategory
+				);
 			},
 		},
 		methods: {

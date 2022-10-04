@@ -29,11 +29,13 @@
 				"getSubcategories",
 				"getDocumentWidth",
 				"getUserData",
+				"getCartList",
 			]),
 		},
 		created() {
 			this.getCategories();
 			this.getSubcategories();
+			this.getCartList();
 
 			this.getDocumentWidth();
 		},

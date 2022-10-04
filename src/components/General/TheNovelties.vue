@@ -42,12 +42,16 @@
 			}),
 
 			subcategory() {
-				return this.subcategories[0];
+				if (this.subcategories) {
+					return this.subcategories[0];
+				} else return {};
 			},
 			category() {
-				return this.categories.find(
-					(el) => el.id === this.subcategory.category.id
-				);
+				if (this.categories) {
+					return this.categories.find(
+						(el) => el.id === this.subcategory.category.id
+					);
+				} else return {};
 			},
 		},
 		methods: {
