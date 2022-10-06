@@ -135,7 +135,6 @@
 			-ms-overflow-style: none;
 			scrollbar-width: none;
 			grid-area: 1/1;
-			// transform: translateY(-8.5rem);
 			@media (max-width: 1050px) {
 				width: max-content;
 			}
@@ -183,6 +182,10 @@
 				@media (max-width: 767px) {
 					padding: 2rem 1.5rem;
 				}
+			}
+
+			section {
+				padding: 0;
 			}
 		}
 	}

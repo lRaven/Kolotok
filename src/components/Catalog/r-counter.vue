@@ -43,20 +43,11 @@
 
 		<input
 			type="number"
-			name=""
-			id=""
 			:value="value"
 			:min="getMin"
 			:max="getMax"
 			disabled
 			class="r-counter__input"
-			@input="
-				$emit('update:modelValue', $event.target.value);
-				checkValue($event.target);
-			"
-			@keypress="
-				$event.target.value = $event.target.value.substring(0, 2)
-			"
 			pattern="[0-9]+"
 		/>
 
@@ -119,7 +110,7 @@
 					input.value = ++input.value;
 				}
 				this.value = input.value;
-				this.$emit("update:modelValue", this.value);
+				this.$emit("update:modelValue", Number(this.value));
 			},
 			removeOne(e) {
 				const input = e.target.nextSibling;
@@ -127,7 +118,7 @@
 					input.value = --input.value;
 				}
 				this.value = input.value;
-				this.$emit("update:modelValue", this.value);
+				this.$emit("update:modelValue", Number(this.value));
 			},
 			checkValue(e) {
 				this.value = e.value;

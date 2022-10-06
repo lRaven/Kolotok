@@ -32,12 +32,15 @@ const mutations = {
 	},
 
 	SET_CART_ITEM_COUNT: (state, payload) => {
-		state.cart.forEach(item => {
-			if (item.id === payload.id) { item.count = payload.count }
-		})
+		//TODO: get product id, identification by name is bullshit
+		const find = state.cart.products.find(el => el.product.name === payload.name);
+
+		if (find) {
+			find.amount = payload.count
+		}
 	},
 
-	CLEAR_CART: (state) => state.cart = [],
+	CLEAR_CART: (state) => state.cart = {},
 }
 
 const actions = {
@@ -48,6 +51,7 @@ const actions = {
 			});
 
 			if (response.status === 200) {
+				//TODO: replace by cart
 				commit('SET_CART', response.data[0]);
 			}
 

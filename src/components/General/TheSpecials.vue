@@ -48,11 +48,7 @@
 				} else return {};
 			},
 			category() {
-				if (this.categories) {
-					return this.categories.find(
-						(el) => el.id === this.subcategory.category.id
-					);
-				} else return {};
+				return this.subcategory.category;
 			},
 		},
 		methods: {
@@ -73,7 +69,7 @@
 			},
 		},
 		mounted() {
-			if (this.subcategory) {
+			if (this.subcategory.id) {
 				this.getProductsSpecials();
 			}
 		},

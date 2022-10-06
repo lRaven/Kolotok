@@ -46,7 +46,7 @@
 							Сумма к оплате
 						</p>
 						<p class="page-cart-cabinet__sum-row-value">
-							{{ cart.total_price }} руб.
+							{{ fullPrice }} руб.
 						</p>
 					</div>
 
@@ -68,6 +68,13 @@
 				</p>
 				<p class="page-cart-cabinet__list-col-description">Стоимость</p>
 			</div>
+
+			<cart-card
+				v-for="product in cart.products"
+				:key="product.id"
+				:product="product.product"
+				:amount="product.amount"
+			></cart-card>
 		</div>
 	</div>
 </template>
@@ -75,18 +82,36 @@
 <script>
 	import { mapState, mapActions } from "vuex";
 
+	import CartCard from "@/components/Cabinet/Cart/CartCard.vue";
+
 	export default {
 		name: "PageCartCabinet",
+		components: {
+			CartCard,
+		},
 		data: () => ({
 			promoCode: null,
 		}),
 		computed: {
-			...mapState({
-				cart: (state) => state.Cart.cart,
-			}),
+			...mapState({ cart: (state) => state.Cart.cart }),
+
+			fullPrice() {
+				let sum = 0;
+
+				this.cart.products.forEach((el) => {
+					const productSum = el.product.price * el.amount;
+					sum += productSum;
+				});
+
+				return sum;
+			},
 		},
 		methods: {
 			...mapActions(["getCartList"]),
+
+			activatePromocode() {
+				console.log("activate");
+			},
 		},
 		created() {
 			this.$emit("changeTab", "cart");
@@ -113,10 +138,12 @@
 		&__title {
 			font-size: 4.5rem;
 			color: $dark-blue;
+			width: 100%;
+			text-align: center;
 		}
 
 		&__bonuses {
-			min-width: 33rem;
+			min-width: 34rem;
 			padding: 3rem 2rem 2rem 2rem;
 			border-radius: 3rem;
 			&-title {
@@ -145,7 +172,7 @@
 		&__sum {
 			padding: 3rem 2rem 2rem 2rem;
 			border-radius: 3rem;
-			min-width: 33rem;
+			min-width: 34rem;
 			&-title {
 				font-weight: 700;
 				color: $dark;
@@ -184,7 +211,10 @@
 			&-header {
 				display: grid;
 				grid-template-columns: repeat(5, 1fr);
-				@for $i from 1 through 30 {
+				grid-gap: 2.5rem;
+				padding: 0 1rem;
+				margin-bottom: 2rem;
+				@for $i from 1 through 4 {
 					p:nth-child(#{$i}) {
 						grid-column: #{$i + 1}/#{$i + 2};
 					}
@@ -194,6 +224,12 @@
 				font-size: 1.8rem;
 				color: $middle-gray;
 				font-weight: 500;
+			}
+		}
+
+		.cart-card {
+			+ .cart-card {
+				margin-top: 3rem;
 			}
 		}
 	}

@@ -1,5 +1,5 @@
 <template>
-	<div class="page-profile">
+	<section class="page-profile">
 		<h1 class="page-profile__title">Мой профиль</h1>
 
 		<div class="page-profile__header">
@@ -227,7 +227,7 @@
 				</form>
 			</div>
 		</div>
-	</div>
+	</section>
 </template>
 
 <script>
