@@ -87,6 +87,16 @@ const routes = [
 					requiresAuth: true,
 				}
 			},
+			{
+				path: 'orders',
+				name: 'Orders',
+				component: () => import(/* webpackChunkName: "orders" */ '@/views/CabinetPages/PageOrders.vue'),
+
+				meta: {
+					title: 'История заказов',
+					requiresAuth: true,
+				}
+			},
 		],
 
 		meta: {

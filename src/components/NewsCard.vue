@@ -1,5 +1,5 @@
 <template>
-	<div data-aos="fade-up" class="news-card shadow">
+	<div data-aos="fade-up" class="news-card shadow" v-once>
 		<div
 			class="news-card__top"
 			:style="`background: url(${news.img}) center / cover no-repeat`"

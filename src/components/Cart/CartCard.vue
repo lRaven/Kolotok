@@ -15,7 +15,7 @@
 			v-else
 		/>
 
-		<div class="cart-card__info cart-card__col">
+		<div class="cart-card__info cart-card__col" v-once>
 			<p class="cart-card__name">{{ product.name }}</p>
 			<div class="cart-card__article">
 				<p class="cart-card__article-name">Артикул:</p>
@@ -23,7 +23,7 @@
 			</div>
 		</div>
 
-		<div class="cart-card__prices cart-card__col">
+		<div class="cart-card__prices cart-card__col" v-once>
 			<p class="cart-card__price-old">{{ product.price_old }}р.</p>
 			<p class="cart-card__price">{{ product.price }} руб.</p>
 		</div>
@@ -43,7 +43,7 @@
 
 		<div class="cart-card__remove">
 			<img
-				src="/img/icon/basket/delete.svg"
+				src="/img/icons/basket/delete.svg"
 				alt=""
 				class="cart-card__remove-icon"
 			/>

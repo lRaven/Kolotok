@@ -20,6 +20,7 @@
 				></r-favorite>
 				<router-link
 					:to="`/catalog/${category.slug}/${subcategory.slug}/${card.id}`"
+					v-once
 				>
 					<img
 						:src="
@@ -33,10 +34,10 @@
 				</router-link>
 			</div>
 			<div class="r-card__footer">
-				<div class="r-card__row">
+				<div class="r-card__row" v-once>
 					<p class="r-card__name">{{ card.name }}</p>
 				</div>
-				<div class="r-card__row">
+				<div class="r-card__row" v-once>
 					<p class="r-card__price">{{ card.price }}₽.</p>
 					<p class="r-card__price-old" v-if="card.price_old">
 						{{ card.price_old }}₽.

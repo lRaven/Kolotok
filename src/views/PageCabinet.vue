@@ -12,7 +12,7 @@
 					:isNavMinimized="isNavMinimized"
 				></the-navigation>
 				<div class="page-cabinet__hint" v-show="!isNavMinimized">
-					<p>
+					<p v-once>
 						Есть вопросы <br />
 						или предложения?
 					</p>
@@ -49,7 +49,7 @@
 	import TheHeader from "@/components/TheHeader";
 
 	import TheNavigation from "@/components/Cabinet/TheNavigation";
-	import { mapState, mapActions } from "vuex";
+	import { mapState } from "vuex";
 
 	import TheFooter from "@/components/TheFooter";
 
@@ -78,8 +78,6 @@
 			}),
 		},
 		methods: {
-			...mapActions(["getUserData"]),
-
 			openPopup() {
 				this.isPopupOpen = true;
 			},
@@ -103,9 +101,6 @@
 			changeTab(newTab) {
 				this.tab = newTab;
 			},
-		},
-		created() {
-			this.getUserData();
 		},
 	};
 </script>
@@ -186,16 +181,6 @@
 
 			section {
 				padding: 0;
-			}
-		}
-	}
-</style>
-
-<style lang="scss">
-	.page-cabinet {
-		&__content {
-			h1 {
-				font-size: 3rem;
 			}
 		}
 	}

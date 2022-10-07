@@ -1,5 +1,5 @@
 <template>
-	<div class="animate__animated animate__fadeInUp r-tag shadow">
+	<div class="animate__animated animate__fadeInUp r-tag shadow" v-once>
 		{{ text }}
 	</div>
 </template>
@@ -7,9 +7,7 @@
 <script>
 	export default {
 		name: "rTag",
-		props: {
-			text: String,
-		},
+		props: { text: String },
 	};
 </script>
 

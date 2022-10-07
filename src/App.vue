@@ -52,6 +52,8 @@
 
 <style lang="scss">
 	@import "@/assets/scss/variables.scss";
+	@import "@/assets/scss/fonts.scss";
+
 	@import "@/assets/scss/center.scss";
 	@import "@/assets/scss/shadow.scss";
 	@import "@/assets/scss/swiper.scss";

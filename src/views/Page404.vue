@@ -1,5 +1,5 @@
 <template>
-	<section class="notFound">
+	<section class="notFound" v-once>
 		<div class="img">
 			<img
 				src="https://assets.codepen.io/5647096/backToTheHomepage.png"

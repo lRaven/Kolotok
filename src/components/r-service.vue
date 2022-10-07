@@ -2,6 +2,7 @@
 	<div
 		class="r-service shadow"
 		:style="`background: url(${img}) center / cover no-repeat`"
+		v-once
 	>
 		<div class="r-service__content">
 			<h3

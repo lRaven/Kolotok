@@ -26,12 +26,20 @@
 			/>
 			<img
 				class="r-input__eye-icon"
-				:src="`/img/icon/cabinet/eye-${
+				:src="`/img/icons/cabinet/eye-${
 					isPasswordVisible ? 'open' : 'closed'
 				}.svg`"
 				:alt="`eye-${isPasswordVisible ? 'open' : 'closed'}`"
 			/>
 		</label>
+
+		<button type="button" class="r-input__search" v-if="type === 'search'">
+			<img
+				src="/img/icons/magnifier.svg"
+				alt="icon"
+				class="r-input__search-icon"
+			/>
+		</button>
 	</div>
 </template>
 
@@ -137,6 +145,19 @@
 			&-icon {
 				width: 100%;
 				height: 100%;
+				object-fit: contain;
+			}
+		}
+
+		&__search {
+			position: absolute;
+			right: 2rem;
+			top: 50%;
+			transform: translateY(-50%);
+			background-color: transparent;
+			&-icon {
+				width: 2rem;
+				height: 2rem;
 				object-fit: contain;
 			}
 		}

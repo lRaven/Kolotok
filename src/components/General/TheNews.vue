@@ -1,7 +1,9 @@
 <template>
 	<div class="the-news">
 		<div class="the-news__container center">
-			<h2 data-aos="fade-right" class="the-news__title">Новости</h2>
+			<h2 data-aos="fade-right" class="the-news__title" v-once>
+				Новости
+			</h2>
 			<news-slider :slides="slides"></news-slider>
 		</div>
 	</div>

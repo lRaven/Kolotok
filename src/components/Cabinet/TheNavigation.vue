@@ -237,7 +237,6 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			// box-shadow: $shadow;
 			align-self: flex-end;
 			transform: translateX(4.2rem);
 			transition: all 0.2s ease;
@@ -277,13 +276,15 @@
 
 				&-description {
 					transition: all 0.3s ease;
+					color: $middle-gray;
+					font-weight: 600;
 				}
 			}
 		}
 
 		&__title {
 			font-size: 3rem;
-			font-weight: 600;
+			font-weight: 700;
 			margin-bottom: 4rem;
 			transition: all 0.3s ease;
 			transition-delay: 0.3s;
@@ -324,6 +325,7 @@
 
 		&__description {
 			font-size: 1.8rem;
+			font-weight: 500;
 
 			&-bold {
 				font-size: 1.8rem;

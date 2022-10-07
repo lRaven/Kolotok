@@ -4,7 +4,7 @@
 		<main class="main">
 			<section class="page-projects__projects center">
 				<r-breadcrumbs :links="links"></r-breadcrumbs>
-				<h2 class="page-projects__title">Проекты клиентов</h2>
+				<h2 class="page-projects__title" v-once>Проекты клиентов</h2>
 				<div class="page-projects__list">
 					<project-card
 						v-for="project in projects"

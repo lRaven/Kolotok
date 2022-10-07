@@ -7,7 +7,7 @@
 				id="novelties"
 				:slides="slides"
 				:category="category"
-				v-show="slides.length > 0"
+				v-if="slides.length > 0"
 			></products-slider>
 		</div>
 	</section>

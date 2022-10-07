@@ -4,7 +4,7 @@
 
 		<main class="page-login__main main">
 			<div class="page-login__container">
-				<div data-aos="fade-up" class="page-login__links shadow">
+				<div data-aos="fade-up" class="page-login__links shadow" v-once>
 					<router-link
 						:to="{ name: 'Login' }"
 						class="page-login__link"
@@ -24,7 +24,7 @@
 					class="page-login__form shadow"
 					@submit.prevent="attemptToEnter = true"
 				>
-					<div class="page-login__form-header">
+					<div class="page-login__form-header" v-once>
 						<h3 class="page-login__title">Вход в личный кабинет</h3>
 					</div>
 					<div class="page-login__form-body">
@@ -46,7 +46,7 @@
 							type="submit"
 						></r-button>
 
-						<p class="page-login__form-confirmation">
+						<p class="page-login__form-confirmation" v-once>
 							Нажимая кнопку «Зарегистрироваться», вы
 							подтверждаете своё согласие на
 							<a class="page-login__form-confirmation-link">

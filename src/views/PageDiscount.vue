@@ -4,7 +4,7 @@
 		<main class="main">
 			<section class="discount center">
 				<r-breadcrumbs :links="links"></r-breadcrumbs>
-				<h2 class="discount__title">Акции</h2>
+				<h2 class="discount__title" v-once>Акции</h2>
 				<div class="discount__subcategories">
 					<subcategory-card
 						v-for="subcategory in subcategories"

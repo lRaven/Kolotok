@@ -6,7 +6,7 @@
 				<r-breadcrumbs :links="links"></r-breadcrumbs>
 
 				<div class="page-cart__col">
-					<h2 class="page-cart__title">Корзина</h2>
+					<h2 class="page-cart__title" v-once>Корзина</h2>
 					<div class="page-cart__control">
 						<r-checkbox
 							description="Выбрать всё"
@@ -89,7 +89,7 @@
 						</div>
 					</div>
 					<div class="page-cart__list">
-						<div class="page-cart__captions">
+						<div class="page-cart__captions" v-once>
 							<p class="page-cart__caption">Наименование</p>
 							<p class="page-cart__caption">Цена за шт.</p>
 							<p class="page-cart__caption">Кол-во</p>

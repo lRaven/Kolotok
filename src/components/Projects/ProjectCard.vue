@@ -1,5 +1,5 @@
 <template>
-	<div class="project-card">
+	<div class="project-card" v-once>
 		<img :src="img" alt="project main photo" class="project-card__image" />
 		<div class="project-card__bottom">
 			<r-link :way="{ name: 'Projects' }" :text="description"></r-link>

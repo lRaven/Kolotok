@@ -9,6 +9,7 @@
 			<r-favorite class="r-card-maximize__favorite"></r-favorite>
 			<router-link
 				:to="`/catalog/${category.slug}/${subcategory.slug}/${card.id}`"
+				v-once
 			>
 				<img
 					:src="
@@ -22,10 +23,10 @@
 			</router-link>
 		</div>
 		<div class="r-card-maximize__footer">
-			<div class="r-card-maximize__row">
+			<div class="r-card-maximize__row" v-once>
 				<p class="r-card-maximize__name">{{ card.name }}</p>
 			</div>
-			<div class="r-card-maximize__row">
+			<div class="r-card-maximize__row" v-once>
 				<p class="r-card-maximize__price">{{ card.price }}₽.</p>
 				<p class="r-card-maximize__price-old" v-show="card.price_old">
 					{{ card.price_old }}₽.

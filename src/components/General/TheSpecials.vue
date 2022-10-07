@@ -1,14 +1,14 @@
 <template>
 	<section class="the-specials">
 		<div class="the-specials__container center">
-			<h2 data-aos="fade-right" class="the-specials__title">
+			<h2 data-aos="fade-right" class="the-specials__title" v-once>
 				Специальные предложения
 			</h2>
 			<products-slider
 				id="specials"
 				:slides="slides"
 				:category="category"
-				v-show="slides.length > 0"
+				v-if="slides.length > 0"
 			></products-slider>
 		</div>
 	</section>

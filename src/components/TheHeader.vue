@@ -70,17 +70,21 @@
 					<img
 						:src="
 							isCabinetVersion && documentWidth <= 540
-								? '/img/icon/logo-mobile.svg'
+								? '/img/icons/logo-mobile.svg'
 								: isCabinetVersion && documentWidth > 540
-								? '/img/icon/logo-inline.svg'
-								: `/img/icon/logo.svg`
+								? '/img/icons/logo-inline.svg'
+								: `/img/icons/logo.svg`
 						"
 						alt="logo"
 						class="animate__animated animate__fadeInDown the-header__logo"
 					/>
 				</router-link>
 
-				<h4 class="the-header__description" v-show="isCabinetVersion">
+				<h4
+					class="the-header__description"
+					v-show="isCabinetVersion"
+					v-once
+				>
 					МАГАЗИН ДЛЯ ТЕХ, КТО СТРОИТ
 				</h4>
 
@@ -90,9 +94,10 @@
 						class="animate__animated animate__fadeInDown the-header__cart-container"
 					>
 						<img
-							src="/img/icon/cart.svg"
+							src="/img/icons/cart.svg"
 							alt=""
 							class="the-header__cart"
+							v-once
 						/>
 						<span
 							class="the-header__cart-counter"
@@ -107,9 +112,10 @@
 						v-show="documentWidth > 540"
 					>
 						<img
-							src="/img/icon/avatar.svg"
+							src="/img/icons/avatar.svg"
 							class="the-header__avatar"
 							alt=""
+							v-once
 						/>
 					</router-link>
 				</div>
@@ -182,7 +188,9 @@
 								/>
 							</svg>
 						</button>
-						<h5 class="the-header__catalog-title">Каталог</h5>
+						<h5 class="the-header__catalog-title" v-once>
+							Каталог
+						</h5>
 					</div>
 
 					<transition>

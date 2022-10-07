@@ -1,5 +1,5 @@
 import axios from "axios";
-import cookie from 'vue-cookies';
+import cookies from 'vue-cookies';
 
 const baseURL = process.env.VUE_APP_BACKEND_BASEURL;
 
@@ -24,7 +24,7 @@ const registration = async (authData) => {
 const logout = async () => {
 	try {
 		const response = await axios.post(`${baseURL}/auth/token/logout/`, {},
-			{ headers: { Authorization: `token ${cookie.get('auth_token')}`, }, }
+			{ headers: { Authorization: `token ${cookies.get('auth_token')}`, }, }
 		)
 
 		return response;
@@ -32,37 +32,37 @@ const logout = async () => {
 	catch (err) { throw new Error(err) }
 }
 
-const change_user_data = async (new_data) => {
+const changeUserData = async (new_data) => {
 	try {
 		const response =
 			await axios.put(`${baseURL}/auth/users/me/`,
 				{ ...new_data },
-				{ headers: { Authorization: `token ${cookie.get('auth_token')}`, }, }
+				{ headers: { Authorization: `token ${cookies.get('auth_token')}`, }, }
 			)
 		return response;
 	}
 	catch (err) { return err.response }
 }
 
-const change_password = async (passwords) => {
+const changePassword = async (passwords) => {
 	try {
 		const response =
 			await axios.post(`${baseURL}/auth/users/set_password/`,
 				{ ...passwords },
-				{ headers: { Authorization: `token ${cookie.get('auth_token')}`, }, }
+				{ headers: { Authorization: `token ${cookies.get('auth_token')}`, }, }
 			)
 		return response;
 	}
 	catch (err) { return err.response }
 }
 
-const upload_avatar = async (user_id, avatar) => {
+const uploadAvatar = async (user_id, avatar) => {
 	try {
 		const response = await axios.put(`${baseURL}/auth/users/upload_avatar/${user_id}/`,
 			{ avatar },
 			{
 				headers: {
-					Authorization: `token ${cookie.get('auth_token')}`,
+					Authorization: `token ${cookies.get('auth_token')}`,
 					"Content-Type": "multipart/form-data",
 				},
 			}
@@ -72,4 +72,25 @@ const upload_avatar = async (user_id, avatar) => {
 	catch (err) { return err.response }
 }
 
-export { login, registration, logout, change_user_data, change_password, upload_avatar }
+const getOrders = async () => {
+
+	try {
+		const response = await axios(`${baseURL}/kolotok/orders/`, {
+			headers: { Authorization: `token ${cookies.get('auth_token')}` }
+		});
+
+		return response
+
+	}
+	catch (err) { throw new Error(err) }
+}
+
+export {
+	login,
+	registration,
+	logout,
+	changeUserData,
+	changePassword,
+	uploadAvatar,
+	getOrders
+}

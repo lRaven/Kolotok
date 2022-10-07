@@ -1,6 +1,6 @@
 <template>
 	<section class="page-profile">
-		<h1 class="page-profile__title">Мой профиль</h1>
+		<h3 class="page-profile__title" v-once>Мой профиль</h3>
 
 		<div class="page-profile__header">
 			<div class="page-profile__me">
@@ -34,13 +34,16 @@
 		</div>
 
 		<div class="page-profile__main">
-			<div class="page-profile__item shadow">
+			<div
+				class="page-profile__item shadow"
+				:class="{ active: !isNameFormDisabled }"
+			>
 				<div class="page-profile__item-header">
-					<h2 class="page-profile__item-title">ФИО</h2>
+					<h2 class="page-profile__item-title" v-once>ФИО</h2>
 				</div>
 				<form class="page-profile__item-body">
 					<div class="page-profile__item-row">
-						<p class="page-profile__item-key">Фамилия:</p>
+						<p class="page-profile__item-key" v-once>Фамилия:</p>
 
 						<r-input
 							type="text"
@@ -55,7 +58,7 @@
 						></r-input>
 					</div>
 					<div class="page-profile__item-row">
-						<p class="page-profile__item-key">Имя:</p>
+						<p class="page-profile__item-key" v-once>Имя:</p>
 
 						<r-input
 							type="text"
@@ -84,10 +87,15 @@
 				</form>
 			</div>
 
-			<div class="page-profile__item shadow">
+			<div
+				class="page-profile__item shadow"
+				:class="{ active: !isPhoneFormDisabled }"
+			>
 				<form class="page-profile__item-body">
 					<div class="page-profile__item-row">
-						<p class="page-profile__item-key">Номер телефона:</p>
+						<p class="page-profile__item-key" v-once>
+							Номер телефона:
+						</p>
 
 						<r-input
 							type="tel"
@@ -116,10 +124,13 @@
 				</form>
 			</div>
 
-			<div class="page-profile__item shadow">
+			<div
+				class="page-profile__item shadow"
+				:class="{ active: !isEmailFormDisabled }"
+			>
 				<form class="page-profile__item-body">
 					<div class="page-profile__item-row">
-						<p class="page-profile__item-key">Email:</p>
+						<p class="page-profile__item-key" v-once>Email:</p>
 
 						<r-input
 							type="email"
@@ -148,13 +159,16 @@
 				</form>
 			</div>
 
-			<div class="page-profile__item shadow">
+			<div
+				class="page-profile__item shadow"
+				:class="{ active: !isPasswordFormDisabled }"
+			>
 				<form
 					class="page-profile__item-body"
 					@submit.prevent="send_new_password"
 				>
 					<div class="page-profile__item-row">
-						<p class="page-profile__item-key">Пароль:</p>
+						<p class="page-profile__item-key" v-once>Пароль:</p>
 						<p
 							class="page-profile__item-value page-profile__password"
 							v-if="isPasswordFormDisabled"
@@ -183,7 +197,9 @@
 						class="page-profile__item-row"
 						v-if="!isPasswordFormDisabled"
 					>
-						<p class="page-profile__item-key">Новый пароль:</p>
+						<p class="page-profile__item-key" v-once>
+							Новый пароль:
+						</p>
 						<r-input
 							type="password"
 							:isDisabled="isPasswordFormDisabled"
@@ -196,7 +212,7 @@
 						class="page-profile__item-row"
 						v-if="!isPasswordFormDisabled"
 					>
-						<p class="page-profile__item-key">
+						<p class="page-profile__item-key" v-once>
 							Подтверждение пароля:
 						</p>
 						<r-input
@@ -234,9 +250,9 @@
 	import { mapState, mapMutations, mapActions } from "vuex";
 	import {
 		logout,
-		change_user_data,
-		change_password,
-		upload_avatar,
+		changeUserData,
+		changePassword,
+		uploadAvatar,
 	} from "@/api/user";
 	import { returnErrorMessages } from "@/js/returnErrorMessages";
 
@@ -331,7 +347,7 @@
 				successMessage = "Success"
 			) {
 				try {
-					const response = await change_user_data(newUserData);
+					const response = await changeUserData(newUserData);
 
 					if (response.status === 200) {
 						this.toast.success(successMessage);
@@ -356,7 +372,7 @@
 
 			async send_new_password() {
 				try {
-					const response = await change_password(
+					const response = await changePassword(
 						this.userData.password_new,
 						this.userData.password
 					);
@@ -432,7 +448,7 @@
 
 			async send_avatar() {
 				try {
-					const response = await upload_avatar(
+					const response = await uploadAvatar(
 						this.userData.id,
 						this.new_avatar
 					);
@@ -508,6 +524,7 @@
 		&__title {
 			margin-bottom: 1rem;
 			padding-left: 2rem;
+			font-weight: 600;
 			@media (max-width: 767px) {
 				padding-left: 0;
 			}
@@ -597,7 +614,11 @@
 
 		&__item {
 			border-radius: 3rem;
-
+			outline: 0.1rem solid transparent;
+			transition: all 0.2s ease;
+			&.active {
+				outline-color: $blue;
+			}
 			&-header {
 				padding: 3rem 7rem;
 				border-bottom: 0.1rem solid #c4c4c4;

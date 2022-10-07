@@ -1,14 +1,14 @@
 <template>
-	<div class="page-cart-cabinet">
+	<section class="page-cart-cabinet">
 		<div class="page-cart-cabinet__header">
-			<h2 class="page-cart-cabinet__title">Корзина</h2>
+			<h2 class="page-cart-cabinet__title" v-once>Корзина</h2>
 
 			<div class="page-cart-cabinet__header-col">
 				<div class="page-cart-cabinet__bonuses shadow">
-					<h4 class="page-cart-cabinet__bonuses-title">
+					<h4 class="page-cart-cabinet__bonuses-title" v-once>
 						Бонусная программа
 					</h4>
-					<p class="page-cart-cabinet__bonuses-description">
+					<p class="page-cart-cabinet__bonuses-description" v-once>
 						Введите промокод
 					</p>
 					<r-input v-model="promoCode"></r-input>
@@ -16,17 +16,16 @@
 					<r-button
 						color="blue"
 						text="Активировать промокод"
-						v-model="promoCode"
 					></r-button>
 				</div>
 
 				<form class="page-cart-cabinet__sum shadow" @submit.prevent="">
-					<h4 class="page-cart-cabinet__sum-title">
+					<h4 class="page-cart-cabinet__sum-title" v-once>
 						Итого по заказу
 					</h4>
 
 					<div class="page-cart-cabinet__sum-row">
-						<p class="page-cart-cabinet__sum-row-key">
+						<p class="page-cart-cabinet__sum-row-key" v-once>
 							Сумма заказа
 						</p>
 						<p class="page-cart-cabinet__sum-row-value">
@@ -35,14 +34,16 @@
 					</div>
 
 					<div class="page-cart-cabinet__sum-row">
-						<p class="page-cart-cabinet__sum-row-key">Скидка</p>
+						<p class="page-cart-cabinet__sum-row-key" v-once>
+							Скидка
+						</p>
 						<p class="page-cart-cabinet__sum-row-value">
 							{{ 0 }} руб.
 						</p>
 					</div>
 
 					<div class="page-cart-cabinet__sum-row">
-						<p class="page-cart-cabinet__sum-row-key">
+						<p class="page-cart-cabinet__sum-row-key" v-once>
 							Сумма к оплате
 						</p>
 						<p class="page-cart-cabinet__sum-row-value">
@@ -60,7 +61,7 @@
 		</div>
 
 		<div class="page-card-cabinet__list">
-			<div class="page-cart-cabinet__list-header">
+			<div class="page-cart-cabinet__list-header" v-once>
 				<p class="page-cart-cabinet__list-col-description">Товар</p>
 				<p class="page-cart-cabinet__list-col-description">Цена</p>
 				<p class="page-cart-cabinet__list-col-description">
@@ -76,7 +77,7 @@
 				:amount="product.amount"
 			></cart-card>
 		</div>
-	</div>
+	</section>
 </template>
 
 <script>

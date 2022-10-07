@@ -1,5 +1,5 @@
 <template>
-	<div class="r-loader">
+	<div class="r-loader" v-once>
 		<svg class="r-loader__icon" viewBox="25 25 50 50">
 			<circle
 				class="r-loader__path"

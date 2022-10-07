@@ -1,5 +1,5 @@
 <template>
-	<div class="r-discount">-{{ discount }}%</div>
+	<div class="r-discount" v-once>-{{ discount }}%</div>
 </template>
 
 <script>

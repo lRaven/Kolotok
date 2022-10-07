@@ -86,6 +86,14 @@
 					this.getCards();
 				}
 			},
+			current_subcategories: {
+				handler() {
+					if (this.$route.name === this.pagination.path_name) {
+						this.getCards();
+					}
+				},
+				deep: true,
+			},
 		},
 		data: () => ({
 			sortVariations: [
@@ -161,6 +169,7 @@
 		},
 		methods: {
 			async getCards(addCards = false) {
+				console.log("get cards mf");
 				try {
 					const response = await getProducts({
 						sub_category: this.current_subcategories[0].id,

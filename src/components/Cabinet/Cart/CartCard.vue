@@ -4,11 +4,12 @@
 			:src="product.img || '/img/catalog/catalog__photo-default.svg'"
 			alt="photo"
 			class="cart-card__image"
+			v-once
 		/>
 
-		<p class="cart-card__name">{{ product.name }}</p>
+		<p class="cart-card__name" v-once>{{ product.name }}</p>
 
-		<p class="cart-card__price">{{ product.price }} руб.</p>
+		<p class="cart-card__price" v-once>{{ product.price }} руб.</p>
 
 		<r-counter
 			:getValue="amount"
@@ -20,7 +21,7 @@
 
 		<p class="cart-card__full-price">{{ full_price }} руб.</p>
 
-		<div class="cart-card__article">
+		<div class="cart-card__article" v-once>
 			<p class="cart-card__article-name">Артикул:</p>
 			<p class="cart-card__article-value">{{ product.article }}</p>
 		</div>

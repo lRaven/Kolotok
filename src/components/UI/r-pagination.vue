@@ -7,7 +7,7 @@
 			@click="changePage(current_page - 1)"
 		>
 			<img
-				src="/img/icon/catalog/arrow.svg"
+				src="/img/icons/catalog/arrow.svg"
 				alt="arrow"
 				class="r-pagination__btn-arrow"
 			/>
@@ -94,7 +94,7 @@
 			@click="changePage(current_page + 1)"
 		>
 			<img
-				src="/img/icon/catalog/arrow.svg"
+				src="/img/icons/catalog/arrow.svg"
 				alt=""
 				class="r-pagination__btn-arrow"
 			/>

@@ -1,5 +1,5 @@
 <template>
-	<section class="the-benefits">
+	<section class="the-benefits" v-once>
 		<div class="the-benefits__container center">
 			<h2 data-aos="fade-right" class="the-benefits__title">
 				Преимущества нашего магазина
@@ -11,7 +11,7 @@
 					class="the-benefits__benefit shadow"
 				>
 					<img
-						src="/img/icon/shipping.svg"
+						src="/img/icons/shipping.svg"
 						class="the-benefits__benefit-icon"
 						alt=""
 					/>
@@ -31,7 +31,7 @@
 					class="the-benefits__benefit shadow"
 				>
 					<img
-						src="/img/icon/pay.svg"
+						src="/img/icons/pay.svg"
 						class="the-benefits__benefit-icon"
 						alt=""
 					/>
@@ -51,7 +51,7 @@
 					class="the-benefits__benefit shadow"
 				>
 					<img
-						src="/img/icon/shipping.svg"
+						src="/img/icons/shipping.svg"
 						class="the-benefits__benefit-icon"
 						alt=""
 					/>

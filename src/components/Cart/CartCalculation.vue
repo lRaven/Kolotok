@@ -1,16 +1,16 @@
 <template>
 	<form class="cart-calculation">
-		<h3 class="cart-calculation__title">Ваш заказ</h3>
+		<h3 class="cart-calculation__title" v-once>Ваш заказ</h3>
 		<div class="cart-calculation__row">
-			<p class="cart-calculation__row-title">Выбрано товаров</p>
+			<p class="cart-calculation__row-title" v-once>Выбрано товаров</p>
 			<p class="cart-calculation__row-value">{{ products.length }} шт.</p>
 		</div>
 		<div class="cart-calculation__row">
-			<p class="cart-calculation__row-title">Скидка</p>
+			<p class="cart-calculation__row-title" v-once>Скидка</p>
 			<p class="cart-calculation__row-value">{{ discount_sum }} руб.</p>
 		</div>
 		<div class="cart-calculation__row">
-			<p class="cart-calculation__row-title">Итого:</p>
+			<p class="cart-calculation__row-title" v-once>Итого:</p>
 			<p class="cart-calculation__row-value">{{ final_price }} руб.</p>
 		</div>
 		<!-- <div class="cart-calculation__promo">
@@ -23,7 +23,7 @@
 			/>
 			<button type="button" class="cart-calculation__promo-button">
 				<img
-					src="/img/icon/basket/arrow.svg"
+					src="/img/icons/basket/arrow.svg"
 					alt=""
 					class="cart-calculation__promo-button-icon"
 				/>

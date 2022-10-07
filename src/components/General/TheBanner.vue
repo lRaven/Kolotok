@@ -10,7 +10,9 @@
 				class="the-banner__card the-banner__deal shadow"
 			>
 				<div class="the-banner__deal-content">
-					<h3 class="the-banner__deal-title">ВЫГОДНАЯ ПОКУПКА</h3>
+					<h3 class="the-banner__deal-title" v-once>
+						ВЫГОДНАЯ ПОКУПКА
+					</h3>
 					<p class="the-banner__deal-text">
 						{{
 							documentWidth > 540
@@ -18,21 +20,25 @@
 								: "Специальные\nпредложения\nна товары месяца"
 						}}
 					</p>
-					<r-link :way="{ name: 'Home' }" text="Подробнее"></r-link>
+					<r-link
+						:way="{ name: 'Home' }"
+						text="Подробнее"
+						v-once
+					></r-link>
 				</div>
 				<!-- <img
 					src="/img/catalog/catalog-item.png"
 					alt=""
 					class="the-banner__deal-img"
 				/> -->
-				<div class="the-banner__deal-discount">-50%</div>
+				<div class="the-banner__deal-discount" v-once>-50%</div>
 			</div>
 			<div
 				data-aos="fade-up"
 				class="the-banner__card the-banner__tariffs shadow"
 			>
 				<div class="the-banner__tariffs-content">
-					<h3 class="the-banner__tariffs-title">ТАРИФЫ</h3>
+					<h3 class="the-banner__tariffs-title" v-once>ТАРИФЫ</h3>
 					<p class="the-banner__tariffs-text">
 						{{
 							documentWidth > 540
@@ -40,7 +46,11 @@
 								: "Тарифы на ремонт\nпод ключ"
 						}}
 					</p>
-					<r-link :way="{ name: 'Home' }" text="Подробнее"></r-link>
+					<r-link
+						:way="{ name: 'Home' }"
+						text="Подробнее"
+						v-once
+					></r-link>
 				</div>
 			</div>
 		</div>

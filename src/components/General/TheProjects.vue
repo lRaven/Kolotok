@@ -1,6 +1,6 @@
 <template>
 	<section class="the-projects center">
-		<h2 data-aos="fade-right" class="the-projects__title">
+		<h2 data-aos="fade-right" class="the-projects__title" v-once>
 			Проекты клиентов
 		</h2>
 		<div class="the-projects__list" v-show="documentWidth > 540">

@@ -1,7 +1,7 @@
 <template>
 	<div class="banner-card">
-		<img :src="img" alt="" class="banner-card__bg" />
-		<h1 class="banner-card__title">
+		<img :src="img" alt="" class="banner-card__bg" v-once />
+		<h1 class="banner-card__title" v-once>
 			{{ title }}
 		</h1>
 		<h4 class="banner-card__subtitle" v-show="documentWidth > 540">

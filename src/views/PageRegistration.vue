@@ -4,7 +4,11 @@
 
 		<main class="page-registration__main main">
 			<div class="page-registration__container">
-				<div data-aos="fade-up" class="page-registration__links shadow">
+				<div
+					data-aos="fade-up"
+					class="page-registration__links shadow"
+					v-once
+				>
 					<router-link
 						:to="{ name: 'Login' }"
 						class="page-registration__link"
@@ -24,7 +28,7 @@
 					class="page-registration__form shadow"
 					@submit.prevent="attemptToEnter = true"
 				>
-					<div class="page-registration__form-header">
+					<div class="page-registration__form-header" v-once>
 						<h3 class="page-registration__title">Регистрация</h3>
 					</div>
 					<div class="page-registration__form-body">
@@ -52,7 +56,7 @@
 							color="yellow"
 							type="submit"
 						></r-button>
-						<p class="page-registration__form-confirmation">
+						<p class="page-registration__form-confirmation" v-once>
 							Нажимая кнопку «Зарегистрироваться», вы
 							подтверждаете своё согласие на
 							<a

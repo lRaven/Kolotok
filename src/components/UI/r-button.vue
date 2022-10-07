@@ -4,8 +4,8 @@
 		<img
 			:src="
 				documentWidth > 540
-					? '/img/icon/arrow-long.svg'
-					: '/img/icon/basket/arrow.svg'
+					? '/img/icons/arrow-long.svg'
+					: '/img/icons/basket/arrow.svg'
 			"
 			alt="arrow"
 			class="r-button__arrow"

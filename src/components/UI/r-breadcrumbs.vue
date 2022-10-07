@@ -71,7 +71,7 @@
 			&::after {
 				pointer-events: none;
 				content: "";
-				background: url("/public/img/icon/arrow.svg") center / contain
+				background: url("/public/img/icons/arrow.svg") center / contain
 					no-repeat;
 				position: absolute;
 				right: -2.5rem;

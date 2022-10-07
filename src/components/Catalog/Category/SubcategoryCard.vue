@@ -12,8 +12,9 @@
 			:src="subcategory.img || `/img/catalog/catalog__photo-default.svg`"
 			alt="icon"
 			class="subcategory-card__img"
+			v-once
 		/>
-		<p class="subcategory-card__text">{{ subcategory.name }}</p>
+		<p class="subcategory-card__text" v-once>{{ subcategory.name }}</p>
 	</div>
 </template>
 

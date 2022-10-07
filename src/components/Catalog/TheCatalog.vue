@@ -2,7 +2,7 @@
 	<section class="the-catalog">
 		<div class="the-catalog__container center">
 			<slot name="breadcrumbs"></slot>
-			<h2 data-aos="fade-right" class="the-catalog__title">
+			<h2 data-aos="fade-right" class="the-catalog__title" v-once>
 				{{ title }}
 			</h2>
 			<div class="the-catalog__categories">

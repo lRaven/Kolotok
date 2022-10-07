@@ -3,11 +3,12 @@
 		class="the-footer"
 		id="footer"
 		:class="{ cabinet: isCabinetVersion }"
+		v-once
 	>
 		<div class="the-footer__container center">
 			<div class="the-footer__top">
 				<img
-					src="/img/icon/logo.svg"
+					src="/img/icons/logo.svg"
 					alt="logo"
 					class="the-footer__logo"
 				/>

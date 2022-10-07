@@ -90,7 +90,7 @@
 							<div
 								class="product__features animate__animated animate__fadeInUp"
 							>
-								<h6 class="product__features-title">
+								<h6 class="product__features-title" v-once>
 									Характеристики товара
 								</h6>
 
@@ -126,7 +126,10 @@
 								v-if="!product.logo"
 							/>
 							<div class="product__details-link-wrapper">
-								<p class="product__details-link-description">
+								<p
+									class="product__details-link-description"
+									v-once
+								>
 									Подробности<br />
 									на сайте производителя
 								</p>
@@ -155,20 +158,21 @@
 					<div class="recommendations__container center">
 						<h2
 							class="recommendations-title animate__animated animate__fadeInUp"
+							v-once
 						>
 							С этим товаром также сочетаются
 						</h2>
 						<products-slider
 							id="recommendations"
 							:category="category"
-							v-show="slides.length > 0"
+							v-if="slides.length > 0"
 							:slides="slides"
 						></products-slider>
 					</div>
 				</section>
 			</div>
 			<div class="page-product" v-else>
-				<div class="page-product__404">
+				<div class="page-product__404" v-once>
 					<p>Товар не найден</p>
 				</div>
 			</div>
