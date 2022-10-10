@@ -97,6 +97,11 @@ const routes = [
 					requiresAuth: true,
 				}
 			},
+			{
+				path: 'bonuses',
+				name: 'Bonuses',
+				component: () => import(/* webpackChunkName: "bonuses" */ '@/views/CabinetPages/PageBonuses.vue'),
+			},
 		],
 
 		meta: {

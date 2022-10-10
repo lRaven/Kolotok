@@ -38,7 +38,10 @@
 				deep: true,
 			},
 		},
-		data: () => ({ searchParam: null, orders: [] }),
+		data: () => ({
+			searchParam: null,
+			orders: [],
+		}),
 		computed: {
 			...mapState({ user: (state) => state.Cabinet.user }),
 		},

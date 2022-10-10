@@ -10,7 +10,7 @@
 	import Aos from "aos";
 	import "aos/dist/aos.css";
 
-	import { mapActions } from "vuex";
+	import { mapState, mapActions } from "vuex";
 
 	export default {
 		watch: {
@@ -21,6 +21,10 @@
 			"$route.path"() {
 				//* срабатывает при переходе по router-link
 				document.querySelector("body").classList.remove("locked");
+
+				if (Object.keys(this.user).length === 0) {
+					this.getUserData();
+				}
 			},
 		},
 		methods: {
@@ -31,6 +35,9 @@
 				"getUserData",
 				"getCartList",
 			]),
+		},
+		computed: {
+			...mapState({ user: (state) => state.Cabinet.user }),
 		},
 		created() {
 			this.getCategories();
