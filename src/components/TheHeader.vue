@@ -198,13 +198,12 @@
 							<ul class="the-header__catalog-list">
 								<li
 									class="the-header__catalog-item"
+									:class="{
+										active: this.category === category.id,
+									}"
 									v-for="category in categories"
 									:key="category.id"
-									@click="
-										this.category = category.id;
-										this.subcategory = null;
-										openCatalogList();
-									"
+									@click="this.category = category.id"
 								>
 									<p
 										class="the-header__catalog-item-description"
@@ -221,7 +220,11 @@
 									>
 										<path
 											d="M1.53125 13L6.92621 7L1.53125 1"
-											stroke="#AEB3BF"
+											:stroke="
+												this.category === category.id
+													? '#007bfc'
+													: '#AEB3BF'
+											"
 											stroke-width="2"
 											stroke-linecap="round"
 											stroke-linejoin="round"
@@ -231,16 +234,13 @@
 							</ul>
 							<ul
 								class="the-header__catalog-list"
-								v-if="category !== null"
+								v-show="category"
 							>
 								<li
 									class="the-header__catalog-item"
 									v-for="subcategory in current_subcategories"
 									:key="subcategory.id"
-									@click="
-										this.subcategory = subcategory.id;
-										openCatalogList();
-									"
+									@click="this.subcategory = subcategory.id"
 								>
 									<p
 										class="the-header__catalog-item-description"
@@ -267,7 +267,7 @@
 							</ul>
 							<ul
 								class="the-header__catalog-list"
-								v-if="subcategory !== null"
+								v-show="subcategory"
 							>
 								<router-link
 									v-for="product in current_products"
@@ -311,6 +311,7 @@
 			</div>
 		</div>
 	</div>
+
 	<transition mode="out-in">
 		<div class="blur" v-show="isCatalogOpen"></div>
 	</transition>
@@ -376,33 +377,20 @@
 
 			current_subcategories() {
 				return this.subcategories.filter(
-					(subcategory) => subcategory.category === this.category
+					(subcategory) => subcategory.category.id === this.category
 				);
 			},
 
 			current_products() {
-				return this.products.filter(
-					(product) => product.subcategory[0] === this.subcategory
-				);
+				if (this.products) {
+					return this.products.filter(
+						(product) => product.subcategory[0] === this.subcategory
+					);
+				} else return [];
 			},
 		},
 		methods: {
-			openCatalogList() {
-				const header = document.querySelector(".the-header");
-				const catalog = header.querySelector(".the-header__catalog");
-				if (this.category !== null) {
-					catalog.setAttribute(
-						"style",
-						"grid-template-columns: repeat(2, 1fr)"
-					);
-					if (this.subcategory !== null) {
-						catalog.setAttribute(
-							"style",
-							"grid-template-columns: repeat(3, 1fr)"
-						);
-					}
-				}
-			},
+			selectCategory() {},
 		},
 	};
 </script>
@@ -535,6 +523,7 @@
 
 		&__catalog {
 			display: grid;
+			grid-template-columns: repeat(3, max-content);
 			position: absolute;
 			top: 100%;
 			height: fit-content;
@@ -562,6 +551,9 @@
 				transition: all 0.2s ease;
 				height: 6.6rem;
 				color: $dark;
+				&.active {
+					color: $blue;
+				}
 				&:nth-child(n + 2) {
 					border-top: 0.1rem solid $middle-gray;
 				}

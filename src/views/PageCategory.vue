@@ -26,7 +26,6 @@
 								v-for="product in pagination.cards_list"
 								:key="product.id"
 								:card="product"
-								:category="category"
 							></r-card>
 						</template>
 					</div>

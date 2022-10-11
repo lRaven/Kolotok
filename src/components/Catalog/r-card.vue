@@ -77,19 +77,21 @@
 		},
 		props: {
 			card: Object,
-			category: {
-				value: Object,
-				required: true,
-			},
 		},
 		computed: {
 			...mapState({
+				categories: (state) => state.Catalog.categories,
 				subcategories: (state) => state.Catalog.subcategories,
 			}),
 
 			subcategory() {
 				return this.subcategories.find(
 					(subcategory) => subcategory.id === this.card.sub_category
+				);
+			},
+			category() {
+				return this.categories.find(
+					(category) => category.id === this.subcategory.category.id
 				);
 			},
 		},

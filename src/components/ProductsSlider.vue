@@ -57,11 +57,7 @@
 			:speed="600"
 		>
 			<swiper-slide v-for="slide in slides" :key="slide.id">
-				<r-card
-					:id="slide.id"
-					:card="slide"
-					:category="category"
-				></r-card>
+				<r-card :id="slide.id" :card="slide"></r-card>
 			</swiper-slide>
 		</swiper>
 

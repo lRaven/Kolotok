@@ -14,7 +14,7 @@
 						:count="project.count"
 					></project-card>
 				</div>
-				<div class="page-projects__bottom">
+				<div class="page-projects__bottom" v-if="false">
 					<r-button
 						class="yellow"
 						text="Показать ещё"

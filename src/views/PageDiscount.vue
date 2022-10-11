@@ -5,36 +5,43 @@
 			<section class="discount center">
 				<r-breadcrumbs :links="links"></r-breadcrumbs>
 				<h2 class="discount__title" v-once>Акции</h2>
+
 				<div class="discount__subcategories">
 					<subcategory-card
 						v-for="subcategory in subcategories"
 						:key="subcategory.id"
-						:text="subcategory.name"
+						:subcategory="subcategory"
 					></subcategory-card>
 				</div>
+
 				<r-dropdown :values="sortVariations"></r-dropdown>
+
 				<div class="discount__products">
-					<r-card
-						v-for="product in products"
-						:key="product.id"
-						:id="product.id"
-						:discount_percent="product.discount_percent"
-						:img="product.img"
-						:price="product.price"
-						:price_old="product.price_old"
-						:name="product.name"
-					></r-card>
+					<r-loader v-if="!isProductsLoaded"></r-loader>
+					<template v-else>
+						<r-card
+							v-for="product in pagination.cards_list"
+							:key="product.id"
+							:card="product"
+						></r-card>
+					</template>
 				</div>
+
 				<div class="discount__bottom">
 					<r-button
 						class="yellow"
 						text="Показать ещё"
 						:arrow="true"
+						v-show="pagination_data.next"
+						@click="pageChanged(page + 1, true)"
 					></r-button>
 					<r-pagination
-						:pages="paginationPages"
-						:current-page="page_number"
-						@select-page="selectPage"
+						:start-page="page"
+						:count="count"
+						:items-on-page="pagination.cards_in_page"
+						:prev-page="pagination_data.previous"
+						:next-page="pagination_data.next"
+						@page-changed="pageChanged"
 					></r-pagination>
 				</div>
 			</section>
@@ -45,6 +52,8 @@
 
 <script>
 	import { mapState } from "vuex";
+	import { paginationMixin } from "@/mixins/paginationMixins";
+	import { getProducts } from "@/api/catalog";
 
 	import TheHeader from "@/components/TheHeader";
 
@@ -56,6 +65,7 @@
 
 	export default {
 		name: "PageDiscount",
+		mixins: [paginationMixin],
 		components: {
 			TheHeader,
 
@@ -71,19 +81,8 @@
 				{ id: 2, value: 2, text: "По цене (убывание" },
 			],
 
-			//*TODO: интегрировать пагинацию с бекендом и отредактировать этот массив
-			paginationPages: [
-				{ id: 1, page: 1, class: "current" },
-				{ id: 2, page: 2, class: null },
-				{ id: 3, page: 3, class: null },
-				{ id: 4, page: 4, class: null },
-				{ id: 5, page: 5, class: null },
-				{ id: 6, page: 6, class: null },
-				{ id: 7, page: 7, class: null },
-				{ id: 8, page: 8, class: null },
-				{ id: 9, page: 9, class: null },
-				{ id: 10, page: 10, class: null },
-			],
+			pagination_data: {},
+			isProductsLoaded: false,
 		}),
 
 		computed: {
@@ -119,12 +118,62 @@
 			},
 		},
 		methods: {
-			selectPage(page) {
+			async getCards(addCards = false) {
+				try {
+					const response = await getProducts({
+						page_size: this.pagination.cards_in_page,
+						page: this.page,
+					});
+
+					if (response.status === 200) {
+						this.isProductsLoaded = true;
+
+						for (const key in response.data) {
+							if (
+								Object.hasOwnProperty.call(response.data, key)
+							) {
+								if (key !== "results") {
+									this.pagination_data[key] =
+										response.data[key];
+								} else {
+									if (addCards) {
+										this.pagination.cards_list.push(
+											...response.data[key]
+										);
+									} else {
+										this.pagination.cards_list =
+											response.data[key];
+									}
+								}
+							}
+						}
+					}
+				} catch (err) {
+					this.isProductsLoaded = true;
+					this.$router.push({ name: "Discount" });
+					throw new Error(err);
+				}
+			},
+
+			pageChanged(page_number, type) {
+				if (type) {
+					this.pagination.load_next_cards = true;
+				} else {
+					this.pagination.load_next_cards = false;
+				}
+
 				this.$router.push({
-					path: this.current_path,
-					query: { page },
+					name: "Discount",
+					query: { page: page_number },
 				});
 			},
+		},
+		mounted() {
+			if (this.$route.query.page) {
+				this.getCards();
+			} else {
+				this.$router.push({ name: "Home" });
+			}
 		},
 	};
 </script>
@@ -147,6 +196,7 @@
 			margin-bottom: 4rem;
 		}
 		&__products {
+			position: relative;
 			display: grid;
 			grid-template-columns: repeat(6, 1fr);
 			justify-content: space-between;
