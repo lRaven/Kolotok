@@ -12,9 +12,9 @@
 		<p class="cart-card__price" v-once>{{ product.price }} руб.</p>
 
 		<r-counter
-			:getValue="amount"
-			:getMin="1"
-			:getMax="5"
+			:get-value="amount"
+			:get-min="1"
+			:get-max="5"
 			v-model="counter"
 			class="cart-card__col"
 		></r-counter>
@@ -26,7 +26,11 @@
 			<p class="cart-card__article-value">{{ product.article }}</p>
 		</div>
 
-		<button type="button" class="cart-card__remove">
+		<button
+			type="button"
+			class="cart-card__remove"
+			@click="removeCard(product.name)"
+		>
 			<svg
 				width="19"
 				height="19"
@@ -65,7 +69,7 @@
 		components: { rCounter },
 		watch: {
 			counter() {
-				this.SET_CART_ITEM_COUNT({
+				this.setCartItemCount({
 					name: this.product.name,
 					count: this.counter,
 				});
@@ -80,7 +84,7 @@
 			},
 		},
 		methods: {
-			...mapMutations(["SET_CART_ITEM_COUNT"]),
+			...mapMutations(["setCartItemCount", "removeCard"]),
 		},
 	};
 </script>

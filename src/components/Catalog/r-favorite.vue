@@ -31,10 +31,10 @@
 		},
 		methods: {
 			addFavorite() {
-				this.$emit("addFavorite");
+				this.$emit("add-favorite");
 			},
 			removeFavorite() {
-				this.$emit("removeFavorite");
+				this.$emit("remove-favorite");
 			},
 		},
 	};

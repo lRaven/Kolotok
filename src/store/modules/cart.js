@@ -1,38 +1,33 @@
 import axios from "axios";
-// import store from '@/store';
 import cookies from "vue-cookies";
 
 const baseURL = process.env.VUE_APP_BACKEND_BASEURL;
 
-const state = () => ({
-	cart: {}
-})
+const state = () => ({ cart: {} })
 
 const getters = {}
 
 const mutations = {
-	SET_CART: (state, payload) => state.cart = payload,
+	setCart: (state, payload) => state.cart = payload,
 
-	SELECT_ALL_CART_ITEMS: state => {
-		state.cart.forEach(item => item.selected = true);
+	//TODO: get product id, identification by name is unstable
+	selectAllCartItems: state => {
+		state.cart.products.forEach(item => item.selected = true);
 	},
-	SELECT_CART_ITEM: (state, payload) => {
-		state.cart.forEach(item => {
-			if (item.id === payload) { item.selected = true }
-		})
-	},
-
-	UNSELECT_ALL_CART_ITEMS: state => {
-		state.cart.forEach(item => item.selected = false);
-	},
-	UNSELECT_CART_ITEM: (state, payload) => {
-		state.cart.forEach(item => {
-			if (item.id === payload) { item.selected = false }
-		})
+	selectCartItem: (state, payload) => {
+		const find = state.cart.products.find(product => product.product.name === payload);
+		if (find) { find.selected = true }
 	},
 
-	SET_CART_ITEM_COUNT: (state, payload) => {
-		//TODO: get product id, identification by name is bullshit
+	unselectAllCartItems: state => {
+		state.cart.products.forEach(item => item.selected = false);
+	},
+	unselectCartItem: (state, payload) => {
+		const find = state.cart.products.find(product => product.product.name === payload);
+		if (find) { find.selected = false }
+	},
+
+	setCartItemCount: (state, payload) => {
 		const find = state.cart.products.find(el => el.product.name === payload.name);
 
 		if (find) {
@@ -40,7 +35,16 @@ const mutations = {
 		}
 	},
 
-	CLEAR_CART: (state) => state.cart = {},
+	removeCard: (state, payload) => {
+		state.cart.products = state.cart.products.filter(product => {
+			return product.product.name !== payload
+		})
+	},
+	removeSelectedCards: (state) => {
+		state.cart.products = state.cart.products.filter(product => product.selected !== true)
+	},
+
+	clearCart: (state) => state.cart = {},
 }
 
 const actions = {
@@ -52,7 +56,7 @@ const actions = {
 
 			if (response.status === 200) {
 				//TODO: replace by cart
-				commit('SET_CART', response.data[0]);
+				commit('setCart', response.data[0]);
 			}
 
 			return response;

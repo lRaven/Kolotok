@@ -2,8 +2,8 @@
 	<div class="page-catalog theme-container">
 		<the-header />
 		<main class="main">
-			<the-catalog title="Каталог" :isCatalogPage="true">
-				<template v-slot:breadcrumbs>
+			<the-catalog title="Каталог" :is-catalog-page="true">
+				<template #breadcrumbs>
 					<r-breadcrumbs :links="links"></r-breadcrumbs>
 				</template>
 			</the-catalog>

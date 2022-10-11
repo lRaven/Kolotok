@@ -61,7 +61,7 @@
 			},
 		},
 		created() {
-			this.$emit("changeTab", "orders");
+			this.$emit("change-tab", "orders");
 		},
 		mounted() {
 			this.getMyOrders();

@@ -29,12 +29,12 @@ const getters = {
 }
 
 const mutations = {
-	SET_USER_DATA: (state, payload) => state.user = payload,
-	SET_USER_ID: (state, payload) => state.user.id = payload,
+	setUserData: (state, payload) => state.user = payload,
+	setUserId: (state, payload) => state.user.id = payload,
 
-	SET_USER_AUTH: (state, payload) => state.userAuth = payload,
+	setUserAuth: (state, payload) => state.userAuth = payload,
 
-	CLEAR_USER_DATA: (state) => state.user = {},
+	clearUserData: (state) => state.user = {},
 }
 
 const actions = {
@@ -45,15 +45,15 @@ const actions = {
 			})
 
 			if (response.status === 200) {
-				context.commit("SET_USER_DATA", response.data);
-				context.commit("SET_USER_AUTH", true);
+				context.commit("setUserData", response.data);
+				context.commit("setUserAuth", true);
 				context.dispatch('getUserId');
 			}
 			else {
 				//* clear cookies, cabinet data
 				cookies.remove('auth_token');
 
-				context.commit("SET_USER_AUTH", false);
+				context.commit("setUserAuth", false);
 				context.dispatch('clearCabinetState');
 			}
 
@@ -77,14 +77,14 @@ const actions = {
 				})
 			if (response.status === 200) {
 				const userMe = response.data.find(user => user.username === context.state.user.username)
-				context.commit("SET_USER_ID", userMe.id);
+				context.commit("setUserId", userMe.id);
 			}
 		}
 		catch (err) { throw new Error(err) }
 	},
 
 	clearCabinetState({ commit }) {
-		commit('CLEAR_USER_DATA');
+		commit('clearUserData');
 	}
 }
 

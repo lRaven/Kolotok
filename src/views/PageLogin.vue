@@ -1,6 +1,6 @@
 <template>
 	<div class="page-login theme-container">
-		<the-header :isCabinetVersion="true"></the-header>
+		<the-header :is-cabinet-version="true"></the-header>
 
 		<main class="page-login__main main">
 			<div class="page-login__container">
@@ -58,7 +58,7 @@
 			</div>
 		</main>
 
-		<the-footer :isCabinetVersion="true"></the-footer>
+		<the-footer :is-cabinet-version="true"></the-footer>
 	</div>
 </template>
 

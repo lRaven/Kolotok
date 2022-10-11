@@ -12,10 +12,10 @@
 					:discount="card.discount_percent"
 				></r-discount>
 				<r-favorite
-					@addFavorite="addFavorite"
-					@removeFavorite="removeFavorite"
+					@add-favorite="addFavorite"
+					@remove-favorite="removeFavorite"
 					class="r-card__favorite"
-					:isFavorite="isFavorite"
+					:is-favorite="isFavorite"
 					v-model="isFavorite"
 				></r-favorite>
 				<router-link
@@ -51,7 +51,7 @@
 				:category="category"
 				:subcategory="subcategory"
 				v-show="isMaximize"
-				@removeMaximizeCard="removeMaximizeCard"
+				@remove-maximize-Card="removeMaximizeCard"
 			></r-card-maximize>
 		</transition>
 	</div>

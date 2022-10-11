@@ -1,5 +1,5 @@
 <template>
-	<section class="page-bonuses">
+	<section class="page-bonuses" v-once>
 		<h2 class="page-bonuses__title">Бонусная программа</h2>
 
 		<div class="page-bonuses__stats">
@@ -32,7 +32,7 @@
 	export default {
 		name: "PageBonuses",
 		created() {
-			this.$emit("changeTab", "bonuses");
+			this.$emit("change-tab", "bonuses");
 		},
 	};
 </script>

@@ -33,8 +33,8 @@
 					></r-button>
 					<r-pagination
 						:pages="paginationPages"
-						:currentPage="page_number"
-						@selectPage="selectPage"
+						:current-page="page_number"
+						@select-page="selectPage"
 					></r-pagination>
 				</div>
 			</section>

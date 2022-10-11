@@ -21,7 +21,7 @@
 					:title="slide.title"
 					:img="slide.img"
 					:description="slide.description"
-					:button_text="slide.button_text"
+					:button-text="slide.buttonText"
 				></r-service>
 			</swiper-slide>
 		</swiper>

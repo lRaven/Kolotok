@@ -4,7 +4,7 @@
 
 		<main class="main">
 			<the-banner />
-			<the-catalog title="Категории товаров" :isCatalogPage="false" />
+			<the-catalog title="Категории товаров" :is-catalog-page="false" />
 			<the-services />
 			<the-novelties />
 			<the-specials />

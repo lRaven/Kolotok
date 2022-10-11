@@ -52,9 +52,9 @@
 									? 'Не указано'
 									: ''
 							"
-							:isDisabled="isNameFormDisabled"
+							:is-disabled="isNameFormDisabled"
 							v-model="userData.last_name"
-							:isTransparent="isNameFormDisabled"
+							:is-transparent="isNameFormDisabled"
 						></r-input>
 					</div>
 					<div class="page-profile__item-row">
@@ -67,9 +67,9 @@
 									? 'Не указано'
 									: ''
 							"
-							:isDisabled="isNameFormDisabled"
+							:is-disabled="isNameFormDisabled"
 							v-model="userData.first_name"
-							:isTransparent="isNameFormDisabled"
+							:is-transparent="isNameFormDisabled"
 						></r-input>
 
 						<button
@@ -104,9 +104,9 @@
 									? 'Не указано'
 									: ''
 							"
-							:isDisabled="isPhoneFormDisabled"
+							:is-disabled="isPhoneFormDisabled"
 							v-model="userData.phone_number"
-							:isTransparent="isPhoneFormDisabled"
+							:is-transparent="isPhoneFormDisabled"
 						></r-input>
 
 						<button
@@ -139,9 +139,9 @@
 									? 'Не указано'
 									: ''
 							"
-							:isDisabled="isEmailFormDisabled"
+							:is-disabled="isEmailFormDisabled"
 							v-model="userData.email"
-							:isTransparent="isEmailFormDisabled"
+							:is-transparent="isEmailFormDisabled"
 						></r-input>
 
 						<button
@@ -177,9 +177,9 @@
 						</p>
 						<r-input
 							type="password"
-							:isDisabled="isPasswordFormDisabled"
+							:is-disabled="isPasswordFormDisabled"
 							v-model="userData.password"
-							:isTransparent="isPasswordFormDisabled"
+							:is-transparent="isPasswordFormDisabled"
 							v-else
 						></r-input>
 
@@ -204,7 +204,7 @@
 							type="password"
 							:isDisabled="isPasswordFormDisabled"
 							v-model="userData.password_new"
-							:isTransparent="isPasswordFormDisabled"
+							:is-transparent="isPasswordFormDisabled"
 						></r-input>
 					</div>
 
@@ -219,7 +219,7 @@
 							type="password"
 							:isDisabled="isPasswordFormDisabled"
 							v-model="userData.password_repeat"
-							:isTransparent="isPasswordFormDisabled"
+							:is-transparent="isPasswordFormDisabled"
 						></r-input>
 
 						<button
@@ -315,7 +315,7 @@
 			new_avatar: "",
 		}),
 		methods: {
-			...mapMutations(["SET_USER_AUTH"]),
+			...mapMutations(["setUserAuth"]),
 			...mapActions([
 				"getUserData",
 				"clearCabinetState",
@@ -333,7 +333,7 @@
 						this.$cookies.remove("auth_token");
 
 						this.clearCabinetState();
-						this.SET_USER_AUTH(false);
+						this.setUserAuth(false);
 						console.log("Logout successfully");
 					}
 				} catch (err) {
@@ -499,7 +499,7 @@
 			},
 		},
 		created() {
-			this.$emit("changeTab", "profile");
+			this.$emit("change-tab", "profile");
 
 			this.userData = {
 				password: "",

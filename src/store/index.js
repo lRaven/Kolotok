@@ -8,22 +8,13 @@ export default createStore({
 		baseURL: process.env.VUE_APP_BACKEND_BASEURL,
 		documentWidth: document.documentElement.clientWidth,
 	},
-	getters: {
-		BASEURL: state => {
-			return state.baseURL;
-		}
-	},
-	mutations: {
-		SET_BASEURL: (state, payload) => state.baseURL = payload,
-
-		SET_DOCUMENT_WIDTH: (state, payload) => state.documentWidth = payload,
-	},
+	mutations: { setDocumentWidth: (state, payload) => state.documentWidth = payload, },
 	actions: {
 		getDocumentWidth: async (context) => {
-			await context.commit('SET_DOCUMENT_WIDTH', document.documentElement.clientWidth);
+			await context.commit('setDocumentWidth', document.documentElement.clientWidth);
 			await window.addEventListener("resize", () => {
 				setTimeout(() => {
-					context.commit('SET_DOCUMENT_WIDTH', document.documentElement.clientWidth);
+					context.commit('setDocumentWidth', document.documentElement.clientWidth);
 				}, 100);
 			});
 		},

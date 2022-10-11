@@ -33,7 +33,7 @@
 				</p>
 			</div>
 			<div class="r-card-maximize__row r-card-maximize__control">
-				<r-counter :getValue="1" :getMin="1" :getMax="5"></r-counter>
+				<r-counter :get-value="1" :get-min="1" :get-max="5"></r-counter>
 				<r-button color="yellow" text="В корзину"></r-button>
 			</div>
 		</div>

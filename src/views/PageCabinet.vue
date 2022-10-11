@@ -1,15 +1,15 @@
 <template>
 	<div class="page-cabinet theme-container">
-		<the-header :isCabinetVersion="true"></the-header>
+		<the-header :is-cabinet-version="true"></the-header>
 
 		<main class="page-cabinet__main main">
 			<div class="page-cabinet__left-panel">
 				<the-navigation
-					@openPopup="openPopup"
-					@maximizeNav="maximizeNav"
-					@minimizeNav="minimizeNav"
-					:selectedTab="tab"
-					:isNavMinimized="isNavMinimized"
+					@open-popup="openPopup"
+					@maximize-nav="maximizeNav"
+					@minimize-nav="minimizeNav"
+					:selected-tab="tab"
+					:is-nav-minimized="isNavMinimized"
 				></the-navigation>
 				<div class="page-cabinet__hint" v-show="!isNavMinimized">
 					<p v-once>
@@ -29,19 +29,19 @@
 				class="page-cabinet__content"
 				:class="{ maximized: isNavMinimized }"
 			>
-				<router-view v-slot="{ Component }">
+				<router-view #="{ Component }">
 					<transition mode="out-in">
 						<component
 							:is="Component"
-							@openPopup="openPopup"
-							@changeTab="changeTab"
+							@open-popup="openPopup"
+							@change-tab="changeTab"
 						/>
 					</transition>
 				</router-view>
 			</div>
 		</main>
 
-		<the-footer :isCabinetVersion="true"></the-footer>
+		<the-footer :is-cabinet-version="true"></the-footer>
 	</div>
 </template>
 

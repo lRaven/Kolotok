@@ -3,76 +3,86 @@
 		<r-checkbox v-model="checked" :checked="product.selected"></r-checkbox>
 
 		<img
-			:src="product.img"
-			alt=""
-			v-if="product"
+			:src="
+				product.product.img || '/img/catalog/catalog__photo-default.svg'
+			"
+			alt="photo"
 			class="cart-card__image"
-		/>
-		<img
-			src="/img/catalog/catalog__photo-default.svg"
-			alt=""
-			class="cart-card__image"
-			v-else
+			v-once
 		/>
 
 		<div class="cart-card__info cart-card__col" v-once>
-			<p class="cart-card__name">{{ product.name }}</p>
+			<p class="cart-card__name">{{ product.product.name }}</p>
 			<div class="cart-card__article">
 				<p class="cart-card__article-name">Артикул:</p>
-				<p class="cart-card__article-value">{{ product.article }}</p>
+				<p class="cart-card__article-value">
+					{{ product.product.article }}
+				</p>
 			</div>
 		</div>
 
 		<div class="cart-card__prices cart-card__col" v-once>
-			<p class="cart-card__price-old">{{ product.price_old }}р.</p>
-			<p class="cart-card__price">{{ product.price }} руб.</p>
+			<p class="cart-card__price-old" v-if="product.product.price_old">
+				{{ product.product.price_old }}р.
+			</p>
+			<p class="cart-card__price">{{ product.product.price }} руб.</p>
 		</div>
 
 		<r-counter
-			:getValue="1"
-			:getMin="1"
-			:getMax="5"
+			:get-value="product.amount"
+			:get-min="1"
+			:get-max="5"
 			v-model="counter"
 			class="cart-card__col"
 		></r-counter>
 
 		<div class="cart-card__col cart-card__full-prices">
-			<p class="cart-card__full-price-old">{{ full_price_old }}р.</p>
+			<p class="cart-card__full-price-old" v-if="full_price_old">
+				{{ full_price_old }}р.
+			</p>
 			<p class="cart-card__full-price">{{ full_price }} руб.</p>
 		</div>
 
-		<div class="cart-card__remove">
+		<button
+			class="cart-card__remove"
+			@click="removeCard(product.product.name)"
+		>
 			<img
 				src="/img/icons/basket/delete.svg"
 				alt=""
 				class="cart-card__remove-icon"
 			/>
-		</div>
+		</button>
 	</div>
 </template>
 
 <script>
 	import rCounter from "@/components/Catalog/r-counter";
 
-	import { mapMutations, mapActions } from "vuex";
+	import { mapMutations } from "vuex";
 
 	export default {
 		name: "CartCard",
 		props: { product: Object },
 		components: { rCounter },
-		data: () => ({ counter: 1, checked: false }),
+		data() {
+			return {
+				counter: this.product.amount,
+				checked: false,
+			};
+		},
 		watch: {
 			counter() {
-				// this.setShoppingList({
-				// 	id: this.product.id,
-				// 	quantity: this.counter,
-				// });
+				this.setCartItemCount({
+					name: this.product.product.name,
+					count: this.counter,
+				});
 			},
 			checked() {
 				if (this.checked) {
-					this.SELECT_CART_ITEM(this.product.id);
+					this.selectCartItem(this.product.product.name);
 				} else {
-					this.UNSELECT_CART_ITEM(this.product.id);
+					this.unselectCartItem(this.product.product.name);
 				}
 			},
 			checkedUpdate() {
@@ -81,18 +91,22 @@
 		},
 		computed: {
 			full_price_old() {
-				return this.product.price_old * this.counter;
+				return this.product.product.price_old * this.counter;
 			},
 			full_price() {
-				return this.product.price * this.counter;
+				return this.product.product.price * this.counter;
 			},
 			checkedUpdate() {
 				return this.product.selected;
 			},
 		},
 		methods: {
-			...mapMutations(["SELECT_CART_ITEM", "UNSELECT_CART_ITEM"]),
-			...mapActions(["setShoppingList"]),
+			...mapMutations([
+				"selectCartItem",
+				"unselectCartItem",
+				"setCartItemCount",
+				"removeCard",
+			]),
 		},
 		mounted() {
 			// this.setShoppingList({
@@ -108,7 +122,7 @@
 
 	.cart-card {
 		display: grid;
-		grid-template-columns: 2rem 10rem 1fr repeat(3, 14rem) 2rem;
+		grid-template-columns: 2rem 6rem 1fr repeat(3, 14rem) 2rem;
 		align-items: center;
 		grid-gap: 2.5rem;
 		border: 0.1rem solid #e5e5e5;
@@ -143,10 +157,14 @@
 
 		&__image {
 			width: 100%;
-			max-width: 10rem;
+			max-width: 6rem;
 			height: 100%;
-			max-height: 10rem;
+			max-height: 6rem;
 			object-fit: contain;
+			@media (max-width: 1023px) {
+				max-width: 100%;
+				max-height: 100%;
+			}
 			@media (max-width: 767px) {
 				max-width: 100%;
 				width: inherit;
@@ -163,9 +181,6 @@
 		}
 
 		&__name {
-			font-size: 1.8rem;
-			font-weight: 700;
-			line-height: 1.3;
 		}
 		&__article {
 			display: flex;
@@ -232,7 +247,7 @@
 		}
 
 		&__remove {
-			cursor: pointer;
+			background-color: transparent;
 			@media (max-width: 767px) {
 				grid-area: 1/3;
 			}

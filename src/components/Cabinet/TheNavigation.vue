@@ -7,8 +7,8 @@
 			:class="{ minimized: isNavMinimized }"
 			@click="
 				isNavMinimized === true
-					? this.$emit('maximizeNav')
-					: this.$emit('minimizeNav')
+					? this.$emit('maximize-nav')
+					: this.$emit('minimize-nav')
 			"
 		>
 			<svg
@@ -100,8 +100,8 @@
 			:class="{ minimized: isNavMinimized }"
 			@click="
 				isNavMinimized === true
-					? this.$emit('maximizeNav')
-					: this.$emit('minimizeNav')
+					? this.$emit('maximize-nav')
+					: this.$emit('minimize-nav')
 			"
 		>
 			<svg
@@ -132,7 +132,7 @@
 			text="Напишите нам"
 			type="button"
 			color="white"
-			@click="this.$emit('openPopup')"
+			@click="this.$emit('open-popup')"
 		></r-button>
 	</div>
 </template>
@@ -152,7 +152,7 @@
 		watch: {
 			documentWidth() {
 				if (this.documentWidth <= 1050) {
-					this.$emit("minimizeNav");
+					this.$emit("minimize-nav");
 				}
 			},
 		},
@@ -175,16 +175,18 @@
 		},
 		methods: {
 			navActions(link) {
-				link ? this.$router.push(link) : this.$emit("openPopupKolotok");
+				link
+					? this.$router.push(link)
+					: this.$emit("open-popup-kolotok");
 
 				if (this.documentWidth <= 767) {
-					this.$emit("minimizeNav");
+					this.$emit("minimize-nav");
 				}
 			},
 		},
 		mounted() {
 			if (this.documentWidth <= 1050) {
-				this.$emit("minimizeNav");
+				this.$emit("minimize-nav");
 			}
 		},
 	};

@@ -22,7 +22,7 @@
 			<r-button
 				data-aos="fade-up"
 				data-aos-anchor-placement="top-bottom"
-				:text="button_text"
+				:text="buttonText"
 				color="yellow"
 			></r-button>
 		</div>
@@ -36,7 +36,7 @@
 			img: String,
 			title: String,
 			description: String,
-			button_text: String,
+			buttonText: String,
 		},
 	};
 </script>

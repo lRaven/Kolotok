@@ -61,7 +61,10 @@
 		</div>
 
 		<div class="page-card-cabinet__list">
-			<div class="page-cart-cabinet__list-header" v-once>
+			<div
+				class="page-cart-cabinet__list-header"
+				v-show="cart.products.length > 0"
+			>
 				<p class="page-cart-cabinet__list-col-description">Товар</p>
 				<p class="page-cart-cabinet__list-col-description">Цена</p>
 				<p class="page-cart-cabinet__list-col-description">
@@ -72,7 +75,7 @@
 
 			<cart-card
 				v-for="product in cart.products"
-				:key="product.id"
+				:key="product.product.name"
 				:product="product.product"
 				:amount="product.amount"
 			></cart-card>
@@ -115,7 +118,7 @@
 			},
 		},
 		created() {
-			this.$emit("changeTab", "cart");
+			this.$emit("change-tab", "cart");
 		},
 	};
 </script>

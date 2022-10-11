@@ -76,9 +76,9 @@
 								</h4>
 								<r-counter
 									v-model="quantity"
-									:getMin="1"
-									:getMax="100"
-									:getValue="1"
+									:get-value="1"
+									:get-min="1"
+									:get-max="100"
 								></r-counter>
 								<r-button
 									type="button"

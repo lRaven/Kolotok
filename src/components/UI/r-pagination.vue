@@ -3,8 +3,8 @@
 		<button
 			type="button"
 			class="r-pagination__btn r-pagination__btn-prev"
-			v-show="prev_page"
-			@click="changePage(current_page - 1)"
+			v-show="prevPage"
+			@click="changePage(currentPage - 1)"
 		>
 			<img
 				src="/img/icons/catalog/arrow.svg"
@@ -23,7 +23,7 @@
 					@click="changePage(pagination_item)"
 					class="r-pagination__item-btn"
 					:class="{
-						current: current_page === pagination_item,
+						current: currentPage === pagination_item,
 					}"
 				>
 					{{ pagination_item }}
@@ -33,7 +33,7 @@
 
 		<ol
 			class="r-pagination__items"
-			v-else-if="totalPages > 5 && current_page < totalPages - 3"
+			v-else-if="totalPages > 5 && currentPage < totalPages - 3"
 		>
 			<li
 				class="r-pagination__item"
@@ -44,7 +44,7 @@
 					@click="changePage(pagination_item)"
 					class="r-pagination__item-btn"
 					:class="{
-						current: current_page === pagination_item,
+						current: currentPage === pagination_item,
 						wide: pagination_item > 99,
 					}"
 				>
@@ -59,7 +59,7 @@
 					@click="changePage(totalPages)"
 					class="r-pagination__item-btn"
 					:class="{
-						current: current_page === totalPages,
+						current: currentPage === totalPages,
 						wide: totalPages > 99,
 					}"
 				>
@@ -78,7 +78,7 @@
 					@click="changePage(pagination_item)"
 					class="r-pagination__item-btn"
 					:class="{
-						current: current_page === pagination_item,
+						current: currentPage === pagination_item,
 						wide: pagination_item > 99,
 					}"
 				>
@@ -90,8 +90,8 @@
 		<button
 			type="button"
 			class="r-pagination__btn r-pagination__btn-next"
-			v-show="next_page"
-			@click="changePage(current_page + 1)"
+			v-show="nextPage"
+			@click="changePage(currentPage + 1)"
 		>
 			<img
 				src="/img/icons/catalog/arrow.svg"
@@ -108,7 +108,7 @@
 	export default {
 		name: "rPagination",
 		props: {
-			start_page: {
+			startPage: {
 				value: Number,
 				default: 1,
 			},
@@ -116,38 +116,38 @@
 				value: Number,
 				default: 70,
 			},
-			items_on_page: {
+			itemsOnPage: {
 				value: Number,
 				default: 10,
 			},
 
-			next_page: {
+			nextPage: {
 				value: String,
 				required: true,
 			},
-			prev_page: {
+			prevPage: {
 				value: String,
 				required: true,
 			},
 		},
 		watch: {
-			start_page() {
-				this.current_page = this.start_page;
+			startPage() {
+				this.currentPage = this.startPage;
 			},
 		},
 		computed: {
 			...mapState(["documentWidth"]),
 
 			totalPages() {
-				return Math.ceil(this.count / this.items_on_page);
+				return Math.ceil(this.count / this.itemsOnPage);
 			},
 
 			//* range before separator
 			range() {
 				let range = [];
 				for (
-					let index = this.current_page;
-					index < this.current_page + 3;
+					let index = this.currentPage;
+					index < this.currentPage + 3;
 					index++
 				) {
 					range.push(index);
@@ -169,12 +169,12 @@
 			},
 		},
 		data() {
-			return { current_page: this.start_page };
+			return { currentPage: this.startPage };
 		},
 		methods: {
-			changePage(page_number) {
-				this.current_page = page_number;
-				this.$emit("page_changed", page_number);
+			changePage(pageNumber) {
+				this.currentPage = pageNumber;
+				this.$emit("page-changed", pageNumber);
 			},
 		},
 	};

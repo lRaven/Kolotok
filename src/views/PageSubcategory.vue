@@ -28,15 +28,15 @@
 							class="yellow"
 							text="Показать ещё"
 							:arrow="true"
-							@click="page_changed(page + 1, true)"
+							@click="pageChanged(page + 1, true)"
 						></r-button>
 						<r-pagination
-							:start_page="page"
+							:start-page="page"
 							:count="count"
-							:items_on_page="pagination.cards_in_page"
-							:prev_page="pagination_data.previous"
-							:next_page="pagination_data.next"
-							@page_changed="page_changed"
+							:items-on-page="pagination.cards_in_page"
+							:prev-page="pagination_data.previous"
+							:next-page="pagination_data.next"
+							@page-changed="pageChanged"
 						></r-pagination>
 					</div>
 				</div>
@@ -69,13 +69,6 @@
 			rCard,
 
 			TheFooter,
-		},
-		watch: {
-			"$route.path"() {
-				if (this.$route.name === this.pagination.path_name) {
-					this.getCards();
-				}
-			},
 		},
 		data: () => ({
 			sortVariations: [
@@ -115,7 +108,9 @@
 					document.title = current_subcategory.name;
 				}
 
-				return current_subcategory;
+				if (current_subcategory) {
+					return current_subcategory;
+				} else return {};
 			},
 
 			links() {
@@ -188,7 +183,7 @@
 				}
 			},
 
-			page_changed(page_number, type) {
+			pageChanged(page_number, type) {
 				if (type) {
 					this.pagination.load_next_cards = true;
 				} else {

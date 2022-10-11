@@ -1,6 +1,6 @@
 <template>
 	<div class="page-registration theme-container">
-		<the-header :isCabinetVersion="true"></the-header>
+		<the-header :is-cabinet-version="true"></the-header>
 
 		<main class="page-registration__main main">
 			<div class="page-registration__container">
@@ -70,7 +70,7 @@
 			</div>
 		</main>
 
-		<the-footer :isCabinetVersion="true"></the-footer>
+		<the-footer :is-cabinet-version="true"></the-footer>
 	</div>
 </template>
 

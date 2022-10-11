@@ -13,12 +13,16 @@
 							v-model="isAllSelected"
 							@click="
 								isAllSelected
-									? UNSELECT_ALL_CART_ITEMS()
-									: SELECT_ALL_CART_ITEMS()
+									? unselectAllCartItems()
+									: selectAllCartItems()
 							"
 						></r-checkbox>
 
-						<div class="page-cart__delete">
+						<button
+							class="page-cart__delete"
+							@click="removeSelectedCards"
+							v-once
+						>
 							<svg
 								width="16"
 								height="16"
@@ -52,9 +56,13 @@
 							<p class="page-cart__delete-description">
 								Удалить выбранное
 							</p>
-						</div>
+						</button>
 
-						<div class="page-cart__clear" @click="SET_CART([])">
+						<button
+							class="page-cart__clear"
+							@click="clearCart"
+							v-once
+						>
 							<svg
 								width="17"
 								height="19"
@@ -86,8 +94,9 @@
 							<p class="page-cart__clear-description">
 								Очистить корзину
 							</p>
-						</div>
+						</button>
 					</div>
+
 					<div class="page-cart__list">
 						<div class="page-cart__captions" v-once>
 							<p class="page-cart__caption">Наименование</p>
@@ -95,20 +104,76 @@
 							<p class="page-cart__caption">Кол-во</p>
 							<p class="page-cart__caption">Стоимость</p>
 						</div>
+
 						<cart-card
-							v-for="product in cart"
-							:key="product.id"
+							v-for="product in cart.products"
+							:key="product.product.name"
 							:product="product"
+							:amount="product.amount"
 						></cart-card>
 					</div>
 				</div>
 
-				<div class="page-cart__col page-cart__buy">
-					<cart-calculation
-						:products="cart"
-						:discount="10"
-					></cart-calculation>
-				</div>
+				<form
+					class="page-cart__processing"
+					@submit.prevent="isFormSubmit = true"
+				>
+					<h3 class="page-cart__processing-title" v-once>
+						Ваш заказ
+					</h3>
+					<div class="page-cart__processing-row">
+						<p class="page-cart__processing-row-title" v-once>
+							Выбрано товаров
+						</p>
+						<p class="page-cart__processing-row-value">
+							{{ productsAmount }}
+							шт.
+						</p>
+					</div>
+					<div class="page-cart__processing-row">
+						<p class="page-cart__processing-row-title" v-once>
+							Скидка
+						</p>
+						<p class="page-cart__processing-row-value">
+							{{ productsDiscount }}
+							руб.
+						</p>
+					</div>
+					<div class="page-cart__processing-row">
+						<p class="page-cart__processing-row-title" v-once>
+							Итого:
+						</p>
+						<p class="page-cart__processing-row-value">
+							{{ cartCost }} руб.
+						</p>
+					</div>
+					<!-- <div class="page-cart__processing-promo">
+						<input
+							type="text"
+							name="promo"
+							placeholder="Есть промокод?"
+							class="page-cart__processing-promo-input"
+						/>
+						<button
+							type="button"
+							class="page-cart__processing-promo-button"
+						>
+							<img
+								src="/img/icons/basket/arrow.svg"
+								alt=""
+								class="page-cart__processing-promo-button-icon"
+							/>
+						</button>
+					</div> -->
+
+					<r-button
+						color="yellow"
+						type="submit"
+						text="Оформить заказ"
+						:disabled="v$.$invalid"
+					>
+					</r-button>
+				</form>
 			</section>
 		</main>
 		<the-footer />
@@ -117,13 +182,12 @@
 
 <script>
 	import TheHeader from "@/components/TheHeader";
-
 	import CartCard from "@/components/Cart/CartCard";
-	import CartCalculation from "@/components/Cart/CartCalculation";
-
 	import TheFooter from "@/components/TheFooter";
 
 	import { mapState, mapMutations } from "vuex";
+	import { useVuelidate } from "@vuelidate/core";
+	import { minValue } from "@vuelidate/validators";
 
 	export default {
 		name: "PageCart",
@@ -131,9 +195,26 @@
 			TheHeader,
 
 			CartCard,
-			CartCalculation,
 
 			TheFooter,
+		},
+		watch: {
+			isFormSubmit() {
+				if (this.isFormSubmit) {
+					this.placeOrder();
+					setTimeout(() => {
+						this.isFormSubmit = false;
+					}, 2000);
+				}
+			},
+			"cart.products": {
+				handler() {
+					if (this.cart.products.length === 0) {
+						this.isAllSelected = false;
+					}
+				},
+				deep: true,
+			},
 		},
 		data: () => ({
 			links: [
@@ -151,18 +232,57 @@
 			],
 
 			isAllSelected: false,
+			isFormSubmit: false,
+		}),
+		validations: () => ({
+			productsAmount: {
+				minValue: minValue(1),
+			},
 		}),
 		computed: {
-			...mapState({
-				cart: (state) => state.Cart.cart,
-			}),
+			...mapState({ cart: (state) => state.Cart.cart }),
+
+			productsAmount() {
+				return this.cart.products.reduce((acc, cur) => {
+					if (cur.selected) {
+						acc += cur.amount;
+					}
+					return acc;
+				}, 0);
+			},
+			productsDiscount() {
+				return 0;
+			},
+			cartCost() {
+				return this.cart.products.reduce((acc, cur) => {
+					if (cur.selected) {
+						acc += cur.product.price;
+					}
+
+					return acc;
+				}, 0);
+			},
 		},
 		methods: {
 			...mapMutations([
-				"SET_CART",
-				"SELECT_ALL_CART_ITEMS",
-				"UNSELECT_ALL_CART_ITEMS",
+				"setCart",
+				"selectAllCartItems",
+				"unselectAllCartItems",
+				"removeSelectedCards",
 			]),
+
+			// removeSelectedProducts() {},
+
+			clearCart() {
+				this.setCart({ products: [] });
+			},
+
+			placeOrder() {
+				console.log("submit");
+			},
+		},
+		setup() {
+			return { v$: useVuelidate() };
 		},
 	};
 </script>
@@ -216,7 +336,7 @@
 		}
 		&__delete {
 			user-select: none;
-			cursor: pointer;
+			background-color: transparent;
 			display: flex;
 			align-items: center;
 			gap: 1.7rem;
@@ -230,13 +350,14 @@
 		}
 
 		&__clear {
-			cursor: pointer;
 			user-select: none;
+			background-color: transparent;
 			display: flex;
 			align-items: center;
 			gap: 1.7rem;
 			&-description {
 				font-size: 1.4rem;
+				font-weight: 500;
 				color: $blue;
 			}
 		}
@@ -262,9 +383,8 @@
 			}
 		}
 		&__caption {
-			font-size: 1.8rem;
 			color: $middle-gray;
-			font-weight: 500;
+			font-weight: 600;
 		}
 
 		&__list {
@@ -272,7 +392,93 @@
 			flex-direction: column;
 		}
 
-		&__buy {
+		&__processing {
+			position: sticky;
+			left: 0;
+			top: 22rem;
+			padding: 2rem;
+			border-radius: 1.6rem;
+			box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+			height: max-content;
+			@media (max-width: 1400px) {
+				position: static;
+			}
+
+			&-title {
+				margin-bottom: 4rem;
+				font-weight: 700;
+			}
+
+			&-row {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				&:nth-child(4) {
+					margin-bottom: 4rem;
+					.page-cart__processing-row {
+						&-title,
+						&-value {
+							font-weight: 700;
+						}
+						&-title {
+							font-size: 2rem;
+						}
+						&-value {
+							font-size: 2.4rem;
+						}
+					}
+				}
+				&-title {
+					font-weight: 500;
+				}
+				&-value {
+					font-weight: 700;
+				}
+
+				+ .page-cart__processing-row {
+					margin-top: 2rem;
+				}
+			}
+
+			&-promo {
+				position: relative;
+				margin-bottom: 3rem;
+				&-input {
+					border: 0.1rem solid #e5e5e5;
+					width: 100%;
+					padding: 1rem 4.5rem 1rem 1rem;
+					font-size: 1.6rem;
+					border-radius: 0.6rem;
+					transition: all 0.2s ease;
+					&:hover {
+						border-color: $middle-gray;
+					}
+					&:focus {
+						border-color: $cool-gray;
+					}
+				}
+				&-button {
+					position: absolute;
+					right: 0;
+					top: 0;
+					bottom: 0;
+					background-color: $yellow;
+					width: 4rem;
+					border-radius: 0.6rem;
+					&-icon {
+						width: 55%;
+						height: 55%;
+						object-fit: contain;
+					}
+				}
+			}
+
+			.r-button {
+				padding-top: 1.8rem;
+				padding-bottom: 1.8rem;
+				width: 100%;
+				justify-content: center;
+			}
 		}
 	}
 </style>

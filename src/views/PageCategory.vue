@@ -37,15 +37,15 @@
 							text="Показать ещё"
 							:arrow="true"
 							v-show="pagination_data.next"
-							@click="page_changed(page + 1, true)"
+							@click="pageChanged(page + 1, true)"
 						></r-button>
 						<r-pagination
-							:start_page="page"
+							:start-page="page"
 							:count="count"
-							:items_on_page="pagination.cards_in_page"
-							:prev_page="pagination_data.previous"
-							:next_page="pagination_data.next"
-							@page_changed="page_changed"
+							:items-on-page="pagination.cards_in_page"
+							:prev-page="pagination_data.previous"
+							:next-page="pagination_data.next"
+							@page-changed="pageChanged"
 						></r-pagination>
 					</div>
 				</div>
@@ -80,21 +80,6 @@
 
 			TheFooter,
 		},
-		watch: {
-			"$route.path"() {
-				if (this.$route.name === this.pagination.path_name) {
-					this.getCards();
-				}
-			},
-			current_subcategories: {
-				handler() {
-					if (this.$route.name === this.pagination.path_name) {
-						this.getCards();
-					}
-				},
-				deep: true,
-			},
-		},
 		data: () => ({
 			sortVariations: [
 				{ id: 1, value: 1, text: "По цене (возрастание)" },
@@ -119,7 +104,10 @@
 							category.slug === this.$route.params.category
 					);
 
-					if (Object.keys(current_category).length > 0) {
+					if (
+						current_category &&
+						Object.keys(current_category).length > 0
+					) {
 						document.title = current_category.name;
 					}
 				}
@@ -130,7 +118,7 @@
 			current_subcategories() {
 				let current_subcategories = [];
 
-				if (this.subcategories) {
+				if (this.subcategories && this.category) {
 					current_subcategories = this.subcategories.reduce(
 						(acc, cur) => {
 							if (cur.category.id === this.category.id) {
@@ -169,7 +157,6 @@
 		},
 		methods: {
 			async getCards(addCards = false) {
-				console.log("get cards mf");
 				try {
 					const response = await getProducts({
 						sub_category: this.current_subcategories[0].id,
@@ -207,7 +194,7 @@
 				}
 			},
 
-			page_changed(page_number, type) {
+			pageChanged(page_number, type) {
 				if (type) {
 					this.pagination.load_next_cards = true;
 				} else {
@@ -221,9 +208,12 @@
 			},
 		},
 		mounted() {
-			if (this.current_subcategories.length > 0) {
-				this.getCards();
-			}
+			const interval = setInterval(() => {
+				if (this.current_subcategories.length > 0) {
+					clearInterval(interval);
+					this.getCards();
+				}
+			}, 500);
 		},
 	};
 </script>
